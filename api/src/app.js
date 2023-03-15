@@ -21,6 +21,10 @@ app.get("/", async (req, res) => {
   res.json({ name: "hola" });
 });
 
+app.get("/prueba", async(req, res) => {
+  
+})
+
 module.exports = {
   app,
 };
