@@ -14,6 +14,7 @@ BOOKS:
   rating: float,
   price: float,
   provider: string,
+  image: file,
   genres: {
     name: string
   } //seran sacados de otra "tabla"
@@ -52,7 +53,6 @@ ORDER: //pedidos, podemos dividir entre pedidos internos y pedidos de clientes
     name: string //salen desde books
   }
   orderBy: string, //quien lo pide
-  type: string //opciones a usar: interno o externo (interno, que lo pide la libreria a la editorial, externo, pedido al cliente)
   state: string //cumplido, pendiente, cancelado, avisado, en proceso, retirado
 }
 
