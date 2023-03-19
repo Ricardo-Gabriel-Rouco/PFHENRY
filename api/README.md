@@ -1,6 +1,25 @@
 De momento las tablas solo las voy a "redactar" en forma de objetos. Esto es debio al formato que usa firebase
 
 <!-- Tabla de libros -->
+ROLES: 
+{
+  id: integer,
+  name: string
+}
+
+USER/CLIENT:
+{
+  id: INTEGER, //posiblemente dni
+  name: STRING,
+  lastName: STRING,
+  phone: INTEGER,
+  detail: STRING,
+  email: STRING,
+  birthday: STRING,
+  enabled: BOOLEAN, //sirve evitar que el usuario funcione
+  role: { name: string}, //en inicios diria de usar roles tipo: admin, employee, customer y default customer
+}
+
 BOOKS:
 
 {
@@ -27,24 +46,7 @@ GENRES:
   name: string,
 }
 
-USER/CLIENT:
-{
-  id: INTEGER, //posiblemente dni
-  name: STRING,
-  lastName: STRING,
-  phone: INTEGER,
-  detail: STRING,
-  email: STRING,
-  birthday: STRING,
-  enabled: BOOLEAN, //sirve evitar que el usuario funcione
-  role: { name: string}, //en inicios diria de usar roles tipo: admin, employee, customer y default customer
-}
 
-ROLES: 
-{
-  id: integer,
-  name: string
-}
 
 ORDER: //pedidos, podemos dividir entre pedidos internos y pedidos de clientes
 {
@@ -52,6 +54,7 @@ ORDER: //pedidos, podemos dividir entre pedidos internos y pedidos de clientes
   articles: {
     name: string //salen desde books
   }
+  quantity: integer
   orderBy: string, //quien lo pide
   state: string //cumplido, pendiente, cancelado, avisado, en proceso, retirado
 }

@@ -6,7 +6,7 @@
 		"editorialId" : "Oxford U.P.",
 		"precio" : 271.0000,
 		"precio2" : 285.2800,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -16,7 +16,7 @@
 		"editorialId" : "Harper Voyager",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -26,7 +26,7 @@
 		"editorialId" : "Harper",
 		"precio" : 112.1300,
 		"precio2" : 118.0400,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -36,7 +36,7 @@
 		"editorialId" : "Harper",
 		"precio" : 120.5800,
 		"precio2" : 126.9300,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -46,7 +46,7 @@
 		"editorialId" : "Harper",
 		"precio" : 120.5800,
 		"precio2" : 126.9300,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -56,7 +56,7 @@
 		"editorialId" : "Harper ",
 		"precio" : 120.5800,
 		"precio2" : 126.9300,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -66,7 +66,7 @@
 		"editorialId" : "Harper",
 		"precio" : 120.5800,
 		"precio2" : 126.9300,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -76,7 +76,7 @@
 		"editorialId" : "Harper",
 		"precio" : 137.8300,
 		"precio2" : 145.0900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -86,7 +86,7 @@
 		"editorialId" : "Harpercollins",
 		"precio" : 151.6600,
 		"precio2" : 159.6500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -96,7 +96,7 @@
 		"editorialId" : "Harper ",
 		"precio" : 110.2600,
 		"precio2" : 116.0700,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -106,7 +106,7 @@
 		"editorialId" : "Pearson education",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -116,7 +116,7 @@
 		"editorialId" : "Pearson education",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -126,7 +126,7 @@
 		"editorialId" : "Pearson education",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -136,7 +136,7 @@
 		"editorialId" : "Pearson education",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -146,7 +146,7 @@
 		"editorialId" : "Pearson education",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -156,7 +156,7 @@
 		"editorialId" : "Longman\/Pearson",
 		"precio" : 184.0000,
 		"precio2" : 193.7000,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -166,7 +166,7 @@
 		"editorialId" : "Longman\/Pearson",
 		"precio" : 121.0000,
 		"precio2" : 127.3800,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -176,7 +176,7 @@
 		"editorialId" : "Penguin",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -186,7 +186,7 @@
 		"editorialId" : "Penguin",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -196,7 +196,7 @@
 		"editorialId" : "Penguin",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -206,7 +206,7 @@
 		"editorialId" : "Penguin bokks",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -216,7 +216,7 @@
 		"editorialId" : "Penguin",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -226,7 +226,7 @@
 		"editorialId" : "Penguin",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -236,7 +236,7 @@
 		"editorialId" : "Penguin",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -246,7 +246,7 @@
 		"editorialId" : "Penguin",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -256,7 +256,7 @@
 		"editorialId" : "Penguin",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -266,7 +266,7 @@
 		"editorialId" : "Penguin",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -276,7 +276,7 @@
 		"editorialId" : "Penguin",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -286,7 +286,7 @@
 		"editorialId" : "Penguin",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -296,7 +296,7 @@
 		"editorialId" : "Puffin books",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -306,7 +306,7 @@
 		"editorialId" : "Puffin books",
 		"precio" : 156.2000,
 		"precio2" : 164.4300,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -316,7 +316,7 @@
 		"editorialId" : "Penguin",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -326,7 +326,7 @@
 		"editorialId" : "Penguin",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -336,7 +336,7 @@
 		"editorialId" : "Penguin",
 		"precio" : 136.6500,
 		"precio2" : 143.8500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -346,7 +346,7 @@
 		"editorialId" : "Penguin books",
 		"precio" : 108.0000,
 		"precio2" : 113.6900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -356,7 +356,7 @@
 		"editorialId" : "Penguin books",
 		"precio" : 193.2900,
 		"precio2" : 203.4800,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -366,7 +366,7 @@
 		"editorialId" : "Penguin",
 		"precio" : 108.0000,
 		"precio2" : 113.6900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -376,7 +376,7 @@
 		"editorialId" : "Puffin books",
 		"precio" : 117.1000,
 		"precio2" : 123.2700,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -386,7 +386,7 @@
 		"editorialId" : "Puffin books",
 		"precio" : 136.6500,
 		"precio2" : 143.8500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -396,7 +396,7 @@
 		"editorialId" : "Puffin books",
 		"precio" : 136.6500,
 		"precio2" : 143.8500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -406,7 +406,7 @@
 		"editorialId" : "Puffin books",
 		"precio" : 136.6500,
 		"precio2" : 143.8500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -416,7 +416,7 @@
 		"editorialId" : "Puffin books",
 		"precio" : 136.6500,
 		"precio2" : 143.8500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -426,7 +426,7 @@
 		"editorialId" : "Puffin books",
 		"precio" : 117.1000,
 		"precio2" : 123.2700,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -436,7 +436,7 @@
 		"editorialId" : "Puffin books",
 		"precio" : 156.2000,
 		"precio2" : 164.4300,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -446,7 +446,7 @@
 		"editorialId" : "Penguin USA",
 		"precio" : 137.8600,
 		"precio2" : 145.1300,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -456,7 +456,7 @@
 		"editorialId" : "Penguin USA",
 		"precio" : 137.8600,
 		"precio2" : 145.1300,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -466,7 +466,7 @@
 		"editorialId" : "Penguin USA",
 		"precio" : 151.6600,
 		"precio2" : 159.6500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -476,7 +476,7 @@
 		"editorialId" : "Penguin USA",
 		"precio" : 137.8600,
 		"precio2" : 145.1300,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -486,7 +486,7 @@
 		"editorialId" : "Penguin USA",
 		"precio" : 151.6600,
 		"precio2" : 159.6500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -496,7 +496,7 @@
 		"editorialId" : "Oxford U.P.",
 		"precio" : 214.8500,
 		"precio2" : 226.1700,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -506,7 +506,7 @@
 		"editorialId" : "Oxford U.P.",
 		"precio" : 339.0000,
 		"precio2" : 356.8700,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -516,7 +516,7 @@
 		"editorialId" : "Oxford U.P.",
 		"precio" : 242.0000,
 		"precio2" : 254.7500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -526,7 +526,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 280.0000,
 		"precio2" : 294.7600,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -536,7 +536,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 285.0000,
 		"precio2" : 300.0200,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -546,7 +546,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 285.0000,
 		"precio2" : 300.0200,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -556,7 +556,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 265.0000,
 		"precio2" : 278.9700,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -566,7 +566,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 265.0000,
 		"precio2" : 278.9700,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -576,7 +576,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 285.0000,
 		"precio2" : 300.0200,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -586,7 +586,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 285.0000,
 		"precio2" : 300.0200,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -596,7 +596,7 @@
 		"editorialId" : "Oxford U.P.",
 		"precio" : 271.0000,
 		"precio2" : 285.2800,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -606,7 +606,7 @@
 		"editorialId" : "Oxford U.P.",
 		"precio" : 171.0000,
 		"precio2" : 180.0100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -616,7 +616,7 @@
 		"editorialId" : "Oxford U.P.",
 		"precio" : 128.0000,
 		"precio2" : 134.7500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -626,7 +626,7 @@
 		"editorialId" : "Oxford U.P.",
 		"precio" : 155.0000,
 		"precio2" : 163.1700,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -636,7 +636,7 @@
 		"editorialId" : "Oxford U.P.",
 		"precio" : 242.0000,
 		"precio2" : 254.7500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -646,7 +646,7 @@
 		"editorialId" : "Oxford U.P.",
 		"precio" : 228.0000,
 		"precio2" : 240.0200,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -656,7 +656,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 230.0000,
 		"precio2" : 242.1200,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -666,7 +666,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 230.0000,
 		"precio2" : 242.1200,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -676,7 +676,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 230.0000,
 		"precio2" : 242.1200,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -686,7 +686,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 230.0000,
 		"precio2" : 242.1200,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -696,7 +696,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 230.0000,
 		"precio2" : 242.1200,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -706,7 +706,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 239.0000,
 		"precio2" : 251.6000,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -716,7 +716,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 125.0000,
 		"precio2" : 131.5900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -726,7 +726,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 125.0000,
 		"precio2" : 131.5900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -736,7 +736,7 @@
 		"editorialId" : "Oxford U.P.",
 		"precio" : 125.0000,
 		"precio2" : 131.5900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -746,7 +746,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 92.0000,
 		"precio2" : 96.8500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -756,7 +756,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 125.0000,
 		"precio2" : 131.5900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -766,7 +766,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 125.0000,
 		"precio2" : 131.5900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -776,7 +776,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 125.0000,
 		"precio2" : 131.5900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -786,7 +786,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 125.0000,
 		"precio2" : 131.5900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -796,7 +796,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 125.0000,
 		"precio2" : 131.5900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -806,7 +806,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 115.0000,
 		"precio2" : 121.0600,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -816,7 +816,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 125.0000,
 		"precio2" : 131.5900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -826,7 +826,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 125.0000,
 		"precio2" : 131.5900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -836,7 +836,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 125.0000,
 		"precio2" : 131.5900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -846,7 +846,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 140.0000,
 		"precio2" : 147.3800,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -856,7 +856,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 132.0000,
 		"precio2" : 138.9600,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -866,7 +866,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 132.0000,
 		"precio2" : 138.9600,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -876,7 +876,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 125.0000,
 		"precio2" : 131.5900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -886,7 +886,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 125.0000,
 		"precio2" : 131.5900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -896,7 +896,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 125.0000,
 		"precio2" : 131.5900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -906,7 +906,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 140.0000,
 		"precio2" : 147.3800,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -916,7 +916,7 @@
 		"editorialId" : "Oxford",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -926,7 +926,7 @@
 		"editorialId" : "Oxford",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -936,7 +936,7 @@
 		"editorialId" : "Oxford ",
 		"precio" : 294.0000,
 		"precio2" : 309.4900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -946,7 +946,7 @@
 		"editorialId" : "Oxford",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -956,7 +956,7 @@
 		"editorialId" : "Oxford U.P.",
 		"precio" : 207.0000,
 		"precio2" : 217.9100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -966,7 +966,7 @@
 		"editorialId" : "Oxford ",
 		"precio" : 258.7500,
 		"precio2" : 272.3900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -976,7 +976,7 @@
 		"editorialId" : "Oxford U.P.",
 		"precio" : 259.0000,
 		"precio2" : 272.6500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -986,7 +986,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 294.0000,
 		"precio2" : 309.4900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -996,7 +996,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 294.0000,
 		"precio2" : 309.4900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1006,7 +1006,7 @@
 		"editorialId" : "Oxford U.P.",
 		"precio" : 222.0000,
 		"precio2" : 233.7000,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1016,7 +1016,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 95.0000,
 		"precio2" : 100.0100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1026,7 +1026,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 95.0000,
 		"precio2" : 100.0100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1036,7 +1036,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 95.0000,
 		"precio2" : 100.0100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1046,7 +1046,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 95.0000,
 		"precio2" : 100.0100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1056,7 +1056,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 95.0000,
 		"precio2" : 100.0100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1066,7 +1066,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 95.0000,
 		"precio2" : 100.0100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1076,7 +1076,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 95.0000,
 		"precio2" : 100.0100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1086,7 +1086,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 95.0000,
 		"precio2" : 100.0100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1096,7 +1096,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 95.0000,
 		"precio2" : 100.0100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1106,7 +1106,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 95.0000,
 		"precio2" : 100.0100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1116,7 +1116,7 @@
 		"editorialId" : "Oxford ",
 		"precio" : 86.2500,
 		"precio2" : 90.8000,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1126,7 +1126,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 121.5000,
 		"precio2" : 127.9000,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1136,7 +1136,7 @@
 		"editorialId" : "Oxford U.P.",
 		"precio" : 304.7500,
 		"precio2" : 320.8100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1146,7 +1146,7 @@
 		"editorialId" : "Oxford U.P.",
 		"precio" : 201.2500,
 		"precio2" : 211.8600,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1156,7 +1156,7 @@
 		"editorialId" : "Oxford U.P.",
 		"precio" : 345.0000,
 		"precio2" : 363.1800,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1166,7 +1166,7 @@
 		"editorialId" : "Oxford U.P.",
 		"precio" : 207.0000,
 		"precio2" : 217.9100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1176,7 +1176,7 @@
 		"editorialId" : "Oxford U.P.",
 		"precio" : 159.8500,
 		"precio2" : 168.2700,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1186,7 +1186,7 @@
 		"editorialId" : "Oxford U.P.",
 		"precio" : 240.3500,
 		"precio2" : 253.0200,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1196,7 +1196,7 @@
 		"editorialId" : "Oxford U.P.",
 		"precio" : 306.0000,
 		"precio2" : 322.1300,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1206,7 +1206,7 @@
 		"editorialId" : "Oxford",
 		"precio" : 99.0000,
 		"precio2" : 104.2200,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1216,7 +1216,7 @@
 		"editorialId" : "Oxford U.P.",
 		"precio" : 69.0000,
 		"precio2" : 72.6400,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1226,7 +1226,7 @@
 		"editorialId" : "Macmillan",
 		"precio" : 210.0000,
 		"precio2" : 221.0700,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1236,7 +1236,7 @@
 		"editorialId" : "MacMillan",
 		"precio" : 280.0000,
 		"precio2" : 294.7600,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1246,7 +1246,7 @@
 		"editorialId" : "MacMillan",
 		"precio" : 100.0000,
 		"precio2" : 105.2700,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1256,7 +1256,7 @@
 		"editorialId" : "Macmillan",
 		"precio" : 220.0000,
 		"precio2" : 231.5900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1266,7 +1266,7 @@
 		"editorialId" : "Macmillan",
 		"precio" : 220.0000,
 		"precio2" : 231.5900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1276,7 +1276,7 @@
 		"editorialId" : "Macmillan",
 		"precio" : 120.0000,
 		"precio2" : 126.3200,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1286,7 +1286,7 @@
 		"editorialId" : "Penguin",
 		"precio" : 175.7500,
 		"precio2" : 185.0100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1296,7 +1296,7 @@
 		"editorialId" : "Penguin",
 		"precio" : 175.7500,
 		"precio2" : 185.0100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1306,7 +1306,7 @@
 		"editorialId" : "Potter",
 		"precio" : 379.8500,
 		"precio2" : 399.8700,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1316,7 +1316,7 @@
 		"editorialId" : "Little, Brown & Co",
 		"precio" : 240.0000,
 		"precio2" : 252.6500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1326,7 +1326,7 @@
 		"editorialId" : "Little, Brown & Co",
 		"precio" : 248.4000,
 		"precio2" : 261.4900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1336,7 +1336,7 @@
 		"editorialId" : "Little, Brown & Co",
 		"precio" : 276.0000,
 		"precio2" : 290.5500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1346,7 +1346,7 @@
 		"editorialId" : "Pearson",
 		"precio" : 290.0000,
 		"precio2" : 305.2800,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1356,7 +1356,7 @@
 		"editorialId" : "Macmillan",
 		"precio" : 130.0000,
 		"precio2" : 136.8500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1366,7 +1366,7 @@
 		"editorialId" : "Macmillan",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1376,7 +1376,7 @@
 		"editorialId" : "Hodder ed.",
 		"precio" : 390.8000,
 		"precio2" : 411.4000,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1386,7 +1386,7 @@
 		"editorialId" : "Orion",
 		"precio" : 129.4400,
 		"precio2" : 136.2600,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1396,7 +1396,7 @@
 		"editorialId" : "Perigee",
 		"precio" : 207.0000,
 		"precio2" : 217.9100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1406,7 +1406,7 @@
 		"editorialId" : "Perigee",
 		"precio" : 243.2000,
 		"precio2" : 256.0200,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1416,7 +1416,7 @@
 		"editorialId" : "MacMillan",
 		"precio" : 85.0000,
 		"precio2" : 89.4800,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1426,7 +1426,7 @@
 		"editorialId" : "Grand Central P.",
 		"precio" : 110.2700,
 		"precio2" : 116.0800,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1436,7 +1436,7 @@
 		"editorialId" : "Hachette",
 		"precio" : 110.2600,
 		"precio2" : 116.0700,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1446,7 +1446,7 @@
 		"editorialId" : "Signet Classics",
 		"precio" : 68.3100,
 		"precio2" : 71.9100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1456,7 +1456,7 @@
 		"editorialId" : "Cambridge U.P.",
 		"precio" : 152.1000,
 		"precio2" : 160.1200,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1466,7 +1466,7 @@
 		"editorialId" : "Cambridge U.P.",
 		"precio" : 272.7000,
 		"precio2" : 287.0700,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1476,7 +1476,7 @@
 		"editorialId" : "Cambridge U.P.",
 		"precio" : 272.7000,
 		"precio2" : 287.0700,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1486,7 +1486,7 @@
 		"editorialId" : "Cambridge U.P.",
 		"precio" : 152.1000,
 		"precio2" : 160.1200,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1496,7 +1496,7 @@
 		"editorialId" : "Cambridge U.P.",
 		"precio" : 209.7000,
 		"precio2" : 220.7500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1506,7 +1506,7 @@
 		"editorialId" : "Penguin USA",
 		"precio" : 137.8600,
 		"precio2" : 145.1300,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1516,7 +1516,7 @@
 		"editorialId" : "Dutton",
 		"precio" : 248.2600,
 		"precio2" : 261.3400,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1526,7 +1526,7 @@
 		"editorialId" : "Dutton",
 		"precio" : 179.2600,
 		"precio2" : 188.7100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1536,7 +1536,7 @@
 		"editorialId" : "Penguin USA",
 		"precio" : 248.2600,
 		"precio2" : 261.3400,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1546,7 +1546,7 @@
 		"editorialId" : "Scholastic",
 		"precio" : 137.8600,
 		"precio2" : 145.1300,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1556,7 +1556,7 @@
 		"editorialId" : "Scholastic",
 		"precio" : 137.8600,
 		"precio2" : 145.1300,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1566,7 +1566,7 @@
 		"editorialId" : null,
 		"precio" : 551.0000,
 		"precio2" : 580.0400,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1576,7 +1576,7 @@
 		"editorialId" : "Faber",
 		"precio" : 120.5900,
 		"precio2" : 126.9500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1586,7 +1586,7 @@
 		"editorialId" : "Faber",
 		"precio" : 116.8500,
 		"precio2" : 123.0100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1596,7 +1596,7 @@
 		"editorialId" : "Faber",
 		"precio" : 214.3900,
 		"precio2" : 225.6900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1606,7 +1606,7 @@
 		"editorialId" : "Penguin",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1616,7 +1616,7 @@
 		"editorialId" : "Penguin",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1626,7 +1626,7 @@
 		"editorialId" : "Penguin",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1636,7 +1636,7 @@
 		"editorialId" : "Penguin",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1646,7 +1646,7 @@
 		"editorialId" : "Penguin",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1656,7 +1656,7 @@
 		"editorialId" : "Penguin",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1666,7 +1666,7 @@
 		"editorialId" : "Penguin",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1676,7 +1676,7 @@
 		"editorialId" : "Penguin",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1686,7 +1686,7 @@
 		"editorialId" : "Penguin",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1696,7 +1696,7 @@
 		"editorialId" : "Penguin",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1706,7 +1706,7 @@
 		"editorialId" : "Pearson",
 		"precio" : 122.0000,
 		"precio2" : 128.4300,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1716,7 +1716,7 @@
 		"editorialId" : "Sterling",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1726,7 +1726,7 @@
 		"editorialId" : "Sterling",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1736,7 +1736,7 @@
 		"editorialId" : "Sterling",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1746,7 +1746,7 @@
 		"editorialId" : "Sterling",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1756,7 +1756,7 @@
 		"editorialId" : "Sterling",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1766,7 +1766,7 @@
 		"editorialId" : "Sterling",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1776,7 +1776,7 @@
 		"editorialId" : "Sterling",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1786,7 +1786,7 @@
 		"editorialId" : "Bloomsbury",
 		"precio" : 137.8300,
 		"precio2" : 145.0900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1796,7 +1796,7 @@
 		"editorialId" : "Harper ",
 		"precio" : 110.2600,
 		"precio2" : 116.0700,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1806,7 +1806,7 @@
 		"editorialId" : "Merriam-Webster",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1816,7 +1816,7 @@
 		"editorialId" : null,
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1826,7 +1826,7 @@
 		"editorialId" : "Merriam-Webster",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1836,7 +1836,7 @@
 		"editorialId" : null,
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1846,7 +1846,7 @@
 		"editorialId" : "Cambridge U.P.",
 		"precio" : 500.0000,
 		"precio2" : 526.3500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1856,7 +1856,7 @@
 		"editorialId" : "Cambridge U.P.",
 		"precio" : 315.0000,
 		"precio2" : 331.6000,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1866,7 +1866,7 @@
 		"editorialId" : "Heinle ",
 		"precio" : 208.0000,
 		"precio2" : 218.9600,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1876,7 +1876,7 @@
 		"editorialId" : "Macmillan",
 		"precio" : 120.0000,
 		"precio2" : 126.3200,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1886,7 +1886,7 @@
 		"editorialId" : "Macmillan",
 		"precio" : 120.0000,
 		"precio2" : 126.3200,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1896,7 +1896,7 @@
 		"editorialId" : "Macmillan ",
 		"precio" : 85.0000,
 		"precio2" : 89.4800,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1906,7 +1906,7 @@
 		"editorialId" : "MacMillan",
 		"precio" : 150.0000,
 		"precio2" : 157.9000,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1916,7 +1916,7 @@
 		"editorialId" : "Macmillan",
 		"precio" : 87.0000,
 		"precio2" : 91.5800,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1926,7 +1926,7 @@
 		"editorialId" : "Macmillan",
 		"precio" : 87.0000,
 		"precio2" : 91.5800,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1936,7 +1936,7 @@
 		"editorialId" : "Penguin Active Read",
 		"precio" : 90.0000,
 		"precio2" : 94.7400,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1946,7 +1946,7 @@
 		"editorialId" : "Penguin",
 		"precio" : 85.0000,
 		"precio2" : 89.4800,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1966,7 +1966,7 @@
 		"editorialId" : "Penguin Readers",
 		"precio" : 119.0000,
 		"precio2" : 125.2700,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1976,7 +1976,7 @@
 		"editorialId" : "Penguin",
 		"precio" : 69.0000,
 		"precio2" : 72.6400,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1986,7 +1986,7 @@
 		"editorialId" : "Pearson",
 		"precio" : 163.0000,
 		"precio2" : 171.5900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -1996,7 +1996,7 @@
 		"editorialId" : "Pearson",
 		"precio" : 163.0000,
 		"precio2" : 171.5900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2006,7 +2006,7 @@
 		"editorialId" : "Bloomsbury",
 		"precio" : 136.6500,
 		"precio2" : 143.8500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2016,7 +2016,7 @@
 		"editorialId" : "Bloomsbury",
 		"precio" : 136.6500,
 		"precio2" : 143.8500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2026,7 +2026,7 @@
 		"editorialId" : "Bloomsbury",
 		"precio" : 175.7500,
 		"precio2" : 185.0100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2036,7 +2036,7 @@
 		"editorialId" : "Bloomsbury",
 		"precio" : 175.7500,
 		"precio2" : 185.0100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2046,7 +2046,7 @@
 		"editorialId" : "Bloomsbury",
 		"precio" : 175.7500,
 		"precio2" : 185.0100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2056,7 +2056,7 @@
 		"editorialId" : "Bloomsbury",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2066,7 +2066,7 @@
 		"editorialId" : "Harper Collins",
 		"precio" : 121.4500,
 		"precio2" : 127.8500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2076,7 +2076,7 @@
 		"editorialId" : "Longman\/Pearson",
 		"precio" : 289.0000,
 		"precio2" : 304.2300,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2086,7 +2086,7 @@
 		"editorialId" : "Pearson",
 		"precio" : 410.0000,
 		"precio2" : 431.6100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2096,7 +2096,7 @@
 		"editorialId" : "Atria",
 		"precio" : 207.0000,
 		"precio2" : 217.9100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2106,7 +2106,7 @@
 		"editorialId" : "Atria",
 		"precio" : 207.0000,
 		"precio2" : 217.9100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2116,7 +2116,7 @@
 		"editorialId" : "Penguin",
 		"precio" : 151.6600,
 		"precio2" : 159.6500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2126,7 +2126,7 @@
 		"editorialId" : "Razorbill",
 		"precio" : 137.8600,
 		"precio2" : 145.1300,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2136,7 +2136,7 @@
 		"editorialId" : "Express Publishing",
 		"precio" : 36.9000,
 		"precio2" : 38.8400,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2146,7 +2146,7 @@
 		"editorialId" : "Express Publishing",
 		"precio" : 85.1000,
 		"precio2" : 89.5800,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2156,7 +2156,7 @@
 		"editorialId" : "Express Publishing",
 		"precio" : 168.5000,
 		"precio2" : 177.3800,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2166,7 +2166,7 @@
 		"editorialId" : "Express Publishing",
 		"precio" : 148.0000,
 		"precio2" : 155.8000,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2176,7 +2176,7 @@
 		"editorialId" : "Express Publishing",
 		"precio" : 148.0000,
 		"precio2" : 155.8000,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2186,7 +2186,7 @@
 		"editorialId" : "Express Publishing",
 		"precio" : 178.7500,
 		"precio2" : 188.1700,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2196,7 +2196,7 @@
 		"editorialId" : "Express Publishing",
 		"precio" : 168.5000,
 		"precio2" : 177.3800,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2206,7 +2206,7 @@
 		"editorialId" : "Express Publishing",
 		"precio" : 209.6000,
 		"precio2" : 220.6500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2216,7 +2216,7 @@
 		"editorialId" : "Express Publishing",
 		"precio" : 61.9000,
 		"precio2" : 65.1600,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2226,7 +2226,7 @@
 		"editorialId" : "Wordsworth Edition",
 		"precio" : 65.0000,
 		"precio2" : 68.4300,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2236,7 +2236,7 @@
 		"editorialId" : "Wordsworth Classics",
 		"precio" : 65.0000,
 		"precio2" : 68.4300,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2246,7 +2246,7 @@
 		"editorialId" : "Summerton P.",
 		"precio" : 115.0000,
 		"precio2" : 121.0600,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2256,7 +2256,7 @@
 		"editorialId" : "Collector´s library",
 		"precio" : 145.4400,
 		"precio2" : 153.1000,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2266,7 +2266,7 @@
 		"editorialId" : "Richmond",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2276,7 +2276,7 @@
 		"editorialId" : "Richmond",
 		"precio" : null,
 		"precio2" : null,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2286,7 +2286,7 @@
 		"editorialId" : "Richmond",
 		"precio" : 179.0000,
 		"precio2" : 188.4300,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2296,7 +2296,7 @@
 		"editorialId" : "Richmond",
 		"precio" : 140.0000,
 		"precio2" : 147.3800,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2306,7 +2306,7 @@
 		"editorialId" : "Richmond",
 		"precio" : 170.0000,
 		"precio2" : 178.9600,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2316,7 +2316,7 @@
 		"editorialId" : "Richmond",
 		"precio" : 179.0000,
 		"precio2" : 188.4300,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2326,7 +2326,7 @@
 		"editorialId" : "Richmond",
 		"precio" : 125.0000,
 		"precio2" : 131.5900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2336,7 +2336,7 @@
 		"editorialId" : "Richmond",
 		"precio" : 175.0000,
 		"precio2" : 184.2200,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2346,7 +2346,7 @@
 		"editorialId" : "Richmond",
 		"precio" : 130.0000,
 		"precio2" : 136.8500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2356,7 +2356,7 @@
 		"editorialId" : "Richmond",
 		"precio" : 271.0000,
 		"precio2" : 285.2800,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2366,7 +2366,7 @@
 		"editorialId" : "Richmond",
 		"precio" : 173.0000,
 		"precio2" : 182.1200,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2376,7 +2376,7 @@
 		"editorialId" : "Richmond",
 		"precio" : 205.0000,
 		"precio2" : 215.8000,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2386,7 +2386,7 @@
 		"editorialId" : "Richmond",
 		"precio" : 130.0000,
 		"precio2" : 136.8500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2396,7 +2396,7 @@
 		"editorialId" : "Richmond",
 		"precio" : 130.0000,
 		"precio2" : 136.8500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2406,7 +2406,7 @@
 		"editorialId" : "Santillana\/ Richmond",
 		"precio" : 70.0000,
 		"precio2" : 73.6900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2416,7 +2416,7 @@
 		"editorialId" : "Santillana ",
 		"precio" : 70.0000,
 		"precio2" : 73.6900,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2426,7 +2426,7 @@
 		"editorialId" : "Richmond",
 		"precio" : 189.0000,
 		"precio2" : 198.9600,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2436,7 +2436,7 @@
 		"editorialId" : "Richmond",
 		"precio" : 189.0000,
 		"precio2" : 198.9600,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2446,7 +2446,7 @@
 		"editorialId" : "Richmond",
 		"precio" : 190.0000,
 		"precio2" : 200.0100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2456,7 +2456,7 @@
 		"editorialId" : "Richmond",
 		"precio" : 190.0000,
 		"precio2" : 200.0100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2466,7 +2466,7 @@
 		"editorialId" : "Santillana",
 		"precio" : 94.0000,
 		"precio2" : 98.9500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2476,7 +2476,7 @@
 		"editorialId" : "Kel",
 		"precio" : 99.0000,
 		"precio2" : 104.2200,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2486,7 +2486,7 @@
 		"editorialId" : "mmpublications",
 		"precio" : 110.5000,
 		"precio2" : 116.3200,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2496,7 +2496,7 @@
 		"editorialId" : "Macmillan",
 		"precio" : 160.0000,
 		"precio2" : 168.4300,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2506,7 +2506,7 @@
 		"editorialId" : "Pearson education",
 		"precio" : 91.0000,
 		"precio2" : 95.8000,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2516,7 +2516,7 @@
 		"editorialId" : "Macmillan",
 		"precio" : 130.0000,
 		"precio2" : 136.8500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2526,7 +2526,7 @@
 		"editorialId" : "Macmillan",
 		"precio" : 110.0000,
 		"precio2" : 115.8000,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2536,7 +2536,7 @@
 		"editorialId" : "Macmillan",
 		"precio" : 75.0000,
 		"precio2" : 78.9500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2546,7 +2546,7 @@
 		"editorialId" : "Macmillan",
 		"precio" : 75.0000,
 		"precio2" : 78.9500,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2556,7 +2556,7 @@
 		"editorialId" : "Macmillan",
 		"precio" : 100.0000,
 		"precio2" : 105.2700,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2566,7 +2566,7 @@
 		"editorialId" : "Macmillan",
 		"precio" : 175.0000,
 		"precio2" : 184.2200,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2576,7 +2576,7 @@
 		"editorialId" : "Kel",
 		"precio" : 99.0000,
 		"precio2" : 104.2200,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2586,7 +2586,7 @@
 		"editorialId" : "Kel",
 		"precio" : 99.0000,
 		"precio2" : 104.2200,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2596,7 +2596,7 @@
 		"editorialId" : "Kel",
 		"precio" : 99.0000,
 		"precio2" : 104.2200,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2606,7 +2606,7 @@
 		"editorialId" : "Longman\/Pearson",
 		"precio" : 170.0000,
 		"precio2" : 178.9600,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2616,7 +2616,7 @@
 		"editorialId" : "Tinta Fresca",
 		"precio" : 86.0000,
 		"precio2" : 90.5300,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2626,7 +2626,7 @@
 		"editorialId" : "Longman\/Pearson",
 		"precio" : 198.0000,
 		"precio2" : 208.4300,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2636,7 +2636,7 @@
 		"editorialId" : "Macmillan",
 		"precio" : 190.0000,
 		"precio2" : 200.0100,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2646,7 +2646,7 @@
 		"editorialId" : "Macmillan",
 		"precio" : 100.0000,
 		"precio2" : 105.2700,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2656,7 +2656,7 @@
 		"editorialId" : "Macmillan",
 		"precio" : 210.0000,
 		"precio2" : 221.0700,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2666,7 +2666,7 @@
 		"editorialId" : "Macmillan",
 		"precio" : 210.0000,
 		"precio2" : 221.0700,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	},
 	{
@@ -2676,7 +2676,7 @@
 		"editorialId" : "Macmillan",
 		"precio" : 235.0000,
 		"precio2" : 247.3800,
-		"stock" : 0E-7,
+		"stock" : 0,
 		"grupoId" : "English Books"
 	}
 
