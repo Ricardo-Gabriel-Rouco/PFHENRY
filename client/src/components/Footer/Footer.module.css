@@ -1,0 +1,19 @@
+.rights{
+    background-color:   rgba(24, 144, 255, 0.06); 
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -100px;
+}
+.rights p{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.2px;
+    color:black
+}
