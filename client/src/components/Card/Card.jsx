@@ -1,16 +1,21 @@
 
-const Card = (props) => {
+const Card = ({currentBook}) => {
     
     
-        return (
+    return (
         <div>
-            <h1>{props.title}</h1>
-            <h2>Just imagine there is a wonderful image of a wonderful book</h2>
-            <p>Stock: {props.stock}</p>
-            <p>Price: {props.price}</p>
+            {currentBook.map((book, j) => (
+                <div key={j}>
+                    <h1>{book.title}</h1>
+                    <h2>Just imagine there is a wonderful image of a wonderful book</h2>
+                    <p>Stock: {book.stock}</p>
+                    <p>Price: {book.price}</p>
+                </div>
+            ))}
         </div>
-
     );
 }
+
+
 
 export default Card;
