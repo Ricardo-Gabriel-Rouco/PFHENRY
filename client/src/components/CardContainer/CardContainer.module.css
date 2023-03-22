@@ -1,6 +1,18 @@
 .container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20%
-
+  background-image: url("../../image/fondoBook3.jpg");
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgb(0, 62, 125);
+  border-radius: 20px;
+  width: 90%;
+  height: 500px;
+  margin: 20px auto;
+  padding-top: 20px;
+  display: grid;
+  gap: 2rem;
+  grid-auto-flow: dense;
+  grid-auto-rows: 22rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
 }
