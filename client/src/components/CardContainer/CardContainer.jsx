@@ -1,39 +1,57 @@
 import db from '../../firebase-config'
 import { collection, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import { doc, setDoc, getDocs, query, where } from "firebase/firestore";
 
 import Card from '../Card/Card';
 import style from './CardContainer.module.css'
+import { async } from '@firebase/util';
+
+// const books = db.collection('books');
 
 const CardContainer = () => {
 
-  const [book, setBook] = useState([])
+  const [books, setBooks] = useState([])
 
-    useEffect(() => {
-        // en este caso tenemos dos opciones, usamos getData o onSnapshot, la diferencia es que cada vez que 
-        // se actualiza la db, 
-        // onSnapshot envia la data nueva sin necesidad de un refresh
+  useEffect(() => {
+      
+    ///////////OBTENER TODOS LOS DATOS
     
-      onSnapshot(collection(db, 'books'), (snapshot) =>{
-      setBook(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id}) ))
-    })
-    }, [])
+    (async()=>{
+      // const q = query(collection(db, "cities"), where("capital", "==", true));  //con capital === true
+      const q = query(collection(db, "books"));
+      const querySnapshot = await getDocs(q);
+      
+      
+      let data = [];
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        data.push({
+          ...doc.data(),
+          id:doc.id
+        })
+      });
+      setBooks(data)
+     
+     
+    })()
+  }, [])
 
-    return (
-      <div className={style.container}>
-      Esto es CardContainer y contiene:
-      {book.map((book, j) =>(
-        <Card 
-        key={j} 
-        title={book.title}
-        stock={book.stock}
-        price={book.price}/>
-      ))}
-      <Card />
-      </div>
+  return (
+    <div className={style.container}>
+    Esto es CardContainer y contiene:
+    {books.map((book, j) =>(
+      <Card 
+      key={j} 
+      title={book.title}
+      stock={book.stock}
+      price={book.price}/>
+    ))}
+    
+    </div>
 
 
-    );
+  );
 }
 
 export default CardContainer;
