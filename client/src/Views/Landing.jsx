@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { FaChevronDown } from 'react-icons/fa';
+// import { FaChevronDown } from 'react-icons/fa';
+// eslint-disable-next-line
 import About from './About';
 
 
