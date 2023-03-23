@@ -1,52 +1,28 @@
-import db from '../../firebase-config'
+import db from "../../firebase-config";
 import { collection, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { doc, setDoc, getDocs, query, where } from "firebase/firestore";
-import Card from '../Card/Card';
-import style from './CardContainer.module.css'
-import { async } from '@firebase/util';
+import Card from "../Card/Card";
+import style from "./CardContainer.module.css";
+import { async } from "@firebase/util";
+import { useSelector } from "react-redux";
 
-import Paginate from '../../components/Paginate/Paginate'
+import Paginate from "../../components/Paginate/Paginate";
 
 // const books = db.collection('books');
 
 const CardContainer = () => {
+  const [books, setBooks] = useState([1, 2, 3]);
 
-  const [books, setBooks] = useState([])
+  const booksList = useSelector((state) => state.books.booksToFilter);
 
-  useEffect(() => {
+  console.log(booksList);
 
-    ///////////OBTENER TODOS LOS DATOS
-
-    (async () => {
-      // const q = query(collection(db, "cities"), where("capital", "==", true));  //con capital === true
-      const q = query(collection(db, "books"));
-      const querySnapshot = await getDocs(q);
-
-
-      let data = [];
-      querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        data.push({
-          ...doc.data(),
-          id: doc.id
-        })
-      });
-      setBooks(data)
-
-
-    })()
-  }, [])
-
-
-
-  //PAGINATION. 
   const [currentPage, setCurrentPage] = useState(1);
   const [booksPerPage] = useState(1);
   const indexOfLastBook = currentPage * booksPerPage;
   const indexOfFirstBook = indexOfLastBook - booksPerPage;
-  const currentBook = books.slice(indexOfFirstBook, indexOfLastBook)
-
+  const currentBook = booksList.slice(indexOfFirstBook, indexOfLastBook);
 
   function nextHandler() {
     const totalBooks = books.length; //books.length deberá ser el estado de reduxToolkit de todos los libros.
@@ -69,20 +45,19 @@ const CardContainer = () => {
   return (
     <div className={style.container}>
       <Card currentBook={currentBook} />
+
       <div className={style.paginate}>
-        <Paginate paginated={paginated}
+        <Paginate
+          paginated={paginated}
           allBooks={books.length}
           booksPerPage={booksPerPage}
           currentPage={currentPage}
           nextHandler={nextHandler}
-          prevHandler={prevHandler} />
+          prevHandler={prevHandler}
+        />
       </div>
     </div>
-
-
-
-
   );
-}
+};
 
 export default CardContainer;
