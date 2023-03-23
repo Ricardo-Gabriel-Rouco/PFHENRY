@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { FaChevronDown } from 'react-icons/fa';
 import About from '../About';
 import style from './Landing.module.css';
+import { Button } from '@mui/material';
 
 
 
@@ -14,16 +15,16 @@ const Landing = () => {
     }
     return (
         <>
-                <section id="landing">
-            <div className={style.container}>
-                <FaChevronDown onClick={(e) => scrollToAbout()} className={style.flecha} />
-                        <div>
-                            <Link to='home'>
-                                <button className={style.btn}> Enter </button>
-                            </Link>
+            <section id="landing">
+                <div className={style.container}>
+                    <FaChevronDown onClick={(e) => scrollToAbout()} className={style.flecha} />
+                    <div>
+                        <Link to='home'>
+                            <Button variant='contained' color='primary' size='small'>Enter</Button>
+                        </Link>
                     </div>
-            </div>
-                </section>
+                </div>
+            </section>
 
             <About />
         </>

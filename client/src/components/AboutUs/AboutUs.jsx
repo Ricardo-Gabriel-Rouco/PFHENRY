@@ -25,7 +25,7 @@ function AboutUs() {
             <section id="about" className={s.container}>
                 <div className={s.titulo}>
                     <FaChevronUp onClick={(e) => scrollToLanding(e)} className={s.flecha} />
-                    KB TEAM - EL ORDEN DPS LO CAMBIAMOS, FUI AGREGANDO! -joaco-
+                    BK TEAM - EL ORDEN DPS LO CAMBIAMOS, FUI AGREGANDO! -joaco-
                 </div>
                 <div className={s.cardsContainer}>
                     {/* joaco */}
@@ -49,11 +49,11 @@ function AboutUs() {
                             <img className={s.img} src={imgGabi} alt="img" />
                         </div>
                         <h3 className={s.apodo}>GABI</h3>
-                        <h2 className={s.nombreCompleto}>Gabriel Rouco</h2>
+                        <h2 className={s.nombreCompleto}>Ricardo Gabriel Rouco</h2>
 
                         <a href="https://github.com/Ricardo-Gabriel-Rouco"> <AiFillGithub className={s.gitHub} icon={AiFillGithub} /> </a>
 
-                        <a href="www.linkedin.com/in/ricardo-gabriel-rouco"> <AiFillLinkedin className={s.linkedin} icon={AiFillLinkedin} /> </a>
+                        <a href="https://linkedin.com/in/ricardo-gabriel-rouco"> <AiFillLinkedin className={s.linkedin} icon={AiFillLinkedin} /> </a>
 
 
                     </div>
@@ -68,7 +68,7 @@ function AboutUs() {
 
                         <a href="https://github.com/jgiampe"> <AiFillGithub className={s.gitHub} icon={AiFillGithub} /> </a>
 
-                        <a href="https://www.linkedin.com/in/joaquin-santiago-oliveira"> <AiFillLinkedin className={s.linkedin} icon={AiFillLinkedin} /> </a>
+                        <a href="https://www.linkedin.com/in/julian-giampetruzzi/"> <AiFillLinkedin className={s.linkedin} icon={AiFillLinkedin} /> </a>
 
 
                     </div>
@@ -92,12 +92,12 @@ function AboutUs() {
                         <div className={s.divImg}>
                             <img className={s.img} src={imgAlfredo} alt="img" />
                         </div>
-                        <h3 className={s.apodo}>Alfi (mane</h3>
-                        <h2 className={s.nombreCompleto}>Alfredo APELLIDO AQUI</h2>
+                        <h3 className={s.apodo}>Alfred (mane</h3>
+                        <h2 className={s.nombreCompleto}>Alfredo Gonzalez Noriega</h2>
 
                         <a href="https://github.com/alfredocgn"> <AiFillGithub className={s.gitHub} icon={AiFillGithub} /> </a>
 
-                        <a href="https://www.linkedin.com/in/joaquin-santiago-oliveira"> <AiFillLinkedin className={s.linkedin} icon={AiFillLinkedin} /> </a>
+                        <a href="https://www.linkedin.com/in/alfredo-gonzalez-noriega-095b40119/"> <AiFillLinkedin className={s.linkedin} icon={AiFillLinkedin} /> </a>
 
 
                     </div>
