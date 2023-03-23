@@ -6,6 +6,7 @@ import { Button } from '@mui/material';
 
 
 
+
 const Landing = () => {
     function scrollToAbout() {
         const about = document.getElementById("about");
