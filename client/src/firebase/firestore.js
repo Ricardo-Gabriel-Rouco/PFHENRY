@@ -1,12 +1,13 @@
-const { getDocs, query, collection, where, doc, getDoc, updateDoc } = require("firebase/firestore");
-const db = require('./firebase-config')
+import { getDocs, query, collection, where, doc, getDoc, updateDoc } from "firebase/firestore"
+import {db} from './firebase-config'
 
-async function getBooks () {
-  const q = query(collection(db, "books"), where("display", "==", true))
+export async function getBooks () {
+
+  const q = query(collection(db, "books"), where('display', '==', true))
   const querySnapshot = await getDocs(q);
   let data = [];
   querySnapshot.forEach((doc) => {
-  // doc.data() is never undefined for query doc snapshots
+    // doc.data() is never undefined for query doc snapshots
     data.push({
       ...doc.data(),
       id: doc.id
@@ -17,7 +18,7 @@ async function getBooks () {
 }
 
 
-async function getBookById (id) {
+export async function getBookById (id) {
   try {
     const docsRef = doc(db, 'books', id)
     const docSnap = await getDoc(docsRef)
@@ -32,7 +33,7 @@ async function getBookById (id) {
   }
 }
 
-async function deleteBook (id){
+export async function deleteBook (id){
   try {
     const docsRef = doc(db, 'books', id)
     await updateDoc(docsRef, {
@@ -43,11 +44,7 @@ async function deleteBook (id){
   }
 }
 
-module.exports = {
-  getBooks,
-  getBookById,
-  deleteBook
-}
+
 
 //   id = Number(id)
 //   const q = query(collection(db, "books"), where("id", "==", id))
