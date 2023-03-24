@@ -8,7 +8,7 @@ import Error from './Views/Error';
 // import db from './firebase-config'
 // import {onSnapshot, collection} from 'firebase/firestore'
 // import { useEffect } from "react";
-/* import Detail from './components/CardDetail'; */
+import CardDetail from './components/CardDetail/CardDetail'
 
 function App() {
 
@@ -28,7 +28,7 @@ function App() {
         <Route exact path='/' element={<Landing />} />
         <Route exact path='/home' element={<Home />} />
         <Route exact path='/about' element={<About />} />
-        {/* <Route path='/home/:id' element={<Detail />} /> */}
+        <Route path='/home/:id' element={<CardDetail />} />
         <Route path='*' element={<Error />} />
       </Routes>
       </BrowserRouter>
