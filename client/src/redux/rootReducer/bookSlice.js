@@ -27,9 +27,18 @@ export const booksSlice = createSlice({
           ? allAuthors
           : allAuthors.filter((auth) => auth.author === action.payload);
     },
+
+    filterByGenre: (state, action) => {
+      const allGenres = state.allBooks;
+      allGenres.filter((elem) => elem.genre === action.payload);
+      state.booksToFilter =
+        action.payload === "all"
+          ? allGenres
+          : allGenres.filter((elem) => elem.genre === action.payload);
+    },
   },
 });
 
-export const { addBook, filterByAuthor } = booksSlice.actions;
+export const { addBook, filterByAuthor, filterByGenre } = booksSlice.actions;
 
 export default booksSlice.reducer;
