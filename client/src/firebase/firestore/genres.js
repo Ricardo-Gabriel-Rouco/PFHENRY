@@ -1,9 +1,9 @@
 import { getDocs, query, collection, where, doc, getDoc, updateDoc, addDoc } from "firebase/firestore"
 import {db} from '../firebase-config'
 
-export async function getAuthors () {
+export async function getGenres () {
 
-  const q = query(collection(db, "authors"), where('display', '==', true))
+  const q = query(collection(db, "genres"), where('display', '==', true))
   const querySnapshot = await getDocs(q);
   let data = [];
   querySnapshot.forEach((doc) => {
@@ -18,9 +18,9 @@ export async function getAuthors () {
 }
 
 
-export async function getAuthorById (id) {
+export async function getGenreById (id) {
   try {
-    const docsRef = doc(db, 'authors', id)
+    const docsRef = doc(db, 'genres', id)
     const docSnap = await getDoc(docsRef)
     if (docSnap.exists()) {
         return {...docSnap.data(), id: id};
@@ -33,9 +33,9 @@ export async function getAuthorById (id) {
   }
 }
 
-export async function deleteAuthor (id){
+export async function deleteGenre (id){
   try {
-    const docsRef = doc(db, 'authors', id)
+    const docsRef = doc(db, 'genres', id)
     await updateDoc(docsRef, {
       display: false
     })
@@ -44,15 +44,14 @@ export async function deleteAuthor (id){
   }
 }
 
-export async function postAuthor (name, nationality){
+export async function postGenre (name){
   // validaciones, muchas validaciones
 
   // fin validaciones
   try {
-    const newAuthor = doc(db, 'authors')
+    const newAuthor = doc(db, 'genres')
     await addDoc(newAuthor, {
       name: name,
-      nationality: nationality,
       display: true
     })
   } catch (error) {
@@ -60,12 +59,11 @@ export async function postAuthor (name, nationality){
   }
 }
 // despues voy a revisar esta funcion, por favor usarla con precaucion
-export async function modifyAuthor (name, nationality, id){
+export async function modifyGenre (name, id){
   try {
-    const newBook = doc(db, 'authors', id)
+    const newBook = doc(db, 'genres', id)
     await updateDoc(newBook, {
       name: name,
-      nationality: nationality
     })
   } catch (error) {
     console.log(error)
