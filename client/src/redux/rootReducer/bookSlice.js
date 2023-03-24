@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  allbooks: [],
+  allBooks: [],
   booksToFilter: [],
   bookDetail: {},
 };
@@ -16,16 +16,20 @@ export const booksSlice = createSlice({
         if (b.title > a.title) return -1;
         return 0;
       });
-      state.allbooks = alfa;
+      state.allBooks = alfa;
       state.booksToFilter = alfa;
     },
 
     filterByAuthor: (state, action) => {
-      const allAuthors = state.allbooks;
+      const allAuthors = state.allBooks;
+      state.booksToFilter =
+        action.payload === "all"
+          ? allAuthors
+          : allAuthors.filter((auth) => auth.author === action.payload);
     },
   },
 });
 
-export const { addBook } = booksSlice.actions;
+export const { addBook, filterByAuthor } = booksSlice.actions;
 
 export default booksSlice.reducer;
