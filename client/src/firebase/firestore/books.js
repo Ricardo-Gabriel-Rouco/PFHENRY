@@ -74,4 +74,22 @@ export async function postBook (isbn ,author, editorial, genre, urlImage, price,
     console.log(error)
   }
 }
-
+// despues voy a revisar esta funcion, por favor usarla con precaucion
+export async function modifyBook (isbn ,author, editorial, genre, urlImage, price, rating, title, year){
+  try {
+    const newBook = doc(db, 'books', `${isbn}`)
+    await updateDoc(newBook, {
+      author: author,
+      display: true,
+      editorial: editorial,
+      genre: genre.map(g => g.id),
+      image: urlImage,
+      price: price,
+      rating: rating,
+      title: title,
+      year: year
+    })
+  } catch (error) {
+    console.log(error)
+  }
+} 
