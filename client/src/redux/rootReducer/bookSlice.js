@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   allBooks: [],
   booksToFilter: [],
+  filtersApplied: [],
   bookDetail: {},
 };
 
@@ -19,36 +20,81 @@ export const booksSlice = createSlice({
       state.allBooks = alfa;
       state.booksToFilter = alfa;
     },
+
     searchBook: (state, action) => {
       const search = state.allBooks;
       state.booksToFilter =
         action.payload === ""
           ? search
-          : search.filter((book) => book.title.toLowerCase().includes(action.payload.toLowerCase()));
-    },
-    clearSearchResults : (state) =>{
-      state.booksToFilter = state.allBooks
+          : search.filter((book) => book.title.toLowerCase() === action.payload.toLowerCase());
     },
 
-    filterByAuthor: (state, action) => {
-      const allAuthors = state.allBooks;
-      state.booksToFilter =
-        action.payload === "all"
-          ? allAuthors
-          : allAuthors.filter((auth) => auth.author === action.payload);
+    clearSearchResults: (state) => {
+      state.booksToFilter = state.allBooks;
     },
 
-    filterByGenre: (state, action) => {
-      const allGenres = state.allBooks;
-      allGenres.filter((elem) => elem.genre === action.payload);
+    filterBooks: (state, action) => {
+      const reset = state.allBooks;
       state.booksToFilter =
-        action.payload === "all"
-          ? allGenres
-          : allGenres.filter((elem) => elem.genre === action.payload);
+        action.payload[1] === "all"
+          ? reset
+          : state.booksToFilter.filter((books) => books[action.payload[0]] === action.payload[1]);
+      if (state.booksToFilter.length === 0) {
+        state.booksToFilter = [{ title: "Product not found" }];
+      }
+      if (action.payload[1] !== "all") {
+        state.filtersApplied.push(action.payload);
+      } else {
+        state.filtersApplied = [];
+      }
+    },
+
+    removeFilter: (state, action) => {
+      if (state.filtersApplied.length > 0) {
+        state.filtersApplied.splice(action.payload, 1);
+      }
+      state.booksToFilter = state.allBooks;
+      state.filtersApplied.forEach((elem) => {
+        state.booksToFilter = state.booksToFilter.filter((books) => books[elem[0]] === elem[1]);
+      });
+
+      if (state.filtersApplied.length === 0) {
+        state.booksToFilter = state.allBooks;
+      }
+    },
+
+    orderByRating: (state, action) => {
+      if (action.payload === "min") {
+        state.booksToFilter.sort(function (a, b) {
+          if (a.rating > b.rating) return 1;
+          if (a.rating < b.rating) return -1;
+          return 0;
+        });
+      } else if (action.payload === "max") {
+        state.booksToFilter.sort(function (a, b) {
+          if (a.rating > b.rating) return -1;
+          if (a.rating < b.rating) return 1;
+          return 0;
+        });
+      }
+    },
+
+    reset: (state, action) => {
+      action.payload = null;
+      state.booksToFilter = state.allBooks;
+      state.filtersApplied = [];
     },
   },
 });
 
-export const { addBook, filterByAuthor, filterByGenre,searchBook,clearSearchResults } = booksSlice.actions;
+export const {
+  addBook,
+  searchBook,
+  filterBooks,
+  removeFilter,
+  orderByRating,
+  reset,
+  clearSearchResults,
+} = booksSlice.actions;
 
 export default booksSlice.reducer;
