@@ -82,11 +82,7 @@ export const FilterOptions = ({ setCurrentPage }) => {
           </option>
         </select>
 
-        <select>
-          <option value="reset" onClick={handlerReset}>
-            Reset
-          </option>
-        </select>
+        <button onClick={handlerReset}>Reset</button>
       </div>
 
       <dvi>
