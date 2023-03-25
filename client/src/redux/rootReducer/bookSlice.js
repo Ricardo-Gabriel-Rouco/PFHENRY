@@ -19,6 +19,16 @@ export const booksSlice = createSlice({
       state.allBooks = alfa;
       state.booksToFilter = alfa;
     },
+    searchBook: (state, action) => {
+      const search = state.allBooks;
+      state.booksToFilter =
+        action.payload === ""
+          ? search
+          : search.filter((book) => book.title.toLowerCase().includes(action.payload.toLowerCase()));
+    },
+    clearSearchResults : (state) =>{
+      state.booksToFilter = state.allBooks
+    },
 
     filterByAuthor: (state, action) => {
       const allAuthors = state.allBooks;
@@ -39,6 +49,6 @@ export const booksSlice = createSlice({
   },
 });
 
-export const { addBook, filterByAuthor, filterByGenre } = booksSlice.actions;
+export const { addBook, filterByAuthor, filterByGenre,searchBook,clearSearchResults } = booksSlice.actions;
 
 export default booksSlice.reducer;
