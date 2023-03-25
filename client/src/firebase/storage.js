@@ -13,19 +13,31 @@ export const getURL = (id) => {
     });
 } 
 
-export const uploadImage = ({image,link}, id) => {
-    if(image){
-        const imagesRef = ref(storage, `${id}.jpg`);
-        uploadBytes(imagesRef, image,{contentType: 'image/jpg',})
-            .then((snapshot) => {
-                console.log(snapshot);
-            });
-    }
+export const uploadImage = async ({image,link}, id) => {
+    const imagesRef = ref(storage, `${id}.jpg`);
     
 
-    else{
-
+    try {
+        if(image){
+            const snapshot = await uploadBytes(imagesRef, image)
+            console.log(snapshot)
+        }
+    
+        else{
+            // Fetch the file from the URL
+            const res = await (axios.get(link,{responseType:'arraybuffer'}).data)
+            // Convert file to blob
+            const blob = new Blob([res], {type: res.headers['content-type']});
+            // Upload file to Storage
+            await uploadBytes(imagesRef, blob)
+            console.log("File uploaded successfully");
+        }
+        
+    } catch (error) {
+        console.log(error)
+        
     }
+
 }
 
 
