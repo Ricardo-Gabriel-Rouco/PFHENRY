@@ -21,7 +21,7 @@ const CardContainer = () => {
   // console.log(booksList);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [booksPerPage] = useState(1);
+  const [booksPerPage] = useState(8);
   const indexOfLastBook = currentPage * booksPerPage;
   const indexOfFirstBook = indexOfLastBook - booksPerPage;
   const currentBook = booksList.slice(indexOfFirstBook, indexOfLastBook);
