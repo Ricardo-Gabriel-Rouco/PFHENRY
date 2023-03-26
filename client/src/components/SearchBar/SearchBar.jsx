@@ -1,8 +1,8 @@
 import style from './SearchBar.module.css';
 import { useState } from 'react';
-import {useDispatch, useSelector} from 'react-redux'
-import { searchBook,clearSearchResults } from '../../redux/rootReducer/bookSlice';
-
+import {useDispatch} from 'react-redux'
+import { searchBook } from '../../redux/rootReducer/bookSlice';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 
 
 
@@ -15,11 +15,6 @@ const SearchBar = ({
     const [searchValue,setSearchValue]= useState("");
     //ESTADO PARA LOS RESULTADOS DE LA BUSQUEDA
     const dispatch = useDispatch()
-    // HANDLER DEL BOTON DE CLEAR DE LA SEARCHBAR
-    const handleClearClick = () =>{
-        setSearchValue("");
-        dispatch(clearSearchResults())
-    }
     // HANDLER DEL INPUT CHANGE TOMA EL VALOR PARA COMPARAR
     const handlerInputChange = (e) =>{
         setSearchValue(e.target.value)
@@ -28,10 +23,18 @@ const SearchBar = ({
     //HANDLER DEL BOTON DE BUSQUEDA
     const handlerSearchClick = () =>{
         dispatch(searchBook(searchValue))
+        setSearchValue("")
         }
     
 
-    //FUNCION QUE FILTRA 
+    //ENTER BUTTON 
+    const handlerKeyDown = (e)=>{
+        if(e.key === 'Enter'){
+            handlerSearchClick()
+        }
+    }
+
+    
 
 
     const handleKeyDown = (event) => {
@@ -48,10 +51,13 @@ const SearchBar = ({
                 placeholder={placeholder}
                 value={searchValue}
                 onChange={handlerInputChange}
-                onKeyDown={handleKeyDown}
+                className={style.SearchInput}
+                onKeyDown={handlerKeyDown}
+
                 />
-                <button onClick={handlerSearchClick}>Search</button>
-                <button onClick={handleClearClick}>Clear</button>
+                <div className={style.SearchBarButtonContainer}>
+                <button onClick={handlerSearchClick} className={style.SearchBarButton}><SearchOutlinedIcon/></button>
+                </div>
             </div>
         </div>
 
