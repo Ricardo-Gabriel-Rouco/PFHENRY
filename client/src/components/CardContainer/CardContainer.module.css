@@ -1,7 +1,6 @@
 .container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20%
-
+  display: flex;
+  justify-content: center;
+  margin-top: 20%;
+  flex-direction: column;
 }
-

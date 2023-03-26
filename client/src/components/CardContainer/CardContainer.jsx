@@ -1,23 +1,21 @@
-// import {db} from "../../firebase/firebase-config";
-// import { collection, onSnapshot } from "firebase/firestore";
+//import db from "../../firebase-config";
+//import { collection, onSnapshot } from "firebase/firestore";
 import { useState } from "react";
-// import { doc, setDoc, getDocs, query, where } from "firebase/firestore";
+//import { doc, setDoc, getDocs, query, where } from "firebase/firestore";
 import Card from "../Card/Card";
 import style from "./CardContainer.module.css";
-// import { async } from "@firebase/util";
+//import { async } from "@firebase/util";
 import { useSelector } from "react-redux";
 
 import Paginate from "../../components/Paginate/Paginate";
+import { FilterOptions } from "../filters/FilterOptions";
 
 // const books = db.collection('books');
 
 const CardContainer = () => {
-  // eslint-disable-next-line
-  const [books, setBooks] = useState([1, 2, 3]);
+  //const [books, setBooks] = useState([1, 2, 3]);
 
   const booksList = useSelector((state) => state.books.booksToFilter);
-
-  // console.log(booksList);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [booksPerPage] = useState(1);
@@ -26,7 +24,7 @@ const CardContainer = () => {
   const currentBook = booksList.slice(indexOfFirstBook, indexOfLastBook);
 
   function nextHandler() {
-    const totalBooks = books.length; //books.length deberá ser el estado de reduxToolkit de todos los libros.
+    const totalBooks = booksList.length; //books.length deberá ser el estado de reduxToolkit de todos los libros.
     const nextPage = currentPage;
     const firstIndex = nextPage * booksPerPage;
     if (firstIndex >= totalBooks) return;
@@ -45,12 +43,13 @@ const CardContainer = () => {
   };
   return (
     <div className={style.container}>
+      <FilterOptions setCurrentPage={setCurrentPage} />
       <Card currentBook={currentBook} />
 
       <div className={style.paginate}>
         <Paginate
           paginated={paginated}
-          allBooks={books.length}
+          allBooks={booksList.length}
           booksPerPage={booksPerPage}
           currentPage={currentPage}
           nextHandler={nextHandler}
