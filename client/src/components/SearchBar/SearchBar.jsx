@@ -38,7 +38,10 @@ const SearchBar = ({
     
 
 
-
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            dispatch(searchBook(searchValue))
+        }}
 
 
     return (
