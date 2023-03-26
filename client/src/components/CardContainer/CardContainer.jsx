@@ -1,24 +1,28 @@
-//import db from "../../firebase-config";
-//import { collection, onSnapshot } from "firebase/firestore";
+// import {db} from "../../firebase/firebase-config";
+// import { collection, onSnapshot } from "firebase/firestore";
 import { useState } from "react";
-//import { doc, setDoc, getDocs, query, where } from "firebase/firestore";
+// import { doc, setDoc, getDocs, query, where } from "firebase/firestore";
 import Card from "../Card/Card";
 import style from "./CardContainer.module.css";
-//import { async } from "@firebase/util";
+// import { async } from "@firebase/util";
 import { useSelector } from "react-redux";
 
 import Paginate from "../../components/Paginate/Paginate";
-import { FilterOptions } from "../filters/FilterOptions";
+import { FilterOptions } from "../Filters/FilterOptions";
 
 // const books = db.collection('books');
 
 const CardContainer = () => {
-  //const [books, setBooks] = useState([1, 2, 3]);
+  // eslint-disable-next-line
+  const [books, setBooks] = useState([1, 2, 3]);
+
 
   const booksList = useSelector((state) => state.books.booksToFilter);
 
+  // console.log(booksList);
+
   const [currentPage, setCurrentPage] = useState(1);
-  const [booksPerPage] = useState(1);
+  const [booksPerPage] = useState(8);
   const indexOfLastBook = currentPage * booksPerPage;
   const indexOfFirstBook = indexOfLastBook - booksPerPage;
   const currentBook = booksList.slice(indexOfFirstBook, indexOfLastBook);
@@ -45,7 +49,6 @@ const CardContainer = () => {
     <div className={style.container}>
       <FilterOptions setCurrentPage={setCurrentPage} />
       <Card currentBook={currentBook} />
-
       <div className={style.paginate}>
         <Paginate
           paginated={paginated}

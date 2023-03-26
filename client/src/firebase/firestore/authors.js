@@ -59,10 +59,12 @@ export async function postAuthor (name, nationality){
     console.log(error)
   }
 }
-// despues voy a revisar esta funcion, por favor usarla con precaucion
-export async function modifyAuthor (name, nationality, id){
+// sugiero traer un objeto que contenga esas propiedades
+// la funcion esta trabajando correctamente
+export async function modifyAuthor (author){
   try {
-    const newBook = doc(db, 'authors', id)
+    let {id, name, nationality} = author
+    const newBook = doc(db, 'author', id)
     await updateDoc(newBook, {
       name: name,
       nationality: nationality
