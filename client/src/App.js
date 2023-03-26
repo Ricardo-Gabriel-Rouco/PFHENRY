@@ -26,7 +26,7 @@ function App() {
           <Route exact path="/" element={<Landing />} />
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/about" element={<About />} />
-         <Route path='/home/:id' element={<CardDetail />} /> 
+          <Route path='/home/:id' element={<CardDetail />} /> 
           <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>
