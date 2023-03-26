@@ -1,5 +1,6 @@
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { storage } from '../firebase/firebase-config'
+import axios from 'axios'
 
 ////// Crear input para subir imagen a storage
 
@@ -13,13 +14,13 @@ export const getURL = (id) => {
     });
 } 
 
-export const uploadImage = async ({image,link}, id) => {
+export const uploadImage = async ({file,link}, id) => {
     const imagesRef = ref(storage, `${id}.jpg`);
     
 
     try {
-        if(image){
-            const snapshot = await uploadBytes(imagesRef, image)
+        if(file){
+            const snapshot = await uploadBytes(imagesRef, file)
             console.log(snapshot)
         }
     
