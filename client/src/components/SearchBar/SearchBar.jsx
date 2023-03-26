@@ -2,7 +2,8 @@ import style from './SearchBar.module.css';
 import { useState } from 'react';
 import {useDispatch} from 'react-redux'
 import { searchBook } from '../../redux/rootReducer/bookSlice';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import SearchIcon from '@mui/icons-material/Search';
+import { Box, IconButton, InputBase, Paper, TextField } from '@mui/material';
 
 
 
@@ -43,17 +44,21 @@ const SearchBar = ({
     return (
         <div className={style.SearchBarContainer}>
             <div className={style.SearchBar}>
-                <input
-                type="text"
-                placeholder={placeholder}
-                value={searchValue}
-                onChange={handlerInputChange}
-                className={style.SearchInput}
-                onKeyDown={handlerKeyDown}
-                />
-                <div className={style.SearchBarButtonContainer}>
-                <button onClick={handlerSearchClick} className={style.SearchBarButton}><SearchOutlinedIcon/></button>
-                </div>
+                <Paper sx={{display:'flex',alignSelf:'center', width:'80%'}} margin="dense">
+                            <InputBase
+                            type="text"
+                            margin='dense'
+                            placeholder={placeholder}
+                            value={searchValue}
+                            onChange={handlerInputChange}
+                            className={style.SearchInput}
+                            onKeyDown={handlerKeyDown}
+                            sx={{ml:1,flex:1}}
+                            />
+                            <IconButton type='button' sx={{p:'px'}} aria-label='search'>
+                            <SearchIcon onClick={handlerSearchClick}/>
+                    </IconButton>
+                </Paper>
             </div>
         </div>
 

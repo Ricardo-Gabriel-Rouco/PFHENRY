@@ -85,7 +85,7 @@ export const FilterOptions = ({ setCurrentPage }) => {
         <button onClick={handlerReset}>Reset</button>
       </div>
 
-      <dvi>
+      <div>
         {fliters &&
           fliters.map((filter, index) => (
             <div key={index} id={index}>
@@ -95,7 +95,7 @@ export const FilterOptions = ({ setCurrentPage }) => {
               <p>{filter[1]}</p>
             </div>
           ))}
-      </dvi>
+      </div>
     </div>
   );
 };
