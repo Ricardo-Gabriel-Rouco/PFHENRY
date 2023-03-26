@@ -26,17 +26,26 @@ function BookForm() {
     setImage('')
   }
 
+  const handleInputChange = (e) => {
+    setbookData({...bookData, [e.target.name]: e.target.value})
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(bookData)
+  }
+
   return (
     <div>
-      <form action="">
+      <form onSubmit={handleSubmit}>
         <label htmlFor="title">Titulo: </label>
-        <input type="text" placeholder='Ej: La llamada de Cthulhu' />
+        <input type="text" name='title' placeholder='Ej: La llamada de Cthulhu' onChange={handleInputChange} value={bookData.title}/>
         <label htmlFor="author">Autor: </label>
-        <input type="text" placeholder='Ej: H. P. Lovecraft'/>
+        <input type="text" name='author' placeholder='Ej: H. P. Lovecraft' onChange={handleInputChange} value={bookData.author}/>
         <label htmlFor="editorial">Editorial: </label>
-        <input type="text" placeholder='Ej: Gargola'/>
+        <input type="text" name='editorial' placeholder='Ej: Gargola' onChange={handleInputChange} value={bookData.editorial}/>
         <label htmlFor="genres">Generos: </label>
-        <input type="text" placeholder='Selecciona uno o varios de la lista'/>
+        <input type="text" name='genres' placeholder='Selecciona uno o varios de la lista' onChange={handleInputChange} value={bookData.genres}/>
         <label htmlFor="image">Imagen: </label>
         {!image?
         <input 
@@ -54,9 +63,9 @@ function BookForm() {
         </div>
         }
         <label htmlFor="price" >Precio</label>
-        <input type="text" placeholder='Ingresa el precio'/>
+        <input type="text" name='price' placeholder='Ingresa el precio' onChange={handleInputChange} value={bookData.price}/>
         <label htmlFor="year">Año de publiacion</label>
-        <input type="text" placeholder='Ej: 1926'/>
+        <input type="text" name='year' placeholder='Ej: 1926' onChange={handleInputChange} value={bookData.year}/>
         <button type='submit'>Guardar</button>
       </form>
     </div>
