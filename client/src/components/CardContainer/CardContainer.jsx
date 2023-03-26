@@ -16,6 +16,7 @@ const CardContainer = () => {
   // eslint-disable-next-line
   const [books, setBooks] = useState([1, 2, 3]);
 
+
   const booksList = useSelector((state) => state.books.booksToFilter);
 
   // console.log(booksList);
@@ -48,7 +49,6 @@ const CardContainer = () => {
     <div className={style.container}>
       <FilterOptions setCurrentPage={setCurrentPage} />
       <Card currentBook={currentBook} />
-
       <div className={style.paginate}>
         <Paginate
           paginated={paginated}
