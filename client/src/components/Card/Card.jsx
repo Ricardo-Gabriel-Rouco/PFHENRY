@@ -1,3 +1,4 @@
+
 import style from './Card.module.css';
 import { Link } from 'react-router-dom';
 
@@ -17,10 +18,8 @@ const Card = ({ currentBook }) => {
                     </Link>
                 </div>
             ))}
-        </div>
-    );
-}
-
-
+    </div>
+  );
+};
 
 export default Card;
