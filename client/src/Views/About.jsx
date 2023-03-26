@@ -6,9 +6,7 @@ const About = () => {
 
     return (
         <>
-            <NavBar />
             <AboutUs />
-            <Footer />
         </>
     )
 }
