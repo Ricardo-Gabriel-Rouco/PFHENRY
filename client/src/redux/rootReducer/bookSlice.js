@@ -26,22 +26,11 @@ export const booksSlice = createSlice({
       state.booksToFilter =
         action.payload === ""
           ? search
-<<<<<<< HEAD
-          : search.filter((book) => book.title.toLowerCase().includes(action.payload.toLowerCase()));
-    },
-    filterByAuthor: (state, action) => {
-      const allAuthors = state.allBooks;
-      state.booksToFilter =
-        action.payload === "all"
-          ? allAuthors
-          : allAuthors.filter((auth) => auth.author === action.payload);
-=======
           : search.filter((book) => book.title.toLowerCase() === action.payload.toLowerCase());
     },
 
     clearSearchResults: (state) => {
       state.booksToFilter = state.allBooks;
->>>>>>> cf6e6d1211c7bb8c9d1d201febc78bcde2948f30
     },
 
     filterBooks: (state, action) => {
@@ -98,9 +87,6 @@ export const booksSlice = createSlice({
   },
 });
 
-<<<<<<< HEAD
-export const { addBook, filterByAuthor, filterByGenre,searchBook } = booksSlice.actions;
-=======
 export const {
   addBook,
   searchBook,
@@ -110,6 +96,5 @@ export const {
   reset,
   clearSearchResults,
 } = booksSlice.actions;
->>>>>>> cf6e6d1211c7bb8c9d1d201febc78bcde2948f30
 
 export default booksSlice.reducer;
