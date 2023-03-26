@@ -1,10 +1,10 @@
-.cardContainer{
+.cardContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
-.card{
+.card {
   border: 2px solid black;
   margin: 2rem;
   border-radius: 15px;
@@ -12,5 +12,5 @@
 }
 
 .card img {
-  width: 30vh
+  width: 30vh;
 }
