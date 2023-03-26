@@ -4,7 +4,7 @@ const initialState = {
   allBooks: [],
   booksToFilter: [],
   filtersApplied: [],
-  bookDetail: {},
+  favorites: [],
 };
 
 export const booksSlice = createSlice({
