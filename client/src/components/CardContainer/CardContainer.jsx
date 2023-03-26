@@ -15,6 +15,7 @@ import { FilterOptions } from "../filters/FilterOptions";
 const CardContainer = () => {
   //const [books, setBooks] = useState([1, 2, 3]);
 
+
   const booksList = useSelector((state) => state.books.booksToFilter);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -45,7 +46,6 @@ const CardContainer = () => {
     <div className={style.container}>
       <FilterOptions setCurrentPage={setCurrentPage} />
       <Card currentBook={currentBook} />
-
       <div className={style.paginate}>
         <Paginate
           paginated={paginated}
