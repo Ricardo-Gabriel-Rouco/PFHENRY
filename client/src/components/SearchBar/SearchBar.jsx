@@ -34,7 +34,10 @@ const SearchBar = ({
     //FUNCION QUE FILTRA 
 
 
-
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            dispatch(searchBook(searchValue))
+        }}
 
 
     return (
@@ -45,6 +48,7 @@ const SearchBar = ({
                 placeholder={placeholder}
                 value={searchValue}
                 onChange={handlerInputChange}
+                onKeyDown={handleKeyDown}
                 />
                 <button onClick={handlerSearchClick}>Search</button>
                 <button onClick={handleClearClick}>Clear</button>
