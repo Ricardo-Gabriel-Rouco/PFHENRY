@@ -37,7 +37,10 @@ const SearchBar = ({
     
 
 
-
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            dispatch(searchBook(searchValue))
+        }}
 
 
     return (
@@ -50,6 +53,7 @@ const SearchBar = ({
                 onChange={handlerInputChange}
                 className={style.SearchInput}
                 onKeyDown={handlerKeyDown}
+
                 />
                 <div className={style.SearchBarButtonContainer}>
                 <button onClick={handlerSearchClick} className={style.SearchBarButton}><SearchOutlinedIcon/></button>

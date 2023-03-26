@@ -1,0 +1,16 @@
+.cardContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .card{
+    border: 2px solid black;
+    margin: 2rem;
+    border-radius: 15px;
+    padding: 2rem;
+  }
+  
+  .card img{
+    width: 30vh
+  }

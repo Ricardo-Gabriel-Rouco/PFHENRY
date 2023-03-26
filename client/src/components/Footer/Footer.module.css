@@ -2,7 +2,6 @@
     background-color:   rgba(24, 144, 255, 0.06); 
     height: 50px;
     width: 100%;
-    position: fixed;
     bottom: 0;
     display: flex;
     justify-content: center;

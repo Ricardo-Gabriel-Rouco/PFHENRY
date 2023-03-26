@@ -8,7 +8,7 @@ import style from "./CardContainer.module.css";
 import { useSelector } from "react-redux";
 
 import Paginate from "../../components/Paginate/Paginate";
-import { FilterOptions } from "../filters/FilterOptions";
+import { FilterOptions } from "../Filters/FilterOptions";
 
 // const books = db.collection('books');
 
