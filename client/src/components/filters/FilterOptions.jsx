@@ -1,11 +1,16 @@
+import style from "./FilterOptions.module.css";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { filterBooks, orderByRating, removeFilter, reset } from "../../redux/rootReducer/bookSlice";
+import { filterBooks, orderBy, removeFilter, reset } from "../../redux/rootReducer/bookSlice";
 
 export const FilterOptions = ({ setCurrentPage }) => {
   const booksList = useSelector((state) => state.books.allBooks);
 
-  const fliters = useSelector((state) => state.books.filtersApplied);
+  const filters = useSelector((state) => state.books.filtersApplied);
+
+  const [filterAuthor, setFilterAuthor] = useState(true);
+  const [filterGenre, setFilterGenre] = useState(true);
 
   const dispatch = useDispatch();
 
@@ -14,7 +19,7 @@ export const FilterOptions = ({ setCurrentPage }) => {
     return Array.from(set);
   };
 
-  const handlerAuthor = (e) => {
+  /* const handlerAuthor = (e) => {
     e.preventDefault();
     dispatch(filterBooks(["author", e.target.value]));
     setCurrentPage(1);
@@ -24,22 +29,32 @@ export const FilterOptions = ({ setCurrentPage }) => {
     e.preventDefault();
     dispatch(filterBooks(["genre", e.target.value]));
     setCurrentPage(1);
+  }; */
+
+  const filterHandler = (e) => {
+    e.preventDefault();
+    e.target.name === "author" ? setFilterAuthor(false) : setFilterGenre(false);
+    dispatch(filterBooks([e.target.name, e.target.value]));
+    setCurrentPage(1);
   };
 
-  const handlerRating = (e) => {
+  const handlerOrder = (e) => {
     e.preventDefault();
-    dispatch(orderByRating(e.target.value));
+    dispatch(orderBy(e.target.value));
     setCurrentPage(1);
   };
 
   const handlerReset = (e) => {
     e.preventDefault();
     dispatch(reset());
+    setFilterAuthor(true);
+    setFilterGenre(true);
     setCurrentPage(1);
   };
 
   const handlerRemoveFilter = (e) => {
     e.preventDefault();
+    filters[e.target.id][0] === "author" ? setFilterAuthor(true) : setFilterGenre(true);
     dispatch(removeFilter(e.target.id));
     setCurrentPage(1);
   };
@@ -47,55 +62,55 @@ export const FilterOptions = ({ setCurrentPage }) => {
   return (
     <div>
       <div>
-        <select>
-          <option value="all" onClick={handlerAuthor}>
-            All Authors
-          </option>
-          {booksList.length &&
-            formatArray(booksList.map((elem) => elem.author).sort()).map((elem, index) =>
-              elem !== null ? (
-                <option key={index} value={elem} onClick={handlerAuthor}>
-                  {elem}
+        {filterAuthor ? (
+          <select name="author" id="author" onChange={filterHandler}>
+            <option value="all">All Authors</option>
+            {booksList.length &&
+              formatArray(booksList.map((elem) => elem.author).sort()).map((elem, index) =>
+                elem !== null ? (
+                  <option key={index} value={elem}>
+                    {elem}
+                  </option>
+                ) : null
+              )}
+          </select>
+        ) : null}
+
+        {filterGenre ? (
+          <select name="genre" id="genre" onChange={filterHandler}>
+            <option value="all">All Genres</option>
+            {booksList.length &&
+              formatArray(booksList.map((elem) => elem.genre).sort()).map((gen, index) => (
+                <option key={index} value={gen}>
+                  {gen}
                 </option>
-              ) : null
-            )}
-        </select>
+              ))}
+          </select>
+        ) : null}
 
-        <select>
-          <option value="all" onClick={handlerGenre}>
-            All Genres
-          </option>
-          {booksList.length &&
-            formatArray(booksList.map((elem) => elem.genre).sort()).map((gen, index) => (
-              <option key={index} value={gen} onClick={handlerGenre}>
-                {gen}
-              </option>
-            ))}
-        </select>
-
-        <select>
-          <option value="min" onClick={handlerRating}>
-            Min Rating
-          </option>
-          <option value="max" onClick={handlerRating}>
-            Max Rating
-          </option>
+        <select onChange={handlerOrder}>
+          <option value="min">Min Rating</option>
+          <option value="max">Max Rating</option>
+          <option value="asc">A-Z</option>
+          <option value="desc">Z-A</option>
+          <option value="minPrice">Min price</option>
+          <option value="maxPrice">Max price</option>
         </select>
 
         <button onClick={handlerReset}>Reset</button>
       </div>
 
-      <dvi>
-        {fliters &&
-          fliters.map((filter, index) => (
-            <div key={index} id={index}>
+      <div className={style.divContainer}>
+        {filters &&
+          filters.map((filter, index) => (
+            <div key={index} id={index} className={style.divFilters}>
+              <p>{filter[1]}</p>
               <button id={index} onClick={handlerRemoveFilter}>
                 X
               </button>
-              <p>{filter[1]}</p>
             </div>
           ))}
-      </dvi>
+      </div>
     </div>
   );
 };
