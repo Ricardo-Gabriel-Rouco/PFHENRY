@@ -1,16 +1,14 @@
-.NavBar{
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
-  border: 2px solid black;
-  border-radius: 15px;
-  margin: 0.5rem 0rem 0.5rem 0.5rem;
-  text-decoration: none;
-
+.NavBarButton{
+  fill: none;
+  color: inherit;
+  margin-right: 1rem;
 }
 
-.NavBarButton{
-  padding: 0.5rem;
-  text-decoration: none;
-  
+.Toolbar{
+  display: flex;
+  justify-content: space-between;
+}
+
+.NavBar{
+  margin-bottom: 1rem;
 }
