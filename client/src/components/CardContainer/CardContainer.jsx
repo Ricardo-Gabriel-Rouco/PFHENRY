@@ -8,6 +8,7 @@ import style from "./CardContainer.module.css";
 import { useSelector } from "react-redux";
 
 import Paginate from "../../components/Paginate/Paginate";
+
 import { FilterOptions } from "../filters/FilterOptions";
 import { Grid } from '@mui/material';
 import Cards from '@mui/material/Card';
@@ -15,6 +16,7 @@ import Cards from '@mui/material/Card';
 // const books = db.collection('books');
 
 const CardContainer = () => {
+
   const booksList = useSelector((state) => state.books.booksToFilter);
 
   // console.log(booksList);
