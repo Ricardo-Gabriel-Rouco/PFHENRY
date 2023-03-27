@@ -1,10 +1,10 @@
-// import {db} from "../../firebase/firebase-config";
-// import { collection, onSnapshot } from "firebase/firestore";
+//import db from "../../firebase-config";
+//import { collection, onSnapshot } from "firebase/firestore";
 import { useState } from "react";
-// import { doc, setDoc, getDocs, query, where } from "firebase/firestore";
+//import { doc, setDoc, getDocs, query, where } from "firebase/firestore";
 import Card from "../Card/Card";
 import style from "./CardContainer.module.css";
-// import { async } from "@firebase/util";
+//import { async } from "@firebase/util";
 import { useSelector } from "react-redux";
 
 import Paginate from "../../components/Paginate/Paginate";
@@ -15,9 +15,6 @@ import Cards from '@mui/material/Card';
 // const books = db.collection('books');
 
 const CardContainer = () => {
-  // eslint-disable-next-line
-
-
   const booksList = useSelector((state) => state.books.booksToFilter);
 
   // console.log(booksList);
