@@ -3,6 +3,7 @@ import style from './NavBar.module.css'
 import {Link} from 'react-router-dom'
 import ShoppingCart from '@mui/icons-material/ShoppingCart';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import Home from '@mui/icons-material/Home';
 import { AppBar,Box,IconButton,Toolbar } from '@mui/material';
 
@@ -30,7 +31,9 @@ const NavBar = () => {
                                 className={style.NavBarIcons}
                                 >
                                     <Link to='/cart' className={style.NavBarButton}><ShoppingCart/></Link>
-                                    <Link to='/login' className={style.NavBarButton}><AccountCircle/></Link>                                   
+                                    <Link to='/login' className={style.NavBarButton}><AccountCircle/></Link> 
+                                    <Link to='/create' className={style.NavBarButton}><AddCircleOutlineIcon/></Link>                                   
+                                    
                                 </IconButton>
                     </Toolbar>
                 </AppBar>
