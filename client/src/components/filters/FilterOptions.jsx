@@ -72,7 +72,7 @@ export const FilterOptions = ({ setCurrentPage }) => {
             {booksList.length &&
               formatArray(booksList.map((elem) => elem.author).sort()).map((elem, index) =>
                 elem !== null ? (
-                  <option key={index} value={elem}>
+                  <option key={index} value={elem} className={style.filters}>
                     {elem}
                   </option>
                 ) : null
