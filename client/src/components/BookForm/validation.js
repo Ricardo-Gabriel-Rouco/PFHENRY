@@ -16,6 +16,7 @@ export default function validate(bookData) {
   if(isNaN(bookData.price)) errors.price = 'El precio debe ser un valor numerico'
   if(bookData.price < 0) errors.price = 'No puede existir un valor menor a 0'
   if(!bookData.image.file || !bookData.image.link) errors.image = 'Debe cargar un archivo o un link'
+  if(isNaN(bookData.year)) errors.year = 'Debe ser un numero'
 
   return errors
 }

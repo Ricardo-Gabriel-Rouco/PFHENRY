@@ -114,6 +114,7 @@ function BookForm() {
           onChange={handleInputChange}
           value={bookData.title}
         />
+        {errors.title? <p>{errors.title}</p>: null}
         <label htmlFor="author">Autor: </label>
         <input
           type="text"
@@ -122,6 +123,7 @@ function BookForm() {
           onChange={handleInputChange}
           value={bookData.author}
         />
+        {errors.author? <p>{errors.author}</p>: null}
         <label htmlFor="editorial">Editorial: </label>
         <input
           type="text"
@@ -130,6 +132,7 @@ function BookForm() {
           onChange={handleInputChange}
           value={bookData.editorial}
         />
+        {errors.editorial? <p>{errors.editorial}</p>: null}
         <label htmlFor="genres">Generos:</label>
         <select
           multiple={true}
@@ -156,6 +159,7 @@ function BookForm() {
               )
           )}
         </div>
+        {errors.genres? <p>{errors.genres}</p>: null}
         <label htmlFor="image">Imagen: </label>
         {!imageFile ? (
           <div>
@@ -186,6 +190,7 @@ function BookForm() {
             </div>
           </div>
         )}
+        {errors.image? <p>{errors.image}</p>: null}
         <label htmlFor="price">Precio</label>
         <input
           type="text"
@@ -194,6 +199,7 @@ function BookForm() {
           onChange={handleInputChange}
           value={bookData.price}
         />
+        {errors.price? <p>{errors.price}</p>: null}
         <label htmlFor="year">Año de publiacion</label>
         <input
           type="text"
