@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./BookForm.module.css";
 import { getGenres } from "../../firebase/firestore/genres";
 import validation from './validation'
+import {Input, InputLabel, Button} from '@mui/material'
 
 function BookForm() {
   // estado que maneja la subida de imagen
@@ -94,8 +95,8 @@ function BookForm() {
   return (
     <div>
       <form onSubmit={handleSubmit} className={styles.formContainer}>
-        <label htmlFor="isbn">ISBN: </label>
-        <input
+        <InputLabel htmlFor="isbn">ISBN: </InputLabel>
+        <Input
           type="text"
           name="isbn"
           placeholder="Ej: 9788415618683"
@@ -103,8 +104,8 @@ function BookForm() {
           value={bookData.isbn}
         />
         {errors.isbn? <p>{errors.isbn}</p>: null}
-        <label htmlFor="title">Titulo: </label>
-        <input
+        <InputLabel htmlFor="title">Titulo: </InputLabel>
+        <Input
           type="text"
           name="title"
           placeholder="Ej: La llamada de Cthulhu"
@@ -112,8 +113,8 @@ function BookForm() {
           value={bookData.title}
         />
         {errors.title? <p>{errors.title}</p>: null}
-        <label htmlFor="author">Autor: </label>
-        <input
+        <InputLabel htmlFor="author">Autor: </InputLabel>
+        <Input
           type="text"
           name="author"
           placeholder="Ej: H. P. Lovecraft"
@@ -121,8 +122,8 @@ function BookForm() {
           value={bookData.author}
         />
         {errors.author? <p>{errors.author}</p>: null}
-        <label htmlFor="editorial">Editorial: </label>
-        <input
+        <InputLabel htmlFor="editorial">Editorial: </InputLabel>
+        <Input
           type="text"
           name="editorial"
           placeholder="Ej: Alma ediciones"
@@ -130,7 +131,7 @@ function BookForm() {
           value={bookData.editorial}
         />
         {errors.editorial? <p>{errors.editorial}</p>: null}
-        <label htmlFor="genres">Generos:</label>
+        <InputLabel htmlFor="genres">Generos:</InputLabel>
         <select
           multiple={true}
           value={bookData.genres}
@@ -157,18 +158,18 @@ function BookForm() {
           )}
         </div>
         {errors.genres? <p>{errors.genres}</p>: null}
-        <label htmlFor="image">Imagen: </label>
+        <InputLabel htmlFor="image">Imagen: </InputLabel>
         {!imageFile ? (
           <div>
-            <input
+            <Input
               type="file"
               accept="image/*"
               name="imageFile"
               placeholder="Select an image"
               onChange={handleImageInputChange}
             />
-            <label htmlFor="imageLink">Url Imagen:</label>
-            <input
+            <InputLabel htmlFor="imageLink">Url Imagen:</InputLabel>
+            <Input
               type="text"
               name="imageLink"
               value={bookData.image.link}
@@ -188,8 +189,8 @@ function BookForm() {
           </div>
         )}
         {errors.image? <p>{errors.image}</p>: null}
-        <label htmlFor="price">Precio</label>
-        <input
+        <InputLabel htmlFor="price">Precio</InputLabel>
+        <Input
           type="text"
           name="price"
           placeholder="Ingresa el precio"
@@ -197,15 +198,15 @@ function BookForm() {
           value={bookData.price}
         />
         {errors.price? <p>{errors.price}</p>: null}
-        <label htmlFor="year">Año de publiacion</label>
-        <input
+        <InputLabel htmlFor="year">Año de publiacion</InputLabel>
+        <Input
           type="text"
           name="year"
           placeholder="Ej: 1926"
           onChange={handleInputChange}
           value={bookData.year}
         />
-        <button type="submit">Guardar</button>
+        <Button type="submit">Guardar</Button>
       </form>
     </div>
   );
