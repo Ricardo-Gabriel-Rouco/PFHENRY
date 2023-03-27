@@ -11,6 +11,7 @@ import Error from "./Views/Error";
 import CardDetail from './components/CardDetail/CardDetail'; 
 import BookForm from "./components/BookForm/BookForm";
 
+
 function App() {
   // useEffect(() => {
   // en este caso tenemos dos opciones, usamos getData o onSnapshot, la diferencia es que cada vez que se actualiza la db, onSnapshot envia la data nueva sin necesidad de un refresh
@@ -27,7 +28,7 @@ function App() {
           <Route exact path="/" element={<Landing />} />
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/about" element={<About />} />
-          <Route path='/home/:id' element={<CardDetail />} /> 
+          <Route path="/home/:id" element={<CardDetail />} />
           <Route path="*" element={<Error />} />
           <Route exact path="/create" element={<BookForm/>}/>
         </Routes>

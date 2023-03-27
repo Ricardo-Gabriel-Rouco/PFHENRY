@@ -8,13 +8,12 @@ import style from "./CardContainer.module.css";
 import { useSelector } from "react-redux";
 
 import Paginate from "../../components/Paginate/Paginate";
-import { FilterOptions } from "../filters/FilterOptions";
+import { FilterOptions } from "../Filters/FilterOptions";
 
 // const books = db.collection('books');
 
 const CardContainer = () => {
   //const [books, setBooks] = useState([1, 2, 3]);
-
 
   const booksList = useSelector((state) => state.books.booksToFilter);
 
