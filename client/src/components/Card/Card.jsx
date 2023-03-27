@@ -32,7 +32,8 @@ const Card = (props) => {
             dispatch(deleteFavorite(props.id));
             setIsFav(false);
         } else {
-            dispatch(addFavorite({ handleFavorite: props.handleFavorite, image: props.image, id: props.id, title: props.title, author: props.author, price: props.price, stock: props.stock }));
+            dispatch(addFavorite({ image: props.image, id: props.id, title: props.title, author: props.author, price: props.price, stock: props.stock }));
+
             setIsFav(true);
         }
     };

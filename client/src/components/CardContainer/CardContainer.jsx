@@ -16,7 +16,6 @@ import Cards from '@mui/material/Card';
 // const books = db.collection('books');
 
 const CardContainer = () => {
-
   const booksList = useSelector((state) => state.books.booksToFilter);
 
   // console.log(booksList);
@@ -50,9 +49,10 @@ const CardContainer = () => {
       <FilterOptions setCurrentPage={setCurrentPage} />
       <Cards>
         <Grid container spacing={1} justifyContent='center'>
-          {currentBook.map(c => (
-            <Grid item xs={12} sm={6} md={3} lg={3} key={currentBook.id + 1}>
-              <div key={c.id}>
+          {currentBook.map((c,index) => (
+            <Grid item xs={12} sm={6} md={3} lg={3} key={c.id}>
+              <div key={index}>
+
                 <Card id={c.id} author= {c.author} image={c.image} title={c.title} stock={c.stock} price={c.price} />
               </div>
             </Grid>))}
