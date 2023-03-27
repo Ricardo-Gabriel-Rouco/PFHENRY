@@ -1,12 +1,12 @@
-import NavBar from "../components/NavBar/NavBar";
-import Footer from "../components/Footer/Footer";
+
 import CardContainer from "../components/CardContainer/CardContainer";
-import db from "../firebase-config";
+import {db} from "../firebase/firebase-config";
 import { collection } from "firebase/firestore";
 import { getDocs } from "firebase/firestore";
 import { useDispatch } from "react-redux";
 import { addBook } from "../redux/rootReducer/bookSlice";
-import { useEffect } from "react";
+import { useEffect} from "react";
+import NavBar from "../components/NavBar/NavBar";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -23,13 +23,12 @@ const Home = () => {
     };
 
     getBooksList();
-  }, []);
+  }, [bookCollectionRef,dispatch]);
 
   return (
     <>
       <NavBar />
-      <CardContainer />
-      <Footer />
+      <CardContainer  />
     </>
   );
 };

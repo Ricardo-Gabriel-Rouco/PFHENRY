@@ -1,10 +1,10 @@
-import db from "../../firebase-config";
-import { collection, onSnapshot } from "firebase/firestore";
-import { useEffect, useState } from "react";
-import { doc, setDoc, getDocs, query, where } from "firebase/firestore";
+//import db from "../../firebase-config";
+//import { collection, onSnapshot } from "firebase/firestore";
+import { useState } from "react";
+//import { doc, setDoc, getDocs, query, where } from "firebase/firestore";
 import Card from "../Card/Card";
 import style from "./CardContainer.module.css";
-import { async } from "@firebase/util";
+//import { async } from "@firebase/util";
 import { useSelector } from "react-redux";
 
 // const books = db.collection('books');
