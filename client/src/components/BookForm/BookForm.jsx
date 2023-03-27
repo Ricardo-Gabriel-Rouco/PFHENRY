@@ -47,10 +47,7 @@ function BookForm() {
     genres: [],
     price: "",
     year: "",
-    image: {
-      link: "",
-      file: "",
-    },
+    image: ''
   })
 
   const onClose = () => {
@@ -170,7 +167,7 @@ function BookForm() {
               placeholder="Select an image"
               onChange={handleImageInputChange}
             />
-            <label htmlFor="image">Url Imagen:</label>
+            <label htmlFor="imageLink">Url Imagen:</label>
             <input
               type="text"
               name="imageLink"
