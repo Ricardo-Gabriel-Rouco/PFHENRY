@@ -4,7 +4,7 @@ const initialState = {
   allBooks: [],
   booksToFilter: [],
   filtersApplied: [],
-  bookDetail: {},
+  favorites: [],
 };
 
 export const booksSlice = createSlice({
@@ -26,7 +26,9 @@ export const booksSlice = createSlice({
       state.booksToFilter =
         action.payload === ""
           ? search
-          : search.filter((book) => book.title.toLowerCase() === action.payload.toLowerCase());
+          : search.filter((book) =>
+              book.title.toLowerCase().includes(action.payload.toLowerCase())
+            );
     },
 
     clearSearchResults: (state) => {
@@ -39,9 +41,7 @@ export const booksSlice = createSlice({
         action.payload[1] === "all"
           ? reset
           : state.booksToFilter.filter((books) => books[action.payload[0]] === action.payload[1]);
-      if (state.booksToFilter.length === 0) {
-        state.booksToFilter = [{ title: "Product not found" }];
-      }
+
       if (action.payload[1] !== "all") {
         state.filtersApplied.push(action.payload);
       } else {
@@ -63,7 +63,7 @@ export const booksSlice = createSlice({
       }
     },
 
-    orderByRating: (state, action) => {
+    orderBy: (state, action) => {
       if (action.payload === "min") {
         state.booksToFilter.sort(function (a, b) {
           if (a.rating > b.rating) return 1;
@@ -74,6 +74,30 @@ export const booksSlice = createSlice({
         state.booksToFilter.sort(function (a, b) {
           if (a.rating > b.rating) return -1;
           if (a.rating < b.rating) return 1;
+          return 0;
+        });
+      } else if (action.payload === "asc") {
+        state.booksToFilter.sort(function (a, b) {
+          if (a.title > b.title) return 1;
+          if (b.title > a.title) return -1;
+          return 0;
+        });
+      } else if (action.payload === "desc") {
+        state.booksToFilter.sort(function (a, b) {
+          if (a.title > b.title) return -1;
+          if (b.title > a.title) return 1;
+          return 0;
+        });
+      } else if (action.payload === "minPrice") {
+        state.booksToFilter.sort(function (a, b) {
+          if (a.price > b.price) return 1;
+          if (b.price > a.price) return -1;
+          return 0;
+        });
+      } else if (action.payload === "maxPrice") {
+        state.booksToFilter.sort(function (a, b) {
+          if (a.price > b.price) return -1;
+          if (b.price > a.price) return 1;
           return 0;
         });
       }
@@ -92,7 +116,7 @@ export const {
   searchBook,
   filterBooks,
   removeFilter,
-  orderByRating,
+  orderBy,
   reset,
   clearSearchResults,
 } = booksSlice.actions;
