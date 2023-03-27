@@ -31,6 +31,8 @@ function App() {
           <Route exact path="/about" element={<About />} />
           <Route exact path="/favorites" element={<Favorites />} />
           <Route path='/home/:id' element={<CardDetail />} /> 
+
+
           <Route path="*" element={<Error />} />
           <Route exact path="/create" element={<BookForm/>}/>
         </Routes>

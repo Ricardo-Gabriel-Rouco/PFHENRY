@@ -59,16 +59,20 @@ export const FilterOptions = ({ setCurrentPage }) => {
     setCurrentPage(1);
   };
 
+  function capitalize(str) {
+    return str[0].toUpperCase() + str.slice(1);
+  }
+
   return (
-    <div>
-      <div>
+    <div className={style.mainDiv}>
+      <div className={style.divFiltersContainer}>
         {filterAuthor ? (
-          <select name="author" id="author" onChange={filterHandler}>
+          <select name="author" id="author" onChange={filterHandler} className={style.filters}>
             <option value="all">All Authors</option>
             {booksList.length &&
               formatArray(booksList.map((elem) => elem.author).sort()).map((elem, index) =>
                 elem !== null ? (
-                  <option key={index} value={elem}>
+                  <option key={index} value={elem} className={style.filters}>
                     {elem}
                   </option>
                 ) : null
@@ -77,7 +81,7 @@ export const FilterOptions = ({ setCurrentPage }) => {
         ) : null}
 
         {filterGenre ? (
-          <select name="genre" id="genre" onChange={filterHandler}>
+          <select name="genre" id="genre" onChange={filterHandler} className={style.filters}>
             <option value="all">All Genres</option>
             {booksList.length &&
               formatArray(booksList.map((elem) => elem.genre).sort()).map((gen, index) => (
@@ -88,7 +92,7 @@ export const FilterOptions = ({ setCurrentPage }) => {
           </select>
         ) : null}
 
-        <select onChange={handlerOrder}>
+        <select onChange={handlerOrder} className={style.filters}>
           <option value="min">Min Rating</option>
           <option value="max">Max Rating</option>
           <option value="asc">A-Z</option>
@@ -97,15 +101,17 @@ export const FilterOptions = ({ setCurrentPage }) => {
           <option value="maxPrice">Max price</option>
         </select>
 
-        <button onClick={handlerReset}>Reset</button>
+        <button onClick={handlerReset} className={style.filters}>
+          Reset
+        </button>
       </div>
 
       <div className={style.divContainer}>
         {filters &&
           filters.map((filter, index) => (
-            <div key={index} id={index} className={style.divFilters}>
-              <p>{filter[1]}</p>
-              <button id={index} onClick={handlerRemoveFilter}>
+            <div key={index} id={index} className={style.divFiltersApplied}>
+              <p>{`${capitalize(filter[0])}: ${filter[1]}`}</p>
+              <button id={index} onClick={handlerRemoveFilter} className={style.btnFiltersApplied}>
                 X
               </button>
             </div>

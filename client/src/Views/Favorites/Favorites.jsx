@@ -10,6 +10,7 @@ import {
     TableCell,
     Paper
 } from '@mui/material';
+
 import { deleteFavorite } from '../../redux/rootReducer/favoriteSlice'
 import { Link } from 'react-router-dom'
 
@@ -20,9 +21,7 @@ const Favorites = () => {
         dispatch(deleteFavorite(id));
     };
 
-console.log(favorites.handleFavorite)
-    
-
+   
     return (
         <>
             <div className={style.container}>
@@ -40,8 +39,10 @@ console.log(favorites.handleFavorite)
                             </TableRow>
                         </TableHead>
                         <TableBody>
+
                             {favorites.map((favorite, index) => (
                                 <TableRow key={index}>
+
                                     <TableCell>{favorite.id}</TableCell>
                                     <TableCell>{favorite.title}</TableCell>
                                     <TableCell>{favorite.author}</TableCell>
@@ -50,7 +51,9 @@ console.log(favorites.handleFavorite)
                                     </TableCell>
                                     <TableCell>{favorite.price}</TableCell>
                                     <TableCell>
+
                                         <Button onClick = {() => handleDelete(favorite.id)} variant="contained" color="primary" size='small'>Delete</Button>
+
                                     </TableCell>
                                     <TableCell>
                                         <Button variant="contained" color="primary" size ='small'>Buy</Button>

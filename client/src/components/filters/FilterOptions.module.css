@@ -1,12 +1,55 @@
+.mainDiv {
+  margin-top: 1rem;
+  padding: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.divFiltersContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 60%;
+  margin-top: 0.5rem;
+}
+
+.filters {
+  background: none;
+  border-color: rgba(25, 118, 210, 255);
+  border-radius: 5px;
+  gap: 1rem;
+  padding: 0.5rem;
+  color: rgba(25, 118, 210, 255);
+  text-align: center;
+  font-size: 1rem;
+  cursor: pointer;
+  /* width: 20%; */
+}
+
 .divContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
 }
-.divFilters {
+.divFiltersApplied {
   display: flex;
+  margin-top: 1rem;
+  padding: 0.3rem;
+  border: 1px solid rgba(25, 118, 210, 255);
+  border-radius: 5px;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
+}
+
+.btnFiltersApplied {
+  padding: 0.3rem;
+  background: none;
+  border-radius: 2px;
+  border-color: red;
+  color: red;
+  cursor: pointer;
 }
