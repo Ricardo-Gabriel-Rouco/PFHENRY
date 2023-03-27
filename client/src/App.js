@@ -9,6 +9,7 @@ import Error from "./Views/Error";
 // import {onSnapshot, collection} from 'firebase/firestore'
 // import { useEffect } from "react";
 import CardDetail from './components/CardDetail/CardDetail'; 
+import Favorites from './Views/Favorites/Favorites'
 
 function App() {
   // useEffect(() => {
@@ -26,6 +27,7 @@ function App() {
           <Route exact path="/" element={<Landing />} />
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/about" element={<About />} />
+          <Route exact path="/favorites" element={<Favorites />} />
           <Route path='/home/:id' element={<CardDetail />} /> 
           <Route path="*" element={<Error />} />
         </Routes>

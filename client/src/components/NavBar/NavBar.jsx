@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
 
 const NavBar = () => {
 
@@ -17,6 +18,7 @@ const NavBar = () => {
             <div className={style.NavBarButtons}>
             <Link to='/cart' className={style.NavBarButton}><ShoppingCartOutlinedIcon/></Link>
             <Link to='/login' className={style.NavBarButton}><AccountCircleOutlinedIcon/></Link>                  
+            <Link to='/favorites' className={style.NavBarButton}><BookmarkOutlinedIcon /> </Link> 
             <Link to='/about' className={style.NavBarButton}>About Us</Link>                  
             </div>
         </nav>
