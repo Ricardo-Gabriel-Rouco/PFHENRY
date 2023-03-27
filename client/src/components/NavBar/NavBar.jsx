@@ -1,15 +1,15 @@
 import SearchBar from '../SearchBar/SearchBar'
 import style from './NavBar.module.css'
-import {Link} from 'react-router-dom'
+import {Link, useLocation} from 'react-router-dom'
 import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
 import ShoppingCart from '@mui/icons-material/ShoppingCart';
-import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import Home from '@mui/icons-material/Home';
 import { AppBar,Box,IconButton,Toolbar } from '@mui/material';
 
 const NavBar = () => {
+    const location = useLocation()
 
     return (
 
@@ -43,7 +43,7 @@ const NavBar = () => {
                     </Toolbar>
                 </AppBar>
 
-            <SearchBar placeholder="Enter a value..."/>
+            {location.pathname !== '/create' ? <SearchBar placeholder="Enter a value..."/> : null}
         </Box>
 
 
