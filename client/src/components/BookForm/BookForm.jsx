@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./BookForm.module.css";
 import { getGenres } from "../../firebase/firestore/genres";
+import validation from './validation'
 
 function BookForm() {
   // estado que maneja la subida de imagen
@@ -10,7 +11,8 @@ function BookForm() {
     const reader = new FileReader();
     reader.readAsDataURL(ev.target.files[0]);
     reader.onloadend = () => {
-      setImageFile(reader.result);
+      // setImageFile(reader.result);
+      setbookData({ ...bookData, image: { file: reader.result } });
     };
   };
 
@@ -31,15 +33,37 @@ function BookForm() {
     genres: [],
     price: "",
     year: "",
-    imageLink: "",
+    image: {
+      link: "",
+      file: "",
+    },
   });
+
+  const [errors, setErrors] = useState({
+    isbn: "",
+    title: "",
+    author: "",
+    editorial: "",
+    genres: [],
+    price: "",
+    year: "",
+    image: {
+      link: "",
+      file: "",
+    },
+  })
 
   const onClose = () => {
     setImageFile("");
+    setbookData({ ...bookData, image: { link: "", file: "" } });
   };
 
   const handleInputChange = (e) => {
+    if (e.target.name === "imageLink") {
+      setbookData({ ...bookData, image: { link: e.target.value } });
+    }
     setbookData({ ...bookData, [e.target.name]: e.target.value });
+    setErrors(validation(bookData))
   };
 
   const handleOptions = (e) => {
@@ -66,6 +90,7 @@ function BookForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     console.log(bookData);
   };
 
@@ -80,6 +105,7 @@ function BookForm() {
           onChange={handleInputChange}
           value={bookData.isbn}
         />
+        {errors.isbn? <p>{errors.isbn}</p>: null}
         <label htmlFor="title">Titulo: </label>
         <input
           type="text"
@@ -141,11 +167,20 @@ function BookForm() {
               onChange={handleImageInputChange}
             />
             <label htmlFor="image">Url Imagen:</label>
-            <input type="text" name="imageLink" onChange={handleInputChange} />
+            <input
+              type="text"
+              name="imageLink"
+              value={bookData.image.link}
+              onChange={handleInputChange}
+            />
           </div>
         ) : (
           <div>
-            <img src={imageFile} alt="uploaded_Image" />
+            {bookData.image.file ? (
+              <img src={bookData.image.file} alt="uploaded_Image" />
+            ) : bookData.image.link ? (
+              <img src={bookData.image.link} alt="uploaded_Image" />
+            ) : null}
             <div>
               <button onClick={onClose}>X</button>
             </div>
