@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import styles from "./BookForm.module.css";
 import { getGenres } from "../../firebase/firestore/genres";
 import validation from "./validation";
-import { Input, InputLabel, Button, Box, Container} from "@mui/material";
+import { Input, InputLabel, Button, Box, Container } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import ErrorIcon from "@mui/icons-material/Error";
+import { postBook } from "../../firebase/firestore/books";
 function BookForm() {
   // estado que maneja la subida de imagen
   const [imageFile, setImageFile] = useState("");
@@ -59,9 +60,20 @@ function BookForm() {
 
   const handleInputChange = (e) => {
     if (e.target.name === "imageLink") {
-      setbookData({ ...bookData, image: { link: e.target.value } });
+      setbookData(
+        {
+          ...bookData,
+          image: { link: e.target.value }
+        }
+      )
     }
-    setbookData({ ...bookData, [e.target.name]: e.target.value });
+    else {
+      setbookData({
+        ...bookData,
+        [e.target.name]: e.target.value
+      }
+      )
+    }
     setErrors(validation(bookData));
   };
 
@@ -87,10 +99,14 @@ function BookForm() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log(bookData);
+    try {
+      const res = await postBook(bookData)
+      console.log(res)
+    } catch (error) {
+      console.error(error)
+    }
   };
 
   return (
@@ -171,7 +187,7 @@ function BookForm() {
             {bookData.genres.map(
               (genre) =>
                 bookData.genres.indexOf(genre) ===
-                  bookData.genres.lastIndexOf(genre) && (
+                bookData.genres.lastIndexOf(genre) && (
                   <div key={genre}>
                     {genre}
                     <button onClick={() => handleRemove(genre)}>X</button>

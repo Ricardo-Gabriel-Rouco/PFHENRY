@@ -45,32 +45,34 @@ export async function deleteBook(id) {
   }
 }
 
-export async function postBook(isbn, author, editorial, genre, urlImage, price, rating, title, year) {
+export async function postBook(book) {
   // validaciones, muchas validaciones
-  if (isbn.isNaN()) throw new Error('Isbn must be a number')
-  if (!isbn.toString().length >= 10 && !isbn.toString().length <= 13) throw new Error("invalid ISBN")
-  if (!author) throw new Error('Author must be specified')
-  if (!author.isNaN()) throw new Error('Format Error')
-  if (!editorial) throw new Error('Editorial must be specified')
-  if (!editorial.isNaN()) throw new Error('Format Error')
-  if (price.isNaN()) throw new Error('Price must be a number')
-  if (price <= 0) throw new Error('Price must be superior than zero')
-  if (rating < 0 || rating > 5) throw new Error('Rating must be between 0 and 5')
-  if (!title) throw new Error('Title required is')
+  if (isNaN(book.isbn)) throw new Error('Isbn must be a number')
+  if (!book.isbn.toString().length >= 9 && !book.isbn.toString().length <= 12) throw new Error("invalid ISBN")
+  if (!book.author) throw new Error('Author must be specified')
+  if (!isNaN(book.author)) throw new Error('Format Error')
+  if (!book.editorial) throw new Error('Editorial must be specified')
+  if (!isNaN(book.editorial)) throw new Error('Format Error')
+  if (isNaN(book.price)) throw new Error('Price must be a number')
+  if (book.price <= 0) throw new Error('Price must be superior than zero')
+  if (!book.title) throw new Error('Title required is')
   // fin validaciones
   try {
-    const newBook = doc(db, 'books', `${isbn}`)
-    await setDoc(newBook, {
-      author: author,
+    const newBook = {
+      author: book.author,
       display: true,
-      editorial: editorial,
-      genre: genre.map(g => g.id),
-      image: urlImage,
-      price: price,
-      rating: rating,
-      title: title,
-      year: year
-    })
+      editorial: book.editorial,
+      genre: book.genres,
+      image: book.image.link,
+      price: book.price,
+      title: book.title,
+      year: book.year
+    }
+    const collectionRef = collection(db, 'books')
+    const docRef = doc(collectionRef, book.isbn)
+    console.log(newBook)
+    await setDoc(docRef, newBook)
+    return "Libro creado"
   } catch (error) {
     console.log(error)
   }
