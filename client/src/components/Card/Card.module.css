@@ -3,11 +3,11 @@
   transform: scale(1.05);
 }
 
-
+/* 
 .card:active {
   transform: translateY(2px);
   box-shadow: none;
-}
+} */
 
 .card {
   background-color: whitesmoke;
