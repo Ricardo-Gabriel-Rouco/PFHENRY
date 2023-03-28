@@ -42,9 +42,11 @@ const Card = (props) => {
         <Box sx={{flexDirection: 'column', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', transition: 'box-shadow 0.3s ease', height: '450px', width: '250px' }} className={style.card}>
             {
                 isFav ? (
-                    <button className={style.btnFav} onClick={() => handleFavorite()}> <BookmarkOutlinedIcon size= 'small' color='primary' /></button >
+
+                    <Button variant='contained' size="small" onClick={() => handleFavorite()}> <BookmarkOutlinedIcon /></Button >
                 ) : (
-                    <button className={style.btnFav} onClick={() => handleFavorite()}><BookmarkBorderOutlinedIcon size='small' color='primary' /></button>
+                    <Button variant='contained' size="small" onClick={() => handleFavorite()}><BookmarkBorderOutlinedIcon /></Button>
+
                 )}
             <CardMedia
                 component="img"
@@ -65,10 +67,11 @@ const Card = (props) => {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button variant='outlined' color='primary' href="#contained-buttons" size="small" sx={{textDecoration: 'none'}}> <Link to={`/home/${props.id}`}>
+                <Button variant='contained' href="#contained-buttons" size="small"> <Link to={`/home/${props.id}`}>
+
                     Details
                 </Link></Button>
-                <IconButton color="primary" aria-label="add to shopping cart">
+                <IconButton variant='contained' color="primary" aria-label="add to shopping cart">
                     <Link to={`/home/cart`}>
                         <ShoppingCartIcon />
                     </Link>

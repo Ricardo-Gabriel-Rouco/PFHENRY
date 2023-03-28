@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { searchBook, clearSearchResults } from '../../redux/rootReducer/bookSlice';
 import SearchIcon from '@mui/icons-material/Search';
 import { Box, IconButton, InputBase, Paper, TextField } from '@mui/material';
-import { useNavigate } from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 const SearchBar = ({
     placeholder, paginated
+
 }) => {
     const books = useSelector((state) => state.books.booksToFilter)
 
@@ -20,7 +20,8 @@ const SearchBar = ({
     //ESTADO PARA SETEAR LOS VALORES DE BUSQUEDA
     const [searchValue, setSearchValue] = useState("");
     //ESTADO PARA LOS RESULTADOS DE LA BUSQUEDA
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     // HANDLER DEL INPUT CHANGE TOMA EL VALOR PARA COMPARAR
     const handlerInputChange = (e) => {
         setSearchValue(e.target.value)
@@ -28,14 +29,11 @@ const SearchBar = ({
     const navigate = useNavigate();
 
     //HANDLER DEL BOTON DE BUSQUEDA
-    const handlerSearchClick = () => {
-        dispatch(searchBook(searchValue));
-        setSearchValue("");
+
+    const handlerSearchClick = () =>{
+        dispatch(searchBook(searchValue))
+        setSearchValue("")
         navigate('/home', paginated(1));
-      };
-    
-
-
 
     //ENTER BUTTON 
     const handlerKeyDown = (e) => {
@@ -43,8 +41,6 @@ const SearchBar = ({
             handlerSearchClick()
         }
     }
-
-
 
     return (
         <div className={style.SearchBarContainer}>

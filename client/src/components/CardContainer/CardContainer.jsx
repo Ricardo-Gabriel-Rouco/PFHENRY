@@ -10,7 +10,8 @@ import Paginate from "../../components/Paginate/Paginate";
 import { FilterOptions } from "../filters/FilterOptions";
 import { Grid } from '@mui/material';
 import Cards from '@mui/material/Card';
-import NavBar from '../NavBar/NavBar'
+import NavBar from '../NavBar/NavBar';
+
 
 // const books = db.collection('books');
 
@@ -43,12 +44,14 @@ const CardContainer = () => {
   const paginated = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
   return (
-    <>
-    <NavBar paginated={paginated} />
+    <div className={style.container}>
+      <NavBar paginated={paginated} />
       <FilterOptions setCurrentPage={setCurrentPage} />
       <Cards>
-        <Grid container spacing={3} style={{marginLeft: '1.5em', marginTop: '1em', marginBottom: '2em', display: 'flex', justifyContent: 'center', alignItems: 'center', justifySelf: 'center', justifyItems: 'center', alignSelf: 'center', alignContent: 'center' }}>
+        <Grid container spacing={1} justifyContent='center' bgcolor='#f9b52ea8'>
+
           {currentBook.map((c,index) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={c.id}>
               <div key={index}>
