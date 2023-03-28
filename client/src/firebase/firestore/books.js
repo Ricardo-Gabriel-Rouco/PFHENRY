@@ -48,14 +48,16 @@ export async function deleteBook(id) {
 export async function postBook(book) {
   // validaciones, muchas validaciones
   if (isNaN(book.isbn)) throw new Error('Isbn must be a number')
-  if (!book.isbn.toString().length >= 9 && !book.isbn.toString().length <= 12) throw new Error("invalid ISBN")
+  if (!(book.isbn.toString().length !== 10 ^ book.isbn.toString().length !== 13)) throw new Error("invalid ISBN")
   if (!book.author) throw new Error('Author must be specified')
   if (!isNaN(book.author)) throw new Error('Format Error')
   if (!book.editorial) throw new Error('Editorial must be specified')
   if (!isNaN(book.editorial)) throw new Error('Format Error')
   if (isNaN(book.price)) throw new Error('Price must be a number')
   if (book.price <= 0) throw new Error('Price must be superior than zero')
-  if (!book.title) throw new Error('Title required is')
+  if (!book.title) throw new Error('Title is required')
+  if (isNaN(book.year)) throw new Error('Year must be a number')
+  if (book.year && book.year > new Date().getFullYear()) throw new Error('Year must be at most this year')
   // fin validaciones
   try {
     const newBook = {

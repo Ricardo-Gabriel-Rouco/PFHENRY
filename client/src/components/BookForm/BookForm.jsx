@@ -8,92 +8,82 @@ import ErrorIcon from "@mui/icons-material/Error";
 import { postBook } from "../../firebase/firestore/books";
 function BookForm() {
   // estado que maneja la subida de imagen
-  const [imageFile, setImageFile] = useState("");
-  const handleImageInputChange = (ev) => {
-    //Esta parte solo sirve para mostrar la imagen
-    const reader = new FileReader();
-    reader.readAsDataURL(ev.target.files[0]);
-    reader.onloadend = () => {
-      // setImageFile(reader.result);
-      setbookData({ ...bookData, image: { file: reader.result } });
-    };
-  };
+  const [imageLink, setImageLink] = useState("");
+  
+  const [bookData, setBookData] = useState({
+    // image: {},
+  });
+  
+  const [errors, setErrors] = useState({});
 
-  const [genres, setgenres] = useState([]);
+  const [genres, setGenres] = useState([]);
+  
+  useEffect(()=>{
+    setErrors(validation(bookData));
+  },[bookData])
+  
+
+
   useEffect(() => {
     async function fetchGenres() {
       const allGenres = await getGenres();
-      setgenres(allGenres);
+      setGenres(allGenres);
     }
     fetchGenres();
   }, []);
 
-  const [bookData, setbookData] = useState({
-    isbn: "",
-    title: "",
-    author: "",
-    editorial: "",
-    genres: [],
-    price: "",
-    year: "",
-    image: {
-      link: "",
-      file: "",
-    },
-  });
-
-  const [errors, setErrors] = useState({
-    isbn: "",
-    title: "",
-    author: "",
-    editorial: "",
-    genres: "",
-    price: "",
-    year: "",
-    image: "",
-  });
-
   const onClose = () => {
-    setImageFile("");
-    setbookData({ ...bookData, image: { link: "", file: "" } });
+    setImageLink("");
+    setBookData({ ...bookData, image:""  });
   };
-
+  
   const handleInputChange = (e) => {
-    if (e.target.name === "imageLink") {
-      setbookData(
-        {
+    switch (e.target.name) {
+      case 'imageLink':
+      setImageLink(e.target.value)        
+      break;
+      
+      case 'imageFile':
+      const reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onloadend = () => {
+        console.log(typeof reader.result)
+        setBookData({ ...bookData, image: reader.result });
+      };
+      break;
+
+      default:
+        setBookData({
           ...bookData,
-          image: { link: e.target.value }
-        }
-      )
+          [e.target.name]: e.target.value
+        })
+        break;
     }
-    else {
-      setbookData({
-        ...bookData,
-        [e.target.name]: e.target.value
-      }
-      )
-    }
-    setErrors(validation(bookData));
+    
   };
+  
 
   const handleOptions = (e) => {
+    let selectedValues = [];
+     
+    if(bookData.genres)  
+      selectedValues = [...bookData.genres]
+    
     const options = e.target.options;
-    const selectedValues = [];
     for (let i = 0; i < options.length; i++) {
       if (options[i].selected) {
         selectedValues.push(options[i].value);
       }
     }
-    setbookData({
+    setBookData({
       ...bookData,
-      genres: [...bookData.genres, ...selectedValues],
+      genres: [...selectedValues],
     });
   };
 
   const handleRemove = (value) => {
     const newGenres = bookData.genres.filter((genre) => genre !== value);
-    setbookData({
+    setBookData({
       ...bookData,
       genres: newGenres,
     });
@@ -105,9 +95,26 @@ function BookForm() {
       const res = await postBook(bookData)
       console.log(res)
     } catch (error) {
-      console.error(error)
+      let toHighlight = {};
+      for(const key in errors)
+      {
+        console.log(key)
+        if(bookData[key] === undefined)
+          toHighlight[key] = ''
+      }
+      console.log(toHighlight)
+      setBookData({...bookData, ...toHighlight})
+
+      window.alert(error)
     }
   };
+
+  const acceptImageLink = () => {
+    setBookData({
+      ...bookData,
+      image: imageLink
+    })
+  }
 
   return (
     <Container>
@@ -124,7 +131,7 @@ function BookForm() {
           {errors.isbn ? (
             <p className={styles.formError}>
               <ErrorIcon />
-              {errors.isbn}
+              {errors.isbn && errors.isbn}
             </p>
           ) : null}
           <InputLabel htmlFor="title">Titulo: </InputLabel>
@@ -138,7 +145,7 @@ function BookForm() {
           {errors.title ? (
             <p className={styles.formError}>
               <ErrorIcon />
-              {errors.title}
+              {errors.title && errors.title}
             </p>
           ) : null}
           <InputLabel htmlFor="author">Autor: </InputLabel>
@@ -152,7 +159,7 @@ function BookForm() {
           {errors.author ? (
             <p className={styles.formError}>
               <ErrorIcon />
-              {errors.author}
+              {errors.author && errors.author}
             </p>
           ) : null}
           <InputLabel htmlFor="editorial">Editorial: </InputLabel>
@@ -166,7 +173,7 @@ function BookForm() {
           {errors.editorial ? (
             <p className={styles.formError}>
               <ErrorIcon />
-              {errors.editorial}
+              {errors.editorial && errors.editorial}
             </p>
           ) : null}
           <InputLabel htmlFor="genres">Generos:</InputLabel>
@@ -184,7 +191,7 @@ function BookForm() {
               ))}
           </select>
           <div>
-            {bookData.genres.map(
+            {bookData.genres&&bookData.genres.map(
               (genre) =>
                 bookData.genres.indexOf(genre) ===
                 bookData.genres.lastIndexOf(genre) && (
@@ -198,43 +205,49 @@ function BookForm() {
           {errors.genres ? (
             <p className={styles.formError}>
               <ErrorIcon />
-              {errors.genres}
+              {errors.genres && errors.genres}
             </p>
           ) : null}
           <InputLabel htmlFor="image">Imagen: </InputLabel>
-          {!imageFile ? (
+          { !bookData.image ? 
+            
             <div>
               <Input
                 type="file"
                 accept="image/*"
                 name="imageFile"
                 placeholder="Select an image"
-                onChange={handleImageInputChange}
-              />
-              <InputLabel htmlFor="imageLink">Url Imagen:</InputLabel>
-              <Input
-                type="text"
-                name="imageLink"
-                value={bookData.image.link}
                 onChange={handleInputChange}
               />
+              <InputLabel htmlFor="imageLink">Url Imagen:</InputLabel>
+              <div>
+                <Input
+                  type="text"
+                  name="imageLink"
+                  value={imageLink}
+                  onChange={handleInputChange}
+                />
+                <button type="button" onClick={acceptImageLink}>Accept</button>
+              </div>
             </div>
-          ) : (
-            <div>
-              {bookData.image.file ? (
-                <img src={bookData.image.file} alt="uploaded_Image" />
-              ) : bookData.image.link ? (
-                <img src={bookData.image.link} alt="uploaded_Image" />
+           : 
+            <div className={styles.image}>
+              {bookData.image ? (
+                <img 
+                  src={bookData.image} 
+                  alt="uploaded_Image" 
+                  onError={()=>setBookData({...bookData, image:null})}
+                  />
               ) : null}
               <div>
                 <button onClick={onClose}>X</button>
               </div>
             </div>
-          )}
+          }
           {errors.image ? (
             <p className={styles.formError}>
               <ErrorIcon />
-              {errors.image}
+              {errors.image && errors.image}
             </p>
           ) : null}
           <InputLabel htmlFor="price">Precio</InputLabel>
@@ -248,7 +261,7 @@ function BookForm() {
           {errors.price ? (
             <p className={styles.formError}>
               <ErrorIcon />
-              {errors.price}
+              {errors.price && errors.price}
             </p>
           ) : null}
           <InputLabel htmlFor="year">Año de publiacion</InputLabel>
@@ -259,9 +272,17 @@ function BookForm() {
             onChange={handleInputChange}
             value={bookData.year}
           />
-          <Button type="submit">
-            <SaveIcon /> Guardar
-          </Button>
+          {errors.year ? (
+            <p className={styles.formError}>
+              <ErrorIcon />
+              {errors.year && errors.year}
+            </p>
+          ) : null}
+          <div>
+            <Button type="submit">
+              <SaveIcon /> Guardar
+            </Button>
+          </div>
         </form>
       </Box>
     </Container>
