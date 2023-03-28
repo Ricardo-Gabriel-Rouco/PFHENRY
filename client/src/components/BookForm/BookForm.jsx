@@ -102,7 +102,6 @@ function BookForm() {
         if(bookData[key] === undefined)
           toHighlight[key] = ''
       }
-      console.log(toHighlight)
       setBookData({...bookData, ...toHighlight})
 
       window.alert(error)
@@ -122,7 +121,7 @@ function BookForm() {
         <form onSubmit={handleSubmit}>
           <InputLabel htmlFor="isbn">ISBN: </InputLabel>
           <Input
-            type="text"
+            type="tel"
             name="isbn"
             placeholder="Ej: 9788415618683"
             onChange={handleInputChange}
@@ -134,7 +133,7 @@ function BookForm() {
               {errors.isbn && errors.isbn}
             </p>
           ) : null}
-          <InputLabel htmlFor="title">Titulo: </InputLabel>
+          <InputLabel htmlFor="title">Title: </InputLabel>
           <Input
             type="text"
             name="title"
@@ -148,7 +147,7 @@ function BookForm() {
               {errors.title && errors.title}
             </p>
           ) : null}
-          <InputLabel htmlFor="author">Autor: </InputLabel>
+          <InputLabel htmlFor="author">Author: </InputLabel>
           <Input
             type="text"
             name="author"
@@ -162,7 +161,7 @@ function BookForm() {
               {errors.author && errors.author}
             </p>
           ) : null}
-          <InputLabel htmlFor="editorial">Editorial: </InputLabel>
+          <InputLabel htmlFor="editorial">Publisher: </InputLabel>
           <Input
             type="text"
             name="editorial"
@@ -176,7 +175,7 @@ function BookForm() {
               {errors.editorial && errors.editorial}
             </p>
           ) : null}
-          <InputLabel htmlFor="genres">Generos:</InputLabel>
+          <InputLabel htmlFor="genres">Genres:</InputLabel>
           <select
             multiple={true}
             value={bookData.genres}
@@ -208,7 +207,7 @@ function BookForm() {
               {errors.genres && errors.genres}
             </p>
           ) : null}
-          <InputLabel htmlFor="image">Imagen: </InputLabel>
+          <InputLabel htmlFor="image">Image: </InputLabel>
           { !bookData.image ? 
             
             <div>
@@ -250,9 +249,9 @@ function BookForm() {
               {errors.image && errors.image}
             </p>
           ) : null}
-          <InputLabel htmlFor="price">Precio</InputLabel>
+          <InputLabel htmlFor="price">Price</InputLabel>
           <Input
-            type="text"
+            type="tel"
             name="price"
             placeholder="Ingresa el precio"
             onChange={handleInputChange}
@@ -264,9 +263,9 @@ function BookForm() {
               {errors.price && errors.price}
             </p>
           ) : null}
-          <InputLabel htmlFor="year">Año de publiacion</InputLabel>
+          <InputLabel htmlFor="year">Year</InputLabel>
           <Input
-            type="text"
+            type="tel"
             name="year"
             placeholder="Ej: 1926"
             onChange={handleInputChange}
@@ -280,7 +279,7 @@ function BookForm() {
           ) : null}
           <div>
             <Button type="submit">
-              <SaveIcon /> Guardar
+              <SaveIcon /> Save
             </Button>
           </div>
         </form>

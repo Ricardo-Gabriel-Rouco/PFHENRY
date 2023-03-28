@@ -2,6 +2,11 @@ import { getDocs, query, collection, where, doc, getDoc, updateDoc, setDoc } fro
 import { db } from '../firebase-config';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
+const regexTitle = /^[a-zA-Z0-9\s]+$/
+const regexAuthor = /^[a-zA-Z\s]+(\.[a-zA-Z\s]+)*$/;
+const regexNumber = /^[0-9]+$/
+const regexPublisher = /^[a-zA-Z\s]+$/
+
 export async function getBooks() {
 
   const q = query(collection(db, "books"), where('display', '==', true))
@@ -47,28 +52,36 @@ export async function deleteBook(id) {
 
 export async function postBook(book) {
   // validaciones, muchas validaciones
-  if (isNaN(book.isbn)) throw new Error('Isbn must be a number')
-  if (!(book.isbn.toString().length !== 10 ^ book.isbn.toString().length !== 13)) throw new Error("invalid ISBN")
+  if (!book.isbn) throw new Error('ISBN must be specified')
+  if (!regexNumber.test(book.isbn.toString())) throw new Error('ISBN must be a number')
+  if (!(book.isbn.toString().length !== 10 ^ book.isbn.toString().length !== 13)) throw new Error("Invalid ISBN")
+  
+  if (!book.title) throw new Error('Title must be specified')
+  if (book.title.length > 50) throw new Error ('Title must be at most 50 characters')
+  if (!regexTitle.test(book.title)) throw new Error ('Only numbers, letters or spaces are allowed in Title')
+  
   if (!book.author) throw new Error('Author must be specified')
-  if (!isNaN(book.author)) throw new Error('Format Error')
-  if (!book.editorial) throw new Error('Editorial must be specified')
-  if (!isNaN(book.editorial)) throw new Error('Format Error')
+  if (!book.author.length > 50) throw new Error ('Author must be at most 50 characters')
+  if (!regexAuthor.test(book.author)) throw new Error ('Only letters or points are allowed in Author')
+  
+  if (!book.editorial) throw new Error('Publisher must be specified')
+  if (!book.editorial.length > 50) throw new Error ('Publisher must be at most 50 characters')
+  if (!regexPublisher.test(book.editorial)) throw new Error ('Only letters are allowed in Publisher')
+  
+  if (book.image === '') throw new Error ('Must insert an image')
+  if (book.image === null) throw new Error ('Invalid link or file')
+
+  if (!book.price) throw new Error('Price must be specified')
   if (isNaN(book.price)) throw new Error('Price must be a number')
-  if (book.price <= 0) throw new Error('Price must be superior than zero')
-  if (!book.title) throw new Error('Title is required')
-  if (isNaN(book.year)) throw new Error('Year must be a number')
+  if (book.price <= 0) throw new Error('Price must be a positive number')
+  
+  if (book.year && !regexNumber.test(book.year.toString())) throw new Error('Year must be a number')
   if (book.year && book.year > new Date().getFullYear()) throw new Error('Year must be at most this year')
   // fin validaciones
   try {
     const newBook = {
-      author: book.author,
+      ...book,
       display: true,
-      editorial: book.editorial,
-      genre: book.genres,
-      image: book.image.link,
-      price: book.price,
-      title: book.title,
-      year: book.year
     }
     const collectionRef = collection(db, 'books')
     const docRef = doc(collectionRef, book.isbn)
