@@ -6,3 +6,9 @@
     text-decoration: none;
     margin-top: 30px
 }
+
+.imageCell img {
+    max-width: 100px;
+    height: auto;
+  }
+  

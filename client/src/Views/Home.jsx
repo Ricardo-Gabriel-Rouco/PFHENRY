@@ -6,7 +6,6 @@ import { getDocs } from "firebase/firestore";
 import { useDispatch } from "react-redux";
 import { addBook } from "../redux/rootReducer/bookSlice";
 import { useEffect} from "react";
-import NavBar from "../components/NavBar/NavBar";
 
 const Home = () => {
   const dispatch = useDispatch();

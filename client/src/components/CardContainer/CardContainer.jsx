@@ -48,7 +48,7 @@ const CardContainer = () => {
     <NavBar paginated={paginated} />
       <FilterOptions setCurrentPage={setCurrentPage} />
       <Cards>
-        <Grid sx={{padding: '2', marginTop: '1em', marginBottom: '1em', marginLeft: 'auto', marginRight: 'auto'}} container spacing={1} justifyContent='center'>
+        <Grid container spacing={3} style={{marginLeft: '1.5em', marginTop: '1em', marginBottom: '2em', display: 'flex', justifyContent: 'center', alignItems: 'center', justifySelf: 'center', justifyItems: 'center', alignSelf: 'center', alignContent: 'center' }}>
           {currentBook.map((c,index) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={c.id}>
               <div key={index}>

@@ -39,17 +39,17 @@ const Card = (props) => {
     };
 
     return (
-        <Box sx={{ margin: '30px',flexDirection: 'column', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', transition: 'box-shadow 0.3s ease', height: '450px', width: '300px' }} className={style.card}>
+        <Box sx={{flexDirection: 'column', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', transition: 'box-shadow 0.3s ease', height: '450px', width: '250px' }} className={style.card}>
             {
                 isFav ? (
-                    <button className={style.btnFav} onClick={() => handleFavorite()}> <BookmarkOutlinedIcon /></button >
+                    <button className={style.btnFav} onClick={() => handleFavorite()}> <BookmarkOutlinedIcon size= 'small' color='primary' /></button >
                 ) : (
-                    <button className={style.btnFav} onClick={() => handleFavorite()}><BookmarkBorderOutlinedIcon /></button>
+                    <button className={style.btnFav} onClick={() => handleFavorite()}><BookmarkBorderOutlinedIcon size='small' color='primary' /></button>
                 )}
             <CardMedia
                 component="img"
                 height='300'
-                sx={{ width: '50%', height: '50%', objectFit: 'cover', marginTop: '25px' }}
+                sx={{ width: '10rem', height: '14rem', objectFit: 'cover', marginTop: '25px' }}
                 image={props.image}
                 alt={props.name}    
             />
@@ -65,7 +65,7 @@ const Card = (props) => {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button variant='outlined' href="#contained-buttons" size="small"> <Link to={`/home/${props.id}`}>
+                <Button variant='outlined' color='primary' href="#contained-buttons" size="small" sx={{textDecoration: 'none'}}> <Link to={`/home/${props.id}`}>
                     Details
                 </Link></Button>
                 <IconButton color="primary" aria-label="add to shopping cart">
