@@ -37,8 +37,6 @@ const SearchBar = ({ paginated,
         }
     }
 
-    
-
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {

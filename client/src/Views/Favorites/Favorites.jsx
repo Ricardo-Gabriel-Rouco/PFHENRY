@@ -47,7 +47,7 @@ const Favorites = () => {
                                 <TableCell>Image</TableCell>
                                 <TableCell>Price</TableCell>
                                 <TableCell>Delete</TableCell>
-                                <TableCell>Buy</TableCell>
+                                <TableCell></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -65,7 +65,7 @@ const Favorites = () => {
                                         <Button onClick={() => handleDelete(favorite.id)} variant="contained" color="primary" size='small'>Delete</Button>
                                     </TableCell>
                                     <TableCell>
-                                        <Button variant="contained" color="primary" size='small'>Buy</Button>
+                                        <Button variant="contained" color="primary" size='small'>Add to Cart</Button>
                                     </TableCell>
                                 </TableRow>
                             ))}
