@@ -12,7 +12,6 @@ import { FilterOptions } from "../filters/FilterOptions";
 import { Grid } from "@mui/material";
 import Cards from "@mui/material/Card";
 import ComponentError from "../ComponentError/ComponentError";
-import Cards from '@mui/material/Card';
 import NavBar from '../NavBar/NavBar';
 
 
@@ -57,9 +56,9 @@ const CardContainer = () => {
       <FilterOptions setCurrentPage={setCurrentPage} />
       {displayCard ? (
         <Cards>
-          <Grid container spacing={1} justifyContent="center">
+          <Grid container spacing={1} justifyContent='center' bgcolor='#f9b52ea8'>
             {currentBook.map((c, index) => (
-              <Grid item xs={12} sm={6} md={3} lg={3} key={c.id}>
+              <Grid item xs={12} sm={6} md={4} lg={3} key={c.id}>
                 <div key={index}>
                   <Card
                     id={c.id}
@@ -87,7 +86,7 @@ const CardContainer = () => {
           prevHandler={prevHandler}
         />
       </div>
-    </>
+    </div>
   );
 };
 
