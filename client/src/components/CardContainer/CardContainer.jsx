@@ -12,6 +12,7 @@ import Paginate from "../../components/Paginate/Paginate";
 import { FilterOptions } from "../filters/FilterOptions";
 import { Grid } from '@mui/material';
 import Cards from '@mui/material/Card';
+import NavBar from '../NavBar/NavBar';
 
 // const books = db.collection('books');
 
@@ -44,8 +45,10 @@ const CardContainer = () => {
   const paginated = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
   return (
     <div className={style.container}>
+      <NavBar paginated={paginated} />
       <FilterOptions setCurrentPage={setCurrentPage} />
       <Cards>
         <Grid container spacing={1} justifyContent='center' bgcolor='#f9b52ea8'>

@@ -15,7 +15,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 
 
-const NavBar = () => {
+const NavBar = ({paginated}) => {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -63,7 +63,7 @@ const NavBar = () => {
 
             {location.pathname!=='/create'?
             <Box sx={{ width: "55rem", marginInline: "40px" }}>
-              <SearchBar placeholder="Search your book..." />
+              <SearchBar paginated={paginated} placeholder="Search your book..." />
             </Box>
             :null}
 
