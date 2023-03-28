@@ -1,35 +1,39 @@
 import style from "./FilterOptions.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { filterBooks, orderBy, removeFilter, reset } from "../../redux/rootReducer/bookSlice";
 
-export const FilterOptions = ({ setCurrentPage }) => {
+export const FilterOptions = ({ setCurrentPage, setErrorFilter }) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    return () => {
+      dispatch(reset());
+    };
+  }, [dispatch]);
+
   const booksList = useSelector((state) => state.books.allBooks);
 
+  const filtersBooks = useSelector((state) => state.books.booksToFilter);
+
   const filters = useSelector((state) => state.books.filtersApplied);
+
+  console.log(filtersBooks);
 
   const [filterAuthor, setFilterAuthor] = useState(true);
   const [filterGenre, setFilterGenre] = useState(true);
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    return () => {
+      dispatch(reset());
+    };
+  }, [dispatch]);
 
   const formatArray = (array) => {
     let set = new Set(array);
     return Array.from(set);
   };
-
-  /* const handlerAuthor = (e) => {
-    e.preventDefault();
-    dispatch(filterBooks(["author", e.target.value]));
-    setCurrentPage(1);
-  };
-
-  const handlerGenre = (e) => {
-    e.preventDefault();
-    dispatch(filterBooks(["genre", e.target.value]));
-    setCurrentPage(1);
-  }; */
 
   const filterHandler = (e) => {
     e.preventDefault();
