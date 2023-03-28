@@ -10,8 +10,7 @@ import Error from "./Views/Error";
 // import { useEffect } from "react";
 import CardDetail from './components/CardDetail/CardDetail'; 
 import Favorites from './Views/Favorites/Favorites'
-import BookForm from "./components/BookForm/BookForm";
-
+import AddBooks from './Views/AddBooks/AddBooks'
 
 function App() {
   // useEffect(() => {
@@ -34,7 +33,7 @@ function App() {
 
 
           <Route path="*" element={<Error />} />
-          <Route exact path="/create" element={<BookForm/>}/>
+          <Route exact path="/create" element={<AddBooks/>}/>
         </Routes>
       </BrowserRouter>
     </div>

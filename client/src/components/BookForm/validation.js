@@ -1,22 +1,72 @@
 export default function validate(bookData) {
-  const regexName = /^[a-zA-Z0-9\s]+$/
+  const regexTitle = /^[a-zA-Z0-9\s]+$/
+  const regexAuthor = /^[a-zA-Z\s]+(\.[a-zA-Z\s]+)*$/;
+  const regexNumber = /^[0-9]+$/
+  const regexPublisher = /^[a-zA-Z\s]+$/
+  let errors = {
+    isbn: "",
+    title: "",
+    author: "",
+    editorial: "",
+    genres: "",
+    image:"",
+    price: "",
+    year: "",
+  }
 
-  let errors = {}
-  if(!bookData.isbn) errors.isbn = 'Debe ingresar un ISBN';
-  if(bookData.isbn.toString().length < 10 || bookData.isbn.toString().length > 13) errors.isbn = 'El ISBN debe contener entre 10 y 13 digitos';
-  if(!bookData.title) errors.title = 'Debe ingresar un titulo';
-  if(bookData.title.length > 50) errors.title = 'No debe tenes mas de 50 caracteres'
-  if(!regexName.test(bookData.title)) errors.title = 'Solo Números, letras o espacios'
-  if(!bookData.author) errors.author = 'Debe ingresar el autor';
-  if(!bookData.author.length > 50) errors.author = 'No puede superar los 50 caracteres';
-  if(!bookData.editorial) errors.editorial = 'Debe ingresar la editorial';
-  if(!bookData.editorial.length > 50) errors.editorial = 'No puede superar los 50 caracteres';
-  if(!bookData.genres) errors.genres = 'Debe seleccionar al menos un valor';
-  if(!bookData.price) errors.price = 'Debe ingrear el precio';
-  if(isNaN(bookData.price)) errors.price = 'El precio debe ser un valor numerico'
-  if(bookData.price < 0) errors.price = 'No puede existir un valor menor a 0'
-  if(!bookData.image.file || !bookData.image.link) errors.image = 'Debe cargar un archivo o un link'
-  if(isNaN(bookData.year)) errors.year = 'Debe ser un numero'
+  if(bookData.isbn !== undefined)
+  {
+    if (!bookData.isbn) errors.isbn = 'ISBN must be specified';
+    else if (!regexNumber.test(bookData.isbn.toString())) errors.isbn = 'ISBN must be a number'
+    else if (!(bookData.isbn.toString().length !== 10 ^ bookData.isbn.toString().length !== 13)) errors.isbn = 'ISBN must be 10 or 13 digits long';
+  }
+
+  if(bookData.title !== undefined)
+  {
+    if (!bookData.title) errors.title = 'Title must be specified';
+    else if (bookData.title.length > 50) errors.title = 'Title must be at most 50 characters'
+    else if (!regexTitle.test(bookData.title)) errors.title = 'Only numbers, letters or spaces are allowed'
+  }
+
+  if(bookData.author !== undefined)
+  {
+    if (!bookData.author) errors.author = 'Author must be specified';
+    else if (!bookData.author.length > 50) errors.author = 'Author must be at most 50 characters';
+    else if (!regexAuthor.test(bookData.author)) errors.author = 'Only letters or points are allowed'
+  }
+
+  if(bookData.editorial !== undefined)
+  {
+    if (!bookData.editorial) errors.editorial = 'Must insert publisher';
+    else if (!bookData.editorial.length > 50) errors.editorial = 'Publisher must be at most 50 characters';
+    else if (!regexPublisher.test(bookData.editorial)) errors.editorial = 'Only letters or points are allowed'
+  }
+
+  if(bookData.genres !== undefined)
+  {
+    if (!bookData.genres.length) errors.genres = 'At least one genre must be selected';
+  }
+  
+    if( bookData.image !== undefined)
+    {
+      if (bookData.image==="") errors.image = 'Must insert an image through a file or a link'
+      else if (bookData.image===null) errors.image = 'Invalid link/file'
+    }
+
+  if(bookData.price !== undefined)
+  {
+    if (!bookData.price) errors.price = 'Price must be specified';
+    else if (isNaN(bookData.price)) errors.price = 'Price must be a number'
+    else if (bookData.price <= 0) errors.price = 'Price must be a positive number'
+  }
+
+  if(bookData.year !== undefined)
+  {
+    if (!regexNumber.test(bookData.year.toString())) errors.year = 'Year must be a number'
+    else if (bookData.year && bookData.year > new Date().getFullYear()) errors.year = 'Year must be at most the current year'
+  }
+
+  
 
   return errors
 }
