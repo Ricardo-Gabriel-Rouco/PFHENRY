@@ -26,7 +26,6 @@ const SearchBar = ({
     const handlerInputChange = (e) => {
         setSearchValue(e.target.value)
     }
-    const navigate = useNavigate();
 
     //HANDLER DEL BOTON DE BUSQUEDA
 
@@ -34,7 +33,7 @@ const SearchBar = ({
         dispatch(searchBook(searchValue))
         setSearchValue("")
         navigate('/home', paginated(1));
-
+    }
     //ENTER BUTTON 
     const handlerKeyDown = (e) => {
         if (e.key === 'Enter') {

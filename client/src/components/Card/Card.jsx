@@ -39,7 +39,7 @@ const Card = (props) => {
     };
 
     return (
-        <Box sx={{flexDirection: 'column', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', transition: 'box-shadow 0.3s ease', height: '450px', width: '250px' }} className={style.card}>
+        <Box sx={{ margin: '30px',flexDirection: 'column', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', transition: 'box-shadow 0.3s ease', height: '450px', width: '300px' }} className={style.card}>
             {
                 isFav ? (
 
