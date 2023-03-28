@@ -6,13 +6,15 @@ import Card from "../Card/Card";
 import style from "./CardContainer.module.css";
 //import { async } from "@firebase/util";
 import { useSelector } from "react-redux";
-
 import Paginate from "../../components/Paginate/Paginate";
-
 import { FilterOptions } from "../filters/FilterOptions";
+
 import { Grid } from "@mui/material";
 import Cards from "@mui/material/Card";
 import ComponentError from "../ComponentError/ComponentError";
+import Cards from '@mui/material/Card';
+import NavBar from '../NavBar/NavBar';
+
 
 // const books = db.collection('books');
 
@@ -48,8 +50,10 @@ const CardContainer = () => {
   const paginated = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
   return (
     <div className={style.container}>
+      <NavBar paginated={paginated} />
       <FilterOptions setCurrentPage={setCurrentPage} />
       {displayCard ? (
         <Cards>
@@ -83,7 +87,7 @@ const CardContainer = () => {
           prevHandler={prevHandler}
         />
       </div>
-    </div>
+    </>
   );
 };
 

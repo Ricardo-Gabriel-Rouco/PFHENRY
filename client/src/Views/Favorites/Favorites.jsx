@@ -8,11 +8,12 @@ import {
     TableBody,
     TableRow,
     TableCell,
-    Paper
+    Paper,
 } from '@mui/material';
 
 import { deleteFavorite } from '../../redux/rootReducer/favoriteSlice'
 import { Link } from 'react-router-dom'
+
 
 const Favorites = () => {
     const favorites = useSelector(state => state.favorite.favorites)
@@ -20,12 +21,24 @@ const Favorites = () => {
     const handleDelete = (id) => {
         dispatch(deleteFavorite(id));
     };
+    const styles = {
+        tableCell: {
+            color: '#8a5509',
+            fontWeight: 'bold',
+        },
+        tableRow: {
+            backgroundColor: '#f7f5f5',
+            '&:hover': {
+                backgroundColor: '#f7d835',
+            },
+        },
+    };
 
-   
+
     return (
         <>
             <div className={style.container}>
-                <TableContainer component={Paper} style={{ margin: '0 auto', width: '100%' }}>
+                <TableContainer backgroundColor='#f7f5f5' component={Paper} style={{ margin: '0 auto', width: '100%' }}>
                     <Table aria-label='simple table'>
                         <TableHead>
                             <TableRow>
@@ -35,28 +48,28 @@ const Favorites = () => {
                                 <TableCell>Image</TableCell>
                                 <TableCell>Price</TableCell>
                                 <TableCell>Delete</TableCell>
-                                <TableCell>Buy</TableCell>
+                                <TableCell></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
 
                             {favorites.map((favorite, index) => (
-                                <TableRow key={index}>
 
-                                    <TableCell>{favorite.id}</TableCell>
-                                    <TableCell>{favorite.title}</TableCell>
-                                    <TableCell>{favorite.author}</TableCell>
-                                    <TableCell>
+                                <TableRow sx={styles.tableRow} key={index}>
+                                    <TableCell sx={styles.tableCell}>{favorite.id}</TableCell>
+                                    <TableCell sx={styles.tableCell}>{favorite.title}</TableCell>
+                                    <TableCell sx={styles.tableCell}>{favorite.author}</TableCell>
+                                    <TableCell sx={styles.tableCell}>
                                         <img src={favorite.image} alt='asdf' style={{ width: '10%' }} />
-                                    </TableCell>
-                                    <TableCell>{favorite.price}</TableCell>
-                                    <TableCell>
-
-                                        <Button onClick = {() => handleDelete(favorite.id)} variant="contained" color="primary" size='small'>Delete</Button>
 
                                     </TableCell>
+                                    <TableCell sx={styles.tableCell}>{favorite.price}</TableCell>
                                     <TableCell>
-                                        <Button variant="contained" color="primary" size ='small'>Buy</Button>
+                                        <Button onClick={() => handleDelete(favorite.id)} variant="contained" color="primary" size='small'>Delete</Button>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Button variant="contained" color="primary" size='small'>Add to Cart</Button>
+
                                     </TableCell>
                                 </TableRow>
                             ))}
@@ -67,9 +80,10 @@ const Favorites = () => {
                 </div>
             </div>
             <div className={style.btn}>
-                <Button variant="contained" color='primary'><Link to='/home'>Back to Home</Link></Button>
+                <Link to='/home'><Button variant="contained" color='primary'>Back to Home</Button></Link>
             </div>
         </>
     );
 }
-export default Favorites
+
+export default Favorites;

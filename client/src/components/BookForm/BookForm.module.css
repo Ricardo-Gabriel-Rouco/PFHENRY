@@ -1,6 +1,10 @@
-.formContainer {
+.formError {
+  color: orangered;
+  font-size: 14px;
+}
+
+.image{
   display: flex;
-  flex-direction: column;
-  max-width: 500px;
-  align-items: center;
+  flex-direction: row;
+  justify-content: center;
 }

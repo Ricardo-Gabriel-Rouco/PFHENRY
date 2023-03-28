@@ -1,4 +1,5 @@
 .mainDiv {
+  background-color: none;
   margin-top: 1rem;
   padding: 0.3rem;
   display: flex;
@@ -16,18 +17,22 @@
 }
 
 .filters {
-  background: none;
-  border-color: rgba(25, 118, 210, 255);
+  background-color: #FFD600;
+  outline: none;
+  border-color: #FFD600;
   border-radius: 5px;
   gap: 1rem;
   padding: 0.5rem;
-  color: rgba(25, 118, 210, 255);
+  color: #000000;
   text-align: center;
   font-size: 1rem;
   cursor: pointer;
   /* width: 20%; */
 }
-
+.filters:focus {
+ border: none;
+ outline: none
+}
 .divContainer {
   display: flex;
   justify-content: center;
@@ -38,8 +43,9 @@
   display: flex;
   margin-top: 1rem;
   padding: 0.3rem;
-  border: 1px solid rgba(25, 118, 210, 255);
+  border: 1px solid;
   border-radius: 5px;
+  background-color: #FFD600;
   justify-content: center;
   align-items: center;
   gap: 1rem;
@@ -47,7 +53,7 @@
 
 .btnFiltersApplied {
   padding: 0.3rem;
-  background: none;
+  background-color: #FFD600;
   border-radius: 2px;
   border-color: red;
   color: red;
