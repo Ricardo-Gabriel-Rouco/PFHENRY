@@ -1,5 +1,5 @@
 import SearchBar from "../SearchBar/SearchBar";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
 import ShoppingCart from "@mui/icons-material/ShoppingCart";
 import AccountCircle from "@mui/icons-material/AccountCircle";
@@ -19,6 +19,7 @@ const NavBar = () => {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
+  const location = useLocation()
   const handleChange = (event) => {
     setAuth(event.target.checked);
   };
@@ -60,9 +61,11 @@ const NavBar = () => {
               </Link>
             </IconButton>
 
+            {location.pathname!=='/create'?
             <Box sx={{ width: "55rem", marginInline: "40px" }}>
               <SearchBar placeholder="Search your book..." />
             </Box>
+            :null}
 
             <IconButton
               size="large"
