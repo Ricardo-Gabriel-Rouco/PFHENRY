@@ -20,20 +20,6 @@ function App() {
   // }, [onSnapshot])
 
   return (
-<<<<<<< HEAD
-
-      <div className="App">
-        <BrowserRouter>
-          <Routes>
-            <Route exact path="/" element={<Landing />} />
-            <Route exact path="/home" element={<Home />} />
-            <Route exact path="/about" element={<About />} />
-            {/* <Route path='/home/:id' element={<Detail />} /> */}
-            <Route path="*" element={<Error />} />
-          </Routes>
-        </BrowserRouter>
-      </div>
-=======
     <div className="App">
       <BrowserRouter>
         <Routes>
@@ -45,7 +31,6 @@ function App() {
         </Routes>
       </BrowserRouter>
     </div>
->>>>>>> develop
   );
 }
 
