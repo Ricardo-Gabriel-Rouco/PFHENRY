@@ -4,6 +4,7 @@ const initialState = {
   allBooks: [],
   booksToFilter: [],
   filtersApplied: [],
+  displayCard: true,
 };
 
 export const booksSlice = createSlice({
@@ -36,6 +37,7 @@ export const booksSlice = createSlice({
 
     filterBooks: (state, action) => {
       const reset = state.allBooks;
+
       state.booksToFilter =
         action.payload[1] === "all"
           ? reset
@@ -45,6 +47,10 @@ export const booksSlice = createSlice({
         state.filtersApplied.push(action.payload);
       } else {
         state.filtersApplied = [];
+      }
+
+      if (state.booksToFilter.length === 0) {
+        state.displayCard = false;
       }
     },
 
@@ -102,6 +108,15 @@ export const booksSlice = createSlice({
       }
     },
 
+    display: (state, action) => {
+      console.log(state.booksToFilter.length);
+      if (!state.booksToFilter.length && state.allBooks.length) {
+        state.displayCard = false;
+      } else {
+        state.displayCard = action.payload;
+      }
+    },
+
     reset: (state, action) => {
       action.payload = null;
       state.booksToFilter = state.allBooks;
@@ -118,6 +133,7 @@ export const {
   orderBy,
   reset,
   clearSearchResults,
+  display,
 } = booksSlice.actions;
 
 export default booksSlice.reducer;

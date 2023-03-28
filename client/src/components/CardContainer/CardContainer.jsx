@@ -12,13 +12,15 @@ import Paginate from "../../components/Paginate/Paginate";
 import { FilterOptions } from "../filters/FilterOptions";
 import { Grid } from "@mui/material";
 import Cards from "@mui/material/Card";
+import ComponentError from "../ComponentError/ComponentError";
 
 // const books = db.collection('books');
 
 const CardContainer = () => {
   const booksList = useSelector((state) => state.books.booksToFilter);
+  const displayCard = useSelector((state) => state.books.displayCard);
 
-  const [errorFilter, setErrorFilter] = useState();
+  //const [errorFilter, setErrorFilter] = useState(true);
 
   // console.log(booksList);
 
@@ -48,25 +50,29 @@ const CardContainer = () => {
   };
   return (
     <div className={style.container}>
-      <FilterOptions setCurrentPage={setCurrentPage} setErrorFilter={setErrorFilter} />
-      <Cards>
-        <Grid container spacing={1} justifyContent="center">
-          {currentBook.map((c, index) => (
-            <Grid item xs={12} sm={6} md={3} lg={3} key={c.id}>
-              <div key={index}>
-                <Card
-                  id={c.id}
-                  author={c.author}
-                  image={c.image}
-                  title={c.title}
-                  stock={c.stock}
-                  price={c.price}
-                />
-              </div>
-            </Grid>
-          ))}
-        </Grid>
-      </Cards>
+      <FilterOptions setCurrentPage={setCurrentPage} />
+      {displayCard ? (
+        <Cards>
+          <Grid container spacing={1} justifyContent="center">
+            {currentBook.map((c, index) => (
+              <Grid item xs={12} sm={6} md={3} lg={3} key={c.id}>
+                <div key={index}>
+                  <Card
+                    id={c.id}
+                    author={c.author}
+                    image={c.image}
+                    title={c.title}
+                    stock={c.stock}
+                    price={c.price}
+                  />
+                </div>
+              </Grid>
+            ))}
+          </Grid>
+        </Cards>
+      ) : (
+        <ComponentError />
+      )}
       <div className={style.paginate}>
         <Paginate
           paginated={paginated}
