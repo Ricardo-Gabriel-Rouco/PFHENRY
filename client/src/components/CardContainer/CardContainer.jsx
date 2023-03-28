@@ -6,12 +6,11 @@ import Card from "../Card/Card";
 import style from "./CardContainer.module.css";
 //import { async } from "@firebase/util";
 import { useSelector } from "react-redux";
-
 import Paginate from "../../components/Paginate/Paginate";
-
 import { FilterOptions } from "../filters/FilterOptions";
 import { Grid } from '@mui/material';
 import Cards from '@mui/material/Card';
+import NavBar from '../NavBar/NavBar'
 
 // const books = db.collection('books');
 
@@ -45,14 +44,14 @@ const CardContainer = () => {
     setCurrentPage(pageNumber);
   };
   return (
-    <div className={style.container}>
+    <>
+    <NavBar paginated={paginated} />
       <FilterOptions setCurrentPage={setCurrentPage} />
       <Cards>
-        <Grid container spacing={1} justifyContent='center'>
+        <Grid container spacing={3} style={{marginLeft: '1.5em', marginTop: '1em', marginBottom: '2em', display: 'flex', justifyContent: 'center', alignItems: 'center', justifySelf: 'center', justifyItems: 'center', alignSelf: 'center', alignContent: 'center' }}>
           {currentBook.map((c,index) => (
-            <Grid item xs={12} sm={6} md={3} lg={3} key={c.id}>
+            <Grid item xs={12} sm={6} md={4} lg={3} key={c.id}>
               <div key={index}>
-
                 <Card id={c.id} author= {c.author} image={c.image} title={c.title} stock={c.stock} price={c.price} />
               </div>
             </Grid>))}
@@ -68,7 +67,7 @@ const CardContainer = () => {
           prevHandler={prevHandler}
         />
       </div>
-    </div>
+    </>
   );
 };
 

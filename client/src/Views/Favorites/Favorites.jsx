@@ -14,6 +14,7 @@ import {
 import { deleteFavorite } from '../../redux/rootReducer/favoriteSlice'
 import { Link } from 'react-router-dom'
 
+
 const Favorites = () => {
     const favorites = useSelector(state => state.favorite.favorites)
     const dispatch = useDispatch()
@@ -21,7 +22,6 @@ const Favorites = () => {
         dispatch(deleteFavorite(id));
     };
 
-   
     return (
         <>
             <div className={style.container}>
@@ -46,17 +46,15 @@ const Favorites = () => {
                                     <TableCell>{favorite.id}</TableCell>
                                     <TableCell>{favorite.title}</TableCell>
                                     <TableCell>{favorite.author}</TableCell>
-                                    <TableCell>
-                                        <img src={favorite.image} alt='asdf' style={{ width: '10%' }} />
+                                    <TableCell className={style.imageCell}>
+                                        <img src={favorite.image} alt='asdf' />
                                     </TableCell>
                                     <TableCell>{favorite.price}</TableCell>
                                     <TableCell>
-
-                                        <Button onClick = {() => handleDelete(favorite.id)} variant="contained" color="primary" size='small'>Delete</Button>
-
+                                        <Button onClick={() => handleDelete(favorite.id)} variant="contained" color="primary" size='small'>Delete</Button>
                                     </TableCell>
                                     <TableCell>
-                                        <Button variant="contained" color="primary" size ='small'>Buy</Button>
+                                        <Button variant="contained" color="primary" size='small'>Cart</Button>
                                     </TableCell>
                                 </TableRow>
                             ))}
@@ -72,4 +70,5 @@ const Favorites = () => {
         </>
     );
 }
-export default Favorites
+
+export default Favorites;

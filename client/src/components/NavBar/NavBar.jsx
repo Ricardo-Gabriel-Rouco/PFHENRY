@@ -1,3 +1,4 @@
+
 import SearchBar from "../SearchBar/SearchBar";
 import { Link, useLocation } from "react-router-dom";
 import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
@@ -63,7 +64,7 @@ const NavBar = () => {
 
             {location.pathname!=='/create'?
             <Box sx={{ width: "55rem", marginInline: "40px" }}>
-              <SearchBar placeholder="Search your book..." />
+              <SearchBar paginated={paginated} placeholder="Search your book..." />
             </Box>
             :null}
 

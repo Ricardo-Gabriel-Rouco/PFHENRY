@@ -3,12 +3,6 @@
   transform: scale(1.05);
 }
 
-/* 
-.card:active {
-  transform: translateY(2px);
-  box-shadow: none;
-} */
-
 .card {
   background-color: whitesmoke;
   border-radius: 10px;
@@ -20,6 +14,10 @@
 }
 .card.a {
   text-decoration: none;
+}
+.btnFav {
+  border-color: #4285F4;
+  border-radius: 3px;
 }
 
 
