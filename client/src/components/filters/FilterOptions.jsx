@@ -1,46 +1,55 @@
 import style from "./FilterOptions.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { filterBooks, orderBy, removeFilter, reset } from "../../redux/rootReducer/bookSlice";
+import {
+  filterBooks,
+  orderBy,
+  removeFilter,
+  reset,
+  display,
+} from "../../redux/rootReducer/bookSlice";
 
 export const FilterOptions = ({ setCurrentPage }) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    return () => {
+      dispatch(reset());
+    };
+  }, [dispatch]);
+
   const booksList = useSelector((state) => state.books.allBooks);
+
+  //const booksFiltered = useSelector((state) => state.books.booksToFilter);
 
   const filters = useSelector((state) => state.books.filtersApplied);
 
   const [filterAuthor, setFilterAuthor] = useState(true);
   const [filterGenre, setFilterGenre] = useState(true);
 
-  const dispatch = useDispatch();
+  const [defaultGenre, setDefaultGenre] = useState("all");
+  const [defaultOrder, setDefaultOrder] = useState("asc");
 
   const formatArray = (array) => {
     let set = new Set(array);
     return Array.from(set);
   };
 
-  /* const handlerAuthor = (e) => {
-    e.preventDefault();
-    dispatch(filterBooks(["author", e.target.value]));
-    setCurrentPage(1);
-  };
-
-  const handlerGenre = (e) => {
-    e.preventDefault();
-    dispatch(filterBooks(["genre", e.target.value]));
-    setCurrentPage(1);
-  }; */
-
   const filterHandler = (e) => {
     e.preventDefault();
     e.target.name === "author" ? setFilterAuthor(false) : setFilterGenre(false);
     dispatch(filterBooks([e.target.name, e.target.value]));
+    if (e.target.name === "genre") {
+      setDefaultGenre(e.target.value);
+    }
     setCurrentPage(1);
   };
 
   const handlerOrder = (e) => {
     e.preventDefault();
     dispatch(orderBy(e.target.value));
+    setDefaultOrder(e.target.value);
     setCurrentPage(1);
   };
 
@@ -49,6 +58,9 @@ export const FilterOptions = ({ setCurrentPage }) => {
     dispatch(reset());
     setFilterAuthor(true);
     setFilterGenre(true);
+    dispatch(display(true));
+    setDefaultGenre("all");
+    setDefaultOrder("asc");
     setCurrentPage(1);
   };
 
@@ -56,6 +68,7 @@ export const FilterOptions = ({ setCurrentPage }) => {
     e.preventDefault();
     filters[e.target.id][0] === "author" ? setFilterAuthor(true) : setFilterGenre(true);
     dispatch(removeFilter(e.target.id));
+    dispatch(display(true));
     setCurrentPage(1);
   };
 
@@ -80,23 +93,27 @@ export const FilterOptions = ({ setCurrentPage }) => {
           </select>
         ) : null}
 
-        {filterGenre ? (
-          <select name="genre" id="genre" onChange={filterHandler} className={style.filters}>
-            <option value="all">All Genres</option>
-            {booksList.length &&
-              formatArray(booksList.map((elem) => elem.genre).sort()).map((gen, index) => (
-                <option key={index} value={gen}>
-                  {gen}
-                </option>
-              ))}
-          </select>
-        ) : null}
+        <select
+          name="genre"
+          id="genre"
+          value={defaultGenre}
+          onChange={filterHandler}
+          className={style.filters}
+        >
+          <option value="all">All Genres</option>
+          {booksList.length &&
+            formatArray(booksList.map((elem) => elem.genre).sort()).map((gen, index) => (
+              <option key={index} value={gen}>
+                {gen}
+              </option>
+            ))}
+        </select>
 
-        <select onChange={handlerOrder} className={style.filters}>
-          <option value="min">Min Rating</option>
-          <option value="max">Max Rating</option>
+        <select onChange={handlerOrder} className={style.filters} value={defaultOrder}>
           <option value="asc">A-Z</option>
           <option value="desc">Z-A</option>
+          <option value="min">Min Rating</option>
+          <option value="max">Max Rating</option>
           <option value="minPrice">Min price</option>
           <option value="maxPrice">Max price</option>
         </select>
