@@ -33,9 +33,11 @@ export const booksSlice = createSlice({
         state.booksToFilter = search;
       }
     },
+    
+
 
     clearSearchResults: (state) => {
-      state.booksToFilter = state.allBooks;
+        state.booksToFilter = state.allBooks;
     },
 
     filterBooks: (state, action) => {

@@ -14,6 +14,7 @@ import {
 import { deleteFavorite } from '../../redux/rootReducer/favoriteSlice'
 import { Link } from 'react-router-dom'
 
+
 const Favorites = () => {
     const favorites = useSelector(state => state.favorite.favorites)
     const dispatch = useDispatch()
@@ -53,12 +54,14 @@ const Favorites = () => {
                         <TableBody>
 
                             {favorites.map((favorite, index) => (
+
                                 <TableRow sx={styles.tableRow} key={index}>
                                     <TableCell sx={styles.tableCell}>{favorite.id}</TableCell>
                                     <TableCell sx={styles.tableCell}>{favorite.title}</TableCell>
                                     <TableCell sx={styles.tableCell}>{favorite.author}</TableCell>
                                     <TableCell sx={styles.tableCell}>
                                         <img src={favorite.image} alt='asdf' style={{ width: '10%' }} />
+
                                     </TableCell>
                                     <TableCell sx={styles.tableCell}>{favorite.price}</TableCell>
                                     <TableCell>
@@ -66,6 +69,7 @@ const Favorites = () => {
                                     </TableCell>
                                     <TableCell>
                                         <Button variant="contained" color="primary" size='small'>Add to Cart</Button>
+
                                     </TableCell>
                                 </TableRow>
                             ))}
@@ -81,4 +85,5 @@ const Favorites = () => {
         </>
     );
 }
-export default Favorites
+
+export default Favorites;

@@ -1,3 +1,4 @@
+
 import SearchBar from "../SearchBar/SearchBar";
 import { Link, useLocation } from "react-router-dom";
 import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
