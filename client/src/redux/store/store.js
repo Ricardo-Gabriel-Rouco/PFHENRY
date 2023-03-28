@@ -5,11 +5,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import booksSlice from "../rootReducer/bookSlice";
 import cartSlice from "../rootReducer/cartSlice";
+import favoriteSlice from "../rootReducer/favoriteSlice";
 
 const store = configureStore({
   reducer: {
     books: booksSlice,
     cart: cartSlice,
+    favorite: favoriteSlice,
   },
 });
 
