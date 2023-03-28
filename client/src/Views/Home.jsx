@@ -27,7 +27,6 @@ const Home = () => {
 
   return (
     <>
-      <NavBar />
       <CardContainer  />
     </>
   );

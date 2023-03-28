@@ -26,12 +26,18 @@ export const booksSlice = createSlice({
         action.payload === ""
           ? search
           : search.filter((book) =>
-              book.title.toLowerCase().includes(action.payload.toLowerCase())
-            );
+            book.title.toLowerCase().includes(action.payload.toLowerCase())
+          );
+      if (state.booksToFilter.length === 0) {
+        alert('Book not found');
+        state.booksToFilter = search;
+      }
     },
+    
+
 
     clearSearchResults: (state) => {
-      state.booksToFilter = state.allBooks;
+        state.booksToFilter = state.allBooks;
     },
 
     filterBooks: (state, action) => {
