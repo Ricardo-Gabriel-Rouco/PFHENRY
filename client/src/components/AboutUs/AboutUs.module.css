@@ -1,0 +1,121 @@
+.container {
+  background-color: rgb(59, 59, 59);
+  height: 100%;
+
+}
+.container:target {
+  display: none
+}
+.titulo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-size: 26px;
+  
+}
+.titulo:target{
+  display: none;
+}
+
+.cardsContainer {
+  display: grid;
+  background-color: rgb(59, 59, 59);
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+
+}
+
+.card {
+  width: 300px;
+  height: 430px;
+
+}
+
+.img {
+  width: 249px;
+  height: 260px;
+}
+
+.divImg {
+  margin-top: 30px;
+  background-color: rgb(59, 59, 59);
+  border-radius: 50%;
+  width: 83%;
+  height: 60%;
+  margin-left: 26px;
+  transition: 0.5s;
+  overflow: hidden;
+}
+.divImg:hover {
+  transform: translateY(-6px);
+}
+
+.card h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  font-style: normal;
+  margin-top: 25px;
+  color: whiblackte;
+}
+
+.card h2 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 25px;
+  font-style: normal;
+}
+
+.gitHub {
+  width: 30px;
+  height: 30px;
+  color: white;
+}
+
+.linkedin {
+  width: 30px;
+  height: 30px;
+  color: white;
+}
+
+.linkedin:hover {
+  color: #229bf4;
+}
+.gitHub:hover {
+  color: #229bf4;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+.flecha {
+  animation: arrow 1s ease-in-out infinite;
+  font-size: 40px;
+  color: WHITE;
+  cursor: pointer;
+  margin-bottom: 75px;
+}
+
+.flecha:hover {
+  animation: arrow 1s ease-out infinite !important;
+  color: #229bf4;
+}
+@keyframes arrow {
+  0% {
+    transform: translate(0px, 50px);
+  }
+  50% {
+    transform: translate(0px, 60px);
+  }
+  100% {
+    transform: translate(0px, 50px);
+  }
+}

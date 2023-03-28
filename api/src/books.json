@@ -1,0 +1,2683 @@
+[
+	{
+		"id" : "978-0194027618",
+		"titulo" : "Young Explorers- Entry Course+ Class Book",
+		"autorId" : "Covill, Charrington",
+		"editorialId" : "Oxford U.P.",
+		"precio" : 271.0000,
+		"precio2" : 285.2800,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780007119554",
+		"titulo" : "A Storm of Swords Part Two",
+		"autorId" : "Martin",
+		"editorialId" : "Harper Voyager",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780007182817",
+		"titulo" : "The book of tomorrow",
+		"autorId" : "Ahern, Cecelia",
+		"editorialId" : "Harper",
+		"precio" : 112.1300,
+		"precio2" : 118.0400,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780007184156",
+		"titulo" : "P.S. I love you",
+		"autorId" : "Ahern, Cecelia",
+		"editorialId" : "Harper",
+		"precio" : 120.5800,
+		"precio2" : 126.9300,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780007198894",
+		"titulo" : "If you could see me now",
+		"autorId" : "Ahern, Cecelia",
+		"editorialId" : "Harper",
+		"precio" : 120.5800,
+		"precio2" : 126.9300,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780007258871",
+		"titulo" : "A place called here",
+		"autorId" : "Ahern, Cecelia",
+		"editorialId" : "Harper ",
+		"precio" : 120.5800,
+		"precio2" : 126.9300,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780007275380",
+		"titulo" : "Thanks for the memories",
+		"autorId" : "Ahern, Cecelia",
+		"editorialId" : "Harper",
+		"precio" : 120.5800,
+		"precio2" : 126.9300,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780007433957",
+		"titulo" : "The time of my life",
+		"autorId" : "Ahern, Cecelia",
+		"editorialId" : "Harper",
+		"precio" : 137.8300,
+		"precio2" : 145.0900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780062223159",
+		"titulo" : "One Direction. Behind the Scenes",
+		"autorId" : null,
+		"editorialId" : "Harpercollins",
+		"precio" : 151.6600,
+		"precio2" : 159.6500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780062248657",
+		"titulo" : "One hundred names",
+		"autorId" : "Ahern, Cecelia",
+		"editorialId" : "Harper ",
+		"precio" : 110.2600,
+		"precio2" : 116.0700,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780130274860",
+		"titulo" : "ESL Accelerating English Language Learning 1",
+		"autorId" : "Scott Foresman",
+		"editorialId" : "Pearson education",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780130274933",
+		"titulo" : "ESL Accelerating English Language Learning 4",
+		"autorId" : "Scott Foresman",
+		"editorialId" : "Pearson education",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780130274976",
+		"titulo" : "ESL Accelerating English Language Learning 6",
+		"autorId" : "Scott Foresman",
+		"editorialId" : "Pearson education",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780130274992",
+		"titulo" : "ESL Accelerating English Language Learning 7",
+		"autorId" : "Scott Foresman",
+		"editorialId" : "Pearson education",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780130275018",
+		"titulo" : "ESL Accelerating English Language Learning 8",
+		"autorId" : "Scott Foresman",
+		"editorialId" : "Pearson education",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780136038788",
+		"titulo" : "Pockets 2- 2ºed- Std's + CDRom",
+		"autorId" : "Herrera, Hojel",
+		"editorialId" : "Longman\/Pearson",
+		"precio" : 184.0000,
+		"precio2" : 193.7000,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780136039068",
+		"titulo" : "Pockets 1- 2ºed- Wb + CD",
+		"autorId" : "Herrera, Hojel",
+		"editorialId" : "Longman\/Pearson",
+		"precio" : 121.0000,
+		"precio2" : 127.3800,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780140004212",
+		"titulo" : "Claudius the God",
+		"autorId" : "Graves",
+		"editorialId" : "Penguin",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780140004427",
+		"titulo" : "Brighton Rock",
+		"autorId" : "Greene",
+		"editorialId" : "Penguin",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780140005592",
+		"titulo" : "The lawless roads",
+		"autorId" : "Greene",
+		"editorialId" : "Penguin",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780140008233",
+		"titulo" : "The loved one",
+		"autorId" : "Waugh, Evelyn",
+		"editorialId" : "Penguin bokks",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780140028225",
+		"titulo" : "In search of a character",
+		"autorId" : "Greene",
+		"editorialId" : "Penguin",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780140031461",
+		"titulo" : "England Made Me",
+		"autorId" : "Greene",
+		"editorialId" : "Penguin",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780140031591",
+		"titulo" : "Collected Essays",
+		"autorId" : "Greene",
+		"editorialId" : "Penguin",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780140032802",
+		"titulo" : "Journey without maps",
+		"autorId" : "Greene",
+		"editorialId" : "Penguin",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780140034950",
+		"titulo" : "A sort of life",
+		"autorId" : "Greene",
+		"editorialId" : "Penguin",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780140041002",
+		"titulo" : "Strange News from Another Star",
+		"autorId" : "Hesse",
+		"editorialId" : "Penguin",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780140080582",
+		"titulo" : "Getting to know the General",
+		"autorId" : "Greene",
+		"editorialId" : "Penguin",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780140185416",
+		"titulo" : "It's a battlefield",
+		"autorId" : "Greene",
+		"editorialId" : "Penguin",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780140318296",
+		"titulo" : "Scorpion Swamp",
+		"autorId" : "Jackson",
+		"editorialId" : "Puffin books",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780140322088",
+		"titulo" : "Fantastic Mr Fox: A play",
+		"autorId" : "Dahl, Roald",
+		"editorialId" : "Puffin books",
+		"precio" : 156.2000,
+		"precio2" : 164.4300,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780140461046",
+		"titulo" : "Modern Vegetarian Cookery",
+		"autorId" : "Fliess",
+		"editorialId" : "Penguin",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780140814910",
+		"titulo" : "Gone with the wind Part two",
+		"autorId" : "Mitchell",
+		"editorialId" : "Penguin",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780140817799",
+		"titulo" : "Ten Short Stories",
+		"autorId" : "Dahl, Roald",
+		"editorialId" : "Penguin",
+		"precio" : 136.6500,
+		"precio2" : 143.8500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780141036137",
+		"titulo" : "Animal Farm-(New edition)",
+		"autorId" : "Orwell, George",
+		"editorialId" : "Penguin books",
+		"precio" : 108.0000,
+		"precio2" : 113.6900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780141036144",
+		"titulo" : "Nineteen Eighty Four",
+		"autorId" : "Orwell, George",
+		"editorialId" : "Penguin books",
+		"precio" : 193.2900,
+		"precio2" : 203.4800,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780141182704",
+		"titulo" : "Animal Farm-(former edition)",
+		"autorId" : "George Orwell",
+		"editorialId" : "Penguin",
+		"precio" : 108.0000,
+		"precio2" : 113.6900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780141322759",
+		"titulo" : "The Twits",
+		"autorId" : "Dahl, Roald",
+		"editorialId" : "Puffin books",
+		"precio" : 117.1000,
+		"precio2" : 123.2700,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780141346311",
+		"titulo" : "James and the Giant Peach",
+		"autorId" : "Dahl, Roald",
+		"editorialId" : "Puffin books",
+		"precio" : 136.6500,
+		"precio2" : 143.8500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780141346410",
+		"titulo" : "The witches ",
+		"autorId" : "Dahl, Roald",
+		"editorialId" : "Puffin books",
+		"precio" : 136.6500,
+		"precio2" : 143.8500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780141346458",
+		"titulo" : "Charlie and the Chocolate Factory",
+		"autorId" : "Dahl, Roald",
+		"editorialId" : "Puffin books",
+		"precio" : 136.6500,
+		"precio2" : 143.8500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780141346465",
+		"titulo" : "Charlie and the great glass elevator",
+		"autorId" : "Dahl, Roald",
+		"editorialId" : "Puffin books",
+		"precio" : 136.6500,
+		"precio2" : 143.8500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780141346663",
+		"titulo" : "The giraffe and the pelly and me",
+		"autorId" : "Dahl",
+		"editorialId" : "Puffin books",
+		"precio" : 117.1000,
+		"precio2" : 123.2700,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780141501758",
+		"titulo" : "Revolting Rhymes",
+		"autorId" : "Dahl, Roald",
+		"editorialId" : "Puffin books",
+		"precio" : 156.2000,
+		"precio2" : 164.4300,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780142402511",
+		"titulo" : "Looking for Alaska",
+		"autorId" : "Green, John",
+		"editorialId" : "Penguin USA",
+		"precio" : 137.8600,
+		"precio2" : 145.1300,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780142410707",
+		"titulo" : "An abundance of Katherines",
+		"autorId" : "Green, John",
+		"editorialId" : "Penguin USA",
+		"precio" : 137.8600,
+		"precio2" : 145.1300,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780142412145",
+		"titulo" : "Let it snow",
+		"autorId" : "Green, John",
+		"editorialId" : "Penguin USA",
+		"precio" : 151.6600,
+		"precio2" : 159.6500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780142414934",
+		"titulo" : "Papertowns",
+		"autorId" : "Green, John",
+		"editorialId" : "Penguin USA",
+		"precio" : 137.8600,
+		"precio2" : 145.1300,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780142415436",
+		"titulo" : "If I stay",
+		"autorId" : "Forman, Gayle",
+		"editorialId" : "Penguin USA",
+		"precio" : 151.6600,
+		"precio2" : 159.6500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780192732606",
+		"titulo" : "Oxford Junior Illustrated Dictionary",
+		"autorId" : null,
+		"editorialId" : "Oxford U.P.",
+		"precio" : 214.8500,
+		"precio2" : 226.1700,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194001168",
+		"titulo" : "Advanced Learners Dictionary",
+		"autorId" : null,
+		"editorialId" : "Oxford U.P.",
+		"precio" : 339.0000,
+		"precio2" : 356.8700,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194004374",
+		"titulo" : "Champions- Std's+ integrated WB+CDRom",
+		"autorId" : "Bowen, delaney",
+		"editorialId" : "Oxford U.P.",
+		"precio" : 242.0000,
+		"precio2" : 254.7500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194004589",
+		"titulo" : "Champions 1 2\/Ed. Student´s book & Workbook",
+		"autorId" : "Bowen & Delaney",
+		"editorialId" : "Oxford",
+		"precio" : 280.0000,
+		"precio2" : 294.7600,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194004626",
+		"titulo" : "Champions 3 2\/Ed. Student´s book & Workbook",
+		"autorId" : "Bowen & Delaney",
+		"editorialId" : "Oxford",
+		"precio" : 285.0000,
+		"precio2" : 300.0200,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194004664",
+		"titulo" : "Champions 2 2\/Ed. Student´s book & Workbook",
+		"autorId" : "Bowen & Delaney",
+		"editorialId" : "Oxford",
+		"precio" : 285.0000,
+		"precio2" : 300.0200,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194027106",
+		"titulo" : "First Explorers 1- Class Bk",
+		"autorId" : "Covill, Charrington",
+		"editorialId" : "Oxford",
+		"precio" : 265.0000,
+		"precio2" : 278.9700,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194027113",
+		"titulo" : "First Explorers 2- Class Bk",
+		"autorId" : "Covill, Charrington",
+		"editorialId" : "Oxford",
+		"precio" : 265.0000,
+		"precio2" : 278.9700,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194027632",
+		"titulo" : "World Explorers 1- Class Bk ",
+		"autorId" : "Covill, Charrington",
+		"editorialId" : "Oxford",
+		"precio" : 285.0000,
+		"precio2" : 300.0200,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194027649",
+		"titulo" : "World Explorers 2- Class Bk ",
+		"autorId" : "Covill, Charrington",
+		"editorialId" : "Oxford",
+		"precio" : 285.0000,
+		"precio2" : 300.0200,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194027656",
+		"titulo" : "Young Explorers Entry Course - ClassBk + stickers",
+		"autorId" : "Lauder, Shipton",
+		"editorialId" : "Oxford U.P.",
+		"precio" : 271.0000,
+		"precio2" : 285.2800,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194027663",
+		"titulo" : "Young Explorers 2 - ActBk + stickers",
+		"autorId" : "Evans, Shipton",
+		"editorialId" : "Oxford U.P.",
+		"precio" : 171.0000,
+		"precio2" : 180.0100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "978019404668-8",
+		"titulo" : "Playtime- starter- Wb",
+		"autorId" : "Selby",
+		"editorialId" : "Oxford U.P.",
+		"precio" : 128.0000,
+		"precio2" : 134.7500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194070010",
+		"titulo" : "Cookie and Friends A- Class Book",
+		"autorId" : "Reilly",
+		"editorialId" : "Oxford U.P.",
+		"precio" : 155.0000,
+		"precio2" : 163.1700,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194070669",
+		"titulo" : "Cookie and Friends A plus",
+		"autorId" : "Reilly",
+		"editorialId" : "Oxford U.P.",
+		"precio" : 242.0000,
+		"precio2" : 254.7500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194150187",
+		"titulo" : "Treetops 4 - Std's book pack+ MultiROM",
+		"autorId" : "Howell, Kester-Dogson",
+		"editorialId" : "Oxford U.P.",
+		"precio" : 228.0000,
+		"precio2" : 240.0200,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194150354",
+		"titulo" : "New Treetops International 1: Student´s Book Pack",
+		"autorId" : "Howell, Kester-Dogson",
+		"editorialId" : "Oxford",
+		"precio" : 230.0000,
+		"precio2" : 242.1200,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194150408",
+		"titulo" : "New Treetops International 2: Student´s Book Pack",
+		"autorId" : "Howell, Kester-Dogson",
+		"editorialId" : "Oxford",
+		"precio" : 230.0000,
+		"precio2" : 242.1200,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194150453",
+		"titulo" : "New Treetops International 3: Student´s Book Pack",
+		"autorId" : "Howell, Kester-Dogson",
+		"editorialId" : "Oxford",
+		"precio" : 230.0000,
+		"precio2" : 242.1200,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194150507",
+		"titulo" : "New Treetops International 4: Student´s Book Pack",
+		"autorId" : "Howell, Kester-Dogson",
+		"editorialId" : "Oxford",
+		"precio" : 230.0000,
+		"precio2" : 242.1200,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194150552",
+		"titulo" : "New Treetops International 5: Student´s Book Pack",
+		"autorId" : "Howell, Kester-Dogson",
+		"editorialId" : "Oxford",
+		"precio" : 230.0000,
+		"precio2" : 242.1200,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194241182",
+		"titulo" : "Diccionario Oxford Pocket para estudiantes argentinos de inglés",
+		"autorId" : null,
+		"editorialId" : "Oxford",
+		"precio" : 239.0000,
+		"precio2" : 251.6000,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194246651",
+		"titulo" : "Around the world in 80 days-Dominoes",
+		"autorId" : "Verne, Jules",
+		"editorialId" : "Oxford",
+		"precio" : 125.0000,
+		"precio2" : 131.5900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194246668",
+		"titulo" : "Rip Van Winkle & The legend of sleepy hollow",
+		"autorId" : "Irving, Washington",
+		"editorialId" : "Oxford",
+		"precio" : 125.0000,
+		"precio2" : 131.5900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194246675",
+		"titulo" : "William Tell& other stories+ MultiRom",
+		"autorId" : "retold by John Escott",
+		"editorialId" : "Oxford U.P.",
+		"precio" : 125.0000,
+		"precio2" : 131.5900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194246699",
+		"titulo" : "The Great Fire of London",
+		"autorId" : "Hardy-Gould Janet",
+		"editorialId" : "Oxford",
+		"precio" : 92.0000,
+		"precio2" : 96.8500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194246705",
+		"titulo" : "Mulan",
+		"autorId" : "Retold by Janet Hardy-Gould",
+		"editorialId" : "Oxford",
+		"precio" : 125.0000,
+		"precio2" : 131.5900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194246729",
+		"titulo" : "Changing Places-Dominoes",
+		"autorId" : "Hines, Alan",
+		"editorialId" : "Oxford",
+		"precio" : 125.0000,
+		"precio2" : 131.5900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194246736",
+		"titulo" : "Sinbad",
+		"autorId" : "retold by Janet hardy-Gould",
+		"editorialId" : "Oxford",
+		"precio" : 125.0000,
+		"precio2" : 131.5900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194246743",
+		"titulo" : "The Big Story-Dominoes",
+		"autorId" : "Escott, John",
+		"editorialId" : "Oxford",
+		"precio" : 125.0000,
+		"precio2" : 131.5900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194246750",
+		"titulo" : "Kidnap!-Dominoes",
+		"autorId" : "Escott, John",
+		"editorialId" : "Oxford",
+		"precio" : 125.0000,
+		"precio2" : 131.5900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194247092",
+		"titulo" : "Sinbad the Sailor-Dominoes",
+		"autorId" : "Hardy-Gould Janet",
+		"editorialId" : "Oxford",
+		"precio" : 115.0000,
+		"precio2" : 121.0600,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194247238",
+		"titulo" : "Sherlock Holmes. The Blue Diamond",
+		"autorId" : "Conan Doyle, Sir Arthur",
+		"editorialId" : "Oxford",
+		"precio" : 125.0000,
+		"precio2" : 131.5900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194247245",
+		"titulo" : "The curse of the Mummy",
+		"autorId" : "Hannam, Joyce",
+		"editorialId" : "Oxford",
+		"precio" : 125.0000,
+		"precio2" : 131.5900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194247269",
+		"titulo" : "Sherlock Holmes: The emerald crown",
+		"autorId" : "Sir Arthur Conan Doyle",
+		"editorialId" : "Oxford",
+		"precio" : 125.0000,
+		"precio2" : 131.5900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194248396",
+		"titulo" : "The three Musketeers",
+		"autorId" : "Dumas, Alexandre",
+		"editorialId" : "Oxford",
+		"precio" : 140.0000,
+		"precio2" : 147.3800,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194248839",
+		"titulo" : "Sherlock Holmes: The Norwood Mystery",
+		"autorId" : "Sir Arthur Conan Doyle",
+		"editorialId" : "Oxford",
+		"precio" : 132.0000,
+		"precio2" : 138.9600,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194248853",
+		"titulo" : "Lord Arthur Savile´s Crime and other stories",
+		"autorId" : "Wilde, Oscar",
+		"editorialId" : "Oxford",
+		"precio" : 132.0000,
+		"precio2" : 138.9600,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194249324",
+		"titulo" : "Ali Baba and the forty thieves-Dominoes",
+		"autorId" : "Hardy-Gould Janet",
+		"editorialId" : "Oxford",
+		"precio" : 125.0000,
+		"precio2" : 131.5900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194249447",
+		"titulo" : "The Skateboarder-Dominoes",
+		"autorId" : "Lindop, Christine",
+		"editorialId" : "Oxford",
+		"precio" : 125.0000,
+		"precio2" : 131.5900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194249614",
+		"titulo" : "Frankenstein",
+		"autorId" : "Shelley, Mary",
+		"editorialId" : "Oxford",
+		"precio" : 125.0000,
+		"precio2" : 131.5900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194249676",
+		"titulo" : "V is for Vampire",
+		"autorId" : "Thompson, Lesley",
+		"editorialId" : "Oxford",
+		"precio" : 140.0000,
+		"precio2" : 147.3800,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "97801945147904",
+		"titulo" : "English File- elementary- Multipack A - 3ºed",
+		"autorId" : "Latham-Koenig, Oxenden",
+		"editorialId" : "Oxford",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "97801945147928",
+		"titulo" : "English File- elementary- Multipack B - 3ºed",
+		"autorId" : "Latham-Koenig, Oxenden",
+		"editorialId" : "Oxford",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194517966",
+		"titulo" : "English File- pre-Intermediate Multipack A - 3ºed",
+		"autorId" : "Latham-Koenig, Oxenden",
+		"editorialId" : "Oxford ",
+		"precio" : 294.0000,
+		"precio2" : 309.4900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194517980",
+		"titulo" : "English File- pre-Intermediate Multipack B - 3ºed",
+		"autorId" : "Latham-Koenig, Oxenden",
+		"editorialId" : "Oxford",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194518079",
+		"titulo" : "New English File- Intermediate WB+MultiRom pack",
+		"autorId" : "Latham-Koenig, Oxenden",
+		"editorialId" : "Oxford U.P.",
+		"precio" : 207.0000,
+		"precio2" : 217.9100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194536493",
+		"titulo" : "Engage Level 1 Student´s Book",
+		"autorId" : "Artusi\/ Manin",
+		"editorialId" : "Oxford ",
+		"precio" : 258.7500,
+		"precio2" : 272.3900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194538220",
+		"titulo" : "Engage 2 -2°ed- Std's+ Wb+ MultiRom",
+		"autorId" : "Manin, Artusi",
+		"editorialId" : "Oxford U.P.",
+		"precio" : 259.0000,
+		"precio2" : 272.6500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194597111",
+		"titulo" : "English File- Intermediate Multipack A - 3ºed",
+		"autorId" : "Latham-Koenig, Oxenden",
+		"editorialId" : "Oxford",
+		"precio" : 294.0000,
+		"precio2" : 309.4900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194597128",
+		"titulo" : "English File- Intermediate Multipack B - 3ºed",
+		"autorId" : "Latham-Koenig, Oxenden",
+		"editorialId" : "Oxford",
+		"precio" : 294.0000,
+		"precio2" : 309.4900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194615082",
+		"titulo" : "English Zone 2- Std's & WB + CDRom",
+		"autorId" : "Nolasco, Lois",
+		"editorialId" : "Oxford U.P.",
+		"precio" : 222.0000,
+		"precio2" : 233.7000,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194722247",
+		"titulo" : "Oxford Read and Imagine Beginner: I´m Sorry",
+		"autorId" : "Shipton, Paul",
+		"editorialId" : "Oxford",
+		"precio" : 95.0000,
+		"precio2" : 100.0100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194722254",
+		"titulo" : "Oxford Read and Imagine Beginner: The cake  machine",
+		"autorId" : "Shipton, Paul",
+		"editorialId" : "Oxford",
+		"precio" : 95.0000,
+		"precio2" : 100.0100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194722377",
+		"titulo" : "Oxford Read and Imagine Starter: Hello Clunk",
+		"autorId" : "Shipton, Paul",
+		"editorialId" : "Oxford",
+		"precio" : 95.0000,
+		"precio2" : 100.0100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194722384",
+		"titulo" : "Oxford Read and Imagine Starter: At the zoo",
+		"autorId" : "Shipton, Paul",
+		"editorialId" : "Oxford",
+		"precio" : 95.0000,
+		"precio2" : 100.0100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194722674",
+		"titulo" : "Oxford Read and Imagine 1: Ben´s Big Swim",
+		"autorId" : "Shipton, Paul",
+		"editorialId" : "Oxford",
+		"precio" : 95.0000,
+		"precio2" : 100.0100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194722681",
+		"titulo" : "Oxford Read and Imagine 1: Clunk in space",
+		"autorId" : "Shipton, Paul",
+		"editorialId" : "Oxford",
+		"precio" : 95.0000,
+		"precio2" : 100.0100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194722971",
+		"titulo" : "Oxford Read and Imagine 2: Can you see lions?",
+		"autorId" : "Shipton, Paul",
+		"editorialId" : "Oxford",
+		"precio" : 95.0000,
+		"precio2" : 100.0100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194722988",
+		"titulo" : "Oxford Read and Imagine 2: The Big Storm",
+		"autorId" : "Shipton, Paul",
+		"editorialId" : "Oxford",
+		"precio" : 95.0000,
+		"precio2" : 100.0100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194723299",
+		"titulo" : "Oxford Read and Imagine 3 : Danger Bugs",
+		"autorId" : "Shipton, Paul",
+		"editorialId" : "Oxford",
+		"precio" : 95.0000,
+		"precio2" : 100.0100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194723305",
+		"titulo" : "Oxford Read and Imagine 3: Soccer in the streeet",
+		"autorId" : "Shipton, Paul",
+		"editorialId" : "Oxford",
+		"precio" : 95.0000,
+		"precio2" : 100.0100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194789240",
+		"titulo" : "The witches of Pendle",
+		"autorId" : "Akinyemi, Rowena",
+		"editorialId" : "Oxford ",
+		"precio" : 86.2500,
+		"precio2" : 90.8000,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194791342",
+		"titulo" : "Through the looking-glass",
+		"autorId" : "Carroll, Lewis",
+		"editorialId" : "Oxford",
+		"precio" : 121.5000,
+		"precio2" : 127.9000,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194800273",
+		"titulo" : "Result FCE - Std's ",
+		"autorId" : "Davies, Falla",
+		"editorialId" : "Oxford U.P.",
+		"precio" : 304.7500,
+		"precio2" : 320.8100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194800341",
+		"titulo" : "Result FCE- WB resource pack + Key + MultiRom",
+		"autorId" : "Davies, Falla",
+		"editorialId" : "Oxford U.P.",
+		"precio" : 201.2500,
+		"precio2" : 211.8600,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194800396",
+		"titulo" : "Result CAE- Std's",
+		"autorId" : "Gude",
+		"editorialId" : "Oxford U.P.",
+		"precio" : 345.0000,
+		"precio2" : 363.1800,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194800471",
+		"titulo" : "Result CAE- Wb resource pack",
+		"autorId" : "Gude",
+		"editorialId" : "Oxford U.P.",
+		"precio" : 207.0000,
+		"precio2" : 217.9100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194803038",
+		"titulo" : "Family and Friends 6- WB",
+		"autorId" : "Pelteret, Penn",
+		"editorialId" : "Oxford U.P.",
+		"precio" : 159.8500,
+		"precio2" : 168.2700,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194803090",
+		"titulo" : "Family and Friends 6- STD's + multiRom",
+		"autorId" : "Quintana",
+		"editorialId" : "Oxford U.P.",
+		"precio" : 240.3500,
+		"precio2" : 253.0200,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780194817158",
+		"titulo" : "Result PET- Std's",
+		"autorId" : "Quintana",
+		"editorialId" : "Oxford U.P.",
+		"precio" : 306.0000,
+		"precio2" : 322.1300,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780195969559",
+		"titulo" : "At the zoo. Level 3",
+		"autorId" : "Green, D F",
+		"editorialId" : "Oxford",
+		"precio" : 99.0000,
+		"precio2" : 104.2200,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780198603856",
+		"titulo" : "Oxford Básico Eng-Sp",
+		"autorId" : null,
+		"editorialId" : "Oxford U.P.",
+		"precio" : 69.0000,
+		"precio2" : 72.6400,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780230012295",
+		"titulo" : "Footprints 4- Std's + CDRom+AudioCD",
+		"autorId" : "Read",
+		"editorialId" : "Macmillan",
+		"precio" : 210.0000,
+		"precio2" : 221.0700,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780230020771",
+		"titulo" : "Straightforward. Elementary Student´s book",
+		"autorId" : "Clandfield, Lindsay",
+		"editorialId" : "MacMillan",
+		"precio" : 280.0000,
+		"precio2" : 294.7600,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780230422834",
+		"titulo" : "Owl Hall Pre-Intermediate + Audio CD",
+		"autorId" : "Campbell, Robert",
+		"editorialId" : "MacMillan",
+		"precio" : 100.0000,
+		"precio2" : 105.2700,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780230723740",
+		"titulo" : "Hot Spot 1- Std's + CDRom",
+		"autorId" : "Granger",
+		"editorialId" : "Macmillan",
+		"precio" : 220.0000,
+		"precio2" : 231.5900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780230727076",
+		"titulo" : "Advanced- Langauge Practice",
+		"autorId" : "Vince",
+		"editorialId" : "Macmillan",
+		"precio" : 220.0000,
+		"precio2" : 231.5900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780230733732",
+		"titulo" : "Footprints 3- Act",
+		"autorId" : "Read",
+		"editorialId" : "Macmillan",
+		"precio" : 120.0000,
+		"precio2" : 126.3200,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780241955307",
+		"titulo" : "Boy. Tales of childhood",
+		"autorId" : "Dahl, Roald",
+		"editorialId" : "Penguin",
+		"precio" : 175.7500,
+		"precio2" : 185.0100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780241955703",
+		"titulo" : "Someone Like you",
+		"autorId" : "Dahl, Roald",
+		"editorialId" : "Penguin",
+		"precio" : 175.7500,
+		"precio2" : 185.0100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780307394545",
+		"titulo" : "Cookies",
+		"autorId" : "Stewart´s, Martha",
+		"editorialId" : "Potter",
+		"precio" : 379.8500,
+		"precio2" : 399.8700,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780316228534",
+		"titulo" : "The casual vacancy",
+		"autorId" : "Rowling",
+		"editorialId" : "Little, Brown & Co",
+		"precio" : 240.0000,
+		"precio2" : 252.6500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780316228589",
+		"titulo" : "The casual vacancy",
+		"autorId" : "Rowling",
+		"editorialId" : "Little, Brown & Co",
+		"precio" : 248.4000,
+		"precio2" : 261.4900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780316377478",
+		"titulo" : "The Silkworm",
+		"autorId" : "Rowlling",
+		"editorialId" : "Little, Brown & Co",
+		"precio" : 276.0000,
+		"precio2" : 290.5500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780328688180",
+		"titulo" : "Reading street",
+		"autorId" : "Foresman",
+		"editorialId" : "Pearson",
+		"precio" : 290.0000,
+		"precio2" : 305.2800,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780333710937",
+		"titulo" : "The Gruffalo-ppbck",
+		"autorId" : "Donaldson",
+		"editorialId" : "Macmillan",
+		"precio" : 130.0000,
+		"precio2" : 136.8500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780333713464",
+		"titulo" : "Oliver Twist",
+		"autorId" : "Beare",
+		"editorialId" : "Macmillan",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780340926499",
+		"titulo" : "IGCSE Business studies- 3ªed",
+		"autorId" : "Borrington, Stimpson",
+		"editorialId" : "Hodder ed.",
+		"precio" : 390.8000,
+		"precio2" : 411.4000,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780380789030",
+		"titulo" : "Eleanor & Park",
+		"autorId" : "Rowell, Rainbow",
+		"editorialId" : "Orion",
+		"precio" : 129.4400,
+		"precio2" : 136.2600,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780399162725",
+		"titulo" : "Wreck this journal",
+		"autorId" : "Smith, Keri",
+		"editorialId" : "Perigee",
+		"precio" : 207.0000,
+		"precio2" : 217.9100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780399165252",
+		"titulo" : "The Imaginary World of ….. ",
+		"autorId" : "Smith, Keri",
+		"editorialId" : "Perigee",
+		"precio" : 243.2000,
+		"precio2" : 256.0200,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780435286118",
+		"titulo" : "A Present for Anna",
+		"autorId" : "Moore C.J.",
+		"editorialId" : "MacMillan",
+		"precio" : 85.0000,
+		"precio2" : 89.4800,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780446606813",
+		"titulo" : "Message in a bottle",
+		"autorId" : "Sparks",
+		"editorialId" : "Grand Central P.",
+		"precio" : 110.2700,
+		"precio2" : 116.0800,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780446618304",
+		"titulo" : "Dear John",
+		"autorId" : "Sparks",
+		"editorialId" : "Hachette",
+		"precio" : 110.2600,
+		"precio2" : 116.0700,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780451531896",
+		"titulo" : "The importance of being earnest & other plays",
+		"autorId" : "Wilde Oscar",
+		"editorialId" : "Signet Classics",
+		"precio" : 68.3100,
+		"precio2" : 71.9100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780521123006",
+		"titulo" : "English in mind 2- 2ºed-WB",
+		"autorId" : "Puchta, Stranks",
+		"editorialId" : "Cambridge U.P.",
+		"precio" : 152.1000,
+		"precio2" : 160.1200,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780521156097",
+		"titulo" : "English in mind 2- 2ºed- Std's + DVDRom",
+		"autorId" : "Puchta, Stranks",
+		"editorialId" : "Cambridge U.P.",
+		"precio" : 272.7000,
+		"precio2" : 287.0700,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780521185370",
+		"titulo" : "English in mind  Starter-2ºed- Std's + CDRom",
+		"autorId" : "Puchta, Stranks",
+		"editorialId" : "Cambridge U.P.",
+		"precio" : 272.7000,
+		"precio2" : 287.0700,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780521185608",
+		"titulo" : "English in mind 3 -2ºed- WB-",
+		"autorId" : "Puchta, Stranks",
+		"editorialId" : "Cambridge U.P.",
+		"precio" : 152.1000,
+		"precio2" : 160.1200,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780521688130",
+		"titulo" : "Kid's Box 3- Std's",
+		"autorId" : "Nixon, Tomlinson",
+		"editorialId" : "Cambridge U.P.",
+		"precio" : 209.7000,
+		"precio2" : 220.7500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780525425601",
+		"titulo" : "Where she went",
+		"autorId" : "Forman, Gayle",
+		"editorialId" : "Penguin USA",
+		"precio" : 137.8600,
+		"precio2" : 145.1300,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780525425915",
+		"titulo" : "Just One day",
+		"autorId" : "Forman",
+		"editorialId" : "Dutton",
+		"precio" : 248.2600,
+		"precio2" : 261.3400,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780525426431",
+		"titulo" : "Just One year",
+		"autorId" : "Forman",
+		"editorialId" : "Dutton",
+		"precio" : 179.2600,
+		"precio2" : 188.7100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780525478812",
+		"titulo" : "The fault in our stars",
+		"autorId" : "Green, John",
+		"editorialId" : "Penguin USA",
+		"precio" : 248.2600,
+		"precio2" : 261.3400,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780545123297",
+		"titulo" : "Shiver Trilogy 2: Linger",
+		"autorId" : "Stiefvater, Maggie",
+		"editorialId" : "Scholastic",
+		"precio" : 137.8600,
+		"precio2" : 145.1300,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780545259095",
+		"titulo" : "Shiver Trilogy 3 : Forever",
+		"autorId" : "Stiefvater, Maggie",
+		"editorialId" : "Scholastic",
+		"precio" : 137.8600,
+		"precio2" : 145.1300,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780545626385",
+		"titulo" : "The Hunger games- set box",
+		"autorId" : null,
+		"editorialId" : null,
+		"precio" : 551.0000,
+		"precio2" : 580.0400,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780571216971",
+		"titulo" : "Oracle Night",
+		"autorId" : "Auster, Paul",
+		"editorialId" : "Faber",
+		"precio" : 120.5900,
+		"precio2" : 126.9500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780571276561",
+		"titulo" : "Leviathan",
+		"autorId" : "Auster, Paul",
+		"editorialId" : "Faber",
+		"precio" : 116.8500,
+		"precio2" : 123.0100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780571283217",
+		"titulo" : "Winter Journal",
+		"autorId" : "Auster, Paul",
+		"editorialId" : "Faber",
+		"precio" : 214.3900,
+		"precio2" : 225.6900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780582364004",
+		"titulo" : "Babe, Pig in the City",
+		"autorId" : "Miller",
+		"editorialId" : "Penguin",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780582416864",
+		"titulo" : "How to be an Alien",
+		"autorId" : "Mikes",
+		"editorialId" : "Penguin",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780582416949",
+		"titulo" : "Jurassic Park, the lost world",
+		"autorId" : "Crichton",
+		"editorialId" : "Penguin",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780582416994",
+		"titulo" : "The Boys from Brazil",
+		"autorId" : "Levin",
+		"editorialId" : "Penguin",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780582417649",
+		"titulo" : "Far from the madding crowd",
+		"autorId" : "Hardy",
+		"editorialId" : "Penguin",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780582417946",
+		"titulo" : "Emma",
+		"autorId" : "Austen",
+		"editorialId" : "Penguin",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780582418059",
+		"titulo" : "Gone with the wind Part one",
+		"autorId" : "Mitchell",
+		"editorialId" : "Penguin",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780582418301",
+		"titulo" : "Primary colors",
+		"autorId" : "Furnas",
+		"editorialId" : "Penguin",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780582438378",
+		"titulo" : "Titanic!",
+		"autorId" : "Shipton",
+		"editorialId" : "Penguin",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780582779624",
+		"titulo" : "About a Boy",
+		"autorId" : "Hornby",
+		"editorialId" : "Penguin",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780582855595",
+		"titulo" : "Success- Intermediate Wb + CD",
+		"autorId" : "White, Fricker",
+		"editorialId" : "Pearson",
+		"precio" : 122.0000,
+		"precio2" : 128.4300,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780663612160",
+		"titulo" : "Literature Works Collection 1 Book 1",
+		"autorId" : "Silver Burdett Ginn",
+		"editorialId" : "Sterling",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780663612179",
+		"titulo" : "Literature Works Collection 1 Book 2",
+		"autorId" : "Silver Burdett Ginn",
+		"editorialId" : "Sterling",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780663612187",
+		"titulo" : "Literature Works Collection 1 Book 3",
+		"autorId" : "Silver Burdett Ginn",
+		"editorialId" : "Sterling",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780663612195",
+		"titulo" : "Literature Works Collection 1 Book 4",
+		"autorId" : "Silver Burdett Ginn",
+		"editorialId" : "Sterling",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780663612209",
+		"titulo" : "Literature Works Collection 2 Book 1",
+		"autorId" : "Silver Burdett Ginn",
+		"editorialId" : "Sterling",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780663612225",
+		"titulo" : "Literature Works Collection 3 Book 1",
+		"autorId" : "Silver Burdett Ginn",
+		"editorialId" : "Sterling",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780663612241",
+		"titulo" : "Literature Works Collection 4",
+		"autorId" : "Silver Burdett Ginn",
+		"editorialId" : "Sterling",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780747584681",
+		"titulo" : "Harry Potter & the Half-blood Prince- Pbck",
+		"autorId" : "Rowling",
+		"editorialId" : "Bloomsbury",
+		"precio" : 137.8300,
+		"precio2" : 145.0900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780786891313",
+		"titulo" : "Ther's no place like here",
+		"autorId" : "Ahern, Cecelia",
+		"editorialId" : "Harper ",
+		"precio" : 110.2600,
+		"precio2" : 116.0700,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780877791287",
+		"titulo" : "International Business Communications",
+		"autorId" : "Atkinson",
+		"editorialId" : "Merriam-Webster",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780877793808",
+		"titulo" : "Merriam Webster´s School Dictionary",
+		"autorId" : null,
+		"editorialId" : null,
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780877793809",
+		"titulo" : "School Dictionary",
+		"autorId" : "-",
+		"editorialId" : "Merriam-Webster",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9780877795754",
+		"titulo" : "Merriam Webster´s Elementary Dictionary",
+		"autorId" : null,
+		"editorialId" : null,
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781107613782",
+		"titulo" : "Advanced Grammar in Use 3\/Ed. No Key",
+		"autorId" : "Hewings, Martin",
+		"editorialId" : "Cambridge U.P.",
+		"precio" : 500.0000,
+		"precio2" : 526.3500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781107662827",
+		"titulo" : "Objective Key -2º ed- Std's + CD (prep. for KET)",
+		"autorId" : "Capel, Sharp",
+		"editorialId" : "Cambridge U.P.",
+		"precio" : 315.0000,
+		"precio2" : 331.6000,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781111061876",
+		"titulo" : "English explorer 2- Std's + MultiRom",
+		"autorId" : "Stephenson",
+		"editorialId" : "Heinle ",
+		"precio" : 208.0000,
+		"precio2" : 218.9600,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781405061506",
+		"titulo" : "Little Bugs 1- Busy Book- ActBk",
+		"autorId" : "Read, Soberón",
+		"editorialId" : "Macmillan",
+		"precio" : 120.0000,
+		"precio2" : 126.3200,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781405061605",
+		"titulo" : "Little Bugs 2- Busy Book- ActBk",
+		"autorId" : "Read, Soberón",
+		"editorialId" : "Macmillan",
+		"precio" : 120.0000,
+		"precio2" : 126.3200,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781405072342",
+		"titulo" : "The Adventures of Huckleberry Finn",
+		"autorId" : "Twain, Mark",
+		"editorialId" : "Macmillan ",
+		"precio" : 85.0000,
+		"precio2" : 89.4800,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781405075206",
+		"titulo" : "Straightforward. Elementary Workbook",
+		"autorId" : "Tennant, Adrian",
+		"editorialId" : "MacMillan",
+		"precio" : 150.0000,
+		"precio2" : 157.9000,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781405076722",
+		"titulo" : "Dracula- Intermediate + Audio CD",
+		"autorId" : "Stoker",
+		"editorialId" : "Macmillan",
+		"precio" : 87.0000,
+		"precio2" : 91.5800,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781405087230",
+		"titulo" : "Robin Hood- PreIntermediate + Audio CD",
+		"autorId" : "Colbourn",
+		"editorialId" : "Macmillan",
+		"precio" : 87.0000,
+		"precio2" : 91.5800,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781405852180",
+		"titulo" : "Crime Story Collection",
+		"autorId" : "Paretsky, Sara and others",
+		"editorialId" : "Penguin Active Read",
+		"precio" : 90.0000,
+		"precio2" : 94.7400,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781405878142",
+		"titulo" : "The Missing Coins + Audio CD",
+		"autorId" : "Escott",
+		"editorialId" : "Penguin",
+		"precio" : 85.0000,
+		"precio2" : 89.4800,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781408224281",
+		"titulo" : "Activate! A2- WB",
+		"autorId" : "Gaynor",
+		"editorialId" : "Longman\/Pearson",
+		"precio" : 152.0000,
+		"precio2" : 160.0100,
+		"stock" : -3.0000000,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781408276464",
+		"titulo" : "The Pelican Brief",
+		"autorId" : "Grisham, John",
+		"editorialId" : "Penguin Readers",
+		"precio" : 119.0000,
+		"precio2" : 125.2700,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781408277997",
+		"titulo" : "Alice in Wonderland",
+		"autorId" : "Carroll, Lewis",
+		"editorialId" : "Penguin",
+		"precio" : 69.0000,
+		"precio2" : 72.6400,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781408297124",
+		"titulo" : "New success-  Intermediate Wb+ CD",
+		"autorId" : "White, Fricker",
+		"editorialId" : "Pearson",
+		"precio" : 163.0000,
+		"precio2" : 171.5900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781408297179",
+		"titulo" : "New Success- Upper intermediate Wb+ CD",
+		"autorId" : "Fricker",
+		"editorialId" : "Pearson",
+		"precio" : 163.0000,
+		"precio2" : 171.5900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781408810545",
+		"titulo" : "Harry Potter & the Philosopher's stone- New Ed- Pbck",
+		"autorId" : "Rowling",
+		"editorialId" : "Bloomsbury",
+		"precio" : 136.6500,
+		"precio2" : 143.8500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781408810569",
+		"titulo" : "Harry Potter & the Prisoner of Azkaban- New Ed- Pbck",
+		"autorId" : "Rowling",
+		"editorialId" : "Bloomsbury",
+		"precio" : 136.6500,
+		"precio2" : 143.8500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781408810576",
+		"titulo" : "Harry Potter & the Goblet of fire- New Ed- Pbck",
+		"autorId" : "Rowling",
+		"editorialId" : "Bloomsbury",
+		"precio" : 175.7500,
+		"precio2" : 185.0100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781408810590",
+		"titulo" : "Harry Potter & the Order of the Phoenix- New Ed- Pbck",
+		"autorId" : "Rowling",
+		"editorialId" : "Bloomsbury",
+		"precio" : 175.7500,
+		"precio2" : 185.0100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781408812792",
+		"titulo" : "Harry Potter & the Deathly Hallows- New Ed- Pbck",
+		"autorId" : "Rowling",
+		"editorialId" : "Bloomsbury",
+		"precio" : 175.7500,
+		"precio2" : 185.0100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781408836439",
+		"titulo" : "The Bone Season",
+		"autorId" : "Shannon",
+		"editorialId" : "Bloomsbury",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781409120544",
+		"titulo" : "American Gods",
+		"autorId" : "Gaiman, Neil",
+		"editorialId" : "Harper Collins",
+		"precio" : 121.4500,
+		"precio2" : 127.8500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781447929314",
+		"titulo" : "First Certificate Expert-  Coursebook + CDRom",
+		"autorId" : "Bell, Gower",
+		"editorialId" : "Longman\/Pearson",
+		"precio" : 289.0000,
+		"precio2" : 304.2300,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781447961901",
+		"titulo" : "Gold Experience A2 Student´s book With CD",
+		"autorId" : "Alevizon\/Gaynor",
+		"editorialId" : "Pearson",
+		"precio" : 410.0000,
+		"precio2" : 431.6100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781476712987",
+		"titulo" : "Beautiful Disaster #2: Walking disaster",
+		"autorId" : "McGuire, James",
+		"editorialId" : "Atria",
+		"precio" : 207.0000,
+		"precio2" : 217.9100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781476759548",
+		"titulo" : "Beautiful Disaster #3: A Beautiful Wedding - ",
+		"autorId" : "McGuire, James",
+		"editorialId" : "Atria",
+		"precio" : 207.0000,
+		"precio2" : 217.9100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781595141880",
+		"titulo" : "Th1rteen R3asons Why",
+		"autorId" : "Asher, Jay",
+		"editorialId" : "Penguin",
+		"precio" : 151.6600,
+		"precio2" : 159.6500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781595145161",
+		"titulo" : "The future of us",
+		"autorId" : "Asher, Jay & Mackler, Carolyn",
+		"editorialId" : "Razorbill",
+		"precio" : 137.8600,
+		"precio2" : 145.1300,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781845580513",
+		"titulo" : "Puss in boots- storytime*2",
+		"autorId" : "Perrault",
+		"editorialId" : "Express Publishing",
+		"precio" : 36.9000,
+		"precio2" : 38.8400,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781845580551",
+		"titulo" : "Puss in boots 3- Primary readers + Audio Cd",
+		"autorId" : "Perrault",
+		"editorialId" : "Express Publishing",
+		"precio" : 85.1000,
+		"precio2" : 89.5800,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781846793868",
+		"titulo" : "Fairyland 3 -ActBk",
+		"autorId" : "Dooley, Evans",
+		"editorialId" : "Express Publishing",
+		"precio" : 168.5000,
+		"precio2" : 177.3800,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781846795268",
+		"titulo" : "Fairyland 1 -ActBk",
+		"autorId" : "Dooley, Evans",
+		"editorialId" : "Express Publishing",
+		"precio" : 148.0000,
+		"precio2" : 155.8000,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781846795299",
+		"titulo" : "Fairyland 1 -Pupil's",
+		"autorId" : "Dooley, Evans",
+		"editorialId" : "Express Publishing",
+		"precio" : 148.0000,
+		"precio2" : 155.8000,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781846795961",
+		"titulo" : "Fairyland 1 -Pupil's + CD",
+		"autorId" : "Dooley, Evans",
+		"editorialId" : "Express Publishing",
+		"precio" : 178.7500,
+		"precio2" : 188.1700,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781846796746",
+		"titulo" : "Fairyland 2 - ActBk",
+		"autorId" : "Dooley, Evans",
+		"editorialId" : "Express Publishing",
+		"precio" : 168.5000,
+		"precio2" : 177.3800,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781846796913",
+		"titulo" : "Fairyland 2 -Pupil's + CD",
+		"autorId" : "Dooley, Evans",
+		"editorialId" : "Express Publishing",
+		"precio" : 209.6000,
+		"precio2" : 220.6500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781849743600",
+		"titulo" : "New patches for old",
+		"autorId" : "Dooley, Page",
+		"editorialId" : "Express Publishing",
+		"precio" : 61.9000,
+		"precio2" : 65.1600,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781853260001",
+		"titulo" : "Pride and Prejudice",
+		"autorId" : "Austen, Jane",
+		"editorialId" : "Wordsworth Edition",
+		"precio" : 65.0000,
+		"precio2" : 68.4300,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781853260865",
+		"titulo" : "Dracula ",
+		"autorId" : "Stoker, Bram",
+		"editorialId" : "Wordsworth Classics",
+		"precio" : 65.0000,
+		"precio2" : 68.4300,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781902741253",
+		"titulo" : "Pass Cambridge BEC Prelliminary",
+		"autorId" : "Wood, Williams",
+		"editorialId" : "Summerton P.",
+		"precio" : 115.0000,
+		"precio2" : 121.0600,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9781905716623",
+		"titulo" : "The happy Prince & other Stories",
+		"autorId" : "Wilde, Oscar",
+		"editorialId" : "Collector´s library",
+		"precio" : 145.4400,
+		"precio2" : 153.1000,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9788466804783",
+		"titulo" : "Robinson Crusoe",
+		"autorId" : "Defoe",
+		"editorialId" : "Richmond",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9788466804868",
+		"titulo" : "Romeo and Juliet",
+		"autorId" : "Shakespeare",
+		"editorialId" : "Richmond",
+		"precio" : null,
+		"precio2" : null,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9788466808675",
+		"titulo" : "Target PET Std's +CDRom",
+		"autorId" : "Ireland, Kosta",
+		"editorialId" : "Richmond",
+		"precio" : 179.0000,
+		"precio2" : 188.4300,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9788466808712",
+		"titulo" : "Target PET WB",
+		"autorId" : "Ireland, Kosta",
+		"editorialId" : "Richmond",
+		"precio" : 140.0000,
+		"precio2" : 147.3800,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789504616481",
+		"titulo" : "Howdy! Starter",
+		"autorId" : "Zamatta",
+		"editorialId" : "Richmond",
+		"precio" : 170.0000,
+		"precio2" : 178.9600,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789504618362",
+		"titulo" : "Trails 1 - Std's + WB+ CD",
+		"autorId" : null,
+		"editorialId" : "Richmond",
+		"precio" : 179.0000,
+		"precio2" : 188.4300,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789504619321",
+		"titulo" : "Star players 1 - Practice Bk",
+		"autorId" : "Newton",
+		"editorialId" : "Richmond",
+		"precio" : 125.0000,
+		"precio2" : 131.5900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789504619710",
+		"titulo" : "Way to go 1- Std's w\/ Practice section",
+		"autorId" : "Lawley",
+		"editorialId" : "Richmond",
+		"precio" : 175.0000,
+		"precio2" : 184.2200,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789504619864",
+		"titulo" : "English Print 1 - ActBk ",
+		"autorId" : "Williams Salvador",
+		"editorialId" : "Richmond",
+		"precio" : 130.0000,
+		"precio2" : 136.8500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789504619888",
+		"titulo" : "English Print 2 Student´s book",
+		"autorId" : "Williams Salvador",
+		"editorialId" : "Richmond",
+		"precio" : 271.0000,
+		"precio2" : 285.2800,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789504619895",
+		"titulo" : "English Print 2 Activity book",
+		"autorId" : "Williams Salvador",
+		"editorialId" : "Richmond",
+		"precio" : 173.0000,
+		"precio2" : 182.1200,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789504619918",
+		"titulo" : "English Print 3- Std's + Cdrom",
+		"autorId" : "Williams Salvador",
+		"editorialId" : "Richmond",
+		"precio" : 205.0000,
+		"precio2" : 215.8000,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789504619925",
+		"titulo" : "English Print 3- ActBk",
+		"autorId" : "House, Scott",
+		"editorialId" : "Richmond",
+		"precio" : 130.0000,
+		"precio2" : 136.8500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789504619956",
+		"titulo" : "English Print 4- ActBk",
+		"autorId" : "House, Scott",
+		"editorialId" : "Richmond",
+		"precio" : 130.0000,
+		"precio2" : 136.8500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789504621904",
+		"titulo" : "Waywise 2- Std's",
+		"autorId" : "Amos, Prescher, Pasqualin",
+		"editorialId" : "Santillana\/ Richmond",
+		"precio" : 70.0000,
+		"precio2" : 73.6900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789504621959",
+		"titulo" : "Joyride 3- std's",
+		"autorId" : null,
+		"editorialId" : "Santillana ",
+		"precio" : 70.0000,
+		"precio2" : 73.6900,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789504624394",
+		"titulo" : "All around 2- Std's + CDRom",
+		"autorId" : null,
+		"editorialId" : "Richmond",
+		"precio" : 189.0000,
+		"precio2" : 198.9600,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789504625360",
+		"titulo" : "All around 3-  Std's + CDRom",
+		"autorId" : null,
+		"editorialId" : "Richmond",
+		"precio" : 189.0000,
+		"precio2" : 198.9600,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789504629115",
+		"titulo" : "Kids Web 1- Coursebook",
+		"autorId" : "Seligson",
+		"editorialId" : "Richmond",
+		"precio" : 190.0000,
+		"precio2" : 200.0100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789504629498",
+		"titulo" : "Kids Web 2- Coursebook",
+		"autorId" : "Seligson",
+		"editorialId" : "Richmond",
+		"precio" : 190.0000,
+		"precio2" : 200.0100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789504633679",
+		"titulo" : "Howdy Friends Level 1 Course Book",
+		"autorId" : null,
+		"editorialId" : "Santillana",
+		"precio" : 94.0000,
+		"precio2" : 98.9500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789509255999",
+		"titulo" : "Magic Grammar 2    7\/8 age",
+		"autorId" : "Dold, María Alejandra",
+		"editorialId" : "Kel",
+		"precio" : 99.0000,
+		"precio2" : 104.2200,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789604430048",
+		"titulo" : "Rumpelstilskin",
+		"autorId" : "The Brothers Grimm",
+		"editorialId" : "mmpublications",
+		"precio" : 110.5000,
+		"precio2" : 116.3200,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789706502803",
+		"titulo" : "Squeeze 1-  Std's",
+		"autorId" : "del Paso",
+		"editorialId" : "Macmillan",
+		"precio" : 160.0000,
+		"precio2" : 168.4300,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789871147465",
+		"titulo" : "Chat 1",
+		"autorId" : "Casuscelli\/Gandini",
+		"editorialId" : "Pearson education",
+		"precio" : 91.0000,
+		"precio2" : 95.8000,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789871189205",
+		"titulo" : "Winners 1-  Std's w\/ Integrated activity",
+		"autorId" : "Beare",
+		"editorialId" : "Macmillan",
+		"precio" : 130.0000,
+		"precio2" : 136.8500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789871189618",
+		"titulo" : "Magic masters 3 -ActBk",
+		"autorId" : "Faitaki",
+		"editorialId" : "Macmillan",
+		"precio" : 110.0000,
+		"precio2" : 115.8000,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789871189830",
+		"titulo" : "Go on Sailing 1 -  Std's + WB",
+		"autorId" : "Garcia Cahuzac, Tiberio",
+		"editorialId" : "Macmillan",
+		"precio" : 75.0000,
+		"precio2" : 78.9500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789871189878",
+		"titulo" : "Go on Sailing 2 -  Std's + WB",
+		"autorId" : "Garcia Cahuzac, Tiberio",
+		"editorialId" : "Macmillan",
+		"precio" : 75.0000,
+		"precio2" : 78.9500,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789871557080",
+		"titulo" : "Switch On 3- Std's",
+		"autorId" : "Spencer",
+		"editorialId" : "Macmillan",
+		"precio" : 100.0000,
+		"precio2" : 105.2700,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789871557325",
+		"titulo" : "Evolution 2 - Std's + Act+ CD",
+		"autorId" : "Beare",
+		"editorialId" : "Macmillan",
+		"precio" : 175.0000,
+		"precio2" : 184.2200,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789871576005",
+		"titulo" : "Magic Grammar 1    6\/7 age",
+		"autorId" : "Dold, María Alejandra",
+		"editorialId" : "Kel",
+		"precio" : 99.0000,
+		"precio2" : 104.2200,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789871576067",
+		"titulo" : "Magic Grammar Beginners   5\/6 age",
+		"autorId" : "Dold, María Alejandra",
+		"editorialId" : "Kel",
+		"precio" : 99.0000,
+		"precio2" : 104.2200,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789871576098",
+		"titulo" : "Benteveo Matedesafíos 1",
+		"autorId" : "Gomez Carrillo, Sara",
+		"editorialId" : "Kel",
+		"precio" : 99.0000,
+		"precio2" : 104.2200,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789876150347",
+		"titulo" : "Storyline 1 w\/ Audio CD",
+		"autorId" : "Corradi, Pena Lima",
+		"editorialId" : "Longman\/Pearson",
+		"precio" : 170.0000,
+		"precio2" : 178.9600,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789876150903",
+		"titulo" : "Click into English 1- Std's + Wb",
+		"autorId" : "Casuscelli",
+		"editorialId" : "Tinta Fresca",
+		"precio" : 86.0000,
+		"precio2" : 90.5300,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789876151931",
+		"titulo" : "What's up? 3-2º ed. Std's +WB-",
+		"autorId" : "Myers, Jackson, Lynam, Tiberio",
+		"editorialId" : "Longman\/Pearson",
+		"precio" : 198.0000,
+		"precio2" : 208.4300,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789876720618",
+		"titulo" : "Best Days 3 Pupil's + songs CD",
+		"autorId" : "Lambert",
+		"editorialId" : "Macmillan",
+		"precio" : 190.0000,
+		"precio2" : 200.0100,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789876720625",
+		"titulo" : "Best Days 3 - ActBk + CD rom",
+		"autorId" : "Lambert",
+		"editorialId" : "Macmillan",
+		"precio" : 100.0000,
+		"precio2" : 105.2700,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789876720663",
+		"titulo" : "Your Quest 1 - Std's w\/ Act + CD+ CDRom",
+		"autorId" : "Corbett, O'Farrell",
+		"editorialId" : "Macmillan",
+		"precio" : 210.0000,
+		"precio2" : 221.0700,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789876720731",
+		"titulo" : "Your quest 2- Pupil's + ActBk + CDRom+Songs CD",
+		"autorId" : "Corbett, O'Farrell",
+		"editorialId" : "Macmillan",
+		"precio" : 210.0000,
+		"precio2" : 221.0700,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	},
+	{
+		"id" : "9789876721745",
+		"titulo" : "Your Quest 5- Pupil's + ActBk",
+		"autorId" : "Mohamed",
+		"editorialId" : "Macmillan",
+		"precio" : 235.0000,
+		"precio2" : 247.3800,
+		"stock" : 0,
+		"grupoId" : "English Books"
+	}
+
+]
