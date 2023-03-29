@@ -1,6 +1,7 @@
-
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { collection, setDoc, doc } from "firebase/firestore";
+import { collection, setDoc, doc, getDoc } from "firebase/firestore";
+import { FaUniregistry } from "react-icons/fa";
 import { auth, db } from "../firebase-config";
 
 export async function createUser(email, password) {
@@ -38,7 +39,7 @@ export async function logOut() {
     }
 }
 
-export async function verifyUserSesion(){
+export async function verifyUserSesion() {
     onAuthStateChanged(auth, async user => {
         if (user) {
             console.log(`Usuario ${user.uid} logueado`)
@@ -47,4 +48,18 @@ export async function verifyUserSesion(){
             console.log("No hay ningun usuario logueado")
         }
     })
+}
+
+export async function getUserById(uid) {
+    try {
+        const userRef = doc(db, 'users', uid);
+        const userSnap = await getDoc(userRef);
+        if (userSnap.exists()) {
+            console.log(userSnap.data())
+        } else {
+            console.log('No existe el usuario!');
+        }
+    } catch (error) {
+        console.log(error);
+    }
 }
