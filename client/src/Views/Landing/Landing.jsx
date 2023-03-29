@@ -24,7 +24,7 @@ const Landing = () => {
     // },5000)
     // verifyUserSesion()
     // getUserById("TqSDzvnHYJQi8T3hepXrVPD5XNQ2")
-    signInWithPopup(auth, provider)
+    // signInWithPopup(auth, provider)
   }, [])
   
   return (
