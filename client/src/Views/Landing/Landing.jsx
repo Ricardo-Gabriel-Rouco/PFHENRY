@@ -14,14 +14,14 @@ const Landing = () => {
     }
   }
 
-  // useEffect(() => {
-  //   sigInWithMail("qwerty@gmail.com", "12345678")
-  //   verifyUserSesion()
-  //   setTimeout(()=>{
-  //     logOut()
-  //   },5000)
-  //   verifyUserSesion()
-  // }, [])
+  useEffect(() => {
+    sigInWithMail("qwerty@gmail.com", "12345678")
+    verifyUserSesion()
+    setTimeout(()=>{
+      logOut()
+    },5000)
+    verifyUserSesion()
+  }, [])
   
   return (
     <>

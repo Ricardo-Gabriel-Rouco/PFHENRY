@@ -1,4 +1,4 @@
-import { async } from "@firebase/util";
+
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { collection, setDoc, doc } from "firebase/firestore";
 import { auth, db } from "../firebase-config";
