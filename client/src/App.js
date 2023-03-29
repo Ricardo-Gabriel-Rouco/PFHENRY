@@ -11,6 +11,7 @@ import Error from "./Views/Error";
 import CardDetail from './components/CardDetail/CardDetail'; 
 import Favorites from './Views/Favorites/Favorites'
 import AddBooks from './Views/AddBooks/AddBooks'
+import Login from './components/Login/Login'
 
 function App() {
   // useEffect(() => {
@@ -30,7 +31,7 @@ function App() {
           <Route exact path="/about" element={<About />} />
           <Route exact path="/favorites" element={<Favorites />} />
           <Route path='/home/:id' element={<CardDetail />} /> 
-
+          <Route path='/prueba' element={<Login/>}/>
 
           <Route path="*" element={<Error />} />
           <Route exact path="/create" element={<AddBooks/>}/>
