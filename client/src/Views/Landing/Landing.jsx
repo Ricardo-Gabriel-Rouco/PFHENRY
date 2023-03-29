@@ -3,8 +3,8 @@ import { FaChevronDown } from "react-icons/fa";
 import About from "../About";
 import style from "./Landing.module.css";
 import { Button } from "@mui/material";
-import { useEffect } from "react";
-import { createUser, logOut, sigInWithMail, verifyUserSesion } from "../../firebase/auth/auth";
+// import { useEffect } from "react";
+// import { createUser, logOut, sigInWithMail, verifyUserSesion } from "../../firebase/auth/auth";
 
 const Landing = () => {
   function scrollToAbout() {
@@ -14,14 +14,14 @@ const Landing = () => {
     }
   }
 
-  useEffect(() => {
-    sigInWithMail("qwerty@gmail.com", "12345678")
-    verifyUserSesion()
-    setTimeout(()=>{
-      logOut()
-    },5000)
-    verifyUserSesion()
-  }, [])
+  // useEffect(() => {
+  //   sigInWithMail("qwerty@gmail.com", "12345678")
+  //   verifyUserSesion()
+  //   setTimeout(()=>{
+  //     logOut()
+  //   },5000)
+  //   verifyUserSesion()
+  // }, [])
   
   return (
     <>
