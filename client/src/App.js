@@ -1,13 +1,10 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { AuthProvider } from "./context/authContext";
 import Landing from "./Views/Landing/Landing";
 import Home from "./Views/Home";
 import About from "./Views/About";
 import Error from "./Views/Error";
-// por ahora estoy probando con esta data para ver el tema de la firestore
-// import db from './firebase-config'
-// import {onSnapshot, collection} from 'firebase/firestore'
-// import { useEffect } from "react";
 import CardDetail from './components/CardDetail/CardDetail'; 
 import Favorites from './Views/Favorites/Favorites'
 import AddBooks from './Views/AddBooks/AddBooks'
@@ -26,6 +23,7 @@ function App() {
 
   return (
     <div className="App">
+      <AuthProvider>
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<Landing />} />
@@ -41,6 +39,7 @@ function App() {
           <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>
+      </AuthProvider>
     </div>
   );
 }

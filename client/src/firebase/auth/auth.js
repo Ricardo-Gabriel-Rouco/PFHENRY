@@ -15,7 +15,7 @@ export async function createUser(email, password) {
         await setDoc(userRef, newUser)
         console.log("Usuario creado")
     } catch (error) {
-        console.log(error)
+        throw error
     }
 }
 
@@ -24,7 +24,7 @@ export async function sigInWithMail(email, password) {
         const res = await signInWithEmailAndPassword(auth, email, password);
         console.log(res.user.uid)
     } catch (error) {
-        console.log(error)
+        throw error
     }
 }
 
