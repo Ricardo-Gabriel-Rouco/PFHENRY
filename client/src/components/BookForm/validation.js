@@ -6,7 +6,7 @@ export default function validate(bookData) {
   let errors = {
     isbn: "",
     title: "",
-    author: "",
+    authors: "",
     editorial: "",
     genres: "",
     image:"",
@@ -28,11 +28,13 @@ export default function validate(bookData) {
     else if (!regexTitle.test(bookData.title)) errors.title = 'Only numbers, letters or spaces are allowed'
   }
 
-  if(bookData.author !== undefined)
+  if(bookData.authors !== undefined)
   {
-    if (!bookData.author) errors.author = 'Author must be specified';
-    else if (!bookData.author.length > 50) errors.author = 'Author must be at most 50 characters';
-    else if (!regexAuthor.test(bookData.author)) errors.author = 'Only letters or points are allowed'
+    if (!bookData.authors.length) errors.authors = 'Authors must be specified';
+    else if (bookData.authors[0].length > 50) errors.authors = 'Authors must be at most 50 characters each';
+    else if (!regexAuthor.test(bookData.authors[0])) errors.authors = 'Only letters or points are allowed'
+
+     
   }
 
   if(bookData.editorial !== undefined)
@@ -47,11 +49,11 @@ export default function validate(bookData) {
     if (!bookData.genres.length) errors.genres = 'At least one genre must be selected';
   }
   
-    if( bookData.image !== undefined)
-    {
-      if (bookData.image==="") errors.image = 'Must insert an image through a file or a link'
-      else if (bookData.image===null) errors.image = 'Invalid link/file'
-    }
+  if( bookData.image !== undefined)
+  {
+    if (bookData.image==="") errors.image = 'Must insert an image through a file or a link'
+    else if (bookData.image===null) errors.image = 'Invalid link/file'
+  }
 
   if(bookData.price !== undefined)
   {
