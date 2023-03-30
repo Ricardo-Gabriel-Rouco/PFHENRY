@@ -62,7 +62,7 @@ const CardContainer = () => {
                 <div key={index}>
                   <Card
                     id={c.id}
-                    author={c.author}
+                    authors={c.authors}
                     image={c.image}
                     title={c.title}
                     stock={c.stock}
