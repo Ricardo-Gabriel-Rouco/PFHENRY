@@ -13,12 +13,15 @@ import { IconButton } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
+import { addProduct } from '../../redux/rootReducer/cartSlice';
 
 const Card = (props) => {
     const favorites = useSelector(state => state.favorite.favorites);
     const dispatch = useDispatch();
     const [isFav, setIsFav] = useState(false);
+    const cart = useSelector(state => state.cart);
 
+    console.log(cart)
     useEffect(() => {
         favorites.forEach((fav) => {
             if (fav.id === props.id) {
@@ -37,7 +40,9 @@ const Card = (props) => {
             setIsFav(true);
         }
     };
-
+    const handleAdd = (id) => {
+        dispatch(addProduct(id));
+    };
     return (
         <Box sx={{ margin: '30px',flexDirection: 'column', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', transition: 'box-shadow 0.3s ease', height: '450px', width: '300px' }} className={style.card}>
             {
@@ -71,11 +76,9 @@ const Card = (props) => {
 
                     Details
                 </Link></Button>
-                <IconButton variant='contained' color="primary" aria-label="add to shopping cart">
-                    <Link to={`/home/cart`}>
+                <Button onClick={() => handleAdd(props)}><IconButton variant='' color="primary" aria-label="add to shopping cart">
                         <ShoppingCartIcon />
-                    </Link>
-                </IconButton>
+                </IconButton></Button>
             </CardActions>
         </Box>
 
