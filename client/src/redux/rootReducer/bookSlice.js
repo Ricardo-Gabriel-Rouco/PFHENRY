@@ -42,12 +42,11 @@ export const booksSlice = createSlice({
     },
 
     filterBooks: (state, action) => {
-      const reset = state.allBooks;
-
+      console.log(action.payload)
       state.booksToFilter =
         action.payload[1] === "all"
-          ? reset
-          : state.booksToFilter.filter((books) => books[action.payload[0]] === action.payload[1]);
+          ? state.allBooks
+          : state.booksToFilter.filter((books) => books[action.payload[0]]?books[action.payload[0]].includes(action.payload[1]):false);
 
       if (action.payload[1] !== "all") {
         state.filtersApplied.push(action.payload);
@@ -66,8 +65,8 @@ export const booksSlice = createSlice({
       }
       state.booksToFilter = state.allBooks;
       state.filtersApplied.forEach((elem) => {
-        state.booksToFilter = state.booksToFilter.filter((books) => books[elem[0]] === elem[1]);
-      });
+        state.booksToFilter = state.booksToFilter.filter((books) => books[elem[0]]?books[elem[0]].includes(elem[1]):false);
+      });                                       
 
       if (state.filtersApplied.length === 0) {
         state.booksToFilter = state.allBooks;
@@ -124,7 +123,6 @@ export const booksSlice = createSlice({
     },
 
     reset: (state, action) => {
-      action.payload = null;
       state.booksToFilter = state.allBooks;
       state.filtersApplied = [];
     },

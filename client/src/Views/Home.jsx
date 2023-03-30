@@ -17,6 +17,7 @@ const Home = () => {
       try {
         const data = await getDocs(bookCollectionRef);
         const filterData = data.docs.map((books) => ({ ...books.data(), id: books.id }));
+        console.log(data)
         dispatch(addBook(filterData));
       } catch (error) {}
     };

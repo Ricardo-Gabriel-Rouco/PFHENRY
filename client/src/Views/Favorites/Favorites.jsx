@@ -44,7 +44,7 @@ const Favorites = () => {
                             <TableRow>
                                 <TableCell>ID</TableCell>
                                 <TableCell>Title</TableCell>
-                                <TableCell>Author</TableCell>
+                                <TableCell>Authors</TableCell>
                                 <TableCell>Image</TableCell>
                                 <TableCell>Price</TableCell>
                                 <TableCell>Delete</TableCell>
@@ -58,7 +58,7 @@ const Favorites = () => {
                                 <TableRow sx={styles.tableRow} key={index}>
                                     <TableCell sx={styles.tableCell}>{favorite.id}</TableCell>
                                     <TableCell sx={styles.tableCell}>{favorite.title}</TableCell>
-                                    <TableCell sx={styles.tableCell}>{favorite.author}</TableCell>
+                                    <TableCell sx={styles.tableCell}>{favorite.authors.join(', ')}</TableCell>
                                     <TableCell sx={styles.tableCell}>
                                         <img src={favorite.image} alt='asdf' style={{ width: '10%' }} />
 
