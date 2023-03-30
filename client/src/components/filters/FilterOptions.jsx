@@ -13,15 +13,16 @@ import {
 export const FilterOptions = ({ setCurrentPage }) => {
   const dispatch = useDispatch();
 
+  const [genres,setGenres] = useState([])
+  const [authors, setAuthors] = useState([])
+
+  
+  const booksList = useSelector((state) => state.books.booksToFilter);
+  
   useEffect(() => {
-    return () => {
-      dispatch(reset());
-    };
-  }, [dispatch]);
-
-  const booksList = useSelector((state) => state.books.allBooks);
-
-  //const booksFiltered = useSelector((state) => state.books.booksToFilter);
+    setGenres(formatArray(booksList.map((elem) => elem.genres).flat()).sort())
+    setAuthors(formatArray(booksList.map((elem) => elem.authors).flat()).sort())
+  }, [booksList]);
 
   const filters = useSelector((state) => state.books.filtersApplied);
 
@@ -38,9 +39,9 @@ export const FilterOptions = ({ setCurrentPage }) => {
 
   const filterHandler = (e) => {
     e.preventDefault();
-    e.target.name === "author" ? setFilterAuthor(false) : setFilterGenre(false);
+    e.target.name === "authors" ? setFilterAuthor(false) : setFilterGenre(false);
     dispatch(filterBooks([e.target.name, e.target.value]));
-    if (e.target.name === "genre") {
+    if (e.target.name === "genres") {
       setDefaultGenre(e.target.value);
     }
     setCurrentPage(1);
@@ -66,7 +67,7 @@ export const FilterOptions = ({ setCurrentPage }) => {
 
   const handlerRemoveFilter = (e) => {
     e.preventDefault();
-    filters[e.target.id][0] === "author" ? setFilterAuthor(true) : setFilterGenre(true);
+    filters[e.target.id][0] === "authors" ? setFilterAuthor(true) : setFilterGenre(true);
     dispatch(removeFilter(e.target.id));
     dispatch(display(true));
     setCurrentPage(1);
@@ -79,11 +80,10 @@ export const FilterOptions = ({ setCurrentPage }) => {
   return (
     <div className={style.mainDiv}>
       <div className={style.divFiltersContainer}>
-        {filterAuthor ? (
-          <select name="author" id="author" onChange={filterHandler} className={style.filters}>
+        {booksList.length && filterAuthor ? (
+          <select name="authors" id="authors" onChange={filterHandler} className={style.filters}>
             <option value="all">All Authors</option>
-            {booksList.length &&
-              formatArray(booksList.map((elem) => elem.author).sort()).map((elem, index) =>
+            {authors.sort().map((elem, index) =>
                 elem !== null ? (
                   <option key={index} value={elem} className={style.filters}>
                     {elem}
@@ -93,21 +93,22 @@ export const FilterOptions = ({ setCurrentPage }) => {
           </select>
         ) : null}
 
+        {booksList.length && filterGenre?
         <select
-          name="genre"
-          id="genre"
-          value={defaultGenre}
+          name="genres"
+          id="genres"
           onChange={filterHandler}
           className={style.filters}
         >
           <option value="all">All Genres</option>
           {booksList.length &&
-            formatArray(booksList.map((elem) => elem.genre).sort()).map((gen, index) => (
+            genres.map((gen, index) => (
               <option key={index} value={gen}>
                 {gen}
               </option>
             ))}
         </select>
+        :null}
 
         <select onChange={handlerOrder} className={style.filters} value={defaultOrder}>
           <option value="asc">A-Z</option>

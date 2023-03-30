@@ -54,7 +54,7 @@ const CardContainer = () => {
     <div className={style.container}>
       <NavBar paginated={paginated} />
       <FilterOptions setCurrentPage={setCurrentPage} />
-      {displayCard ? (
+      {booksList.length ? (
         <Cards>
           <Grid container spacing={1} justifyContent='center' bgcolor='#f9b52ea8'>
             {currentBook.map((c, index) => (
@@ -62,7 +62,7 @@ const CardContainer = () => {
                 <div key={index}>
                   <Card
                     id={c.id}
-                    author={c.author}
+                    authors={c.authors}
                     image={c.image}
                     title={c.title}
                     stock={c.stock}

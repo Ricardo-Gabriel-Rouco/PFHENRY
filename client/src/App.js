@@ -13,14 +13,6 @@ import Register from "./components/Register/Register";
 import Cart from "./components/Cart/Cart";
 
 function App() {
-  // useEffect(() => {
-  // en este caso tenemos dos opciones, usamos getData o onSnapshot, la diferencia es que cada vez que se actualiza la db, onSnapshot envia la data nueva sin necesidad de un refresh
-
-  //   onSnapshot(collection(db, 'books'), (snapshot) =>{
-  //     console.log(snapshot.docs.map((doc) => (doc.data()) ))
-  //   })
-  // }, [onSnapshot])
-
   return (
     <div className="App">
       <AuthProvider>

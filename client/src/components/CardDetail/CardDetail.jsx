@@ -39,9 +39,9 @@ const CardDetail = () => {
                             {bookDetail.title}
                         </Typography>
                         <Typography variant="h5">
-                            <p>Author: {bookDetail.author}</p>
+                            <p>Authors: {bookDetail.authors.join(', ')}</p>
                             <p>Editorial: {bookDetail.editorial}</p>
-                            <p>Genre: {bookDetail.genre}</p>
+                            <p>Genres: {bookDetail.genres.join(', ')}</p>
                         </Typography>
                         <CardMedia
                             component="img"
