@@ -1,20 +1,36 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, TextField } from "@mui/material";
 import { createUser } from "../../firebase/auth/auth";
 import { registerWithGoogle } from "../../firebase/auth/googleLogIn";
+import { useDispatch } from "react-redux";
+import { logUserIn } from "../../redux/rootReducer/userSlice";
 
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const handleRegister = (e) => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  
+  const handleRegister = async (e) => {
     e.preventDefault();
-    createUser(email, password)
+    try {
+      await createUser(email, password)
+      dispatch(logUserIn(true))
+      navigate('/home')
+    } catch (error) {
+      alert('Error al iniciar sesion: ', error)
+    }
   };
 
-  const handleGoogleSignIn = () => {
-    registerWithGoogle()
+  const handleGoogleSignIn = async() => {
+    try {
+      await registerWithGoogle()
+      dispatch(logUserIn(true))
+      navigate('/home')
+    } catch (error) {
+      alert('Error al iniciar sesion: ', error)
+    }
   };
 
   return (

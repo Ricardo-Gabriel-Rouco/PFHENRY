@@ -1,7 +1,5 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { collection, setDoc, doc, getDoc } from "firebase/firestore";
-import { FaUniregistry } from "react-icons/fa";
 import { auth, db } from "../firebase-config";
 
 export async function createUser(email, password) {
