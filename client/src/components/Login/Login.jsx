@@ -11,14 +11,17 @@ const Login = () => {
     password: "",
   });
 
-  
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+  });
 
   async function handleSubmit() {
     try {
       await login(userData.email, userData.password)
       navigate('/home')
     } catch (error) {
-      alert('Error al iniciar sesion: ', error)
+      console.log(error.code)
     }
   }
 
