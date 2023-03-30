@@ -76,7 +76,7 @@ const Card = ({ image, id, title, authors, price, stock }) => {
 
                     Details
                 </Link></Button>
-                <Button onClick={() => handleAdd(props)}><IconButton variant='' color="primary" aria-label="add to shopping cart">
+                <Button onClick={() => handleAdd({ image, id, title, authors, price, stock })}><IconButton variant='' color="primary" aria-label="add to shopping cart">
                         <ShoppingCartIcon />
                 </IconButton></Button>
             </CardActions>
