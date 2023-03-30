@@ -11,6 +11,8 @@ import Error from "./Views/Error";
 import CardDetail from './components/CardDetail/CardDetail'; 
 import Favorites from './Views/Favorites/Favorites'
 import AddBooks from './Views/AddBooks/AddBooks'
+import Login from './components/Login/Login'
+import Register from "./components/Register/Register";
 import Cart from "./components/Cart/Cart";
 
 function App() {
@@ -33,6 +35,9 @@ function App() {
           <Route exact path="/cart" element={<Cart />} />
           <Route exact path="/create" element={<AddBooks/>}/>
           <Route path='/home/:id' element={<CardDetail />} /> 
+          <Route path='/login' element={<Login/>}/>
+          <Route path='/register' element={<Register />} /> 
+
           <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>

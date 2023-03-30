@@ -1,6 +1,7 @@
 
 import SearchBar from "../SearchBar/SearchBar";
 import { Link, useLocation } from "react-router-dom";
+import { logOut } from "../../firebase/auth/auth";
 import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
 import ShoppingCart from "@mui/icons-material/ShoppingCart";
 import AccountCircle from "@mui/icons-material/AccountCircle";
@@ -9,21 +10,24 @@ import Home from "@mui/icons-material/Home";
 import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
 
 import * as React from "react";
-import Switch from "@mui/material/Switch";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormGroup from "@mui/material/FormGroup";
+// import Switch from "@mui/material/Switch";
+// import FormControlLabel from "@mui/material/FormControlLabel";
+// import FormGroup from "@mui/material/FormGroup";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
+import LoginIcon from '@mui/icons-material/Login'
+import { useDispatch, useSelector } from "react-redux";
+import { logUserOut } from "../../redux/rootReducer/userSlice";
+
 
 
 const NavBar = ({paginated}) => {
-  const [auth, setAuth] = React.useState(true);
+  // const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const authorized = useSelector((state) => state.user.isLogged);
+  const dispatch = useDispatch()
 
   const location = useLocation()
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -33,20 +37,26 @@ const NavBar = ({paginated}) => {
     setAnchorEl(null);
   };
 
+  const handleLogOut = async() => {
+    await logOut()
+    dispatch(logUserOut(false))
+    alert('Session was closed')
+    console.log(authorized, 'mi estado de login')
+  }
   return (
     <Box sx={{ flexGrow: 1, bgcolor: "#F9B52E", color: "#F7F6F6", p: 1 }}>
-      <FormGroup>
+      {/* <FormGroup>
         <FormControlLabel
           control={
             <Switch
-              checked={auth}
+              checked={authorized}
               onChange={handleChange}
               aria-label="login switch"
             />
           }
-          label={auth ? "Logout" : "Login"}
+          label={authorized ? "Logout" : "Login"}
         />
-      </FormGroup>
+      </FormGroup> */}
       <AppBar position="static" color="secondary">
         <Box>
           <Toolbar>
@@ -104,7 +114,7 @@ const NavBar = ({paginated}) => {
               </Link>
             </IconButton>
 
-            {auth && (
+            {authorized ? (
               <div>
                 <IconButton
                   size="large"
@@ -133,9 +143,13 @@ const NavBar = ({paginated}) => {
                 >
                   <MenuItem onClick={handleClose}>Profile</MenuItem>
                   <MenuItem onClick={handleClose}>My account</MenuItem>
+                  <MenuItem onClick={handleLogOut}>Log Out</MenuItem> 
                 </Menu>
               </div>
-            )}
+            ) : 
+            (<Link to={'/login'}>
+              <LoginIcon sx={{ color: "#F7F6F6" }}/>
+            </Link>)}
           </Toolbar>
         </Box>
       </AppBar>
