@@ -1,23 +1,21 @@
 import React, { useState } from "react";
-import { registerWithGoogle } from "../../firebase/auth/googleLogIn";
-import { sigInWithMail } from "../../firebase/auth/auth";
 import { Button, TextField } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import { logUserIn } from "../../redux/rootReducer/userSlice";
-import { useDispatch } from "react-redux";
+import { useAuth } from "../../context/authContext";
 
 const Login = () => {
+  const {login} = useAuth()
   const navigate = useNavigate()
-  const dispatch = useDispatch()
   const [userData, setUserData] = useState({
     email: "",
     password: "",
   });
 
-  async function registerMail() {
+  
+
+  async function handleSubmit() {
     try {
-      await sigInWithMail(userData.email, userData.password);
-      dispatch(logUserIn(true))
+      await login(userData.email, userData.password)
       navigate('/home')
     } catch (error) {
       alert('Error al iniciar sesion: ', error)
@@ -26,8 +24,7 @@ const Login = () => {
 
   async function registerGoogle() {
     try {
-      await registerWithGoogle();
-      dispatch(logUserIn(true))     
+    
       navigate('/home')
     } catch (error) {
       alert('Error al iniciar sesion: ', error)
@@ -39,7 +36,7 @@ const Login = () => {
   }
 
   return (
-    <form onSubmit={registerMail} style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "2rem" }}>
+    <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "2rem" }}>
       <TextField type="text" name="email" value={userData.email} label="Correo electrónico" onChange={handleInputChange} style={{ margin: "1rem" }}/>
       <TextField type="password" name="password" value={userData.password} label="Contraseña" onChange={handleInputChange} style={{ margin: "1rem" }}/>
       <Button type="submit" variant="contained" color="primary" style={{ margin: "2rem" }}>Iniciar Sesion</Button>
