@@ -15,7 +15,7 @@ import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import { addProduct } from '../../redux/rootReducer/cartSlice';
 
-const Card = (props) => {
+const Card = ({ image, id, title, authors, price, stock }) => {
     const favorites = useSelector(state => state.favorite.favorites);
     const dispatch = useDispatch();
     const [isFav, setIsFav] = useState(false);
@@ -24,18 +24,18 @@ const Card = (props) => {
     console.log(cart)
     useEffect(() => {
         favorites.forEach((fav) => {
-            if (fav.id === props.id) {
+            if (fav.id === id) {
                 setIsFav(true);
             }
         });
-    }, [favorites, props.id]);
+    }, [favorites, id]);
 
     const handleFavorite = () => {
         if (isFav) {
-            dispatch(deleteFavorite(props.id));
+            dispatch(deleteFavorite(id));
             setIsFav(false);
         } else {
-            dispatch(addFavorite({ image: props.image, id: props.id, title: props.title, author: props.author, price: props.price, stock: props.stock }));
+            dispatch(addFavorite({ image, id, title, authors, price, stock }));
 
             setIsFav(true);
         }
@@ -57,26 +57,26 @@ const Card = (props) => {
                 component="img"
                 height='300'
                 sx={{ width: '10rem', height: '14rem', objectFit: 'cover', marginTop: '25px' }}
-                image={props.image}
-                alt={props.name}    
+                image={image}
+                alt={title}    
             />
             <CardContent>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                    {props.title}
+                    {title}
                 </Typography>
                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    {props.stock ? <p>Stock: {props.stock}</p> : null}
+                    {stock ? <p>Stock: {stock}</p> : null}
                 </Typography>
                 <Typography variant="body2">
-                    {props.price ? <p>Price: {props.price}</p> : null}
+                    {price ? <p>Price: {price}</p> : null}
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button variant='contained' href="#contained-buttons" size="small"> <Link to={`/home/${props.id}`}>
+                <Button variant='contained' href="#contained-buttons" size="small"> <Link to={`/home/${id}`}>
 
                     Details
                 </Link></Button>
-                <Button onClick={() => handleAdd(props)}><IconButton variant='' color="primary" aria-label="add to shopping cart">
+                <Button onClick={() => handleAdd({ image, id, title, authors, price, stock })}><IconButton variant='' color="primary" aria-label="add to shopping cart">
                         <ShoppingCartIcon />
                 </IconButton></Button>
             </CardActions>

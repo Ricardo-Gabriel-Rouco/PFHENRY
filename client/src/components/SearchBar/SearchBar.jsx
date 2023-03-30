@@ -15,7 +15,7 @@ const SearchBar = ({
 }) => {
     const books = useSelector((state) => state.books.booksToFilter)
 
-    console.log(books)
+    // console.log(books)
 
     //ESTADO PARA SETEAR LOS VALORES DE BUSQUEDA
     const [searchValue, setSearchValue] = useState("");
