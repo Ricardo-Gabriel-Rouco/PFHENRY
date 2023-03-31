@@ -13,7 +13,6 @@ export async function createUser(email, password) {
         const collectionRef = collection(db, 'users')
         const userRef = doc(collectionRef, res.user.uid)
         await setDoc(userRef, newUser)
-        console.log("Usuario creado")
     } catch (error) {
         throw error
     }
@@ -22,7 +21,7 @@ export async function createUser(email, password) {
 export async function sigInWithMail(email, password) {
     try {
         const res = await signInWithEmailAndPassword(auth, email, password);
-        console.log(res.user.uid)
+        return res
     } catch (error) {
         throw error
     }
@@ -31,16 +30,15 @@ export async function sigInWithMail(email, password) {
 export async function logOut() {
     try {
         signOut(auth)
-        console.log("Usuario deslogueado")
     } catch (error) {
         console.log(error)
     }
 }
 
 export async function verifyUserSesion() {
-    onAuthStateChanged(auth, async user => {
-        if (user) {
-            console.log(`Usuario ${user.uid} logueado`)
+    await onAuthStateChanged(auth, currentUser => {
+        if (currentUser) {
+            return currentUser.uid
         }
         else {
             console.log("No hay ningun usuario logueado")

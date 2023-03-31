@@ -1,31 +1,30 @@
 
 import SearchBar from "../SearchBar/SearchBar";
 import { Link, useLocation } from "react-router-dom";
-import { logOut } from "../../firebase/auth/auth";
+import * as React from "react";
+import { useAuth } from "../../context/authContext";
+
+// import Switch from "@mui/material/Switch";
+// import FormControlLabel from "@mui/material/FormControlLabel";
+// import FormGroup from "@mui/material/FormGroup";
 import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
 import ShoppingCart from "@mui/icons-material/ShoppingCart";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import Home from "@mui/icons-material/Home";
 import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
-
-import * as React from "react";
-// import Switch from "@mui/material/Switch";
-// import FormControlLabel from "@mui/material/FormControlLabel";
-// import FormGroup from "@mui/material/FormGroup";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import LoginIcon from '@mui/icons-material/Login'
-import { useDispatch, useSelector } from "react-redux";
-import { logUserOut } from "../../redux/rootReducer/userSlice";
+
 
 
 
 const NavBar = ({paginated}) => {
-  // const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const authorized = useSelector((state) => state.user.isLogged);
-  const dispatch = useDispatch()
+
+  const {userStatus} = useAuth()
+  const {logout} = useAuth()
 
   const location = useLocation()
 
@@ -38,10 +37,8 @@ const NavBar = ({paginated}) => {
   };
 
   const handleLogOut = async() => {
-    await logOut()
-    dispatch(logUserOut(false))
+    logout()
     alert('Session was closed')
-    console.log(authorized, 'mi estado de login')
   }
   return (
     <Box sx={{ flexGrow: 1, bgcolor: "#F9B52E", color: "#F7F6F6", p: 1 }}>
@@ -114,7 +111,7 @@ const NavBar = ({paginated}) => {
               </Link>
             </IconButton>
 
-            {authorized ? (
+            {userStatus ? (
               <div>
                 <IconButton
                   size="large"
