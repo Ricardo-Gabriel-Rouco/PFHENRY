@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { createUser, sigInWithMail, logOut } from "../firebase/auth/auth";
 import { registerWithGoogle } from "../firebase/auth/googleLogIn";
 import { auth } from "../firebase/firebase-config";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, sendPasswordResetEmail } from "firebase/auth";
 
 export const authContext = createContext();
 
@@ -38,9 +38,20 @@ export function AuthProvider({ children }) {
     await registerWithGoogle();
   };
 
+  const resetPassword = async (email) => {
+    sendPasswordResetEmail(auth, email);
+  };
   return (
     <authContext.Provider
-      value={{ signup, login, userStatus, logout, loading, loginWithGoogle }}
+      value={{
+        signup,
+        login,
+        userStatus,
+        logout,
+        loading,
+        loginWithGoogle,
+        resetPassword,
+      }}
     >
       {children}
     </authContext.Provider>

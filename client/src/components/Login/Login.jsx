@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 
 const Login = () => {
-  const { login, loginWithGoogle } = useAuth();
+  const { login, loginWithGoogle, resetPassword } = useAuth();
   const navigate = useNavigate();
   const [userData, setUserData] = useState({
     email: "",
@@ -40,6 +40,16 @@ const Login = () => {
 
   function handleInputChange(e) {
     setUserData({ ...userData, [e.target.name]: e.target.value });
+  }
+
+  const handleResetPassword = async() => {
+    if(!userData.email) return setErrors({...userData, email:'ingresa un email'})
+    try {
+      await resetPassword(userData.email)
+      alert('we send you an email to reset your password')
+    } catch (error) {
+      alert(error.message)
+    }
   }
 
   return (
@@ -90,6 +100,7 @@ const Login = () => {
         Inicia sesion con Google
       </Button>
       <Link to={"/register"}>No tienes Cuenta? crea una</Link>
+      <Link onClick={handleResetPassword}>Forgot password?</Link>
     </form>
   );
 };
