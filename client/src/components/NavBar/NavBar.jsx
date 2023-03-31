@@ -1,4 +1,3 @@
-
 import SearchBar from "../SearchBar/SearchBar";
 import { Link, useLocation } from "react-router-dom";
 import * as React from "react";
@@ -15,18 +14,15 @@ import Home from "@mui/icons-material/Home";
 import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import LoginIcon from '@mui/icons-material/Login'
+// import LoginIcon from "@mui/icons-material/Login";
 
-
-
-
-const NavBar = ({paginated}) => {
+const NavBar = ({ paginated }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const {userStatus} = useAuth()
-  const {logout} = useAuth()
+  const { userStatus } = useAuth();
+  const { logout } = useAuth();
 
-  const location = useLocation()
+  const location = useLocation();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -36,10 +32,10 @@ const NavBar = ({paginated}) => {
     setAnchorEl(null);
   };
 
-  const handleLogOut = async() => {
-    logout()
-    alert('Session was closed')
-  }
+  const handleLogOut = async () => {
+    logout();
+    alert("Session was closed");
+  };
   return (
     <Box sx={{ flexGrow: 1, bgcolor: "#F9B52E", color: "#F7F6F6", p: 1 }}>
       {/* <FormGroup>
@@ -69,13 +65,16 @@ const NavBar = ({paginated}) => {
               </Link>
             </IconButton>
 
-            {location.pathname!=='/create'?
-            <Box sx={{ width: "55rem", marginInline: "40px" }}>
-              <SearchBar paginated={paginated} placeholder="Search your book..." />
-            </Box>
-            :null}
+            {location.pathname !== "/create" ? (
+              <Box sx={{ width: "55rem", marginInline: "40px" }}>
+                <SearchBar
+                  paginated={paginated}
+                  placeholder="Search your book..."
+                />
+              </Box>
+            ) : null}
 
-            <IconButton
+            {userStatus.role === 'ADMIN' ? <IconButton
               size="large"
               edge="start"
               aria-label="buttons"
@@ -85,7 +84,7 @@ const NavBar = ({paginated}) => {
               <Link to="/create">
                 <AddCircleOutlineIcon sx={{ color: "#F7F6F6" }} />
               </Link>
-            </IconButton>
+            </IconButton> : null}
 
             <IconButton
               size="large"
@@ -111,42 +110,46 @@ const NavBar = ({paginated}) => {
               </Link>
             </IconButton>
 
-            {userStatus.logged ? (
-              <div>
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleMenu}
-                >
-                  <AccountCircle sx={{ color: "#F7F6F6" }} />
-                </IconButton>
+            {/* {userStatus.logged ? ( */}
+            <div>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+              >
+                <AccountCircle sx={{ color: "#F7F6F6" }} />
+              </IconButton>
 
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: "botton",
-                    horizontal: "right",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={Boolean(anchorEl)}
-                  onClose={handleClose}
-                >
-                  <MenuItem onClick={handleClose}>Profile</MenuItem>
-                  <MenuItem onClick={handleClose}>My account</MenuItem>
-                  <MenuItem onClick={handleLogOut}>Log Out</MenuItem> 
-                </Menu>
-              </div>
-            ) : 
-            (<Link to={'/login'}>
-              <LoginIcon sx={{ color: "#F7F6F6" }}/>
-            </Link>)}
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "botton",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                {userStatus.logged ? (
+                  <>
+                    <MenuItem onClick={handleClose}>Profile</MenuItem>
+                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                    <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
+                  </>
+                ) : (
+                  <MenuItem>
+                    <Link to={"/login"}>Log In</Link>
+                  </MenuItem>
+                )}
+              </Menu>
+            </div>
           </Toolbar>
         </Box>
       </AppBar>
@@ -155,3 +158,8 @@ const NavBar = ({paginated}) => {
 };
 
 export default NavBar;
+
+// ) :
+// (<Link to={'/login'}>
+//   <LoginIcon sx={{ color: "#F7F6F6" }}/>
+// </Link>)}

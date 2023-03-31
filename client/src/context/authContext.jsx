@@ -1,5 +1,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { createUser, sigInWithMail, logOut } from "../firebase/auth/auth";
+import {
+  createUser,
+  sigInWithMail,
+  logOut,
+  getUserById,
+} from "../firebase/auth/auth";
 import { registerWithGoogle } from "../firebase/auth/googleLogIn";
 import { auth } from "../firebase/firebase-config";
 import { onAuthStateChanged, sendPasswordResetEmail } from "firebase/auth";
@@ -14,9 +19,9 @@ export const useAuth = () => {
 export function AuthProvider({ children }) {
   const [userStatus, setUserStatus] = useState({
     logged: null,
-    userId: '',
-    email: '',
-    role: '',
+    userId: "",
+    email: "",
+    role: "",
   });
   const [loading, setLoading] = useState(true);
 
@@ -25,15 +30,22 @@ export function AuthProvider({ children }) {
   };
 
   const login = async (email, password) => {
-    await sigInWithMail(email, password);
+    sigInWithMail(email, password);
   };
 
   useEffect(() => {
-    onAuthStateChanged(auth, (currentUser) => {
+    onAuthStateChanged(auth,async (currentUser) => {
       // console.log(currentUser)
-      if(currentUser){
-        setUserStatus({...userStatus, logged: true, userId: currentUser.uid, email: currentUser.email, role: currentUser.role || null});
-
+      if (currentUser) {
+        const userRole = await getUserById(currentUser.uid)
+        setUserStatus({
+          ...userStatus,
+          logged: true,
+          userId: currentUser.uid,
+          email: currentUser.email,
+          role: userRole.rol,
+        });
+        console.log(userStatus);
       }
       setLoading(false);
     });
@@ -41,7 +53,7 @@ export function AuthProvider({ children }) {
 
   const logout = async () => {
     await logOut();
-    setUserStatus({...userStatus, logged: false})
+    setUserStatus({ ...userStatus, logged: false, role: "" });
   };
 
   const loginWithGoogle = async () => {
@@ -67,4 +79,3 @@ export function AuthProvider({ children }) {
     </authContext.Provider>
   );
 }
-

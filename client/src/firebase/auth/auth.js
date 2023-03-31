@@ -47,11 +47,12 @@ export async function verifyUserSesion() {
 }
 
 export async function getUserById(uid) {
+    console.log(uid)
     try {
         const userRef = doc(db, 'users', uid);
         const userSnap = await getDoc(userRef);
         if (userSnap.exists()) {
-            console.log(userSnap.data())
+            return {...userSnap.data()}
         } else {
             console.log('No existe el usuario!');
         }
