@@ -9,33 +9,38 @@ function Register() {
     password: "",
   });
   const [errors, setErrors] = useState({
-    email: '',
-    password: ''
-  })
+    email: "",
+    password: "",
+  });
   const navigate = useNavigate();
 
-  const { signup } = useAuth();
+  const { signup, loginWithGoogle } = useAuth();
 
   function handleInputChange(e) {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   }
 
-  async function handleSubmit(e){
+  async function handleSubmit(e) {
     e.preventDefault();
     try {
       await signup(userData.email, userData.password);
-      navigate('/home')
+      navigate("/home");
     } catch (error) {
-      if(error.code === 'auth/weak-password') setErrors({...errors, password:'Password too short, at least 6 characters'})
-      if(error.code === 'auth/invalid-email') setErrors({...errors, email: 'You must introduce an email'})
-      if(error.code === 'auth/email-already-in-use') setErrors({...errors, email: 'Email already in use'})
+      if (error.code === "auth/weak-password")
+        setErrors({
+          ...errors,
+          password: "Password too short, at least 6 characters",
+        });
+      if (error.code === "auth/invalid-email")
+        setErrors({ ...errors, email: "You must introduce an email" });
+      if (error.code === "auth/email-already-in-use")
+        setErrors({ ...errors, email: "Email already in use" });
     }
-  };
+  }
 
   const handleGoogleSignIn = async () => {
     try {
-      // await registerWithGoogle()
-      // dispatch(logUserIn(true))
+      await loginWithGoogle();
       navigate("/home");
     } catch (error) {
       alert("Error al iniciar sesion: ", error);
