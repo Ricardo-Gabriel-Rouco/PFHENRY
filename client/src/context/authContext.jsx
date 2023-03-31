@@ -12,7 +12,12 @@ export const useAuth = () => {
 };
 
 export function AuthProvider({ children }) {
-  const [userStatus, setUserStatus] = useState(null);
+  const [userStatus, setUserStatus] = useState({
+    logged: null,
+    userId: '',
+    email: '',
+    role: '',
+  });
   const [loading, setLoading] = useState(true);
 
   const signup = async (email, password) => {
@@ -25,7 +30,11 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
-      setUserStatus(currentUser);
+      // console.log(currentUser)
+      if(currentUser){
+        setUserStatus({...userStatus, logged: true, userId: currentUser.uid, email: currentUser.email, role: currentUser.role || null});
+
+      }
       setLoading(false);
     });
   }, []);
@@ -57,3 +66,4 @@ export function AuthProvider({ children }) {
     </authContext.Provider>
   );
 }
+
