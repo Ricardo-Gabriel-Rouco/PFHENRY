@@ -111,7 +111,7 @@ const NavBar = ({paginated}) => {
               </Link>
             </IconButton>
 
-            {userStatus ? (
+            {userStatus.logged ? (
               <div>
                 <IconButton
                   size="large"

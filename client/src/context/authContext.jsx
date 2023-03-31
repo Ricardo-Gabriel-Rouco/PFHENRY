@@ -41,6 +41,7 @@ export function AuthProvider({ children }) {
 
   const logout = async () => {
     await logOut();
+    setUserStatus({...userStatus, logged: false})
   };
 
   const loginWithGoogle = async () => {
