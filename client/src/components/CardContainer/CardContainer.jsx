@@ -1,6 +1,6 @@
 //import db from "../../firebase-config";
 //import { collection, onSnapshot } from "firebase/firestore";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 //import { doc, setDoc, getDocs, query, where } from "firebase/firestore";
 import Card from "../Card/Card";
 import style from "./CardContainer.module.css";
@@ -20,11 +20,12 @@ import NavBar from '../NavBar/NavBar';
 const CardContainer = () => {
   const booksList = useSelector((state) => state.books.booksToFilter);
   const displayCard = useSelector((state) => state.books.displayCard);
+  
 
-  //const [errorFilter, setErrorFilter] = useState(true);
 
-  // console.log(booksList);
 
+
+  //PAGINATED
   const [currentPage, setCurrentPage] = useState(1);
   const [booksPerPage] = useState(8);
   const indexOfLastBook = currentPage * booksPerPage;
@@ -50,6 +51,9 @@ const CardContainer = () => {
     setCurrentPage(pageNumber);
   };
 
+  
+
+
   return (
     <div className={style.container}>
       <NavBar paginated={paginated} />
@@ -67,6 +71,7 @@ const CardContainer = () => {
                     title={c.title}
                     stock={c.stock}
                     price={c.price}
+                    
                   />
                 </div>
               </Grid>

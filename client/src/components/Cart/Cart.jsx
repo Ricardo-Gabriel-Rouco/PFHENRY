@@ -1,99 +1,38 @@
 import { Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-
-import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addProduct, removeProduct, removeAllProducts } from '../../redux/rootReducer/cartSlice'
 
 
 
 const Cart = () => {
+    const dispatch = useDispatch();
+    const cart = useSelector(state => state.cart);
+    
 
-    const [cart, setCart] = useState(getCart());
-    const [total, setTotalPrice] = useState(0)
-
-    useEffect(() => {
-        const newTotalPrice = cart.reduce(
-            (total, product) => total + product.price * product.quantity,
-            0
-        );
-        setTotalPrice(newTotalPrice);
-    }, [cart]);
-
-    function getCart() {
-        return JSON.parse(localStorage.getItem('cart')) || [];
-    }
-
-    useEffect(() => {
-        const cartFromLocalStorage = getCart();
-        setCart(cartFromLocalStorage);
-    }, []);
-
-
-    //controller
-
-
-    const addToCart = (product) => {
-        const updatedCart = [...cart];
-        const existingProductIndex = updatedCart.findIndex(p => p.id === product.id);
-
-        if (existingProductIndex !== -1) {
-            updatedCart[existingProductIndex].quantity += 1;
-        } else {
-            updatedCart.push({ ...product, quantity: 1 });
-        }
-
-        setCart(updatedCart);
-        updateCartInLocalStorage(updatedCart);
-    }
-
-    const removeFromCart = (productId) => {
-        const productIndex = cart.findIndex((p) => p.id === productId);
-
-        if (productIndex !== -1) {
-            const updatedCart = [...cart];
-            updatedCart[productIndex] = {
-                ...updatedCart[productIndex],
-                quantity: updatedCart[productIndex].quantity - 1
-            };
-            if (updatedCart[productIndex].quantity === 0) {
-                updatedCart.splice(productIndex, 1);
-            }
-
-            setCart(updatedCart);
-            updateCartInLocalStorage(updatedCart);
-        }
-    };
-
-    const updateCartInLocalStorage = (cart) => {
-        localStorage.setItem('cart', JSON.stringify(cart));
-    }
-
-
-    function removeAll() {
-        localStorage.removeItem('cart');
-    }
     //handlers
     const handleAdd = (id) => {
-        addToCart(id)
+        dispatch(addProduct(id))
 
     };
 
     const handleRemove = (id) => {
-        removeFromCart(id)
+        dispatch(removeProduct(id))
     };
 
     const handleRemoveAll = () => {
-        removeAll()
+        dispatch(removeAllProducts())
 
     };
 
-
+    
 
     return (
         <div>
             <h2>Cart</h2>
             <h3>Products</h3>
-            {cart && cart.length ? cart.map((product) => {
+            {cart? cart.cart.cart.map((product) => {
                 return (
                     <div key={product.id}>
                         <p>{product.title}</p>
@@ -109,8 +48,8 @@ const Cart = () => {
                         </Button>
                     </div>
                 );
-            }) : 
-            <h6>Total price:</h6>}
+            })  :
+            <h6>Total price: </h6>}
             <Button onClick={() => handleRemoveAll()} variant="contained" color="secondary" size="small">
                 Remove all products
             </Button>

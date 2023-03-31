@@ -1,11 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
 const initialState = {
   cart: [],
-  totalPrice: 0
+  totalPrice: 0,
 };
 
-export const cartSlice = createSlice({
+const cartPersistConfig = {
+  key: "cart",
+  storage: storage,
+};
+
+
+export const cartReducer = createSlice({
   name: "cart",
   initialState,
   reducers: {
@@ -30,6 +38,7 @@ export const cartSlice = createSlice({
         }
         state.totalPrice -= product.price;
         state.totalPrice = Number(state.totalPrice.toFixed(2)); // Redondea a dos decimales
+
         if (state.totalPrice < 0) {
           state.totalPrice = 0;
         }
@@ -39,6 +48,7 @@ export const cartSlice = createSlice({
     removeAllProducts: (state) => {
       state.cart = [];
       state.totalPrice = 0;
+  // Elimina el carrito del almacenamiento persistente
     },
 
     clearCart: (state, action) => {
@@ -55,8 +65,10 @@ export const cartSlice = createSlice({
   }
 }
 )
+export const { addProduct, removeProduct, removeAllProducts } = cartReducer.actions;
+const persistedCartReducer = persistReducer(
+  cartPersistConfig,
+  cartReducer.reducer // utiliza el reducer directamente aquí
+);
 
-
-export const { addProduct, removeProduct, removeAllProducts, clearCart, updateCart } = cartSlice.actions;
-
-export default cartSlice.reducer;
+export default persistedCartReducer;

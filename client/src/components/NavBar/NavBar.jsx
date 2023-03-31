@@ -18,13 +18,17 @@ import Menu from "@mui/material/Menu";
 import LoginIcon from '@mui/icons-material/Login'
 import { useDispatch, useSelector } from "react-redux";
 import { logUserOut } from "../../redux/rootReducer/userSlice";
+import { Badge } from '@mui/material';
 
 
 
-const NavBar = ({paginated}) => {
+const NavBar = ({ paginated }) => {
   // const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const authorized = useSelector((state) => state.user.isLogged);
+  const favorites = useSelector(state => state.favorite.favorites);
+  const cart = useSelector(state => state.cart);
+
   const dispatch = useDispatch()
 
   const location = useLocation()
@@ -37,7 +41,7 @@ const NavBar = ({paginated}) => {
     setAnchorEl(null);
   };
 
-  const handleLogOut = async() => {
+  const handleLogOut = async () => {
     await logOut()
     dispatch(logUserOut(false))
     alert('Session was closed')
@@ -72,11 +76,11 @@ const NavBar = ({paginated}) => {
               </Link>
             </IconButton>
 
-            {location.pathname!=='/create'?
-            <Box sx={{ width: "55rem", marginInline: "40px" }}>
-              <SearchBar paginated={paginated} placeholder="Search your book..." />
-            </Box>
-            :null}
+            {location.pathname !== '/create' ?
+              <Box sx={{ width: "55rem", marginInline: "40px" }}>
+                <SearchBar paginated={paginated} placeholder="Search your book..." />
+              </Box>
+              : null}
 
             <IconButton
               size="large"
@@ -97,9 +101,13 @@ const NavBar = ({paginated}) => {
               sx={{ mr: 2 }}
               color="inherit"
             >
-              <Link to="/favorites">
-                <BookmarkOutlinedIcon sx={{ color: "#F7F6F6" }} />{" "}
-              </Link>
+
+
+              <Badge badgeContent={favorites && favorites.favorites.length} color="info">
+                <Link to="/favorites">
+                  <BookmarkOutlinedIcon sx={{ color: "#F7F6F6" }} />{" "}
+                </Link>
+              </Badge>
             </IconButton>
 
             <IconButton
@@ -109,9 +117,11 @@ const NavBar = ({paginated}) => {
               sx={{ mr: 2 }}
               color="warning"
             >
-              <Link to="/cart">
-                <ShoppingCart sx={{ color: "#F7F6F6" }} />
-              </Link>
+              <Badge badgeContent={cart && cart.cart.cart.length} color="info">
+                <Link to="/cart">
+                  <ShoppingCart sx={{ color: "#F7F6F6" }} />
+                </Link>
+              </Badge>
             </IconButton>
 
             {authorized ? (
@@ -143,13 +153,13 @@ const NavBar = ({paginated}) => {
                 >
                   <MenuItem onClick={handleClose}>Profile</MenuItem>
                   <MenuItem onClick={handleClose}>My account</MenuItem>
-                  <MenuItem onClick={handleLogOut}>Log Out</MenuItem> 
+                  <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
                 </Menu>
               </div>
-            ) : 
-            (<Link to={'/login'}>
-              <LoginIcon sx={{ color: "#F7F6F6" }}/>
-            </Link>)}
+            ) :
+              (<Link to={'/login'}>
+                <LoginIcon sx={{ color: "#F7F6F6" }} />
+              </Link>)}
           </Toolbar>
         </Box>
       </AppBar>
