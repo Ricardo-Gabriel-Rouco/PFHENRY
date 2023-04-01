@@ -55,7 +55,7 @@ export function AuthProvider({ children }) {
     if (userStatus.logged) {
       navigate(-1);
     }
-  }, [userStatus]);
+  }, []);
 
 
   const logout = async () => {
