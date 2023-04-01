@@ -1,6 +1,7 @@
 //import db from "../../firebase-config";
 //import { collection, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
+
 //import { doc, setDoc, getDocs, query, where } from "firebase/firestore";
 import Card from "../Card/Card";
 import style from "./CardContainer.module.css";
@@ -22,9 +23,10 @@ const CardContainer = () => {
   const allBooks = useSelector((state) => state.books.displayableBooks.length);
 
 
-  //const [errorFilter, setErrorFilter] = useState(true);
 
 
+
+  //PAGINATED
   const [currentPage, setCurrentPage] = useState(1);
   const [booksPerPage] = useState(8);
   const indexOfLastBook = currentPage * booksPerPage;
@@ -70,6 +72,7 @@ const CardContainer = () => {
                     title={c.title}
                     stock={c.stock}
                     price={c.price}
+                    
                   />
                 </div>
               </Grid>

@@ -1,6 +1,6 @@
 import SearchBar from "../SearchBar/SearchBar";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import {useState} from "react";
+import { useState } from "react";
 import { useAuth } from "../../context/authContext";
 
 // import Switch from "@mui/material/Switch";
@@ -14,9 +14,12 @@ import Home from "@mui/icons-material/Home";
 import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import { useDispatch } from "react-redux";
-// import LoginIcon from "@mui/icons-material/Login";
+import LoginIcon from '@mui/icons-material/Login'
+import { useDispatch, useSelector } from "react-redux";
+import { logUserOut } from "../../redux/rootReducer/userSlice";
+import { Badge } from '@mui/material';
 import { reset } from "../../redux/rootReducer/bookSlice";
+
 
 const NavBar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -24,9 +27,16 @@ const NavBar = () => {
   const { userStatus } = useAuth();
   const { logout } = useAuth();
 
+
+const NavBar = ({ paginated }) => {
+  // const [auth, setAuth] = React.useState(true);
+  const dispatch = useDispatch()
+  const location = useLocation()
   const navigate = useNavigate();
-  const location = useLocation();
-  const dispatch = useDispatch();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const authorized = useSelector((state) => state.user.isLogged);
+  const favorites = useSelector(state => state.favorite.favorites);
+  const cart = useSelector(state => state.cart);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -76,6 +86,7 @@ const NavBar = () => {
               <Home sx={{ color: "#F7F6F6" }} />
             </IconButton>
 
+
             {location.pathname !== "/create" ? (
               <Box sx={{ width: "55rem", marginInline: "40px" }}>
                 <SearchBar
@@ -103,9 +114,13 @@ const NavBar = () => {
               sx={{ mr: 2 }}
               color="inherit"
             >
-              <Link to="/favorites">
-                <BookmarkOutlinedIcon sx={{ color: "#F7F6F6" }} />{" "}
-              </Link>
+
+
+              <Badge badgeContent={favorites && favorites.favorites.length} color="info">
+                <Link to="/favorites">
+                  <BookmarkOutlinedIcon sx={{ color: "#F7F6F6" }} />{" "}
+                </Link>
+              </Badge>
             </IconButton>
 
             <IconButton
@@ -115,9 +130,11 @@ const NavBar = () => {
               sx={{ mr: 2 }}
               color="warning"
             >
-              <Link to="/cart">
-                <ShoppingCart sx={{ color: "#F7F6F6" }} />
-              </Link>
+              <Badge badgeContent={cart && cart.cart.cart.length} color="info">
+                <Link to="/cart">
+                  <ShoppingCart sx={{ color: "#F7F6F6" }} />
+                </Link>
+              </Badge>
             </IconButton>
 
             {/* {userStatus.logged ? ( */}
