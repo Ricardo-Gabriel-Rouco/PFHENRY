@@ -60,9 +60,9 @@ export async function postBook(book) {
   if (book.title.length > 50) throw new Error ('Title must be at most 50 characters')
   if (!regexTitle.test(book.title)) throw new Error ('Only numbers, letters or spaces are allowed in Title')
   
-  if (!book.author) throw new Error('Author must be specified')
-  if (!book.author.length > 50) throw new Error ('Author must be at most 50 characters')
-  if (!regexAuthor.test(book.author)) throw new Error ('Only letters or points are allowed in Author')
+  if (!book.authors.length) throw new Error('Authors must be specified')
+  if (!book.authors[0].length > 50) throw new Error ('Author must be at most 50 characters')
+  if (!regexAuthor.test(book.authors[0])) throw new Error ('Only letters or points are allowed in Author')
   
   if (!book.editorial) throw new Error('Publisher must be specified')
   if (!book.editorial.length > 50) throw new Error ('Publisher must be at most 50 characters')
@@ -93,14 +93,14 @@ export async function postBook(book) {
   }
 }
 // despues voy a revisar esta funcion, por favor usarla con precaucion
-export async function modifyBook(isbn, author, editorial, genre, urlImage, price, rating, title, year) {
+export async function modifyBook(isbn, authors, editorial, genres, urlImage, price, rating, title, year) {
   try {
     const newBook = doc(db, 'books', `${isbn}`)
     await updateDoc(newBook, {
-      author: author,
+      authors: authors,
       display: true,
       editorial: editorial,
-      genre: genre.map(g => g.id),
+      genres: genres.map(g => g.id),
       image: urlImage,
       price: price,
       rating: rating,

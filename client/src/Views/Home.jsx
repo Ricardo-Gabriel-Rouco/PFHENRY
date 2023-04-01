@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { addBook } from "../redux/rootReducer/bookSlice";
 import { useEffect} from "react";
 
+
 const Home = () => {
   const dispatch = useDispatch();
 
@@ -17,12 +18,13 @@ const Home = () => {
       try {
         const data = await getDocs(bookCollectionRef);
         const filterData = data.docs.map((books) => ({ ...books.data(), id: books.id }));
+        
         dispatch(addBook(filterData));
       } catch (error) {}
     };
 
     getBooksList();
-  }, [bookCollectionRef,dispatch]);
+  }, []);
 
   return (
     <>

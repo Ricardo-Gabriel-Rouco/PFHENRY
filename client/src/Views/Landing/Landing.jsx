@@ -4,6 +4,7 @@ import About from "../About";
 import style from "./Landing.module.css";
 import { Button } from "@mui/material";
 
+
 const Landing = () => {
   function scrollToAbout() {
     const about = document.getElementById("about");
@@ -11,6 +12,7 @@ const Landing = () => {
       about.scrollIntoView({ behavior: "smooth" });
     }
   }
+  
   return (
     <>
       <section id="landing">

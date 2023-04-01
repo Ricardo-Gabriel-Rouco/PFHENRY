@@ -13,14 +13,27 @@ import {
 
 import { deleteFavorite } from '../../redux/rootReducer/favoriteSlice'
 import { Link } from 'react-router-dom'
+import { addProduct } from '../../redux/rootReducer/cartSlice';
 
 
 const Favorites = () => {
     const favorites = useSelector(state => state.favorite.favorites)
     const dispatch = useDispatch()
-    const handleDelete = (id) => {
+
+
+const handleDelete = (id) => {
         dispatch(deleteFavorite(id));
     };
+
+const addToCart = (id) => {
+    dispatch(addProduct(id))
+    dispatch(deleteFavorite(id))
+    alert('Libro agregado al carrito')
+}
+
+
+
+
     const styles = {
         tableCell: {
             color: '#8a5509',
@@ -44,7 +57,7 @@ const Favorites = () => {
                             <TableRow>
                                 <TableCell>ID</TableCell>
                                 <TableCell>Title</TableCell>
-                                <TableCell>Author</TableCell>
+                                <TableCell>Authors</TableCell>
                                 <TableCell>Image</TableCell>
                                 <TableCell>Price</TableCell>
                                 <TableCell>Delete</TableCell>
@@ -53,12 +66,12 @@ const Favorites = () => {
                         </TableHead>
                         <TableBody>
 
-                            {favorites.map((favorite, index) => (
+                            {favorites? favorites.favorites.map((favorite, index) => (
 
                                 <TableRow sx={styles.tableRow} key={index}>
                                     <TableCell sx={styles.tableCell}>{favorite.id}</TableCell>
                                     <TableCell sx={styles.tableCell}>{favorite.title}</TableCell>
-                                    <TableCell sx={styles.tableCell}>{favorite.author}</TableCell>
+                                    <TableCell sx={styles.tableCell}>{favorite.authors.join(', ')}</TableCell>
                                     <TableCell sx={styles.tableCell}>
                                         <img src={favorite.image} alt='asdf' style={{ width: '10%' }} />
 
@@ -68,19 +81,16 @@ const Favorites = () => {
                                         <Button onClick={() => handleDelete(favorite.id)} variant="contained" color="primary" size='small'>Delete</Button>
                                     </TableCell>
                                     <TableCell>
-                                        <Button variant="contained" color="primary" size='small'>Add to Cart</Button>
+                                        <Button onClick={() => addToCart(favorite)}variant="contained" color="primary" size='small'>Add to Cart</Button>
 
                                     </TableCell>
                                 </TableRow>
-                            ))}
+                            )): 'There is no Favorites added'}
                         </TableBody>
                     </Table>
                 </TableContainer>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
                 </div>
-            </div>
-            <div className={style.btn}>
-                <Link to='/home'><Button variant="contained" color='primary'>Back to Home</Button></Link>
             </div>
         </>
     );
