@@ -11,12 +11,14 @@ import AddBooks from './Views/AddBooks/AddBooks'
 import Login from './components/Login/Login'
 import Register from "./components/Register/Register";
 import Cart from "./components/Cart/Cart";
+import NavBar from "./components/NavBar/NavBar";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
       <AuthProvider>
+        <NavBar/>
         <Routes>
           <Route exact path="/" element={<Landing />} />
           <Route exact path="/home" element={<Home />} />

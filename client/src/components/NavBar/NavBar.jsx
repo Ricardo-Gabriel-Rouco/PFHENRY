@@ -36,7 +36,7 @@ const NavBar = ({ paginated }) => {
     logout();
     alert("Session was closed");
   };
-  return (
+  return (location.pathname!=='/'&&
     <Box sx={{ flexGrow: 1, bgcolor: "#F9B52E", color: "#F7F6F6", p: 1 }}>
       {/* <FormGroup>
         <FormControlLabel
