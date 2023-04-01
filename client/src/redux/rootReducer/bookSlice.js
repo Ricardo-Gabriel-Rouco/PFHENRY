@@ -18,7 +18,7 @@ export const booksSlice = createSlice({
         return 0;
       });
       state.allBooks = alfa;
-      state.booksToFilter = alfa;
+      state.booksToFilter = alfa.filter(el=>el.display);
     },
 
     searchBook: (state, action) => {

@@ -13,12 +13,13 @@ import { Grid } from "@mui/material";
 import Cards from "@mui/material/Card";
 import ComponentError from "../ComponentError/ComponentError";
 
+import loading from '../../Assets/Loading.gif'
+
 
 // const books = db.collection('books');
 
 const CardContainer = () => {
   const booksList = useSelector((state) => state.books.booksToFilter);
-  const displayCard = useSelector((state) => state.books.displayCard);
 
   //const [errorFilter, setErrorFilter] = useState(true);
 
@@ -76,7 +77,8 @@ const CardContainer = () => {
           </Grid>
         </Cards>
       ) : (
-        <ComponentError />
+        //<ComponentError />
+        <img src={ loading } alt="loading" />
       )}
       <div className={style.paginate}>
         <Paginate
