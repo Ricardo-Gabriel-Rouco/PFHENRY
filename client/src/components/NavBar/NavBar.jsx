@@ -22,18 +22,13 @@ import { reset } from "../../redux/rootReducer/bookSlice";
 
 
 const NavBar = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
 
   const { userStatus } = useAuth();
   const { logout } = useAuth();
-
-
-const NavBar = ({ paginated }) => {
-  // const [auth, setAuth] = React.useState(true);
   const dispatch = useDispatch()
   const location = useLocation()
   const navigate = useNavigate();
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const authorized = useSelector((state) => state.user.isLogged);
   const favorites = useSelector(state => state.favorite.favorites);
   const cart = useSelector(state => state.cart);
