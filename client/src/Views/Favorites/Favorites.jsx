@@ -92,9 +92,6 @@ const addToCart = (id) => {
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
                 </div>
             </div>
-            <div className={style.btn}>
-                <Link to='/home'><Button variant="contained" color='primary'>Back to Home</Button></Link>
-            </div>
         </>
     );
 }
