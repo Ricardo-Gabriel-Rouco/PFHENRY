@@ -23,7 +23,7 @@ const Home = () => {
     };
 
     getBooksList();
-  }, [bookCollectionRef,dispatch]);
+  }, []);
 
   return (
     <>
