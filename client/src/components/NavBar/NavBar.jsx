@@ -1,6 +1,6 @@
 import SearchBar from "../SearchBar/SearchBar";
-import { Link, useLocation } from "react-router-dom";
-import * as React from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import {useState} from "react";
 import { useAuth } from "../../context/authContext";
 
 // import Switch from "@mui/material/Switch";
@@ -14,15 +14,19 @@ import Home from "@mui/icons-material/Home";
 import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
+import { useDispatch } from "react-redux";
 // import LoginIcon from "@mui/icons-material/Login";
+import { reset } from "../../redux/rootReducer/bookSlice";
 
 const NavBar = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const { userStatus } = useAuth();
   const { logout } = useAuth();
 
+  const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -36,6 +40,14 @@ const NavBar = () => {
     logout();
     alert("Session was closed");
   };
+
+  const goHome = () =>{
+    if(location.pathname === '/home') 
+      dispatch(reset())
+    else
+      navigate('/home')
+  }
+
   return (location.pathname!=='/'&&
     <Box sx={{ flexGrow: 1, bgcolor: "#F9B52E", color: "#F7F6F6", p: 1 }}>
       {/* <FormGroup>
@@ -59,10 +71,9 @@ const NavBar = () => {
               aria-label="home"
               color="inherit"
               sx={{ mr: 2 }}
+              onClick={goHome}
             >
-              <Link to="/home">
-                <Home sx={{ color: "#F7F6F6" }} />
-              </Link>
+              <Home sx={{ color: "#F7F6F6" }} />
             </IconButton>
 
             {location.pathname !== "/create" ? (
