@@ -1,6 +1,6 @@
 //import db from "../../firebase-config";
 //import { collection, onSnapshot } from "firebase/firestore";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 //import { doc, setDoc, getDocs, query, where } from "firebase/firestore";
 import Card from "../Card/Card";
 import style from "./CardContainer.module.css";
@@ -12,7 +12,6 @@ import { FilterOptions } from "../filters/FilterOptions";
 import { Grid } from "@mui/material";
 import Cards from "@mui/material/Card";
 import ComponentError from "../ComponentError/ComponentError";
-import NavBar from '../NavBar/NavBar';
 
 
 // const books = db.collection('books');
@@ -50,9 +49,12 @@ const CardContainer = () => {
     setCurrentPage(pageNumber);
   };
 
+  useEffect(()=>{
+    paginated(1)
+  },[booksList])
+
   return (
     <div className={style.container}>
-      <NavBar paginated={paginated} />
       <FilterOptions setCurrentPage={setCurrentPage} />
       {booksList.length ? (
         <Cards>

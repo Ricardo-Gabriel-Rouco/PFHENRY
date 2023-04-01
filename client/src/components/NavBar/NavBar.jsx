@@ -16,7 +16,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 // import LoginIcon from "@mui/icons-material/Login";
 
-const NavBar = ({ paginated }) => {
+const NavBar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const { userStatus } = useAuth();
@@ -68,7 +68,6 @@ const NavBar = ({ paginated }) => {
             {location.pathname !== "/create" ? (
               <Box sx={{ width: "55rem", marginInline: "40px" }}>
                 <SearchBar
-                  paginated={paginated}
                   placeholder="Search your book..."
                 />
               </Box>
