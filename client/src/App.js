@@ -15,8 +15,8 @@ import Cart from "./components/Cart/Cart";
 function App() {
   return (
     <div className="App">
-      <AuthProvider>
       <BrowserRouter>
+      <AuthProvider>
         <Routes>
           <Route exact path="/" element={<Landing />} />
           <Route exact path="/home" element={<Home />} />
@@ -30,8 +30,8 @@ function App() {
 
           <Route path="*" element={<Error />} />
         </Routes>
-      </BrowserRouter>
       </AuthProvider>
+      </BrowserRouter>
     </div>
   );
 }

@@ -5,6 +5,7 @@ import {
   logOut,
   getUserById,
 } from "../firebase/auth/auth";
+import { useNavigate } from "react-router-dom";
 import { registerWithGoogle } from "../firebase/auth/googleLogIn";
 import { auth } from "../firebase/firebase-config";
 import { onAuthStateChanged, sendPasswordResetEmail } from "firebase/auth";
@@ -17,6 +18,7 @@ export const useAuth = () => {
 };
 
 export function AuthProvider({ children }) {
+  const navigate = useNavigate();
   const [userStatus, setUserStatus] = useState({
     logged: null,
     userId: "",
@@ -34,10 +36,9 @@ export function AuthProvider({ children }) {
   };
 
   useEffect(() => {
-    onAuthStateChanged(auth,async (currentUser) => {
-      // console.log(currentUser)
+    onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
-        const userRole = await getUserById(currentUser.uid)
+        const userRole = await getUserById(currentUser.uid);
         setUserStatus({
           ...userStatus,
           logged: true,
@@ -45,11 +46,17 @@ export function AuthProvider({ children }) {
           email: currentUser.email,
           role: userRole.rol,
         });
-        console.log(userStatus);
       }
       setLoading(false);
     });
   }, []);
+
+  useEffect(() => {
+    if (userStatus.logged) {
+      navigate(-1);
+    }
+  }, [userStatus]);
+
 
   const logout = async () => {
     await logOut();
