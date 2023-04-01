@@ -1,29 +1,30 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const initialState = {
   allBooks: [],
+  displayableBooks: [],
   booksToFilter: [],
-  filtersApplied: [],
-  displayCard: true,
+  filtersApplied: {authors:[],genres:[]},
 };
 
 const booksSlice = createSlice({
   name: "books",
   initialState,
   reducers: {
-    addBook: (state, action) => {
-      const alfa = action.payload.sort(function (a, b) {
+    addBook: (state, {payload}) => {
+      const alfa = payload.sort(function (a, b) {
         if (a.title > b.title) return 1;
         if (b.title > a.title) return -1;
         return 0;
       });
       state.allBooks = alfa;
-      state.booksToFilter = alfa;
+      console.log(state.allBooks)
+      state.booksToFilter = state.displayableBooks = alfa.filter(el=>el.display);
     },
 
     searchBook: (state, action) => {
-      const search = state.allBooks;
-      state.booksToFilter =
+      const search = state.displayableBooks;
+      state.displayableBooks =
         action.payload === ""
           ? search
           : search.filter((book) =>
@@ -38,93 +39,105 @@ const booksSlice = createSlice({
 
 
     clearSearchResults: (state) => {
-        state.booksToFilter = state.allBooks;
+        state.booksToFilter = state.displayableBooks;
     },
 
-    filterBooks: (state, action) => {
-      console.log(action.payload)
-      state.booksToFilter =
-        action.payload[1] === "all"
-          ? state.allBooks
-          : state.booksToFilter.filter((books) => books[action.payload[0]]?books[action.payload[0]].includes(action.payload[1]):false);
-
-      if (action.payload[1] !== "all") {
-        state.filtersApplied.push(action.payload);
-      } else {
-        state.filtersApplied = [];
+    filterBooks: (state, {payload}) => {
+      const prop = Object.keys(payload)[0]
+      const value = Object.values(payload)[0]
+      
+      if(value === "all")
+      {
+        state.booksToFilter = state.displayableBooks;
+        state.filtersApplied = {...state.filtersApplied, [prop]: []}
       }
-
-      if (state.booksToFilter.length === 0) {
-        state.displayCard = false;
-      }
-    },
-
-    removeFilter: (state, action) => {
-      if (state.filtersApplied.length > 0) {
-        state.filtersApplied.splice(action.payload, 1);
-      }
-      state.booksToFilter = state.allBooks;
-      state.filtersApplied.forEach((elem) => {
-        state.booksToFilter = state.booksToFilter.filter((books) => books[elem[0]]?books[elem[0]].includes(elem[1]):false);
-      });                                       
-
-      if (state.filtersApplied.length === 0) {
-        state.booksToFilter = state.allBooks;
+      else
+      {
+        state.booksToFilter = state.booksToFilter.filter((books) => books[prop].includes(value))
+        state.filtersApplied = {...state.filtersApplied, [prop]: [...state.filtersApplied[prop], value]};
       }
     },
 
-    orderBy: (state, action) => {
-      if (action.payload === "min") {
-        state.booksToFilter.sort(function (a, b) {
-          if (a.rating > b.rating) return 1;
-          if (a.rating < b.rating) return -1;
-          return 0;
-        });
-      } else if (action.payload === "max") {
-        state.booksToFilter.sort(function (a, b) {
-          if (a.rating > b.rating) return -1;
-          if (a.rating < b.rating) return 1;
-          return 0;
-        });
-      } else if (action.payload === "asc") {
-        state.booksToFilter.sort(function (a, b) {
-          if (a.title > b.title) return 1;
-          if (b.title > a.title) return -1;
-          return 0;
-        });
-      } else if (action.payload === "desc") {
-        state.booksToFilter.sort(function (a, b) {
-          if (a.title > b.title) return -1;
-          if (b.title > a.title) return 1;
-          return 0;
-        });
-      } else if (action.payload === "minPrice") {
-        state.booksToFilter.sort(function (a, b) {
-          if (a.price > b.price) return 1;
-          if (b.price > a.price) return -1;
-          return 0;
-        });
-      } else if (action.payload === "maxPrice") {
-        state.booksToFilter.sort(function (a, b) {
-          if (a.price > b.price) return -1;
-          if (b.price > a.price) return 1;
-          return 0;
-        });
+    removeFilter: (state, {payload}) => {
+      const prop = Object.keys(payload)[0]
+      const value = Object.values(payload)[0]
+
+      state.filtersApplied[prop] = state.filtersApplied[prop].filter(el=>el!==value)
+      
+      if (state.filtersApplied.authors.length + state.filtersApplied.genres.length=== 0) 
+        state.booksToFilter = state.displayableBooks;
+      
+      else{
+        state.booksToFilter = state.displayableBooks;
+  
+        Object.keys(state.filtersApplied).forEach((key)=>{
+          state.filtersApplied[key].forEach(filter=>{
+            state.booksToFilter = state.booksToFilter.filter((books) => books[key].includes(filter))
+          })
+        })
+      }
+
+
+    },
+
+    orderBy: (state, {payload}) => {
+      
+      switch (payload) {
+        case "min":
+          state.booksToFilter.sort(function (a, b) {
+            if (a.rating > b.rating) return 1;
+            if (a.rating < b.rating) return -1;
+            return 0;
+          });
+          break;
+      
+        case "max":
+          state.booksToFilter.sort(function (a, b) {
+            if (a.rating > b.rating) return -1;
+            if (a.rating < b.rating) return 1;
+            return 0;
+          });
+          break;
+        
+        case "asc":
+          state.booksToFilter.sort(function (a, b) {
+            if (a.title > b.title) return 1;
+            if (b.title > a.title) return -1;
+            return 0;
+          });
+          break;
+
+        case "desc":
+          state.booksToFilter.sort(function (a, b) {
+            if (a.title > b.title) return -1;
+            if (b.title > a.title) return 1;
+            return 0;
+          });
+          break;
+        
+        case "minPrice":
+          state.booksToFilter.sort(function (a, b) {
+            if (a.price > b.price) return 1;
+            if (b.price > a.price) return -1;
+            return 0;
+          });
+          break;
+          
+        case "maxPrice":
+          state.booksToFilter.sort(function (a, b) {
+            if (a.price > b.price) return -1;
+            if (b.price > a.price) return 1;
+            return 0;
+          });
+          break;
+      
       }
     },
 
-    display: (state, action) => {
-      console.log(state.booksToFilter.length);
-      if (!state.booksToFilter.length && state.allBooks.length) {
-        state.displayCard = false;
-      } else {
-        state.displayCard = action.payload;
-      }
-    },
 
     reset: (state, action) => {
-      state.booksToFilter = state.allBooks;
-      state.filtersApplied = [];
+      state.booksToFilter = state.displayableBooks;
+      state.filtersApplied = {authors:[],genres:[]};
     },
   },
 });
@@ -137,7 +150,6 @@ export const {
   orderBy,
   reset,
   clearSearchResults,
-  display,
 } = booksSlice.actions;
 
 export default booksSlice.reducer;
