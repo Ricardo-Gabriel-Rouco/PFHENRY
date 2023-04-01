@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, TextField } from "@mui/material";
 import { useAuth } from "../../context/authContext";
-
+import swal from "sweetalert";
 function Register() {
   const [userData, setUserData] = useState({
     email: "",
@@ -43,7 +43,8 @@ function Register() {
       await loginWithGoogle();
       navigate("/home");
     } catch (error) {
-      alert("Error al iniciar sesion: ", error);
+      swal("There is a problem!", error, "error");
+      // alert("Error al iniciar sesion: ", error);
     }
   };
 

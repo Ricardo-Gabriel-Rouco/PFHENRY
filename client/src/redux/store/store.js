@@ -3,7 +3,7 @@
 //import thunk from "redux-thunk";
 //import { composeWithDevTools } from "@redux-devtools/extension";
 import { configureStore } from "@reduxjs/toolkit";
-import booksSlice from '../rootReducer/bookSlice'
+import booksSlice from "../rootReducer/bookSlice";
 import cartSlice from "../rootReducer/cartSlice";
 import favoriteSlice from "../rootReducer/favoriteSlice";
 import userSlice from "../rootReducer/userSlice";
@@ -12,18 +12,17 @@ import persistReducer from "redux-persist/es/persistReducer";
 import { combineReducers } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 
-
 const persistCartConfig = {
-  key: 'cart',
+  key: "cart",
   storage,
-  whitelist: ['cart']
-}
+  whitelist: ["cart"],
+};
 
 const persistFavoriteConfig = {
-  key: 'favorites',
+  key: "favorites",
   storage,
-  whitelist: ['favorites']
-}
+  whitelist: ["favorites"],
+};
 
 const reducer = combineReducers({
   cart: persistReducer(persistCartConfig, cartSlice),
@@ -37,5 +36,5 @@ export const store = configureStore({
     favorite: reducer,
     user: userSlice,
   },
-  middleware: [thunk]
+  middleware: [thunk],
 });

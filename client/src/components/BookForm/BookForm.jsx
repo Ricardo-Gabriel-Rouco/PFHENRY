@@ -6,23 +6,22 @@ import { Input, InputLabel, Button, Box, Container } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import ErrorIcon from "@mui/icons-material/Error";
 import { postBook } from "../../firebase/firestore/books";
+import swal from "sweetalert";
 function BookForm() {
   // estado que maneja la subida de imagen
   const [imageLink, setImageLink] = useState("");
-  
+
   const [bookData, setBookData] = useState({
     // image: {},
   });
-  
+
   const [errors, setErrors] = useState({});
 
   const [genres, setGenres] = useState([]);
-  
-  useEffect(()=>{
-    setErrors(validation(bookData));
-  },[bookData])
-  
 
+  useEffect(() => {
+    setErrors(validation(bookData));
+  }, [bookData]);
 
   useEffect(() => {
     async function fetchGenres() {
@@ -34,41 +33,38 @@ function BookForm() {
 
   const onClose = () => {
     setImageLink("");
-    setBookData({ ...bookData, image:""  });
+    setBookData({ ...bookData, image: "" });
   };
-  
+
   const handleInputChange = (e) => {
     switch (e.target.name) {
-      case 'imageLink':
-      setImageLink(e.target.value)        
-      break;
-      
-      case 'imageFile':
-      const reader = new FileReader();
-      reader.readAsDataURL(e.target.files[0]);
-      reader.onloadend = () => {
-        console.log(typeof reader.result)
-        setBookData({ ...bookData, image: reader.result });
-      };
-      break;
+      case "imageLink":
+        setImageLink(e.target.value);
+        break;
+
+      case "imageFile":
+        const reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onloadend = () => {
+          console.log(typeof reader.result);
+          setBookData({ ...bookData, image: reader.result });
+        };
+        break;
 
       default:
         setBookData({
           ...bookData,
-          [e.target.name]: e.target.value
-        })
+          [e.target.name]: e.target.value,
+        });
         break;
     }
-    
   };
-  
 
   const handleOptions = (e) => {
     let selectedValues = [];
-     
-    if(bookData.genres)  
-      selectedValues = [...bookData.genres]
-    
+
+    if (bookData.genres) selectedValues = [...bookData.genres];
+
     const options = e.target.options;
     for (let i = 0; i < options.length; i++) {
       if (options[i].selected) {
@@ -92,28 +88,26 @@ function BookForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await postBook({...bookData, authors:[bookData.authors]})
-      console.log(res)
+      const res = await postBook({ ...bookData, authors: [bookData.authors] });
+      console.log(res);
     } catch (error) {
       let toHighlight = {};
-      for(const key in errors)
-      {
-        console.log(key)
-        if(bookData[key] === undefined)
-          toHighlight[key] = ''
+      for (const key in errors) {
+        console.log(key);
+        if (bookData[key] === undefined) toHighlight[key] = "";
       }
-      setBookData({...bookData, ...toHighlight})
-
-      window.alert(error)
+      setBookData({ ...bookData, ...toHighlight });
+      swal("There is a problem!", error, "error");
+      // window.alert(error)
     }
   };
 
   const acceptImageLink = () => {
     setBookData({
       ...bookData,
-      image: imageLink
-    })
-  }
+      image: imageLink,
+    });
+  };
 
   return (
     <Container>
@@ -190,16 +184,19 @@ function BookForm() {
               ))}
           </select>
           <div>
-            {bookData.genres&&bookData.genres.map(
-              (genre) =>
-                bookData.genres.indexOf(genre) ===
-                bookData.genres.lastIndexOf(genre) && (
-                  <div key={genre}>
-                    {genre}
-                    <button onClick={() => handleRemove(genre,'genres')}>X</button>
-                  </div>
-                )
-            )}
+            {bookData.genres &&
+              bookData.genres.map(
+                (genre) =>
+                  bookData.genres.indexOf(genre) ===
+                    bookData.genres.lastIndexOf(genre) && (
+                    <div key={genre}>
+                      {genre}
+                      <button onClick={() => handleRemove(genre, "genres")}>
+                        X
+                      </button>
+                    </div>
+                  )
+              )}
           </div>
           {errors.genres ? (
             <p className={styles.formError}>
@@ -208,8 +205,7 @@ function BookForm() {
             </p>
           ) : null}
           <InputLabel htmlFor="image">Image: </InputLabel>
-          { !bookData.image ? 
-            
+          {!bookData.image ? (
             <div>
               <Input
                 type="file"
@@ -226,23 +222,25 @@ function BookForm() {
                   value={imageLink}
                   onChange={handleInputChange}
                 />
-                <button type="button" onClick={acceptImageLink}>Accept</button>
+                <button type="button" onClick={acceptImageLink}>
+                  Accept
+                </button>
               </div>
             </div>
-           : 
+          ) : (
             <div className={styles.image}>
               {bookData.image ? (
-                <img 
-                  src={bookData.image} 
-                  alt="uploaded_Image" 
-                  onError={()=>setBookData({...bookData, image:null})}
-                  />
+                <img
+                  src={bookData.image}
+                  alt="uploaded_Image"
+                  onError={() => setBookData({ ...bookData, image: null })}
+                />
               ) : null}
               <div>
                 <button onClick={onClose}>X</button>
               </div>
             </div>
-          }
+          )}
           {errors.image ? (
             <p className={styles.formError}>
               <ErrorIcon />

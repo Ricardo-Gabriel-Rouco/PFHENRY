@@ -14,24 +14,23 @@ import Home from "@mui/icons-material/Home";
 import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import LoginIcon from '@mui/icons-material/Login'
+import LoginIcon from "@mui/icons-material/Login";
 import { useDispatch, useSelector } from "react-redux";
 import { logUserOut } from "../../redux/rootReducer/userSlice";
-import { Badge } from '@mui/material';
+import { Badge } from "@mui/material";
 import { reset } from "../../redux/rootReducer/bookSlice";
-
+import swal from "sweetalert";
 
 const NavBar = () => {
-
   const { userStatus } = useAuth();
   const { logout } = useAuth();
-  const dispatch = useDispatch()
-  const location = useLocation()
+  const dispatch = useDispatch();
+  const location = useLocation();
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const authorized = useSelector((state) => state.user.isLogged);
-  const favorites = useSelector(state => state.favorite.favorites);
-  const cart = useSelector(state => state.cart);
+  const favorites = useSelector((state) => state.favorite.favorites);
+  const cart = useSelector((state) => state.cart);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -43,19 +42,23 @@ const NavBar = () => {
 
   const handleLogOut = async () => {
     logout();
-    alert("Session was closed");
+    swal(
+      "Congratulations!",
+      "your session has been closed successfully!",
+      "success"
+    );
+    // alert("Session was closed");
   };
 
-  const goHome = () =>{
-    if(location.pathname === '/home') 
-      dispatch(reset())
-    else
-      navigate('/home')
-  }
+  const goHome = () => {
+    if (location.pathname === "/home") dispatch(reset());
+    else navigate("/home");
+  };
 
-  return (location.pathname!=='/'&&
-    <Box sx={{ flexGrow: 1, bgcolor: "#F9B52E", color: "#F7F6F6", p: 1 }}>
-      {/* <FormGroup>
+  return (
+    location.pathname !== "/" && (
+      <Box sx={{ flexGrow: 1, bgcolor: "#F9B52E", color: "#F7F6F6", p: 1 }}>
+        {/* <FormGroup>
         <FormControlLabel
           control={
             <Switch
@@ -67,115 +70,119 @@ const NavBar = () => {
           label={authorized ? "Logout" : "Login"}
         />
       </FormGroup> */}
-      <AppBar position="static" color="secondary">
-        <Box>
-          <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              aria-label="home"
-              color="inherit"
-              sx={{ mr: 2 }}
-              onClick={goHome}
-            >
-              <Home sx={{ color: "#F7F6F6" }} />
-            </IconButton>
-
-
-            {location.pathname !== "/create" ? (
-              <Box sx={{ width: "55rem", marginInline: "40px" }}>
-                <SearchBar
-                  placeholder="Search your book..."
-                />
-              </Box>
-            ) : null}
-
-            {userStatus.role === 'ADMIN' ? <IconButton
-              size="large"
-              edge="start"
-              aria-label="buttons"
-              sx={{ mr: 2 }}
-              color="inherit"
-            >
-              <Link to="/create">
-                <AddCircleOutlineIcon sx={{ color: "#F7F6F6" }} />
-              </Link>
-            </IconButton> : null}
-
-            <IconButton
-              size="large"
-              edge="start"
-              aria-label="buttons"
-              sx={{ mr: 2 }}
-              color="inherit"
-            >
-
-
-              <Badge badgeContent={favorites && favorites.favorites.length} color="info">
-                <Link to="/favorites">
-                  <BookmarkOutlinedIcon sx={{ color: "#F7F6F6" }} />{" "}
-                </Link>
-              </Badge>
-            </IconButton>
-
-            <IconButton
-              size="large"
-              edge="start"
-              aria-label="buttons"
-              sx={{ mr: 2 }}
-              color="warning"
-            >
-              <Badge badgeContent={cart && cart.cart.cart.length} color="info">
-                <Link to="/cart">
-                  <ShoppingCart sx={{ color: "#F7F6F6" }} />
-                </Link>
-              </Badge>
-            </IconButton>
-
-            {/* {userStatus.logged ? ( */}
-            <div>
+        <AppBar position="static" color="secondary">
+          <Box>
+            <Toolbar>
               <IconButton
                 size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
+                edge="start"
+                aria-label="home"
+                color="inherit"
+                sx={{ mr: 2 }}
+                onClick={goHome}
               >
-                <AccountCircle sx={{ color: "#F7F6F6" }} />
+                <Home sx={{ color: "#F7F6F6" }} />
               </IconButton>
 
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: "botton",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
+              {location.pathname !== "/create" ? (
+                <Box sx={{ width: "55rem", marginInline: "40px" }}>
+                  <SearchBar placeholder="Search your book..." />
+                </Box>
+              ) : null}
+
+              {userStatus.role === "ADMIN" ? (
+                <IconButton
+                  size="large"
+                  edge="start"
+                  aria-label="buttons"
+                  sx={{ mr: 2 }}
+                  color="inherit"
+                >
+                  <Link to="/create">
+                    <AddCircleOutlineIcon sx={{ color: "#F7F6F6" }} />
+                  </Link>
+                </IconButton>
+              ) : null}
+
+              <IconButton
+                size="large"
+                edge="start"
+                aria-label="buttons"
+                sx={{ mr: 2 }}
+                color="inherit"
               >
-                {userStatus.logged ? (
-                  <>
-                    <MenuItem onClick={handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
-                    <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
-                  </>
-                ) : (
-                  <MenuItem>
-                    <Link to={"/login"}>Log In</Link>
-                  </MenuItem>
-                )}
-              </Menu>
-            </div>
-          </Toolbar>
-        </Box>
-      </AppBar>
-    </Box>
+                <Badge
+                  badgeContent={favorites && favorites.favorites.length}
+                  color="info"
+                >
+                  <Link to="/favorites">
+                    <BookmarkOutlinedIcon sx={{ color: "#F7F6F6" }} />{" "}
+                  </Link>
+                </Badge>
+              </IconButton>
+
+              <IconButton
+                size="large"
+                edge="start"
+                aria-label="buttons"
+                sx={{ mr: 2 }}
+                color="warning"
+              >
+                <Badge
+                  badgeContent={cart && cart.cart.cart.length}
+                  color="info"
+                >
+                  <Link to="/cart">
+                    <ShoppingCart sx={{ color: "#F7F6F6" }} />
+                  </Link>
+                </Badge>
+              </IconButton>
+
+              {/* {userStatus.logged ? ( */}
+              <div>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleMenu}
+                >
+                  <AccountCircle sx={{ color: "#F7F6F6" }} />
+                </IconButton>
+
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: "botton",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
+                >
+                  {userStatus.logged ? (
+                    <>
+                      <MenuItem onClick={handleClose}>Profile</MenuItem>
+                      <MenuItem onClick={handleClose}>My account</MenuItem>
+                      <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
+                    </>
+                  ) : (
+                    <MenuItem>
+                      <Link to={"/login"}>Log In</Link>
+                    </MenuItem>
+                  )}
+                </Menu>
+              </div>
+            </Toolbar>
+          </Box>
+        </AppBar>
+      </Box>
+    )
   );
 };
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, TextField } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
+import swal from "sweetalert";
 
 const Login = () => {
   const { login, loginWithGoogle, resetPassword } = useAuth();
@@ -42,15 +43,22 @@ const Login = () => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   }
 
-  const handleResetPassword = async() => {
-    if(!userData.email) return setErrors({...userData, email:'ingresa un email'})
+  const handleResetPassword = async () => {
+    if (!userData.email)
+      return setErrors({ ...userData, email: "ingresa un email" });
     try {
-      await resetPassword(userData.email)
-      alert('we send you an email to reset your password')
+      await resetPassword(userData.email);
+      swal(
+        "Congratulations!",
+        "we send you an email to reset your password",
+        "success"
+      );
+      // alert("we send you an email to reset your password");
     } catch (error) {
-      alert(error.message)
+      swal("There is a problem!", error, "error");
+      // alert(error.message)
     }
-  }
+  };
 
   return (
     <form
