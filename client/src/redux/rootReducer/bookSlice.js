@@ -22,17 +22,20 @@ const booksSlice = createSlice({
       state.booksToFilter = state.displayableBooks = alfa.filter(el=>el.display);
     },
 
-    searchBook: (state, action) => {
-      const search = state.displayableBooks;
-      state.displayableBooks =
-        action.payload === ""
-          ? search
-          : search.filter((book) =>
-            book.title.toLowerCase().includes(action.payload.toLowerCase())
-          );
-      if (state.booksToFilter.length === 0) {
-        alert('Book not found');
-        state.booksToFilter = search;
+    searchBook: (state, {payload}) => {
+      
+      if(payload!=='')
+      {
+        const search = state.displayableBooks;
+        state.booksToFilter =
+          payload === ""
+            ? search
+            : search.filter((book) =>
+              book.title.toLowerCase().includes(payload.toLowerCase())
+            );
+        if (state.booksToFilter.length === 0) {
+          state.booksToFilter = 'not found';
+        }
       }
     },
     
