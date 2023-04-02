@@ -14,9 +14,7 @@ import Home from "@mui/icons-material/Home";
 import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import LoginIcon from '@mui/icons-material/Login'
 import { useDispatch, useSelector } from "react-redux";
-import { logUserOut } from "../../redux/rootReducer/userSlice";
 import { Badge } from '@mui/material';
 import { reset } from "../../redux/rootReducer/bookSlice";
 
@@ -29,7 +27,6 @@ const NavBar = () => {
   const location = useLocation()
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
-  const authorized = useSelector((state) => state.user.isLogged);
   const favorites = useSelector(state => state.favorite.favorites);
   const cart = useSelector(state => state.cart);
 
