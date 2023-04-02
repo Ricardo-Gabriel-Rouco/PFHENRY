@@ -14,17 +14,11 @@ import { Grid } from "@mui/material";
 import Cards from "@mui/material/Card";
 import ComponentError from "../ComponentError/ComponentError";
 
-import loading from '../../Assets/Loading.gif'
-
-
+import loading from "../../Assets/Loading.gif";
 
 const CardContainer = () => {
   const filteredBooks = useSelector((state) => state.books.booksToFilter);
   const allBooks = useSelector((state) => state.books.displayableBooks.length);
-
-
-
-
 
   //PAGINATED
   const [currentPage, setCurrentPage] = useState(1);
@@ -52,16 +46,21 @@ const CardContainer = () => {
     setCurrentPage(pageNumber);
   };
 
-  useEffect(()=>{
-    paginated(1)
-  },[filteredBooks])
+  useEffect(() => {
+    paginated(1);
+  }, [filteredBooks]);
 
   return (
     <div className={style.container}>
-      {allBooks?<FilterOptions setCurrentPage={setCurrentPage} />:null}
+      {allBooks ? <FilterOptions setCurrentPage={setCurrentPage} /> : null}
       {filteredBooks.length ? (
         <Cards>
-          <Grid container spacing={1} justifyContent='center' bgcolor='#f9b52ea8'>
+          <Grid
+            container
+            spacing={1}
+            justifyContent="center"
+            bgcolor="#f9b52ea8"
+          >
             {currentBook.map((c, index) => (
               <Grid item xs={12} sm={6} md={4} lg={3} key={c.id}>
                 <div key={index}>
@@ -72,7 +71,6 @@ const CardContainer = () => {
                     title={c.title}
                     stock={c.stock}
                     price={c.price}
-                    
                   />
                 </div>
               </Grid>
@@ -81,22 +79,21 @@ const CardContainer = () => {
         </Cards>
       ) : (
         //<ComponentError />
-        <img src={ loading } alt="loading" />
+        <img src={loading} alt="loading" />
       )}
 
-      {allBooks?
+      {allBooks ? (
         <div className={style.paginate}>
-        <Paginate
-          paginated={paginated}
-          allBooks={filteredBooks.length}
-          booksPerPage={booksPerPage}
-          currentPage={currentPage}
-          nextHandler={nextHandler}
-          prevHandler={prevHandler}
-        />
-      </div>
-      :null
-      }
+          <Paginate
+            paginated={paginated}
+            allBooks={filteredBooks.length}
+            booksPerPage={booksPerPage}
+            currentPage={currentPage}
+            nextHandler={nextHandler}
+            prevHandler={prevHandler}
+          />
+        </div>
+      ) : null}
     </div>
   );
 };
