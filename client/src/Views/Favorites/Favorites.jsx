@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 
 import { deleteFavorite } from '../../redux/rootReducer/favoriteSlice'
-import { Link } from 'react-router-dom'
+
 import { addProduct } from '../../redux/rootReducer/cartSlice';
 
 

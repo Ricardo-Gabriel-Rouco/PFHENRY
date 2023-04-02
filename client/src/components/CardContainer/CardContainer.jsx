@@ -5,13 +5,13 @@ import { useEffect, useState } from "react";
 //import { doc, setDoc, getDocs, query, where } from "firebase/firestore";
 import Card from "../Card/Card";
 import style from "./CardContainer.module.css";
-//import { async } from "@firebase/util";
 import { useSelector } from "react-redux";
 import Paginate from "../../components/Paginate/Paginate";
 import { FilterOptions } from "../filters/FilterOptions";
 
 import { Grid } from "@mui/material";
 import Cards from "@mui/material/Card";
+// eslint-disable-next-line
 import ComponentError from "../ComponentError/ComponentError";
 
 import loading from '../../Assets/Loading.gif'

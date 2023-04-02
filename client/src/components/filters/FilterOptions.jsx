@@ -25,9 +25,12 @@ export const FilterOptions = ({ setCurrentPage }) => {
 
   const filters = useSelector((state) => state.books.filtersApplied);
 
+  // eslint-disable-next-line
   const [filterAuthor, setFilterAuthor] = useState(true);
+  // eslint-disable-next-line
   const [filterGenre, setFilterGenre] = useState(true);
 
+  // eslint-disable-next-line
   const [defaultGenre, setDefaultGenre] = useState("all");
   const [defaultOrder, setDefaultOrder] = useState("asc");
 
@@ -62,6 +65,7 @@ export const FilterOptions = ({ setCurrentPage }) => {
     setCurrentPage(1);
   };
 
+  // eslint-disable-next-line
   function capitalize(str) {
     return str[0].toUpperCase() + str.slice(1);
   }
