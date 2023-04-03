@@ -1,51 +1,50 @@
 const { sendPreferencePayment } = require("../controlers/payControllers");
 
 const preferencePayHandler = async function (req, res) {
-    try {
-        // const {name, email, adress, city,zip, cardNumber, expirationDate, cvv, items} = req.body
-        const preference = {
-            items: [
-              {
-                id: '1234',
-                title: 'Example Item',
-                description: 'An example item for testing',
-                unit_price: 10.5,
-                quantity: 2,
-                currency_id: 'ARS'
-              }
-            ],
-            payer: {
-              name: 'John',
-              surname: 'Doe',
-              email: 'johndoe@example.com',
-              phone: {
-                area_code: '11',
-                number: 55555666
-              },
-              identification: {
-                type: 'DNI',
-                number: '12345678'
-              },
-              address: {
-                zip_code: '1234',
-                street_name: 'Example Street',
-                street_number: 123
-              }
-            },
-            back_urls: {
-              success: 'https://localhost:3000/',
-              pending: '',
-              failure: ''
-            },
-            auto_return: 'approved'
-          };
-        const response = await sendPreferencePayment(preference)
-        console.log(response)
-    } catch (error) {
-        res.send(error)
+  try {
+    const { user, items } = req.body
+    console.log(req.body)
+    const preference = {
+      items: [],
+      payer: {
+        name: user.id,
+        email: user.email,
+      },
+      // external_reference: v4(),
+      statement_descriptor: "Books Kingdom",
+      back_urls: {
+        success: 'https://localhost:3000/checkout/success',
+        pending: '',
+        failure: ''
+      },
+      auto_return: 'approved',
+      binary_mode: true
+    };
+    
+    items.forEach(item => {
+      let book = {
+        id: item.idBook,
+        title: item.title,
+        description:item.description,
+        unit_price: item.unit_price,
+        quantity: item.quantity,
+        currency_id: 'ARS'
+      }
+      preference.items.push(book)
+    })
+    const response = await sendPreferencePayment(preference)
+    let order = {
+      user:response.body.payer.name,
+      email:response.body.payer.email,
+      idOrder:response.body.id,
+      link:response.body.init_point
     }
+    res.send(order)
+  } catch (error) {
+    res.send(error)
+  }
 };
 
 module.exports = {
-    preferencePayHandler
+  preferencePayHandler
 }
