@@ -25,14 +25,26 @@ const Card = ({ image, id, title, authors, price, stock }) => {
     //FAVORITES
     const [isFav, setIsFav] = useState(false);
     useEffect(() => {
-        if(favorite) favorite.favorites.forEach((fav) => {
-            if (fav.id === id) {
+        if(favorite.favorites.some((book) =>book.id === id))
+        {
+            if (!isFav) 
                 setIsFav(true);
-            }
-        });
+        }
+        else
+            if(isFav)
+                setIsFav(false)
     }, [favorite, id]);
 
-
+if(favorite.favorites.some((book) =>book.id === id))
+        {
+            if (!isFav) 
+                setIsFav(true);
+        }
+        else
+            if(isFav)
+                setIsFav(false)
+            
+     
 
     const handleFavorite = () => {
         if (isFav) {
