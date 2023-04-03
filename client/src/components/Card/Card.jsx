@@ -13,7 +13,8 @@ import { IconButton } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
-import { addProduct } from '../../redux/rootReducer/cartSlice'
+import { addProduct } from '../../redux/rootReducer/cartSlice';
+
 
 
 const Card = ({ image, id, title, authors, price, stock }) => {
@@ -52,7 +53,6 @@ if(favorite.favorites.some((book) =>book.id === id))
             setIsFav(false);
         } else {
             dispatch(addFavorite({ image, id, title, authors, price, stock }));
-
             setIsFav(true);
         }
     };
