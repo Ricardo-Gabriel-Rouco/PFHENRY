@@ -14,6 +14,7 @@ import Cart from "./components/Cart/Cart";
 import NavBar from "./components/NavBar/NavBar";
 import { ProtectedRoutes } from "./components/ProtectedRoutes/ProtectedRoutes.jsx";
 import AdminRoutes from "./components/AdminRoutes/AdminRoutes.jsx"
+import  AdminDashBoard  from './Views/AdminDashboard/AdminDashborad'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <NavBar/>
         <Routes>
           <Route exact path="/" element={<Landing />} />
+          <Route exact path="/admin" element={<AdminDashBoard />} />
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/about" element={<About />} />
           <Route exact path="/favorites" element={<ProtectedRoutes><Favorites /></ProtectedRoutes> } />

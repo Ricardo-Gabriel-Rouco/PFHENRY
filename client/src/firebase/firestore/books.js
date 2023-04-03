@@ -23,6 +23,22 @@ export async function getBooks() {
   return data
 }
 
+export async function getAllTheBooks() {
+
+  const q = query(collection(db, "books"))
+  const querySnapshot = await getDocs(q);
+  let data = [];
+  querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    data.push({
+      ...doc.data(),
+      id: doc.id
+    }
+    )
+  })
+  return data
+}
+
 
 export const getBookById = createAsyncThunk(
   'books/getById',
