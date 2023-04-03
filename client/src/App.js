@@ -12,7 +12,6 @@ import Login from './components/Login/Login'
 import Register from "./components/Register/Register";
 import Cart from "./components/Cart/Cart";
 import NavBar from "./components/NavBar/NavBar";
-import { ProtectedRoutes } from "./components/ProtectedRoutes/ProtectedRoutes.jsx";
 import AdminRoutes from "./components/AdminRoutes/AdminRoutes.jsx"
 import  AdminDashBoard  from './Views/AdminDashboard/AdminDashborad'
 
@@ -27,7 +26,7 @@ function App() {
           <Route exact path="/admin" element={<AdminDashBoard />} />
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/about" element={<About />} />
-          <Route exact path="/favorites" element={<ProtectedRoutes><Favorites /></ProtectedRoutes> } />
+          <Route exact path="/favorites" element={<Favorites /> } />
           <Route exact path="/cart" element={<Cart />} />
           <Route exact path="/create" element={<AdminRoutes><AddBooks/></AdminRoutes>}/>
           <Route path='/home/:id' element={<CardDetail />} /> 
