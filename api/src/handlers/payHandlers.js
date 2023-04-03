@@ -10,22 +10,23 @@ const preferencePayHandler = async function (req, res) {
         name: user.id,
         email: user.email,
       },
-      // external_reference: v4(),
+      external_reference: items.id,
       statement_descriptor: "Books Kingdom",
       back_urls: {
-        success: 'https://localhost:3000/checkout/success',
+        success: 'https://localhost:3001/checkout/success',
         pending: '',
         failure: ''
       },
       auto_return: 'approved',
-      binary_mode: true
+      binary_mode: true,
+      reason: `${items.title} - ${items.image} - ${items.quantity} - ${items.price}`,
     };
     
     items.forEach(item => {
       let book = {
         id: item.idBook,
         title: item.title,
-        description:item.description,
+        description: `${item.description.title} - ${item.description.image} - ${item.description.quantity} - ${item.description.price}`,
         unit_price: item.unit_price,
         quantity: item.quantity,
         currency_id: 'ARS'
@@ -37,9 +38,11 @@ const preferencePayHandler = async function (req, res) {
       user:response.body.payer.name,
       email:response.body.payer.email,
       idOrder:response.body.id,
-      link:response.body.init_point
+      link:response.body.init_point,
+    
+
     }
-    res.send(order)
+    res.status(201).send(order)
   } catch (error) {
     res.send(error)
   }

@@ -8,20 +8,20 @@ import { Divider, IconButton, Grid } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { toogleCart } from '../../redux/rootReducer/toogleSlice';
 import { useState, useEffect } from 'react';
-import axios from 'axios'
+import axios from 'axios';
 
 
 const Cart = () => {
     const dispatch = useDispatch();
     const cart = useSelector(state => state.cart);
-    const abrir = useSelector(state => state.toogle.isOpen)
+    const abrir = useSelector(state => state.toogle.isOpen);
+
     const [order, setOrder] = useState({})
 
     useEffect(() => {
         setOrder({
             user: {
-                id: 1234,
-                name: "prueba",
+                name: 1234,
                 email: "prueba@gmail.com",
             },
             items: cart.cart.cart.map((product) => ({
@@ -29,6 +29,13 @@ const Cart = () => {
                 title: product.title,
                 unit_price: product.price,
                 quantity: product.quantity,
+                image: product.image,
+                description: {
+                    title: product.title,
+                    image: product.image,
+                    quantity: product.quantity,
+                    price: product.price,
+                  },
             })),
         });
     }, [cart.cart.cart]);
@@ -42,6 +49,7 @@ const Cart = () => {
             const response = await axios.post('http://localhost:3001/checkout', order);
             console.log("Response:", response);
             dispatch(removeAllProducts())
+            window.open(response.data.link)
             // Hacer algo con la respuesta exitosa
         } catch (error) {
             console.error("Error:", error.response.data);
