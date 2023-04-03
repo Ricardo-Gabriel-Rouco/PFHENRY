@@ -92,7 +92,7 @@ function BookForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await postBook(bookData)
+      const res = await postBook({...bookData, authors:[bookData.authors]})
       console.log(res)
     } catch (error) {
       let toHighlight = {};
@@ -147,18 +147,18 @@ function BookForm() {
               {errors.title && errors.title}
             </p>
           ) : null}
-          <InputLabel htmlFor="author">Author: </InputLabel>
+          <InputLabel htmlFor="authors">Authors: </InputLabel>
           <Input
             type="text"
-            name="author"
+            name="authors"
             placeholder="Ej: H. P. Lovecraft"
             onChange={handleInputChange}
-            value={bookData.author}
+            value={bookData.authors}
           />
-          {errors.author ? (
+          {errors.authors ? (
             <p className={styles.formError}>
               <ErrorIcon />
-              {errors.author && errors.author}
+              {errors.authors && errors.authors}
             </p>
           ) : null}
           <InputLabel htmlFor="editorial">Publisher: </InputLabel>
@@ -196,7 +196,7 @@ function BookForm() {
                 bookData.genres.lastIndexOf(genre) && (
                   <div key={genre}>
                     {genre}
-                    <button onClick={() => handleRemove(genre)}>X</button>
+                    <button onClick={() => handleRemove(genre,'genres')}>X</button>
                   </div>
                 )
             )}

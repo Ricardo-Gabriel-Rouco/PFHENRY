@@ -2,6 +2,8 @@ import {provider, auth, db} from '../firebase-config'
 import { signInWithPopup } from 'firebase/auth'
 import { collection, doc, setDoc } from 'firebase/firestore'
 
+
+
 export async function registerWithGoogle(){
   try {
     const res = await signInWithPopup(auth, provider)
