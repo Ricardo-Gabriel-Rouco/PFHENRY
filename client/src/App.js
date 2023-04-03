@@ -14,6 +14,7 @@ import NavBar from "./components/NavBar/NavBar";
 import Cart from './components/Cart/Cart'
 import { useSelector } from "react-redux";
 import { useState } from "react";
+import PurchaseForm from "./PurchaseForm/PurchaseForm";
 
 function App() {
 const toogleCart = useSelector(state => state.toogle)
@@ -35,6 +36,7 @@ console.log(toogleFav)
           <Route path='/home/:id' element={<CardDetail />} /> 
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register />} /> 
+          <Route path='/checkout' element={<PurchaseForm/>} /> 
           <Route path="*" element={<Error />} />
         </Routes>
       </AuthProvider>
