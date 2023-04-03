@@ -19,12 +19,12 @@ import { addProduct } from '../../redux/rootReducer/cartSlice';
 
 const Card = ({ image, id, title, authors, price, stock }) => {
     const favorite = useSelector(state => state.favorite.favorites)
-
     const dispatch = useDispatch();
 
 
     //FAVORITES
     const [isFav, setIsFav] = useState(false);
+
     useEffect(() => {
         if(favorite.favorites.some((book) =>book.id === id))
         {
@@ -35,17 +35,6 @@ const Card = ({ image, id, title, authors, price, stock }) => {
             if(isFav)
                 setIsFav(false)
     }, [favorite, id]);
-
-if(favorite.favorites.some((book) =>book.id === id))
-        {
-            if (!isFav) 
-                setIsFav(true);
-        }
-        else
-            if(isFav)
-                setIsFav(false)
-            
-     
 
     const handleFavorite = () => {
         if (isFav) {
