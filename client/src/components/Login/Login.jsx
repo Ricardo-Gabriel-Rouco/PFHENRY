@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, TextField } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 
+
 const Login = () => {
-  const { login, loginWithGoogle, resetPassword } = useAuth();
+  const { login, loginWithGoogle, resetPassword, userStatus } = useAuth();
   const navigate = useNavigate();
   const [userData, setUserData] = useState({
     email: "",
@@ -15,6 +16,12 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+  useEffect(() => {
+    if (userStatus.logged) {
+      navigate("/home");
+    }
+  }, [userStatus.logged, navigate]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -52,7 +59,9 @@ const Login = () => {
     }
   }
 
+
   return (
+    userStatus.logged ? navigate('/home') :
     <form
       onSubmit={handleSubmit}
       style={{
