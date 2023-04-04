@@ -23,6 +23,22 @@ export async function getBooks() {
   return data
 }
 
+export async function getAllTheBooks() {
+
+  const q = query(collection(db, "books"))
+  const querySnapshot = await getDocs(q);
+  let data = [];
+  querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    data.push({
+      ...doc.data(),
+      id: doc.id
+    }
+    )
+  })
+  return data
+}
+
 
 export const getBookById = createAsyncThunk(
   'books/getById',
@@ -79,15 +95,24 @@ export async function postBook(book) {
   if (book.year && book.year > new Date().getFullYear()) throw new Error('Year must be at most this year')
   // fin validaciones
   try {
+    const docsRef = doc(db, 'books', book.isbn);
+    const docSnap = await getDoc(docsRef);
+    if(!(docSnap.exists())) {
+
     const newBook = {
       ...book,
       display: true,
     }
-    const collectionRef = collection(db, 'books')
-    const docRef = doc(collectionRef, book.isbn)
-    console.log(newBook)
-    await setDoc(docRef, newBook)
-    return "Libro creado"
+      const collectionRef = collection(db, 'books')
+      const docRef = doc(collectionRef, book.isbn)
+      console.log(newBook)
+      await setDoc(docRef, newBook)
+      return "Libro creado"
+    }
+    else{
+      return "Ya existe un libro con ese ID"
+    }
+
   } catch (error) {
     console.log(error)
   }

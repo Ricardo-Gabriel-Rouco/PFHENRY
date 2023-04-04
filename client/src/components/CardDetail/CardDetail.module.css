@@ -33,3 +33,7 @@
       opacity: 1;
     }
   }  
+
+  .loading{
+    width: 100%;
+  }

@@ -19,15 +19,21 @@ export const FilterOptions = ({ setCurrentPage }) => {
   const booksList = useSelector((state) => state.books.booksToFilter);
   
   useEffect(() => {
-    setGenres(formatArray(booksList.map((elem) => elem.genres).flat()).sort())
-    setAuthors(formatArray(booksList.map((elem) => elem.authors).flat()).sort())
+    if (Array.isArray(booksList))
+    {
+      setGenres(formatArray(booksList.map((elem) => elem.genres).flat()).sort())
+      setAuthors(formatArray(booksList.map((elem) => elem.authors).flat()).sort())
+    }
   }, [booksList]);
 
   const filters = useSelector((state) => state.books.filtersApplied);
 
+  // eslint-disable-next-line
   const [filterAuthor, setFilterAuthor] = useState(true);
+  // eslint-disable-next-line
   const [filterGenre, setFilterGenre] = useState(true);
 
+  // eslint-disable-next-line
   const [defaultGenre, setDefaultGenre] = useState("all");
   const [defaultOrder, setDefaultOrder] = useState("asc");
 
@@ -62,95 +68,93 @@ export const FilterOptions = ({ setCurrentPage }) => {
     setCurrentPage(1);
   };
 
-  function capitalize(str) {
-    return str[0].toUpperCase() + str.slice(1);
-  }
 
-  return (
-    <div className={style.mainDiv}>
-      <div className={style.divFiltersContainer}>
-        {booksList.length && authors.length>1 ? (
-          <select name="authors" id="authors" onChange={filterHandler} className={style.filters}>
-            {filters.authors.length?
+
+  if(Array.isArray(booksList) && booksList.length)
+    return (
+      <div className={style.mainDiv}>
+        <div className={style.divFiltersContainer}>
+          {authors.length>1 ? 
+            <select name="authors" id="authors" onChange={filterHandler} className={style.filters}>
+              {filters.authors.length?
+                <option value="all" disabled selected></option>
+                :null
+              }
+              {!filters.authors.length?
+                <option value="all" disabled selected>All Authors</option>
+                :<option value="all">All Authors</option>
+              }
+              {authors.map((elem, index) =>
+                  elem !== null ? (
+                    <option key={index} value={elem} className={style.filters}>
+                      {elem}
+                    </option>
+                  ) : null
+                )}
+            </select>
+          : null}
+
+          {genres.length>1?
+          <select
+            name="genres"
+            id="genres"
+            onChange={filterHandler}
+            className={style.filters}
+          >
+            {filters.genres.length?
               <option value="all" disabled selected></option>
               :null
             }
-            {!filters.authors.length?
-              <option value="all" disabled selected>All Authors</option>
-              :<option value="all">All Authors</option>
+            {!filters.genres.length?
+              <option value="all" disabled selected>All Genres</option>
+              :<option value="all">All Genres</option>
             }
-            {authors.map((elem, index) =>
-                elem !== null ? (
-                  <option key={index} value={elem} className={style.filters}>
-                    {elem}
-                  </option>
-                ) : null
-              )}
+            {genres.map((gen, index) => (
+                <option key={index} value={gen}>
+                  {gen}
+                </option>
+              ))}
           </select>
-        ) : null}
+          :null}
 
-        {booksList.length && genres.length>1?
-        <select
-          name="genres"
-          id="genres"
-          onChange={filterHandler}
-          className={style.filters}
-        >
-          {filters.genres.length?
-            <option value="all" disabled selected></option>
+          <select onChange={handlerOrder} className={style.filters} value={defaultOrder}>
+            <option value="asc">A-Z</option>
+            <option value="desc">Z-A</option>
+            <option value="min">Min Rating</option>
+            <option value="max">Max Rating</option>
+            <option value="minPrice">Min price</option>
+            <option value="maxPrice">Max price</option>
+          </select>
+
+          <button onClick={handlerReset} className={style.filters}>
+            Reset
+          </button>
+        </div>
+
+        <div className={style.divContainer}>
+          {filters.authors ?
+            filters.authors.map((filter, index) => (
+              <div key={index} id={index} className={style.divFiltersApplied}>
+                <p>{`Authors: ${filter}`}</p>
+                <button id={index} onClick={()=>handlerRemoveFilter({authors:filter})} className={style.btnFiltersApplied}>
+                  X
+                </button>
+              </div>
+            ))
             :null
           }
-          {!filters.genres.length?
-            <option value="all" disabled selected>All Genres</option>
-            :<option value="all">All Genres</option>
-          }
-          {booksList.length ?
-            genres.map((gen, index) => (
-              <option key={index} value={gen}>
-                {gen}
-              </option>
-            )):null}
-        </select>
-        :null}
-
-        <select onChange={handlerOrder} className={style.filters} value={defaultOrder}>
-          <option value="asc">A-Z</option>
-          <option value="desc">Z-A</option>
-          <option value="min">Min Rating</option>
-          <option value="max">Max Rating</option>
-          <option value="minPrice">Min price</option>
-          <option value="maxPrice">Max price</option>
-        </select>
-
-        <button onClick={handlerReset} className={style.filters}>
-          Reset
-        </button>
-      </div>
-
-      <div className={style.divContainer}>
-        {filters.authors ?
-          filters.authors.map((filter, index) => (
+          {filters.genres ?
+          filters.genres.map((filter, index) => (
             <div key={index} id={index} className={style.divFiltersApplied}>
-              <p>{`Authors: ${filter}`}</p>
-              <button id={index} onClick={()=>handlerRemoveFilter({authors:filter})} className={style.btnFiltersApplied}>
+              <p>{`Genres: ${filter}`}</p>
+              <button id={index} onClick={()=>handlerRemoveFilter({genres:filter})} className={style.btnFiltersApplied}>
                 X
               </button>
             </div>
           ))
           :null
         }
-        {filters.genres ?
-        filters.genres.map((filter, index) => (
-          <div key={index} id={index} className={style.divFiltersApplied}>
-            <p>{`Genres: ${filter}`}</p>
-            <button id={index} onClick={()=>handlerRemoveFilter({genres:filter})} className={style.btnFiltersApplied}>
-              X
-            </button>
-          </div>
-        ))
-        :null
-      }
+        </div>
       </div>
-    </div>
-  );
+    );
 };

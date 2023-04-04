@@ -7,10 +7,13 @@ import booksSlice from '../rootReducer/bookSlice'
 import cartSlice from "../rootReducer/cartSlice";
 import favoriteSlice from "../rootReducer/favoriteSlice";
 import userSlice from "../rootReducer/userSlice";
+import toogleSlice from '../rootReducer/toogleSlice';
+import toogleFavSlice from "../rootReducer/toogleFavSlice";
 import storage from "redux-persist/lib/storage";
 import persistReducer from "redux-persist/es/persistReducer";
 import { combineReducers } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
+
 
 
 const persistCartConfig = {
@@ -36,6 +39,8 @@ export const store = configureStore({
     cart: reducer,
     favorite: reducer,
     user: userSlice,
+    toogle: toogleSlice,
+    toogleFav: toogleFavSlice
   },
   middleware: [thunk]
 });

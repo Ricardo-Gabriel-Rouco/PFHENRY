@@ -1,64 +1,179 @@
-import { Button } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
-import { useDispatch, useSelector } from 'react-redux';
-import { addProduct, removeProduct, removeAllProducts } from '../../redux/rootReducer/cartSlice'
-
-
+import { Button, Drawer, Typography } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addProduct,
+  removeProduct,
+  removeAllProducts,
+} from "../../redux/rootReducer/cartSlice";
+import { Stack, Box } from "@mui/material";
+import { Divider, Grid } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import { toogleCart } from "../../redux/rootReducer/toogleSlice";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useAuth } from "../../context/authContext";
+import {useNavigate} from 'react-router-dom'
 
 const Cart = () => {
-    const dispatch = useDispatch();
-    const cart = useSelector(state => state.cart);
-    
+  const { userStatus } = useAuth();
+  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
+  const abrir = useSelector((state) => state.toogle.isOpen);
 
-    //handlers
-    const handleAdd = (id) => {
-        dispatch(addProduct(id))
+  const [order, setOrder] = useState({});
 
-    };
+  useEffect(() => {
+    setOrder({
+      user: {
+        name: userStatus.userId,
+        email: userStatus.email,
+      },
+      items: cart.cart.cart.map((product) => ({
+        id: product.id,
+        title: product.title,
+        unit_price: product.price,
+        quantity: product.quantity,
+        image: product.image,
+      })),
+    });
+    // eslint-disable-next-line
+  }, [cart.cart.cart]);
 
-    const handleRemove = (id) => {
-        dispatch(removeProduct(id))
-    };
+  console.log(order);
 
-    const handleRemoveAll = () => {
-        dispatch(removeAllProducts())
+  //handlers
 
-    };
+  const handleBuy = async () => {
+    if (userStatus.logged) {
+      try {
+        const response = await axios.post(
+          "http://localhost:3001/checkout",
+          order
+        );
+        console.log("Response:", response);
+        dispatch(removeAllProducts());
+        window.open(response.data.link);
+        // Hacer algo con la respuesta exitosa
+      } catch (error) {
+        console.error("Error:", error.response.data);
+        // Manejar el error
+      }
+    } else {
+        alert('You must be logged to buy')
+        navigate('/login')
+    }
+  };
 
-    
+  const handleClose = () => {
+    dispatch(toogleCart());
+  };
+  const handleAdd = (id) => {
+    dispatch(addProduct(id));
+  };
 
-    return (
-        <div>
-            <h2>Cart</h2>
-            <h3>Products</h3>
-            {cart? cart.cart.cart.map((product) => {
-                return (
-                    <div key={product.id}>
-                        <p>{product.title}</p>
-                        <p>({product.authors})</p>
-                        <img src={product.image} alt={product.title} width="100" height="150" />
-                        <p>Price: ${product.price}</p>
-                        <p>Quantity: {product.quantity}</p>
-                        <Button onClick={() => handleAdd(product)} variant="contained" color="primary" size="small">
-                            <AddIcon />
-                        </Button>
-                        <Button onClick={() => handleRemove(product.id)} variant="contained" color="primary" size="small">
-                            <RemoveIcon />
-                        </Button>
-                    </div>
-                );
-            })  :
-            <h6>Total price: </h6>}
-            <Button onClick={() => handleRemoveAll()} variant="contained" color="secondary" size="small">
-                Remove all products
-            </Button>
-        </div>
-    )
-}
+  const handleRemove = (id) => {
+    dispatch(removeProduct(id));
+  };
 
+  const handleRemoveAll = () => {
+    dispatch(removeAllProducts());
+  };
+
+  return (
+    <Drawer anchor={"right"} open={abrir} onClose={() => handleClose()}>
+      <Box sx={{ width: "25em", p: 2 }}>
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <Typography variant="h5">Cart</Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            size="small"
+            sx={{ ml: 1 }}
+            onClick={() => handleClose()}
+          >
+            <CloseIcon />
+          </Button>
+        </Stack>
+        <Divider sx={{ my: 1.5 }} />
+        {cart.cart.cart.map((product) => {
+          return (
+            <Grid container spacing={2} key={product.id}>
+              <Grid item xs={4}>
+                <img src={product.image} alt={product.title} width="100%" />
+              </Grid>
+              <Grid item xs={8}>
+                <Typography variant="subtitle1">{product.title}</Typography>
+                <Typography variant="subtitle2" color="text.secondary">
+                  ({product.authors})
+                </Typography>
+                <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+                  ${product.price}
+                </Typography>
+                <Box sx={{ display: "flex" }}>
+                  <Button
+                    onClick={() => handleRemove(product.id)}
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                    sx={{ ml: 1 }}
+                  >
+                    <RemoveIcon />
+                  </Button>
+                  <Button
+                    onClick={() => handleAdd(product)}
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                    sx={{ mr: 1 }}
+                  >
+                    <AddIcon />
+                  </Button>
+                  <Typography>{product.quantity}</Typography>
+                </Box>
+              </Grid>
+            </Grid>
+          );
+        })}
+        {cart.cart.cart.length === 0 && (
+          <Typography variant="subtitle1">
+            There is no product in your cart
+          </Typography>
+        )}
+        {cart.cart.cart.length !== 0 && (
+          <Typography variant="subtitle1">
+            {"Total Price: $ " + cart.cart.totalPrice}
+          </Typography>
+        )}
+        <Button
+          onClick={() => handleRemoveAll()}
+          variant="contained"
+          color="secondary"
+          size="small"
+          sx={{ marginTop: 2, marginRight: 2 }}
+        >
+          Remove all products
+        </Button>
+        <Button
+          onClick={() => handleBuy()}
+          variant="contained"
+          color="secondary"
+          size="small"
+          sx={{ marginTop: 2 }}
+        >
+          Buy Products
+        </Button>
+      </Box>
+    </Drawer>
+  );
+};
 
 export default Cart;
-
 
 //link snackbar para notificación de agregado de libro // https://mui.com/material-ui/react-snackbar/

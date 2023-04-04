@@ -12,7 +12,7 @@ const Landing = () => {
       about.scrollIntoView({ behavior: "smooth" });
     }
   }
-  
+
   return (
     <>
       <section id="landing">

@@ -20,7 +20,7 @@ const Login = () => {
     e.preventDefault();
     try {
       await login(userData.email, userData.password);
-      // navigate("/home");
+      navigate('/home')
     } catch (error) {
       if (error.code === "auth/wrong-password")
         setErrors({ ...errors, password: "Wrong password" });
