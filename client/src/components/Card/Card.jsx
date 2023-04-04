@@ -134,9 +134,14 @@ const Card = ({ image, id, title, authors, price, stock }) => {
           Details
         </Button>
         {/* <Link to={`/home/${id}`}></Link> */}
-        <Dialog open={open} onClose={handleClose}>
+        <Dialog open={open} onClose={handleClose} fullWidth={true} PaperProps={{
+        style: {
+          height: '100vh',
+          overflow: 'hidden',
+        },
+      }} >
           <DialogContent>
-            <CardDetail />
+            <CardDetail id={id} />
           </DialogContent>
         </Dialog>
 

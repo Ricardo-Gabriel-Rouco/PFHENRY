@@ -95,10 +95,15 @@ import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import HomeIcon from "@mui/icons-material/Home";
 
-const CardDetail = () => {
-  const { id } = useParams();
+const CardDetail = ({id}) => {
+  // const { id } = useParams();
   const dispatch = useDispatch();
   const [bookDetail, setBookDetail] = useState(null);
+
+  useEffect(()=>{
+
+  })
+
 
   useEffect(() => {
     dispatch(getBookById(id))
