@@ -49,12 +49,14 @@ export function AuthProvider({ children }) {
       }
       setLoading(false);
     });
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     if (userStatus.logged) {
       navigate("/home");
     }
+     // eslint-disable-next-line
   }, []);
 
 

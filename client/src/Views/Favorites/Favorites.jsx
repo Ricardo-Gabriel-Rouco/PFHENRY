@@ -15,7 +15,6 @@ import {
 import { deleteFavorite } from '../../redux/rootReducer/favoriteSlice'
 import { addProduct } from '../../redux/rootReducer/cartSlice';
 import { closeFav } from '../../redux/rootReducer/toogleFavSlice';
-import { useState, useEffect } from 'react';
 
 
 

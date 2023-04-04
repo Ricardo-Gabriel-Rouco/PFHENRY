@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   allBooks: [],
@@ -133,6 +133,9 @@ const booksSlice = createSlice({
             return 0;
           });
           break;
+          
+          default:
+            break
       
       }
     },
