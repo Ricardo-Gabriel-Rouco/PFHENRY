@@ -89,36 +89,36 @@ import { useParams } from "react-router-dom";
 import { getBookById } from "../../firebase/firestore/books";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { Box, Typography, Button, Paper, List } from "@mui/material";
+import { Box, Typography, Button, List, Paper } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import HomeIcon from "@mui/icons-material/Home";
-import Review from './Review/Review.jsx'
+import { Reviews } from "@mui/icons-material";
 
 const CardDetail = ({id}) => {
   // const { id } = useParams();
-  const dispatch = useDispatch();
-  const [bookDetail, setBookDetail] = useState(null);
+const dispatch = useDispatch();
+const [bookDetail, setBookDetail] = useState(null);
 
-  useEffect(()=>{
+useEffect(()=>{
 
-  })
+})
 
 
-  useEffect(() => {
+useEffect(() => {
     dispatch(getBookById(id))
-      .then((response) => {
+    .then((response) => {
         setBookDetail(response.payload);
-      })
-      .catch((error) => {
+    })
+    .catch((error) => {
         console.log(error);
-      });
-  }, [dispatch, id]);
+    });
+}, [dispatch, id]);
 
-  const body = (
+const body = (
     <Card
-      sx={{
+    sx={{
         position: "absolute",
         top: "60%",
         left: "50%",
@@ -129,115 +129,115 @@ const CardDetail = ({id}) => {
         maxWidth: "50vw",
         maxHeight: "95vh",
         overflowY: "auto",
-      }}
+    }}
     >
-      <Box
+    <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
         }}
-      >
+    >
         <CardMedia
-          component="img"
-          image={bookDetail?.image}
-          alt={bookDetail?.title}
-          sx={{ height: 300, width: 200 }}
+        component="img"
+        image={bookDetail?.image}
+        alt={bookDetail?.title}
+        sx={{ height: 300, width: 200 }}
         />
         <Typography
-          variant="h4"
-          component="h2"
-          gutterBottom
-          sx={{ mt: 2, fontWeight: "bold" }}
+        variant="h4"
+        component="h2"
+        gutterBottom
+        sx={{ mt: 2, fontWeight: "bold" }}
         >
-          {bookDetail?.title}
+        {bookDetail?.title}
         </Typography>
         <Typography variant="h5" gutterBottom>
-          {bookDetail?.author}
+        {bookDetail?.author}
         </Typography>
         <Typography variant="subtitle1" gutterBottom>
-          {bookDetail?.editorial}
+        {bookDetail?.editorial}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {bookDetail?.description}
+        {bookDetail?.description}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {`Price: $${bookDetail?.price}`}
+        {`Price: $${bookDetail?.price}`}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {`Rating: ${bookDetail?.rating}`}
+        {`Rating: ${bookDetail?.rating}`}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {`Year: ${bookDetail?.year}`}
+        {`Year: ${bookDetail?.year}`}
         </Typography>
         {bookDetail.reviews ? (
             <>
-              <Typography variant="h5">
+            <Typography variant="h5">
                 <p>Reviews</p>
-              </Typography>
-              <Paper style={{ maxHeight: 200, overflow: "auto" }}>
+            </Typography>
+            <Paper style={{ maxHeight: 200, overflow: "auto" }}>
                 <List
-                  sx={{
+                sx={{
                     width: "100%",
                     maxWidth: 400,
                     bgcolor: "background.paper",
-                  }}
+                }}
                 >
-                  {bookDetail.reviews.map((review) => (
-                    <Review
-                      key={review.id}
-                      id={review.id}
-                      user={review.user}
-                      comment={review.comment}
-                      rating={review.rating}
+                {bookDetail.reviews.map((review) => (
+                    <Reviews
+                    key={review.id}
+                    id={review.id}
+                    user={review.user}
+                    comment={review.comment}
+                    rating={review.rating}
                     />
-                  ))}
+                ))}
                 </List>
-              </Paper>
+            </Paper>
             </>
-          ) : null}
+        ) : null}
         <Box
-          sx={{
+        sx={{
             display: "flex",
             justifyContent: "space-between",
             mt: 2,
             width: "100%",
-          }}
+        }}
         >
-          <Button
+        <Button
             color="secondary"
             sx={{
-              height: 30,
-              width: 30,
-              borderRadius: "50%",
-              p: 6,
+            height: 30,
+            width: 30,
+            borderRadius: "50%",
+            p: 6,
             }}
-          >
+        >
             <Link to="/home">
-              <HomeIcon />
+            <HomeIcon />
             </Link>
-          </Button>
+        </Button>
 
-          <Button
+        <Button
             color="secondary"
             sx={{
-              height: 60,
-              width: 60,
-              borderRadius: "50%",
-              p: 6,
+            height: 60,
+            width: 60,
+            borderRadius: "50%",
+            p: 6,
             }}
-          >
+        >
             <Link to={`/home/cart`}>
-              <ShoppingCartIcon />
+            <ShoppingCartIcon />
             </Link>
-          </Button>
+        </Button>
         </Box>
-      </Box>
+    </Box>
     </Card>
-  );
+);
 
-  return body;
+return body;
 };
 
 
