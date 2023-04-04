@@ -83,8 +83,16 @@ const CardDetail = () => {
             </Typography>
           </CardContent>
           {/* new change "Show reviews" */}
-          {bookDetail.reviews.find((obj) => obj.user === nickname) ? (
-            ""
+          {bookDetail.reviews ? (
+            bookDetail.reviews.find((obj) => obj.user === nickname) ? (
+              ""
+            ) : (
+              <CardNewReview
+                key={bookDetail.id}
+                id={bookDetail.id}
+                nickname={nickname}
+              />
+            )
           ) : (
             <CardNewReview
               key={bookDetail.id}
@@ -92,28 +100,34 @@ const CardDetail = () => {
               nickname={nickname}
             />
           )}
-          <Paper elevation={8} style={{ maxHeight: 200, overflow: "auto" }}>
-            <List
-              sx={{
-                width: "100%",
-                maxWidth: 400,
-                bgcolor: "background.paper",
-              }}
-              subheader={
-                <ListSubheader sx={{ display: "flex" }}>Comments</ListSubheader>
-              }
-            >
-              {bookDetail.reviews.map((review) => (
-                <CardsReview
-                  key={review.id}
-                  id={review.id}
-                  user={review.user}
-                  comment={review.comment}
-                  rating={review.rating}
-                />
-              ))}
-            </List>
-          </Paper>
+          {bookDetail.reviews ? (
+            <>
+              <Paper elevation={8} style={{ maxHeight: 200, overflow: "auto" }}>
+                <List
+                  sx={{
+                    width: "100%",
+                    maxWidth: 400,
+                    bgcolor: "background.paper",
+                  }}
+                  subheader={
+                    <ListSubheader sx={{ display: "flex" }}>
+                      Comments
+                    </ListSubheader>
+                  }
+                >
+                  {bookDetail.reviews.map((review) => (
+                    <CardsReview
+                      key={review.id}
+                      id={review.id}
+                      user={review.user}
+                      comment={review.comment}
+                      rating={review.rating}
+                    />
+                  ))}
+                </List>
+              </Paper>
+            </>
+          ) : null}
           {/* new change "Show reviews" */}
           <Box>
             <CardContent>
