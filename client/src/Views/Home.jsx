@@ -7,7 +7,8 @@ import { useDispatch } from "react-redux";
 import { addBook } from "../redux/rootReducer/bookSlice";
 import { useEffect} from "react";
 
-const Home = () => {
+
+const Home = ({cartOpen}) => {
   const dispatch = useDispatch();
 
   const bookCollectionRef = collection(db, "books");
@@ -17,17 +18,17 @@ const Home = () => {
       try {
         const data = await getDocs(bookCollectionRef);
         const filterData = data.docs.map((books) => ({ ...books.data(), id: books.id }));
-        console.log(data)
+        
         dispatch(addBook(filterData));
       } catch (error) {}
     };
 
     getBooksList();
-  }, [bookCollectionRef,dispatch]);
+  }, []);
 
   return (
     <>
-      <CardContainer  />
+      <CardContainer cartOpen={cartOpen}/>
     </>
   );
 };

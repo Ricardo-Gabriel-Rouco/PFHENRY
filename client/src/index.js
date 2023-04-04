@@ -3,10 +3,11 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { Provider } from "react-redux";
-import store from "./redux/store/store";
+import { store } from "./redux/store/store"
+import { PersistGate } from "redux-persist/integration/react";
+import { persistStore } from "redux-persist";
 
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
-
 const theme = createTheme({
   palette: {
     mode: "light",
@@ -33,11 +34,14 @@ const theme = createTheme({
 });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+const persistor = persistStore(store)
 root.render(
   <Provider store={store}>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <App />
-    </ThemeProvider>
-  </Provider>
+      <PersistGate persistor={persistor}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
+  </PersistGate>
+    </Provider>
 );

@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const SearchBar = ({
-    placeholder, paginated
+    placeholder
 
 }) => {
     const books = useSelector((state) => state.books.booksToFilter)
@@ -32,7 +32,7 @@ const SearchBar = ({
     const handlerSearchClick = () =>{
         dispatch(searchBook(searchValue))
         setSearchValue("")
-        navigate('/home', paginated(1));
+        navigate('/home');
     }
     //ENTER BUTTON 
     const handlerKeyDown = (e) => {

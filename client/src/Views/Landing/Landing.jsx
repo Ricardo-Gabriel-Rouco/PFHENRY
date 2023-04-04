@@ -3,10 +3,9 @@ import { FaChevronDown } from "react-icons/fa";
 import About from "../About";
 import style from "./Landing.module.css";
 import { Button } from "@mui/material";
+import { postOrder } from "../../firebase/firestore/orders";
 import { useEffect } from "react";
-import { createUser, getUserById, logOut, sigInWithMail, verifyUserSesion } from "../../firebase/auth/auth";
-import { signInWithPopup } from "firebase/auth";
-import { auth, provider } from "../../firebase/firebase-config";
+
 
 const Landing = () => {
   function scrollToAbout() {
@@ -16,17 +15,6 @@ const Landing = () => {
     }
   }
 
-  useEffect(() => {
-    // sigInWithMail("qwerty@gmail.com", "12345678")
-    // verifyUserSesion()
-    // setTimeout(()=>{
-    //   logOut()
-    // },5000)
-    // verifyUserSesion()
-    // getUserById("TqSDzvnHYJQi8T3hepXrVPD5XNQ2")
-    signInWithPopup(auth, provider)
-  }, [])
-  
   return (
     <>
       <section id="landing">

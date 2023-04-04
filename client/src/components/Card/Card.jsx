@@ -15,20 +15,26 @@ import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import { addProduct } from '../../redux/rootReducer/cartSlice';
 
-const Card = ({ image, id, title, authors, price, stock }) => {
-    const favorites = useSelector(state => state.favorite.favorites);
-    const dispatch = useDispatch();
-    const [isFav, setIsFav] = useState(false);
-    const cart = useSelector(state => state.cart);
 
-    console.log(cart)
+
+const Card = ({ image, id, title, authors, price, stock }) => {
+    const favorite = useSelector(state => state.favorite.favorites)
+    const dispatch = useDispatch();
+
+
+    //FAVORITES
+    const [isFav, setIsFav] = useState(false);
+
     useEffect(() => {
-        favorites.forEach((fav) => {
-            if (fav.id === id) {
+        if(favorite.favorites.some((book) =>book.id === id))
+        {
+            if (!isFav) 
                 setIsFav(true);
-            }
-        });
-    }, [favorites, id]);
+        }
+        else
+            if(isFav)
+                setIsFav(false)
+    }, [favorite, id]);
 
     const handleFavorite = () => {
         if (isFav) {
@@ -36,15 +42,17 @@ const Card = ({ image, id, title, authors, price, stock }) => {
             setIsFav(false);
         } else {
             dispatch(addFavorite({ image, id, title, authors, price, stock }));
-
             setIsFav(true);
         }
     };
+
     const handleAdd = (id) => {
-        dispatch(addProduct(id));
-    };
+        dispatch(addProduct(id))
+    }
+
+
     return (
-        <Box sx={{ margin: '30px',flexDirection: 'column', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', transition: 'box-shadow 0.3s ease', height: '450px', width: '300px' }} className={style.card}>
+        <Box sx={{ margin: '30px', flexDirection: 'column', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', transition: 'box-shadow 0.3s ease', height: '450px', width: '300px' }} className={style.card}>
             {
                 isFav ? (
 
@@ -58,7 +66,7 @@ const Card = ({ image, id, title, authors, price, stock }) => {
                 height='300'
                 sx={{ width: '10rem', height: '14rem', objectFit: 'cover', marginTop: '25px' }}
                 image={image}
-                alt={title}    
+                alt={title}
             />
             <CardContent>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
@@ -73,11 +81,10 @@ const Card = ({ image, id, title, authors, price, stock }) => {
             </CardContent>
             <CardActions>
                 <Button variant='contained' href="#contained-buttons" size="small"> <Link to={`/home/${id}`}>
-
                     Details
                 </Link></Button>
                 <Button onClick={() => handleAdd({ image, id, title, authors, price, stock })}><IconButton variant='' color="primary" aria-label="add to shopping cart">
-                        <ShoppingCartIcon />
+                    <ShoppingCartIcon />
                 </IconButton></Button>
             </CardActions>
         </Box>
