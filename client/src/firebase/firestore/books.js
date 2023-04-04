@@ -1,4 +1,4 @@
-import { getDocs, query, collection, where, doc, getDoc, updateDoc, setDoc } from "firebase/firestore"
+import { getDocs, query, collection, where, doc, getDoc, updateDoc, setDoc, arrayUnion } from "firebase/firestore"
 import { db } from '../firebase-config';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
@@ -132,6 +132,27 @@ export async function modifyBook(isbn, authors, editorial, genres, urlImage, pri
       title: title,
       year: year
     })
+  } catch (error) {
+    console.log(error)
+  }
+} 
+
+// Metodo update para Reviews
+export async function updateBookReviews({id, nickname, comment, rating, display}) {
+  try {
+    console.log("ESTO ES ID ==> ",id);
+    const udBookReview = doc(db, 'books', id)
+    await updateDoc(udBookReview, {
+      reviews:  arrayUnion({
+        comment,
+        rating,
+        user: nickname,
+        display,
+      })
+      
+      // reviews.push({nickname, comment, rating, display}),
+    })
+    return alert("Comment register!")
   } catch (error) {
     console.log(error)
   }

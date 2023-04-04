@@ -84,29 +84,50 @@ import { useParams } from "react-router-dom";
 import { getBookById } from "../../firebase/firestore/books";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { Box, Typography, Button, Paper, List } from "@mui/material";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
-import HomeIcon from "@mui/icons-material/Home";
-import Review from "./Review/Review.jsx";
-import loading from "../../Assets/Loading.gif";
-import style from "./CardDetail.module.css";
 
-const CardDetail = ({ id }) => {
+import style from "./CardDetail.module.css";
+import {
+  Box,
+  Button,
+  Card,
+  CardMedia,
+  Typography,
+  IconButton,
+  CardContent,
+  Paper,
+  List,
+  ListSubheader,
+} from "@mui/material";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import CardsReview from "../CardsReview/CardsReview";
+import CardNewReview from "../CardNewReview/CardNewReview";
+import HomeIcon from "@mui/icons-material/Home";
+import loading from "../../Assets/Loading.gif";
+
+let nickname = "Manu"; //Traer el "nickname" del usuario que esta loogeado
+
+const CardDetail = ({id}) => {
   // const { id } = useParams();
   const dispatch = useDispatch();
   const [bookDetail, setBookDetail] = useState({});
 
+
+
+
+
+
   useEffect(() => {
     dispatch(getBookById(id))
       .then((response) => {
+        // setBookDetail(MyBook); //reemplazar en modo PRODUCCION
         setBookDetail(response.payload);
       })
       .catch((error) => {
         console.log(error);
       });
   }, [dispatch, id]);
+
 
   return bookDetail.id ? (
     <Card
@@ -163,32 +184,53 @@ const CardDetail = ({ id }) => {
         <Typography variant="body1" gutterBottom>
           {`Year: ${bookDetail?.year}`}
         </Typography>
-        {bookDetail.reviews ? (
-          <>
-            <Typography variant="h5">
-              <p>Reviews</p>
-            </Typography>
-            <Paper style={{ maxHeight: 200, overflow: "auto" }}>
-              <List
-                sx={{
-                  width: "100%",
-                  maxWidth: 400,
-                  bgcolor: "background.paper",
-                }}
-              >
-                {bookDetail.reviews.map((review) => (
-                  <Review
-                    key={review.id}
-                    id={review.id}
-                    user={review.user}
-                    comment={review.comment}
-                    rating={review.rating}
-                  />
-                ))}
-              </List>
-            </Paper>
-          </>
-        ) : null}
+       {/* new change "Show reviews" */}
+       {bookDetail.reviews ? (
+            bookDetail.reviews.find((obj) => obj.user === nickname) ? (
+              ""
+            ) : (
+              <CardNewReview
+                key={bookDetail.id}
+                id={bookDetail.id}
+                nickname={nickname}
+              />
+            )
+          ) : (
+            <CardNewReview
+              key={bookDetail.id}
+              id={bookDetail.id}
+              nickname={nickname}
+            />
+          )}
+          {bookDetail.reviews ? (
+            <>
+              <Paper elevation={8} style={{ maxHeight: 200, overflow: "auto" }}>
+                <List
+                  sx={{
+                    width: "100%",
+                    maxWidth: 400,
+                    bgcolor: "background.paper",
+                  }}
+                  subheader={
+                    <ListSubheader sx={{ display: "flex" }}>
+                      Comments
+                    </ListSubheader>
+                  }
+                >
+                  {bookDetail.reviews.map((review) => (
+                    <CardsReview
+                      key={review.id}
+                      id={review.id}
+                      user={review.user}
+                      comment={review.comment}
+                      rating={review.rating}
+                    />
+                  ))}
+                </List>
+              </Paper>
+            </>
+          ) : null}
+          {/* new change "Show reviews" */}
         <Box
           sx={{
             display: "flex",
