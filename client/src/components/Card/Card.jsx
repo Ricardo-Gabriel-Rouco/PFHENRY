@@ -13,26 +13,28 @@ import { IconButton } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
-import { addProduct } from '../../redux/rootReducer/cartSlice'
+import { addProduct } from '../../redux/rootReducer/cartSlice';
+
 
 
 const Card = ({ image, id, title, authors, price, stock }) => {
     const favorite = useSelector(state => state.favorite.favorites)
-
     const dispatch = useDispatch();
 
 
     //FAVORITES
     const [isFav, setIsFav] = useState(false);
+
     useEffect(() => {
-        if(favorite) favorite.favorites.forEach((fav) => {
-            if (fav.id === id) {
+        if(favorite.favorites.some((book) =>book.id === id))
+        {
+            if (!isFav) 
                 setIsFav(true);
-            }
-        });
+        }
+        else
+            if(isFav)
+                setIsFav(false)
     }, [favorite, id]);
-
-
 
     const handleFavorite = () => {
         if (isFav) {
@@ -40,7 +42,6 @@ const Card = ({ image, id, title, authors, price, stock }) => {
             setIsFav(false);
         } else {
             dispatch(addFavorite({ image, id, title, authors, price, stock }));
-
             setIsFav(true);
         }
     };

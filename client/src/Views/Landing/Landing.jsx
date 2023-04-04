@@ -3,6 +3,8 @@ import { FaChevronDown } from "react-icons/fa";
 import About from "../About";
 import style from "./Landing.module.css";
 import { Button } from "@mui/material";
+import { postOrder } from "../../firebase/firestore/orders";
+import { useEffect } from "react";
 
 
 const Landing = () => {
@@ -12,7 +14,7 @@ const Landing = () => {
       about.scrollIntoView({ behavior: "smooth" });
     }
   }
-  
+
   return (
     <>
       <section id="landing">

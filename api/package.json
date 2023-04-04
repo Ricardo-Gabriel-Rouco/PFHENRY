@@ -16,10 +16,12 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "firebase-admin": "^11.5.0",
+    "mercadopago": "^1.5.15",
     "morgan": "^1.10.0",
     "pg": "^8.10.0",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.29.3"
+    "sequelize": "^6.29.3",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.21"

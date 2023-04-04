@@ -17,6 +17,8 @@ import Menu from "@mui/material/Menu";
 import { useDispatch, useSelector } from "react-redux";
 import { Badge } from '@mui/material';
 import { reset } from "../../redux/rootReducer/bookSlice";
+import { toogleCart } from '../../redux/rootReducer/toogleSlice';
+import { toogleFav } from '../../redux/rootReducer/toogleFavSlice'
 
 
 const NavBar = () => {
@@ -29,6 +31,7 @@ const NavBar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const favorites = useSelector(state => state.favorite.favorites);
   const cart = useSelector(state => state.cart);
+
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -43,14 +46,14 @@ const NavBar = () => {
     alert("Session was closed");
   };
 
-  const goHome = () =>{
-    if(location.pathname === '/home') 
+  const goHome = () => {
+    if (location.pathname === '/home')
       dispatch(reset())
     else
       navigate('/home')
   }
 
-  return (location.pathname!=='/'&&
+  return (location.pathname !== '/' &&
     <Box sx={{ flexGrow: 1, bgcolor: "#F9B52E", color: "#F7F6F6", p: 1 }}>
       {/* <FormGroup>
         <FormControlLabel
@@ -90,7 +93,7 @@ const NavBar = () => {
             {userStatus.role === 'ADMIN' ? <IconButton
               size="large"
               edge="start"
-              aria-label="buttons"
+              aria-label="bottom"
               sx={{ mr: 2 }}
               color="inherit"
             >
@@ -109,9 +112,7 @@ const NavBar = () => {
 
 
               <Badge badgeContent={favorites && favorites.favorites.length} color="info">
-                <Link to="/favorites">
-                  <BookmarkOutlinedIcon sx={{ color: "#F7F6F6" }} />{" "}
-                </Link>
+                  <BookmarkOutlinedIcon onClick = {() => dispatch(toogleFav())} sx={{ color: "#F7F6F6" }} />{" "}
               </Badge>
             </IconButton>
 
@@ -122,12 +123,12 @@ const NavBar = () => {
               sx={{ mr: 2 }}
               color="warning"
             >
+
               <Badge badgeContent={cart && cart.cart.cart.length} color="info">
-                <Link to="/cart">
-                  <ShoppingCart sx={{ color: "#F7F6F6" }} />
-                </Link>
+                <ShoppingCart onClick={() => dispatch(toogleCart())} sx={{ color: "#F7F6F6" }} />
               </Badge>
             </IconButton>
+
 
             {/* {userStatus.logged ? ( */}
             <div>
@@ -171,8 +172,8 @@ const NavBar = () => {
             </div>
           </Toolbar>
         </Box>
-      </AppBar>
-    </Box>
+      </AppBar >
+    </Box >
   );
 };
 

@@ -11,19 +11,12 @@ import { FilterOptions } from "../filters/FilterOptions";
 
 import { Grid } from "@mui/material";
 import Cards from "@mui/material/Card";
-// eslint-disable-next-line
-import ComponentError from "../ComponentError/ComponentError";
-
 import loading from '../../Assets/Loading.gif'
-
+import notFound from '../../Assets/notFound.gif'
 
 
 const CardContainer = () => {
   const filteredBooks = useSelector((state) => state.books.booksToFilter);
-  const allBooks = useSelector((state) => state.books.displayableBooks.length);
-
-
-
 
 
   //PAGINATED
@@ -32,6 +25,7 @@ const CardContainer = () => {
   const indexOfLastBook = currentPage * booksPerPage;
   const indexOfFirstBook = indexOfLastBook - booksPerPage;
   const currentBook = filteredBooks.slice(indexOfFirstBook, indexOfLastBook);
+
 
   function nextHandler() {
     const totalBooks = filteredBooks.length; //books.length deberá ser el estado de reduxToolkit de todos los libros.
@@ -52,14 +46,22 @@ const CardContainer = () => {
     setCurrentPage(pageNumber);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     paginated(1)
-  },[filteredBooks])
+  }, [filteredBooks])
 
   return (
     <div className={style.container}>
-      {allBooks?<FilterOptions setCurrentPage={setCurrentPage} />:null}
-      {filteredBooks.length ? (
+
+      {filteredBooks.length?<FilterOptions setCurrentPage={setCurrentPage} />:null}
+      {
+      filteredBooks === 'not found'?
+        <div className={style.notFound}>
+          <h1>No books were found</h1>
+          <img src={notFound} alt="Not Found" />
+        </div>
+      :filteredBooks.length ? (
+
         <Cards>
           <Grid container spacing={1} justifyContent='center' bgcolor='#f9b52ea8'>
             {currentBook.map((c, index) => (
@@ -72,7 +74,7 @@ const CardContainer = () => {
                     title={c.title}
                     stock={c.stock}
                     price={c.price}
-                    
+
                   />
                 </div>
               </Grid>
@@ -81,21 +83,23 @@ const CardContainer = () => {
         </Cards>
       ) : (
         //<ComponentError />
-        <img src={ loading } alt="loading" />
+        <img src={loading} alt="loading" />
       )}
 
-      {allBooks?
+
+      {Array.isArray(filteredBooks)&&filteredBooks.length?
+
         <div className={style.paginate}>
-        <Paginate
-          paginated={paginated}
-          allBooks={filteredBooks.length}
-          booksPerPage={booksPerPage}
-          currentPage={currentPage}
-          nextHandler={nextHandler}
-          prevHandler={prevHandler}
-        />
-      </div>
-      :null
+          <Paginate
+            paginated={paginated}
+            allBooks={filteredBooks.length}
+            booksPerPage={booksPerPage}
+            currentPage={currentPage}
+            nextHandler={nextHandler}
+            prevHandler={prevHandler}
+          />
+        </div>
+        : null
       }
     </div>
   );

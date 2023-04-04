@@ -54,7 +54,7 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     if (userStatus.logged) {
-      navigate('/home');
+      navigate("/home");
     }
      // eslint-disable-next-line
   }, []);

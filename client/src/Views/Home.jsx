@@ -8,7 +8,7 @@ import { addBook } from "../redux/rootReducer/bookSlice";
 import { useEffect} from "react";
 
 
-const Home = () => {
+const Home = ({cartOpen}) => {
   const dispatch = useDispatch();
 
   const bookCollectionRef = collection(db, "books");
@@ -28,7 +28,7 @@ const Home = () => {
 
   return (
     <>
-      <CardContainer  />
+      <CardContainer cartOpen={cartOpen}/>
     </>
   );
 };

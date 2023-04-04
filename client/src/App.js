@@ -10,29 +10,35 @@ import Favorites from './Views/Favorites/Favorites'
 import AddBooks from './Views/AddBooks/AddBooks'
 import Login from './components/Login/Login'
 import Register from "./components/Register/Register";
-import Cart from "./components/Cart/Cart";
 import NavBar from "./components/NavBar/NavBar";
-import AdminRoutes from "./components/AdminRoutes/AdminRoutes.jsx"
-import  AdminDashBoard  from './Views/AdminDashboard/AdminDashborad'
+import Cart from './components/Cart/Cart'
+import { useSelector } from "react-redux";
+// import { useState } from "react";
+import PurchaseForm from "./PurchaseForm/PurchaseForm";
 
 function App() {
+const toogleCart = useSelector(state => state.toogle)
+const toogleFav = useSelector(state => state.toogleFav)
+console.log(toogleFav)
   return (
     <div className="App">
       <BrowserRouter>
       <AuthProvider>
-        <NavBar/>
+        <NavBar />
+        {toogleCart && <Cart />}
+        {toogleFav && <Favorites />}
         <Routes>
           <Route exact path="/" element={<Landing />} />
-          <Route exact path="/admin" element={<AdminDashBoard />} />
+          {/* <Route exact path="/admin" element={<AdminDashBoard />} /> */}
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/about" element={<About />} />
-          <Route exact path="/favorites" element={<Favorites /> } />
+          <Route exact path="/favorites" element={<Favorites />} />
           <Route exact path="/cart" element={<Cart />} />
-          <Route exact path="/create" element={<AdminRoutes><AddBooks/></AdminRoutes>}/>
+          <Route exact path="/create" element={<AddBooks/>}/>
           <Route path='/home/:id' element={<CardDetail />} /> 
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register />} /> 
-
+          <Route path='/checkout' element={<PurchaseForm/>} /> 
           <Route path="*" element={<Error />} />
         </Routes>
       </AuthProvider>
