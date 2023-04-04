@@ -79,36 +79,51 @@
 
 // export default CardDetail;
 
-
-
-
-
-
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getBookById } from "../../firebase/firestore/books";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { Box, Typography, Button, List, Paper } from "@mui/material";
+
+
+import style from "./CardDetail.module.css";
+import {
+  Box,
+  Button,
+  Card,
+  CardMedia,
+  Typography,
+  IconButton,
+  CardContent,
+  Paper,
+  List,
+  ListSubheader,
+} from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import CardsReview from "../CardsReview/CardsReview";
+import CardNewReview from "../CardNewReview/CardNewReview";
 import HomeIcon from "@mui/icons-material/Home";
-import { Reviews } from "@mui/icons-material";
+
+import loading from "../../Assets/Loading.gif";
+
+let nickname = "Manu"; //Traer el "nickname" del usuario que esta loogeado
 
 const CardDetail = ({id}) => {
   // const { id } = useParams();
-const dispatch = useDispatch();
-const [bookDetail, setBookDetail] = useState(null);
+  const dispatch = useDispatch();
+  const [bookDetail, setBookDetail] = useState({});
 
-useEffect(()=>{
 
-})
+
+
 
 
 useEffect(() => {
     dispatch(getBookById(id))
-    .then((response) => {
+
+      .then((response) => {
+        // setBookDetail(MyBook); //reemplazar en modo PRODUCCION
         setBookDetail(response.payload);
     })
     .catch((error) => {
@@ -116,7 +131,9 @@ useEffect(() => {
     });
 }, [dispatch, id]);
 
-const body = (
+
+
+  return bookDetail.id ? (
     <Card
     sx={{
         position: "absolute",
@@ -171,32 +188,56 @@ const body = (
         <Typography variant="body1" gutterBottom>
         {`Year: ${bookDetail?.year}`}
         </Typography>
-        {bookDetail.reviews ? (
+       {/* new change "Show reviews" */}
+       {bookDetail.reviews ? (
+            bookDetail.reviews.find((obj) => obj.user === nickname) ? (
+              ""
+            ) : (
+              <CardNewReview
+                key={bookDetail.id}
+                id={bookDetail.id}
+                nickname={nickname}
+              />
+            )
+          ) : (
+            <CardNewReview
+              key={bookDetail.id}
+              id={bookDetail.id}
+              nickname={nickname}
+            />
+          )}
+          {bookDetail.reviews ? (
             <>
-            <Typography variant="h5">
-                <p>Reviews</p>
-            </Typography>
-            <Paper style={{ maxHeight: 200, overflow: "auto" }}>
+
+              <Paper elevation={8} style={{ maxHeight: 200, overflow: "auto" }}>
                 <List
                 sx={{
                     width: "100%",
                     maxWidth: 400,
                     bgcolor: "background.paper",
-                }}
+
+                  }}
+                  subheader={
+                    <ListSubheader sx={{ display: "flex" }}>
+                      Comments
+                    </ListSubheader>
+                  }
                 >
-                {bookDetail.reviews.map((review) => (
-                    <Reviews
-                    key={review.id}
-                    id={review.id}
-                    user={review.user}
-                    comment={review.comment}
-                    rating={review.rating}
+                  {bookDetail.reviews.map((review) => (
+                    <CardsReview
+                      key={review.id}
+                      id={review.id}
+                      user={review.user}
+                      comment={review.comment}
+                      rating={review.rating}
                     />
                 ))}
                 </List>
             </Paper>
             </>
-        ) : null}
+
+          ) : null}
+          {/* new change "Show reviews" */}
         <Box
         sx={{
             display: "flex",
@@ -235,10 +276,10 @@ const body = (
         </Box>
     </Box>
     </Card>
-);
 
-return body;
+  ) : (
+    <img className={style.loading} src={loading} alt="loading" />
+  );
 };
-
 
 export default CardDetail;

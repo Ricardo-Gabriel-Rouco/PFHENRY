@@ -24,6 +24,7 @@ const Home = ({cartOpen}) => {
     };
 
     getBooksList();
+    // eslint-disable-next-line
   }, []);
 
   return (

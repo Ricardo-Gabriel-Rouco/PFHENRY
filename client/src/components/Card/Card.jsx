@@ -43,6 +43,7 @@ const Card = ({ image, id, title, authors, price, stock }) => {
         else
             if(isFav)
                 setIsFav(false)
+                // eslint-disable-next-line
     }, [favorite, id]);
 
   
@@ -159,8 +160,8 @@ const Card = ({ image, id, title, authors, price, stock }) => {
           onClick={() => handleAdd({ image, id, title, authors, price, stock })}
         >
           <IconButton
-            variant=""
-            color="primary"
+            variant="contained"
+            // color="primary"
             aria-label="add to shopping cart"
           >
             <ShoppingCartIcon />

@@ -32,7 +32,7 @@ export function AuthProvider({ children }) {
   };
 
   const login = async (email, password) => {
-    sigInWithMail(email, password);
+    await sigInWithMail(email, password);
   };
 
   useEffect(() => {
@@ -49,12 +49,14 @@ export function AuthProvider({ children }) {
       }
       setLoading(false);
     });
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     if (userStatus.logged) {
       navigate("/home");
     }
+     // eslint-disable-next-line
   }, []);
 
 

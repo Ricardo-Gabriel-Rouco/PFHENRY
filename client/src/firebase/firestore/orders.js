@@ -1,6 +1,5 @@
-import { getDocs, query, collection, where, doc, getDoc, updateDoc, setDoc } from "firebase/firestore"
+import { collection, doc, setDoc } from "firebase/firestore"
 import { db } from '../firebase-config';
-import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export async function postOrder(order) {
     try {

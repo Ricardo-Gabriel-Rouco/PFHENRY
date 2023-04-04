@@ -31,7 +31,6 @@ const NavBar = () => {
   const location = useLocation()
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
-  const authorized = useSelector((state) => state.user.isLogged);
   const favorites = useSelector(state => state.favorite.favorites);
   const cart = useSelector(state => state.cart);
 
