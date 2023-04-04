@@ -32,7 +32,7 @@ export function AuthProvider({ children }) {
   };
 
   const login = async (email, password) => {
-    sigInWithMail(email, password);
+    await sigInWithMail(email, password);
   };
 
   useEffect(() => {

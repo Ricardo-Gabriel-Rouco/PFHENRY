@@ -55,7 +55,7 @@ const NavBar = () => {
       navigate('/home')
   }
 
-  return (location.pathname !== '/' &&
+  return (((location.pathname !== '/') && (location.pathname.slice(0,6) !== '/admin')) &&
     <Box sx={{ flexGrow: 1, bgcolor: "#F9B52E", color: "#F7F6F6", p: 1 }}>
       {/* <FormGroup>
         <FormControlLabel

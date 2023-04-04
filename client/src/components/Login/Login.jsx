@@ -19,13 +19,32 @@ const Login = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
+      if(!userData.email) 
+      {
+        if(!userData.password)
+          throw 'bothEmpty'
+        else
+          throw 'emptyEmail'
+      }
+      if(!userData.password)
+          throw 'emptyPass'
+      
       await login(userData.email, userData.password);
       navigate('/home')
     } catch (error) {
+      console.log(error)
       if (error.code === "auth/wrong-password")
         setErrors({ ...errors, password: "Wrong password" });
-      if (error.code === "auth/user-not-found")
+      else if (error.code === "auth/user-not-found")
         setErrors({ ...errors, email: "User not found" });
+      else if(error === 'emptyEmail') 
+        setErrors({...errors, email: "Must insert email"})
+      else if(error === 'emptyPass') 
+        setErrors({...errors, password: "Must insert password"})
+      else if(error === 'bothEmpty') 
+        setErrors({...errors, email: "Must insert email", password: "Must insert password"})
+      
+        
     }
   }
 
