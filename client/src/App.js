@@ -19,7 +19,7 @@ import PurchaseForm from "./PurchaseForm/PurchaseForm";
 function App() {
 const toogleCart = useSelector(state => state.toogle)
 const toogleFav = useSelector(state => state.toogleFav)
-console.log(toogleFav)
+
   return (
     <div className="App">
       <BrowserRouter>

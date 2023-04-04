@@ -34,6 +34,7 @@ const Card = ({ image, id, title, authors, price, stock }) => {
         else
             if(isFav)
                 setIsFav(false)
+                // eslint-disable-next-line
     }, [favorite, id]);
 
     const handleFavorite = () => {

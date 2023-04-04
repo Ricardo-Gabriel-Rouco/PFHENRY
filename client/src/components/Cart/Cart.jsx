@@ -8,7 +8,7 @@ import {
   removeAllProducts,
 } from "../../redux/rootReducer/cartSlice";
 import { Stack, Box } from "@mui/material";
-import { Divider, IconButton, Grid } from "@mui/material";
+import { Divider, Grid } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { toogleCart } from "../../redux/rootReducer/toogleSlice";
 import { useState, useEffect } from "react";
@@ -39,6 +39,7 @@ const Cart = () => {
         image: product.image,
       })),
     });
+    // eslint-disable-next-line
   }, [cart.cart.cart]);
 
   console.log(order);
