@@ -1,8 +1,14 @@
 import { getBooks } from "../../../firebase/firestore/books";
+import { getAllTheUsers } from "../../../firebase/firestore/users";
 
 const dataProvider = {
   getList: async (resource, params) => {
-    const data = await getBooks();
+    let data = [];
+    if(resource === 'books'){
+      data = await getBooks();
+    } else if(resource === 'users'){
+      data = await getAllTheUsers();
+    }
     return {
       data: data,
       total: data.length,
