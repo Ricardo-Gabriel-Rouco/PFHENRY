@@ -14,9 +14,9 @@ import Home from "@mui/icons-material/Home";
 import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import LoginIcon from '@mui/icons-material/Login'
+// import LoginIcon from '@mui/icons-material/Login'
 import { useDispatch, useSelector } from "react-redux";
-import { logUserOut } from "../../redux/rootReducer/userSlice";
+// import { logUserOut } from "../../redux/rootReducer/userSlice";
 import { Badge } from '@mui/material';
 import { reset } from "../../redux/rootReducer/bookSlice";
 import { toogleCart } from '../../redux/rootReducer/toogleSlice';
@@ -70,7 +70,7 @@ const NavBar = () => {
           label={authorized ? "Logout" : "Login"}
         />
       </FormGroup> */}
-      <AppBar position="static" color="secondary">
+      <AppBar position="sticky" color="secondary">
         <Box>
           <Toolbar>
             <IconButton
