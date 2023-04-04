@@ -45,17 +45,9 @@ const Card = ({ image, id, title, authors, price, stock }) => {
                 setIsFav(false)
     }, [favorite, id]);
 
-    const handleFavorite = () => {
-        if (isFav) {
-            dispatch(deleteFavorite(id));
-            setIsFav(false);
-        } else {
-            dispatch(addFavorite({ image, id, title, authors, price, stock }));
-            setIsFav(true);
-
-        }
-      });
-  }, [favorite, id]);
+  
+    
+ 
 
   const handleFavorite = () => {
     if (isFav) {

@@ -89,11 +89,12 @@ import { useParams } from "react-router-dom";
 import { getBookById } from "../../firebase/firestore/books";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button, Paper, List } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import HomeIcon from "@mui/icons-material/Home";
+import Review from './Review/Review.jsx'
 
 const CardDetail = ({id}) => {
   // const { id } = useParams();
