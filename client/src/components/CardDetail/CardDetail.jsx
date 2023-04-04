@@ -79,11 +79,6 @@
 
 // export default CardDetail;
 
-
-
-
-
-
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getBookById } from "../../firebase/firestore/books";
@@ -94,17 +89,14 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import HomeIcon from "@mui/icons-material/Home";
-import Review from './Review/Review.jsx'
+import Review from "./Review/Review.jsx";
+import loading from "../../Assets/Loading.gif";
+import style from "./CardDetail.module.css";
 
-const CardDetail = ({id}) => {
+const CardDetail = ({ id }) => {
   // const { id } = useParams();
   const dispatch = useDispatch();
-  const [bookDetail, setBookDetail] = useState(null);
-
-  useEffect(()=>{
-
-  })
-
+  const [bookDetail, setBookDetail] = useState({});
 
   useEffect(() => {
     dispatch(getBookById(id))
@@ -116,7 +108,7 @@ const CardDetail = ({id}) => {
       });
   }, [dispatch, id]);
 
-  const body = (
+  return bookDetail.id ? (
     <Card
       sx={{
         position: "absolute",
@@ -172,31 +164,31 @@ const CardDetail = ({id}) => {
           {`Year: ${bookDetail?.year}`}
         </Typography>
         {bookDetail.reviews ? (
-            <>
-              <Typography variant="h5">
-                <p>Reviews</p>
-              </Typography>
-              <Paper style={{ maxHeight: 200, overflow: "auto" }}>
-                <List
-                  sx={{
-                    width: "100%",
-                    maxWidth: 400,
-                    bgcolor: "background.paper",
-                  }}
-                >
-                  {bookDetail.reviews.map((review) => (
-                    <Review
-                      key={review.id}
-                      id={review.id}
-                      user={review.user}
-                      comment={review.comment}
-                      rating={review.rating}
-                    />
-                  ))}
-                </List>
-              </Paper>
-            </>
-          ) : null}
+          <>
+            <Typography variant="h5">
+              <p>Reviews</p>
+            </Typography>
+            <Paper style={{ maxHeight: 200, overflow: "auto" }}>
+              <List
+                sx={{
+                  width: "100%",
+                  maxWidth: 400,
+                  bgcolor: "background.paper",
+                }}
+              >
+                {bookDetail.reviews.map((review) => (
+                  <Review
+                    key={review.id}
+                    id={review.id}
+                    user={review.user}
+                    comment={review.comment}
+                    rating={review.rating}
+                  />
+                ))}
+              </List>
+            </Paper>
+          </>
+        ) : null}
         <Box
           sx={{
             display: "flex",
@@ -235,10 +227,9 @@ const CardDetail = ({id}) => {
         </Box>
       </Box>
     </Card>
+  ) : (
+    <img className={style.loading} src={loading} alt="loading" />
   );
-
-  return body;
 };
-
 
 export default CardDetail;
