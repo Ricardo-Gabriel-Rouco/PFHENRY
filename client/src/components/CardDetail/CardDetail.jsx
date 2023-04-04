@@ -170,6 +170,32 @@ const CardDetail = ({id}) => {
         <Typography variant="body1" gutterBottom>
           {`Year: ${bookDetail?.year}`}
         </Typography>
+        {bookDetail.reviews ? (
+            <>
+              <Typography variant="h5">
+                <p>Reviews</p>
+              </Typography>
+              <Paper style={{ maxHeight: 200, overflow: "auto" }}>
+                <List
+                  sx={{
+                    width: "100%",
+                    maxWidth: 400,
+                    bgcolor: "background.paper",
+                  }}
+                >
+                  {bookDetail.reviews.map((review) => (
+                    <Review
+                      key={review.id}
+                      id={review.id}
+                      user={review.user}
+                      comment={review.comment}
+                      rating={review.rating}
+                    />
+                  ))}
+                </List>
+              </Paper>
+            </>
+          ) : null}
         <Box
           sx={{
             display: "flex",
@@ -212,5 +238,6 @@ const CardDetail = ({id}) => {
 
   return body;
 };
+
 
 export default CardDetail;

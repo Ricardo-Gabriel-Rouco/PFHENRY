@@ -23,18 +23,36 @@ import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlin
 import { addProduct } from "../../redux/rootReducer/cartSlice";
 import CardDetail from "../CardDetail/CardDetail";
 
+
+
+  
 const Card = ({ image, id, title, authors, price, stock }) => {
-  const favorite = useSelector((state) => state.favorite.favorites);
+    const favorite = useSelector(state => state.favorite.favorites)
+    const dispatch = useDispatch();
 
-  const dispatch = useDispatch();
 
-  //FAVORITES
-  const [isFav, setIsFav] = useState(false);
-  useEffect(() => {
-    if (favorite)
-      favorite.favorites.forEach((fav) => {
-        if (fav.id === id) {
-          setIsFav(true);
+    //FAVORITES
+    const [isFav, setIsFav] = useState(false);
+
+    useEffect(() => {
+        if(favorite.favorites.some((book) =>book.id === id))
+        {
+            if (!isFav) 
+                setIsFav(true);
+        }
+        else
+            if(isFav)
+                setIsFav(false)
+    }, [favorite, id]);
+
+    const handleFavorite = () => {
+        if (isFav) {
+            dispatch(deleteFavorite(id));
+            setIsFav(false);
+        } else {
+            dispatch(addFavorite({ image, id, title, authors, price, stock }));
+            setIsFav(true);
+
         }
       });
   }, [favorite, id]);
