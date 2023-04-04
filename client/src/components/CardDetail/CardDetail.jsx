@@ -107,10 +107,10 @@ import loading from "../../Assets/Loading.gif";
 
 let nickname = "Manu"; //Traer el "nickname" del usuario que esta loogeado
 
-const CardDetail = () => {
-  const { id } = useParams();
+const CardDetail = ({id}) => {
+  // const { id } = useParams();
   const dispatch = useDispatch();
-  const [bookDetail, setBookDetail] = useState(null);
+  const [bookDetail, setBookDetail] = useState({});
 
 
 
