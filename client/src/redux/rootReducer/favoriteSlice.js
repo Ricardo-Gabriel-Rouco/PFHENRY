@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { getFavorites } from "../../firebase/firestore/favorites";
 
 const initialState = {
     favorites: []
@@ -14,20 +15,25 @@ const favoritesReducer = createSlice({
     initialState,
     reducers: {
         addFavorite: (state, action) => {
-            console.log("Adding favorites:", action.payload);
             state.favorites = [...state.favorites, action.payload];
-            console.log(state.favorites)
 
         },
         deleteFavorite: (state, action) => {
-            console.log("Deleting favorites:", action.payload);
             state.favorites = state.favorites.filter(fav => fav.id !== action.payload);
-            console.log(state.favorites)
+        },
+
+        removeAllFavorites: (state) => {
+            state.favorites = [];
+        },
+        addFavoritesDB: (state, action) => {
+            state.favorites = action.payload;
+
         }
     }
-});
+})
 
-export const { addFavorite, deleteFavorite } = favoritesReducer.actions;
+
+export const { addFavorite, deleteFavorite, removeAllFavorites, addFavoritesDB } = favoritesReducer.actions;
 const persistedFavoriteducer = persistReducer(
     favoritesPersistConfig,
     favoritesReducer.reducer // utiliza el reducer directamente aquí

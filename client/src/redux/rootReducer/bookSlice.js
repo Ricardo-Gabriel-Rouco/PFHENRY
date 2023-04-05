@@ -18,7 +18,6 @@ const booksSlice = createSlice({
         return 0;
       });
       state.allBooks = alfa;
-      console.log(state.allBooks)
       state.booksToFilter = state.displayableBooks = alfa.filter(el=>el.display);
     },
 
