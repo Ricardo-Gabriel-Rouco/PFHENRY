@@ -22,6 +22,7 @@ import { reset } from "../../redux/rootReducer/bookSlice";
 import { toogleCart } from '../../redux/rootReducer/toogleSlice';
 import { toogleFav } from '../../redux/rootReducer/toogleFavSlice'
 import { postCart } from "../../firebase/firestore/cart";
+import { removeAllProducts } from "../../redux/rootReducer/cartSlice";
 
 
 const NavBar = () => {
@@ -47,8 +48,7 @@ const NavBar = () => {
   const handleLogOut = async () => {
     await postCart(cart.cart.cart, userStatus.userId)
     logout();
-    localStorage.clear()
-    alert("Session was closed");
+    dispatch(removeAllProducts())
   };
 
   const goHome = () => {

@@ -72,7 +72,6 @@ const CardContainer = () => {
                     authors={c.authors}
                     image={c.image}
                     title={c.title}
-                    stock={c.stock}
                     price={c.price}
 
                   />
