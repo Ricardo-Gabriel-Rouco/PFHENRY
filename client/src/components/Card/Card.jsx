@@ -160,8 +160,8 @@ const Card = ({ image, id, title, authors, price, stock }) => {
           onClick={() => handleAdd({ image, id, title, authors, price, stock })}
         >
           <IconButton
-            variant=""
-            color="primary"
+            variant="contained"
+            // color="primary"
             aria-label="add to shopping cart"
           >
             <ShoppingCartIcon />

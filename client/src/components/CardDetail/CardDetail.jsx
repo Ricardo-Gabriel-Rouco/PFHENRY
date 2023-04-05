@@ -85,6 +85,7 @@ import { getBookById } from "../../firebase/firestore/books";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
+
 import style from "./CardDetail.module.css";
 import {
   Box,
@@ -103,6 +104,7 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import CardsReview from "../CardsReview/CardsReview";
 import CardNewReview from "../CardNewReview/CardNewReview";
 import HomeIcon from "@mui/icons-material/Home";
+
 import loading from "../../Assets/Loading.gif";
 
 let nickname = "Manu"; //Traer el "nickname" del usuario que esta loogeado
@@ -117,21 +119,23 @@ const CardDetail = ({id}) => {
 
 
 
-  useEffect(() => {
+useEffect(() => {
     dispatch(getBookById(id))
+
       .then((response) => {
         // setBookDetail(MyBook); //reemplazar en modo PRODUCCION
         setBookDetail(response.payload);
-      })
-      .catch((error) => {
+    })
+    .catch((error) => {
         console.log(error);
-      });
-  }, [dispatch, id]);
+    });
+}, [dispatch, id]);
+
 
 
   return bookDetail.id ? (
     <Card
-      sx={{
+    sx={{
         position: "absolute",
         top: "60%",
         left: "50%",
@@ -142,47 +146,47 @@ const CardDetail = ({id}) => {
         maxWidth: "50vw",
         maxHeight: "95vh",
         overflowY: "auto",
-      }}
+    }}
     >
-      <Box
+    <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
         }}
-      >
+    >
         <CardMedia
-          component="img"
-          image={bookDetail?.image}
-          alt={bookDetail?.title}
-          sx={{ height: 300, width: 200 }}
+        component="img"
+        image={bookDetail?.image}
+        alt={bookDetail?.title}
+        sx={{ height: 300, width: 200 }}
         />
         <Typography
-          variant="h4"
-          component="h2"
-          gutterBottom
-          sx={{ mt: 2, fontWeight: "bold" }}
+        variant="h4"
+        component="h2"
+        gutterBottom
+        sx={{ mt: 2, fontWeight: "bold" }}
         >
-          {bookDetail?.title}
+        {bookDetail?.title}
         </Typography>
         <Typography variant="h5" gutterBottom>
-          {bookDetail?.author}
+        {bookDetail?.author}
         </Typography>
         <Typography variant="subtitle1" gutterBottom>
-          {bookDetail?.editorial}
+        {bookDetail?.editorial}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {bookDetail?.description}
+        {bookDetail?.description}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {`Price: $${bookDetail?.price}`}
+        {`Price: $${bookDetail?.price}`}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {`Rating: ${bookDetail?.rating}`}
+        {`Rating: ${bookDetail?.rating}`}
         </Typography>
         <Typography variant="body1" gutterBottom>
-          {`Year: ${bookDetail?.year}`}
+        {`Year: ${bookDetail?.year}`}
         </Typography>
        {/* new change "Show reviews" */}
        {bookDetail.reviews ? (
@@ -204,12 +208,14 @@ const CardDetail = ({id}) => {
           )}
           {bookDetail.reviews ? (
             <>
+
               <Paper elevation={8} style={{ maxHeight: 200, overflow: "auto" }}>
                 <List
-                  sx={{
+                sx={{
                     width: "100%",
                     maxWidth: 400,
                     bgcolor: "background.paper",
+
                   }}
                   subheader={
                     <ListSubheader sx={{ display: "flex" }}>
@@ -225,50 +231,52 @@ const CardDetail = ({id}) => {
                       comment={review.comment}
                       rating={review.rating}
                     />
-                  ))}
+                ))}
                 </List>
-              </Paper>
+            </Paper>
             </>
+
           ) : null}
           {/* new change "Show reviews" */}
         <Box
-          sx={{
+        sx={{
             display: "flex",
             justifyContent: "space-between",
             mt: 2,
             width: "100%",
-          }}
+        }}
         >
-          <Button
+        <Button
             color="secondary"
             sx={{
-              height: 30,
-              width: 30,
-              borderRadius: "50%",
-              p: 6,
+            height: 30,
+            width: 30,
+            borderRadius: "50%",
+            p: 6,
             }}
-          >
+        >
             <Link to="/home">
-              <HomeIcon />
+            <HomeIcon />
             </Link>
-          </Button>
+        </Button>
 
-          <Button
+        <Button
             color="secondary"
             sx={{
-              height: 60,
-              width: 60,
-              borderRadius: "50%",
-              p: 6,
+            height: 60,
+            width: 60,
+            borderRadius: "50%",
+            p: 6,
             }}
-          >
+        >
             <Link to={`/home/cart`}>
-              <ShoppingCartIcon />
+            <ShoppingCartIcon />
             </Link>
-          </Button>
+        </Button>
         </Box>
-      </Box>
+    </Box>
     </Card>
+
   ) : (
     <img className={style.loading} src={loading} alt="loading" />
   );
