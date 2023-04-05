@@ -2,7 +2,6 @@ import { getDocs, query, collection, where, doc, getDoc, updateDoc, setDoc, dele
 import { db } from '../firebase-config';
 
 export async function postFav(favorites, userId) {
-    console.log(favorites.favorites, userId)
     try {
         const newFav = {
             favoriteList: favorites,

@@ -17,15 +17,11 @@ import { addProduct } from '../../redux/rootReducer/cartSlice';
 import { closeFav } from '../../redux/rootReducer/toogleFavSlice';
 
 
-
-
-
-
 const Favorites = () => {
     const favorites = useSelector(state => state.favorite.favorites);
     const dispatch = useDispatch();
     const toogleFav = useSelector(state => state.toogleFav.isOpen);
-console.log(favorites)
+
     const handleDelete = (id) => {
         dispatch(deleteFavorite(id));
     };

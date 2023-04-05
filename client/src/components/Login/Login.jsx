@@ -3,8 +3,10 @@ import { Button, TextField } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { getFavorites } from "../../firebase/firestore/favorites";
+import { getCart } from "../../firebase/firestore/cart";
 import { useDispatch } from "react-redux";
 import { addFavoritesDB } from "../../redux/rootReducer/favoriteSlice";
+import { addCartDB } from "../../redux/rootReducer/cartSlice";
 
 const Login = () => {
   const { login, loginWithGoogle, resetPassword, userStatus } = useAuth();
@@ -36,8 +38,14 @@ const Login = () => {
       await login(userData.email, userData.password);
       const favDB = await getFavorites(userStatus.userId)
       if(favDB){
-        dispatch(addFavoritesDB(userStatus.userId))
+        dispatch(addFavoritesDB(favDB))
       }
+
+      const cartDB = await getCart(userStatus.userId);
+      if (cartDB){
+        dispatch(addCartDB(cartDB))
+      }
+
       navigate('/home')
     } catch (error) {
       console.log(error)
@@ -62,6 +70,10 @@ const Login = () => {
       const favDB = await getFavorites(userStatus.userId)
       if(favDB){
         dispatch(addFavoritesDB(favDB))
+      }
+      const cartDB = await getCart(userStatus.userId);
+      if (cartDB){
+        dispatch(addCartDB(cartDB))
       }
       navigate("/home");
     } catch (error) {
