@@ -8,7 +8,7 @@
 
 .card:hover {
     background-color: #188fff16;
-    transform: scale(1.05);
+    /* transform: scale(1.05); */
   }
   
   .card {
@@ -33,3 +33,7 @@
       opacity: 1;
     }
   }  
+
+  .loading{
+    width: 100%;
+  }

@@ -1,21 +1,24 @@
 import style from './SearchBar.module.css';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
+// eslint-disable-next-line
 import { searchBook, clearSearchResults } from '../../redux/rootReducer/bookSlice';
 import SearchIcon from '@mui/icons-material/Search';
-import { Box, IconButton, InputBase, Paper, TextField } from '@mui/material';
+
+import {IconButton, InputBase, Paper} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 
 
 
 const SearchBar = ({
-    placeholder, paginated
+    placeholder
 
 }) => {
+    // eslint-disable-next-line
     const books = useSelector((state) => state.books.booksToFilter)
 
-    console.log(books)
+    // console.log(books)
 
     //ESTADO PARA SETEAR LOS VALORES DE BUSQUEDA
     const [searchValue, setSearchValue] = useState("");
@@ -32,7 +35,7 @@ const SearchBar = ({
     const handlerSearchClick = () =>{
         dispatch(searchBook(searchValue))
         setSearchValue("")
-        navigate('/home', paginated(1));
+        navigate('/home');
     }
     //ENTER BUTTON 
     const handlerKeyDown = (e) => {
