@@ -3,9 +3,6 @@ import { FaChevronDown } from "react-icons/fa";
 import About from "../About";
 import style from "./Landing.module.css";
 import { Button } from "@mui/material";
-import { useEffect } from "react";
-import { deleteCart } from "../../firebase/firestore/cart";
-
 
 const Landing = () => {
   function scrollToAbout() {

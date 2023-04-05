@@ -2,15 +2,19 @@ import React, { useState } from "react";
 import { Button, TextField } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
+import { getFavorites } from "../../firebase/firestore/favorites";
+import { useDispatch } from "react-redux";
+import { addFavoritesDB } from "../../redux/rootReducer/favoriteSlice";
 
 const Login = () => {
-  const { login, loginWithGoogle, resetPassword } = useAuth();
+  const { login, loginWithGoogle, resetPassword, userStatus } = useAuth();
   const navigate = useNavigate();
   const [userData, setUserData] = useState({
     email: "",
     password: "",
   });
-
+  const dispatch = useDispatch()
+  
   const [errors, setErrors] = useState({
     email: "",
     password: "",
@@ -30,6 +34,10 @@ const Login = () => {
           throw 'emptyPass'
       
       await login(userData.email, userData.password);
+      const favDB = await getFavorites(userStatus.userId)
+      if(favDB){
+        dispatch(addFavoritesDB(userStatus.userId))
+      }
       navigate('/home')
     } catch (error) {
       console.log(error)
@@ -51,6 +59,10 @@ const Login = () => {
   async function registerGoogle() {
     try {
       await loginWithGoogle();
+      const favDB = await getFavorites(userStatus.userId)
+      if(favDB){
+        dispatch(addFavoritesDB(favDB))
+      }
       navigate("/home");
     } catch (error) {
       setErrors({ ...errors, error });

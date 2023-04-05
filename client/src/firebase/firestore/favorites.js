@@ -9,19 +9,24 @@ export async function postFav(favorites, userId) {
             display: true,
         }
         const collectionRef = collection(db, 'favorites')
-        const orderRef = doc(collectionRef, userId)
-        await setDoc(orderRef, newFav)
+        const favRef = doc(collectionRef, userId)
+        await setDoc(favRef, newFav)
         return "Favorites guardado"
     } catch (error) {
         console.log(error)
     }
 }
 
-export async function deleteFav(id) {
+export async function getFavorites(id) {
     try {
-      const cart = doc(db, "favorites", id)
-      await deleteDoc(cart)
+      const docRef = doc(db, 'favorites', id);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+          return docSnap.data().favoriteList;
+      } else {
+        return [];
+      }
     } catch (error) {
-      console.log(error)
+      console.error(`Error al obtener datos del documento con ID ${id}: `, error);
     }
   }
