@@ -54,14 +54,12 @@ const Cart = () => {
                     "http://localhost:3001/checkout",
                     order
                 );
-                postOrder(order)
+                await postOrder(response.data);
                 dispatch(removeAllProducts());
                 localStorage.removeItem("cart")
                 window.open(response.data.link);
-                // Hacer algo con la respuesta exitosa
             } catch (error) {
                 console.error("Error:", error.response.data);
-                // Manejar el error
             }
         } else {
             dispatch(toogleCart());
