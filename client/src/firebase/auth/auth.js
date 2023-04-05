@@ -47,7 +47,6 @@ export async function verifyUserSesion() {
 }
 
 export async function getUserById(uid) {
-    console.log(uid)
     try {
         const userRef = doc(db, 'users', uid);
         const userSnap = await getDoc(userRef);

@@ -43,7 +43,6 @@ const Cart = () => {
     // eslint-disable-next-line
   }, [cart.cart.cart]);
 
-  console.log(order);
 
   //handlers
 

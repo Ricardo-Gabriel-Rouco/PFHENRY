@@ -22,7 +22,9 @@ import { reset } from "../../redux/rootReducer/bookSlice";
 import { toogleCart } from '../../redux/rootReducer/toogleSlice';
 import { toogleFav } from '../../redux/rootReducer/toogleFavSlice'
 import { postCart } from "../../firebase/firestore/cart";
+import { postFav } from "../../firebase/firestore/favorites";
 import { removeAllProducts } from "../../redux/rootReducer/cartSlice";
+import { removeAllFavorites } from "../../redux/rootReducer/favoriteSlice";
 
 
 const NavBar = () => {
@@ -36,7 +38,6 @@ const NavBar = () => {
   const favorites = useSelector(state => state.favorite.favorites);
   const cart = useSelector(state => state.cart);
 
-
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -47,8 +48,10 @@ const NavBar = () => {
 
   const handleLogOut = async () => {
     await postCart(cart.cart.cart, userStatus.userId)
+    await postFav(favorites.favorites, userStatus.userId)
     logout();
-    dispatch(removeAllProducts())
+    dispatch(removeAllProducts());
+    dispatch(removeAllFavorites())
   };
 
   const goHome = () => {
@@ -58,7 +61,7 @@ const NavBar = () => {
       navigate('/home')
   }
 
-  return (((location.pathname !== '/') && (location.pathname.slice(0,6) !== '/admin')) &&
+  return (((location.pathname !== '/') && (location.pathname.slice(0, 6) !== '/admin')) &&
     <Box sx={{ flexGrow: 1, bgcolor: "#F9B52E", color: "#F7F6F6", p: 1 }}>
       {/* <FormGroup>
         <FormControlLabel
@@ -117,7 +120,7 @@ const NavBar = () => {
 
 
               <Badge badgeContent={favorites && favorites.favorites.length} color="info">
-                  <BookmarkOutlinedIcon onClick = {() => dispatch(toogleFav())} sx={{ color: "#F7F6F6" }} />{" "}
+                <BookmarkOutlinedIcon onClick={() => dispatch(toogleFav())} sx={{ color: "#F7F6F6" }} />{" "}
               </Badge>
             </IconButton>
 
