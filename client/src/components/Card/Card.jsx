@@ -31,24 +31,15 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
     const dispatch = useDispatch();
 
 
-    //FAVORITES
-    const [isFav, setIsFav] = useState(false);
+  //FAVORITES
+  const [isFav, setIsFav] = useState(false);
 
-    useEffect(() => {
-        if(favorite.favorites.some((book) =>book.id === id))
-        {
-            if (!isFav) 
-                setIsFav(true);
-        }
-        else
-            if(isFav)
-                setIsFav(false)
-                // eslint-disable-next-line
-    }, [favorite, id]);
-
-  
-    
- 
+  useEffect(() => {
+    if (favorite.favorites.some((book) => book.id === id)) {
+      if (!isFav) setIsFav(true);
+    } else if (isFav) setIsFav(false);
+    // eslint-disable-next-line
+  }, [favorite, id]);
 
   const handleFavorite = () => {
     if (isFav) {
@@ -135,19 +126,20 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
           <Link to={`/home/${id}`}>Details</Link>
         </Button> */}
 
-        <Button
-          variant="contained"
-                   onClick={handleClickOpen}
-        >
+        <Button variant="contained" onClick={handleClickOpen}>
           Details
         </Button>
-        {/* <Link to={`/home/${id}`}></Link> */}
-        <Dialog open={open} onClose={handleClose} fullWidth={true} PaperProps={{
-        style: {
-          height: '100vh',
-          overflow: 'hidden',
-        },
-      }} >
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          fullWidth={true}
+          PaperProps={{
+            style: {
+              height: "99vh",
+              overflow: "hidden",
+            },
+          }}
+        >
           <DialogContent>
             <CardDetail id={id} />
           </DialogContent>
