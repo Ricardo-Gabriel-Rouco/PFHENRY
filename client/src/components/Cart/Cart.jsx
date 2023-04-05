@@ -15,6 +15,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../../context/authContext";
 import {useNavigate} from 'react-router-dom'
+import { postOrder } from "../../firebase/firestore/orders";
 
 const Cart = () => {
   const { userStatus } = useAuth();
@@ -54,6 +55,7 @@ const Cart = () => {
           order
         );
         console.log("Response:", response);
+        await postOrder(response.data)
         dispatch(removeAllProducts());
         window.open(response.data.link);
         // Hacer algo con la respuesta exitosa
