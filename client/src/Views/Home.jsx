@@ -8,6 +8,7 @@ import { addBook } from "../redux/rootReducer/bookSlice";
 import { useEffect} from "react";
 
 
+
 const Home = ({cartOpen}) => {
   const dispatch = useDispatch();
 
@@ -26,6 +27,8 @@ const Home = ({cartOpen}) => {
     getBooksList();
     // eslint-disable-next-line
   }, []);
+
+
 
   return (
     <>

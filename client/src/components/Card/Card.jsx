@@ -26,7 +26,7 @@ import CardDetail from "../CardDetail/CardDetail";
 
 
   
-const Card = ({ image, id, title, authors, price, stock }) => {
+const Card = ({ image, id, title, authors, price, editorial }) => {
     const favorite = useSelector(state => state.favorite.favorites)
     const dispatch = useDispatch();
 
@@ -55,7 +55,7 @@ const Card = ({ image, id, title, authors, price, stock }) => {
       dispatch(deleteFavorite(id));
       setIsFav(false);
     } else {
-      dispatch(addFavorite({ image, id, title, authors, price, stock }));
+      dispatch(addFavorite({ image, id, title, authors, price, editorial }));
 
       setIsFav(true);
     }
@@ -125,9 +125,6 @@ const Card = ({ image, id, title, authors, price, stock }) => {
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           {title}
         </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          {stock ? <p>Stock: {stock}</p> : null}
-        </Typography>
         <Typography variant="body2">
           {price ? <p>Price $ {price}</p> : null}
         </Typography>
@@ -157,7 +154,7 @@ const Card = ({ image, id, title, authors, price, stock }) => {
         </Dialog>
 
         <Button
-          onClick={() => handleAdd({ image, id, title, authors, price, stock })}
+          onClick={() => handleAdd({ image, id, title, authors, price })}
         >
           <IconButton
             variant="contained"
