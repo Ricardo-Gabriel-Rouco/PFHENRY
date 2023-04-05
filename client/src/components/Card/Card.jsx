@@ -26,7 +26,7 @@ import CardDetail from "../CardDetail/CardDetail";
 
 
   
-const Card = ({ image, id, title, authors, price }) => {
+const Card = ({ image, id, title, authors, price, editorial }) => {
     const favorite = useSelector(state => state.favorite.favorites)
     const dispatch = useDispatch();
 
@@ -55,7 +55,7 @@ const Card = ({ image, id, title, authors, price }) => {
       dispatch(deleteFavorite(id));
       setIsFav(false);
     } else {
-      dispatch(addFavorite({ image, id, title, authors, price }));
+      dispatch(addFavorite({ image, id, title, authors, price, editorial }));
 
       setIsFav(true);
     }
