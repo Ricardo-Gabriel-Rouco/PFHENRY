@@ -1,4 +1,4 @@
-import { getDocs, query, collection, where, doc, getDoc, updateDoc, setDoc } from "firebase/firestore"
+import { getDocs, query, collection, where, doc, getDoc, updateDoc, setDoc, deleteDoc } from "firebase/firestore"
 import { db } from '../firebase-config';
 
 export async function postFav(favorites, userId) {
@@ -16,3 +16,12 @@ export async function postFav(favorites, userId) {
         console.log(error)
     }
 }
+
+export async function deleteFav(id) {
+    try {
+      const cart = doc(db, "favorites", id)
+      await deleteDoc(cart)
+    } catch (error) {
+      console.log(error)
+    }
+  }
