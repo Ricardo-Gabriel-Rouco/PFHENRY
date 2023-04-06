@@ -178,7 +178,7 @@ const Login = () => {
         style={{ margin: "1rem" }}
       />
       {errors.email && (
-        <Typography sx={{ fontSize: '1em' }} color="red" gutterBottom>
+        <Typography sx={{ fontSize: "1em" }} color="red" gutterBottom>
           {errors.email}
         </Typography>
       )}
@@ -192,7 +192,7 @@ const Login = () => {
         style={{ margin: "1rem" }}
       />
       {errors.password && (
-        <Typography sx={{ fontSize: '1em' }} color="red" gutterBottom>
+        <Typography sx={{ fontSize: "1em" }} color="red" gutterBottom>
           {errors.password}
         </Typography>
       )}
