@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, TextField } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
@@ -29,6 +29,12 @@ const Login = () => {
     password: "",
   });
 
+  useEffect(() => {
+    if (userStatus.logged) {
+      navigate("/home");
+    }
+  }, [userStatus.logged, navigate]);
+
   async function handleSubmit(e) {
     e.preventDefault();
     try {
@@ -43,15 +49,19 @@ const Login = () => {
 
       await login(userData.email, userData.password);
       const favDB = await getFavorites(userStatus.userId);
+
       if (favDB && favLS) {
         const combinedFavorites = [...favDB, ...favLS];
 
-        const uniqueFavorites = combinedFavorites.filter((obj, index, self) => {
-          return index === self.findIndex((o) => o.id === obj.id);
-        });
 
-        dispatch(addFavoritesDB(uniqueFavorites));
-      }
+      const combinedFavorites = [...favDB, ...favLS];
+
+      const uniqueFavorites = combinedFavorites.filter((obj, index, self) => {
+        return index === self.findIndex((o) => o.id === obj.id);
+      });
+      
+      dispatch(addFavoritesDB(uniqueFavorites));
+
       const cartDB = await getCart(userStatus.userId);
       let combinedCart = [];
 
@@ -98,6 +108,7 @@ const Login = () => {
   async function registerGoogle() {
     try {
       await loginWithGoogle();
+
       const favDB = await getFavorites(userStatus.userId);
       if (favDB && favLS) {
 
@@ -107,8 +118,6 @@ const Login = () => {
           return index === self.findIndex((o) => o.id === obj.id);
         });
         dispatch(addFavoritesDB(uniqueFavorites));
-
-
       }
 
       const cartDB = await getCart(userStatus.userId);
@@ -155,7 +164,9 @@ const Login = () => {
     }
   }
 
+
   return (
+    userStatus.logged ? navigate('/home') :
     <form
       onSubmit={handleSubmit}
       style={{
