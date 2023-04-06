@@ -11,9 +11,9 @@ import { addCartDB } from "../../redux/rootReducer/cartSlice";
 const Login = () => {
   const favLS = useSelector((state) => state.favorite.favorites.favorites);
   const cartLS = useSelector((sate) => sate.cart);
-  console.log(cartLS);
-  console.log(cartLS.cart);
-  console.log(cartLS.cart.cart);
+  // console.log(cartLS);
+  // console.log(cartLS.cart);
+  // console.log(cartLS.cart.cart);
 
   const { login, loginWithGoogle, resetPassword, userStatus } = useAuth();
   const navigate = useNavigate();
@@ -81,22 +81,23 @@ const Login = () => {
 
       navigate("/home");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       if (error.code === "auth/wrong-password")
         setErrors({ password: "Wrong password" });
       else if (error.code === "auth/user-not-found")
-
-        setErrors({ ...errors, email: "User not found" });
+        setErrors({ email: "User not found" });
+      else if (error.code === "auth/invalid-email")
+        setErrors({ email: "Invalid email" });
       else if (error === "emptyEmail")
-        setErrors({ ...errors, email: "Must insert email" });
+        setErrors({ email: "Must insert email" });
       else if (error === "emptyPass")
-        setErrors({ ...errors, password: "Must insert password" });
+        setErrors({ password: "Must insert password" });
       else if (error === "bothEmpty")
         setErrors({
-          ...errors,
           email: "Must insert email",
           password: "Must insert password",
         });
+      else console.log(error.code)
     }
   }
 
@@ -139,7 +140,7 @@ const Login = () => {
       }
       navigate("/home");
     } catch (error) {
-      setErrors({ ...errors, error });
+      setErrors({ error });
     }
   }
 
@@ -149,10 +150,10 @@ const Login = () => {
 
   const handleResetPassword = async () => {
     if (!userData.email)
-      return setErrors({ ...userData, email: "ingresa un email" });
+      return setErrors({ ...userData, email: "insert an email" });
     try {
       await resetPassword(userData.email);
-      alert("we send you an email to reset your password");
+      alert("we've sent you an email to reset your password");
     } catch (error) {
       alert(error.message);
     }
@@ -203,7 +204,7 @@ const Login = () => {
         color="primary"
         style={{ margin: "2rem" }}
       >
-        Iniciar Sesion
+        Login
       </Button>
       <Button
         variant="contained"
@@ -213,7 +214,7 @@ const Login = () => {
         }}
         style={{ margin: "2rem" }}
       >
-        Inicia sesion con Google
+        Login with Google
       </Button>
       <Link to={"/register"}>No tienes Cuenta? crea una</Link>
       <Link onClick={handleResetPassword}>Forgot password?</Link>
