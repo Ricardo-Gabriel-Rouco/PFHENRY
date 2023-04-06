@@ -23,10 +23,7 @@ const Login = () => {
   });
   const dispatch = useDispatch();
 
-  const [errors, setErrors] = useState({
-    email: "",
-    password: "",
-  });
+  const [errors, setErrors] = useState("");
 
   useEffect(() => {
     if (userStatus.logged) {
@@ -82,21 +79,18 @@ const Login = () => {
       navigate("/home");
     } catch (error) {
       // console.log(error);
-      if (error.code === "auth/wrong-password")
-        setErrors({ password: "Wrong password" });
-      else if (error.code === "auth/user-not-found")
-        setErrors({ email: "User not found" });
+      if (error.code === "auth/user-not-found")
+      setErrors("User not found");
       else if (error.code === "auth/invalid-email")
-        setErrors({ email: "Invalid email" });
+      setErrors("Invalid email");
       else if (error === "emptyEmail")
-        setErrors({ email: "Must insert email" });
+      setErrors("Must insert email");
+      else if (error.code === "auth/wrong-password")
+        setErrors("Wrong password");
       else if (error === "emptyPass")
-        setErrors({ password: "Must insert password" });
+        setErrors("Must insert password");
       else if (error === "bothEmpty")
-        setErrors({
-          email: "Must insert email",
-          password: "Must insert password",
-        });
+        setErrors("Must insert email and password");
       else console.log(error.code)
     }
   }
@@ -179,11 +173,6 @@ const Login = () => {
         onChange={handleInputChange}
         style={{ margin: "1rem" }}
       />
-      {errors.email && (
-        <Typography sx={{ fontSize: "1em" }} color="red" gutterBottom>
-          {errors.email}
-        </Typography>
-      )}
 
       <TextField
         type="password"
@@ -193,9 +182,9 @@ const Login = () => {
         onChange={handleInputChange}
         style={{ margin: "1rem" }}
       />
-      {errors.password && (
+      {errors && (
         <Typography sx={{ fontSize: "1em" }} color="red" gutterBottom>
-          {errors.password}
+          {errors}
         </Typography>
       )}
       <Button
