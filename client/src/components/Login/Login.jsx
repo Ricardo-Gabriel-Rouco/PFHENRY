@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, TextField } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
@@ -23,6 +23,12 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+  useEffect(() => {
+    if (userStatus.logged) {
+      navigate("/home");
+    }
+  }, [userStatus.logged, navigate]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -108,7 +114,9 @@ const Login = () => {
     }
   }
 
+
   return (
+    userStatus.logged ? navigate('/home') :
     <form
       onSubmit={handleSubmit}
       style={{

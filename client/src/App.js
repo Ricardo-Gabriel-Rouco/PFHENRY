@@ -16,6 +16,8 @@ import { useSelector } from "react-redux";
 // import { useState } from "react";
 import PurchaseForm from "./PurchaseForm/PurchaseForm";
 import { AdminDashboard } from "./Views/AdminDashboard/AdminDashboard";
+import AdminRoutes from './components/AdminRoutes/AdminRoutes'
+import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
 
 function App() {
 const toogleCart = useSelector(state => state.toogle)
@@ -30,16 +32,16 @@ const toogleFav = useSelector(state => state.toogleFav)
         {toogleFav && <Favorites />}
         <Routes>
           <Route exact path="/" element={<Landing />} />
-          <Route exact path="/admin/*" element={<AdminDashboard />} />
+          <Route exact path="/admin/*" element={<AdminRoutes><AdminDashboard /></AdminRoutes> } />
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/about" element={<About />} />
           <Route exact path="/favorites" element={<Favorites />} />
           <Route exact path="/cart" element={<Cart />} />
-          <Route exact path="/create" element={<AddBooks/>}/>
+          <Route exact path="/create" element={<AdminRoutes><AddBooks/></AdminRoutes>}/>
           <Route path='/home/:id' element={<CardDetail />} /> 
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register />} /> 
-          <Route path='/checkout' element={<PurchaseForm/>} /> 
+          <Route path='/checkout' element={<ProtectedRoutes><PurchaseForm/></ProtectedRoutes>} /> 
           <Route path="*" element={<Error />} />
         </Routes>
       </AuthProvider>

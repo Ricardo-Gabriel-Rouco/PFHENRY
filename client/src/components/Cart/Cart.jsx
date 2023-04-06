@@ -50,7 +50,7 @@ const Cart = () => {
     if (userStatus.logged) {
       try {
         const response = await axios.post(
-          "http://localhost:3001/checkout",
+          "https://pfhenry-production.up.railway.app/checkout",
           order
         );
         console.log("Response:", response);
