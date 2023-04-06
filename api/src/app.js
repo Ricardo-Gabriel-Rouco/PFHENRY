@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(cors({
   // https://pfhenry-jzy1.vercel.app/*
-  origin: ['*', 'http://www.mercadopago.com.ar'] // Allow requests from these origins only
+  origin: ['http://localhost:3000', 'http://www.mercadopago.com.ar'] // Allow requests from these origins only
 }));
 app.use("/clients", clients);
 app.use("/products", products);
