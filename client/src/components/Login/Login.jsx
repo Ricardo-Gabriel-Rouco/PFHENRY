@@ -38,7 +38,7 @@ const Login = () => {
 
       await login(userData.email, userData.password);
       const favDB = await getFavorites(userStatus.userId);
-      
+
       const combinedFavorites = [...favDB, ...favLS];
 
       const uniqueFavorites = combinedFavorites.filter((obj, index, self) => {
@@ -74,6 +74,7 @@ const Login = () => {
   async function registerGoogle() {
     try {
       await loginWithGoogle();
+
       const favDB = await getFavorites(userStatus.userId);
       if (favDB && favLS) {
       
@@ -83,8 +84,6 @@ const Login = () => {
         return index === self.findIndex((o) => o.id === obj.id);
       });
       dispatch(addFavoritesDB(uniqueFavorites));
-
-      
       }
 
       const cartDB = await getCart(userStatus.userId);
