@@ -11,6 +11,11 @@ import { addCartDB } from "../../redux/rootReducer/cartSlice";
 
 const Login = () => {
   const favLS = useSelector(state => state.favorite.favorites.favorites)
+  const cartLS = useSelector(sate => sate.cart)
+  console.log(cartLS)
+  console.log(cartLS.cart)
+  console.log(cartLS.cart.cart)
+
   const { login, loginWithGoogle, resetPassword, userStatus } = useAuth();
   const navigate = useNavigate();
   const [userData, setUserData] = useState({
@@ -45,6 +50,10 @@ const Login = () => {
       await login(userData.email, userData.password);
       const favDB = await getFavorites(userStatus.userId);
 
+      if (favDB && favLS) {
+        const combinedFavorites = [...favDB, ...favLS];
+
+
       const combinedFavorites = [...favDB, ...favLS];
 
       const uniqueFavorites = combinedFavorites.filter((obj, index, self) => {
@@ -53,10 +62,29 @@ const Login = () => {
       
       dispatch(addFavoritesDB(uniqueFavorites));
 
-
       const cartDB = await getCart(userStatus.userId);
-      if (cartDB) {
-        dispatch(addCartDB(cartDB))
+      let combinedCart = [];
+
+      if (cartDB && cartLS) {
+        const booksMap = {};
+
+        cartDB.forEach(book => {
+          if (!booksMap[book.id]) {
+            booksMap[book.id] = { ...book, quantity: 0 };
+          }
+          booksMap[book.id].quantity += book.quantity;
+        });
+
+
+        cartLS.cart.cart.forEach(book => {
+          if (!booksMap[book.id]) {
+            booksMap[book.id] = { ...book, quantity: 0 };
+          }
+          booksMap[book.id].quantity += book.quantity;
+        });
+
+        combinedCart = Object.values(booksMap);
+        dispatch(addCartDB(combinedCart))
       }
 
       navigate('/home')
@@ -83,18 +111,38 @@ const Login = () => {
 
       const favDB = await getFavorites(userStatus.userId);
       if (favDB && favLS) {
-      
-      const combinedFavorites = [...favDB, ...favLS];
 
-      const uniqueFavorites = combinedFavorites.filter((obj, index, self) => {
-        return index === self.findIndex((o) => o.id === obj.id);
-      });
-      dispatch(addFavoritesDB(uniqueFavorites));
+        const combinedFavorites = [...favDB, ...favLS];
+
+        const uniqueFavorites = combinedFavorites.filter((obj, index, self) => {
+          return index === self.findIndex((o) => o.id === obj.id);
+        });
+        dispatch(addFavoritesDB(uniqueFavorites));
       }
 
       const cartDB = await getCart(userStatus.userId);
-      if (cartDB) {
-        dispatch(addCartDB(cartDB))
+      let combinedCart = [];
+
+      if (cartDB && cartLS) {
+        const booksMap = {};
+
+        cartDB.forEach(book => {
+          if (!booksMap[book.id]) {
+            booksMap[book.id] = { ...book, quantity: 0 };
+          }
+          booksMap[book.id].quantity += book.quantity;
+        });
+
+
+        cartLS.cart.cart.forEach(book => {
+          if (!booksMap[book.id]) {
+            booksMap[book.id] = { ...book, quantity: 0 };
+          }
+          booksMap[book.id].quantity += book.quantity;
+        });
+
+        combinedCart = Object.values(booksMap);
+        dispatch(addCartDB(combinedCart))
       }
       navigate("/home");
     } catch (error) {
