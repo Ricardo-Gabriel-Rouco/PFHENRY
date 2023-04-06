@@ -72,7 +72,6 @@ const Login = () => {
           }
           booksMap[book.id].quantity += book.quantity;
         });
-
         combinedCart = Object.values(booksMap);
         dispatch(addCartDB(combinedCart))
       }
