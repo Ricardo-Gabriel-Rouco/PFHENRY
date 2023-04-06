@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { getFavorites } from "../../firebase/firestore/favorites";
@@ -83,8 +83,9 @@ const Login = () => {
     } catch (error) {
       console.log(error);
       if (error.code === "auth/wrong-password")
-        setErrors({ ...errors, password: "Wrong password" });
+        setErrors({ password: "Wrong password" });
       else if (error.code === "auth/user-not-found")
+
         setErrors({ ...errors, email: "User not found" });
       else if (error === "emptyEmail")
         setErrors({ ...errors, email: "Must insert email" });
@@ -173,21 +174,29 @@ const Login = () => {
         type="text"
         name="email"
         value={userData.email}
-        label="Correo electrónico"
+        label="Email"
         onChange={handleInputChange}
         style={{ margin: "1rem" }}
       />
-      {errors.email && <p>{errors.email}</p>}
+      {errors.email && (
+        <Typography sx={{ fontSize: '1em' }} color="red" gutterBottom>
+          {errors.email}
+        </Typography>
+      )}
 
       <TextField
         type="password"
         name="password"
         value={userData.password}
-        label="Contraseña"
+        label="Password"
         onChange={handleInputChange}
         style={{ margin: "1rem" }}
       />
-      {errors.password && <p>{errors.password}</p>}
+      {errors.password && (
+        <Typography sx={{ fontSize: '1em' }} color="red" gutterBottom>
+          {errors.password}
+        </Typography>
+      )}
       <Button
         type="submit"
         variant="contained"
