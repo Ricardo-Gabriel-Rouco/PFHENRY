@@ -103,19 +103,15 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import CardsReview from "../CardsReview/CardsReview";
 import CardNewReview from "../CardNewReview/CardNewReview";
 import HomeIcon from "@mui/icons-material/Home";
+
 import loading from "../../Assets/Loading.gif";
 
 let nickname = "Manu"; //Traer el "nickname" del usuario que esta loogeado
 
-const CardDetail = ({id}) => {
+const CardDetail = ({ id }) => {
   // const { id } = useParams();
   const dispatch = useDispatch();
   const [bookDetail, setBookDetail] = useState({});
-
-
-
-
-
 
   useEffect(() => {
     dispatch(getBookById(id))
@@ -128,20 +124,20 @@ const CardDetail = ({id}) => {
       });
   }, [dispatch, id]);
 
-
   return bookDetail.id ? (
     <Card
       sx={{
         position: "absolute",
-        top: "60%",
+        top: "50%",
         left: "50%",
         transform: "translate(-50%, -50%)",
         p: 3,
         bgcolor: "rgba(253,216,53,0.38)",
-        width: 600,
+        width: 850,
         maxWidth: "50vw",
         maxHeight: "95vh",
         overflowY: "auto",
+        marginLeft: "4px",
       }}
     >
       <Box
@@ -172,7 +168,7 @@ const CardDetail = ({id}) => {
         <Typography variant="subtitle1" gutterBottom>
           {bookDetail?.editorial}
         </Typography>
-        <Typography variant="body1" gutterBottom>
+        <Typography variant="body1" align="center" gutterBottom>
           {bookDetail?.description}
         </Typography>
         <Typography variant="body1" gutterBottom>
@@ -184,53 +180,53 @@ const CardDetail = ({id}) => {
         <Typography variant="body1" gutterBottom>
           {`Year: ${bookDetail?.year}`}
         </Typography>
-       {/* new change "Show reviews" */}
-       {bookDetail.reviews ? (
-            bookDetail.reviews.find((obj) => obj.user === nickname) ? (
-              ""
-            ) : (
-              <CardNewReview
-                key={bookDetail.id}
-                id={bookDetail.id}
-                nickname={nickname}
-              />
-            )
+        {/* new change "Show reviews" */}
+        {bookDetail.reviews ? (
+          bookDetail.reviews.find((obj) => obj.user === nickname) ? (
+            ""
           ) : (
             <CardNewReview
               key={bookDetail.id}
               id={bookDetail.id}
               nickname={nickname}
             />
-          )}
-          {bookDetail.reviews ? (
-            <>
-              <Paper elevation={8} style={{ maxHeight: 200, overflow: "auto" }}>
-                <List
-                  sx={{
-                    width: "100%",
-                    maxWidth: 400,
-                    bgcolor: "background.paper",
-                  }}
-                  subheader={
-                    <ListSubheader sx={{ display: "flex" }}>
-                      Comments
-                    </ListSubheader>
-                  }
-                >
-                  {bookDetail.reviews.map((review) => (
-                    <CardsReview
-                      key={review.id}
-                      id={review.id}
-                      user={review.user}
-                      comment={review.comment}
-                      rating={review.rating}
-                    />
-                  ))}
-                </List>
-              </Paper>
-            </>
-          ) : null}
-          {/* new change "Show reviews" */}
+          )
+        ) : (
+          <CardNewReview
+            key={bookDetail.id}
+            id={bookDetail.id}
+            nickname={nickname}
+          />
+        )}
+        {bookDetail.reviews ? (
+          <>
+            <Paper elevation={4} style={{ maxHeight: 200, overflow: "auto" }}>
+              <List
+                sx={{
+                  width: "100%",
+                  maxWidth: 400,
+                  bgcolor: "background.paper",
+                }}
+                subheader={
+                  <ListSubheader sx={{ display: "flex" }}>
+                    Comments
+                  </ListSubheader>
+                }
+              >
+                {bookDetail.reviews.map((review) => (
+                  <CardsReview
+                    key={review.id}
+                    id={review.id}
+                    user={review.user}
+                    comment={review.comment}
+                    rating={review.rating}
+                  />
+                ))}
+              </List>
+            </Paper>
+          </>
+        ) : null}
+        {/* new change "Show reviews" */}
         <Box
           sx={{
             display: "flex",

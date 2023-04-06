@@ -11,27 +11,10 @@
   justify-content: flex-end;
 }
 
-.btn {
-  height: 30px;
-  width: 70px;
-  background-color: #1890ff;
-  color: white;
-  border: 1px solid #69b3f8;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  text-decoration: none;
-  margin-bottom: 70px;
-}
-
-.btn:hover {
-  background-color: #69b3f8;
-  border: 1px solid #1890ff;
-}
-
 .flecha {
   animation: arrow 1s ease-in-out infinite;
   font-size: 40px;
-  color: black;
+  color: #FFD600;
   z-index: 1;
   cursor: pointer;
   margin: -30px;
@@ -39,7 +22,7 @@
 
 .flecha:hover {
   animation: arrow 1s ease-out infinite !important;
-  color: white;
+  color: whitesmoke
 }
 @keyframes arrow {
   0% {

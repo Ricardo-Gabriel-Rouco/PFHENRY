@@ -53,41 +53,40 @@ const CardContainer = () => {
   return (
     <div className={style.container}>
 
-      {filteredBooks.length?<FilterOptions setCurrentPage={setCurrentPage} />:null}
+      {filteredBooks.length ? <FilterOptions setCurrentPage={setCurrentPage} /> : null}
       {
-      filteredBooks === 'not found'?
-        <div className={style.notFound}>
-          <h1>No books were found</h1>
-          <img src={notFound} alt="Not Found" />
-        </div>
-      :filteredBooks.length ? (
+        filteredBooks === 'not found' ?
+          <div className={style.notFound}>
+            <h1>No books were found</h1>
+            <img src={notFound} alt="Not Found" />
+          </div>
+          : filteredBooks.length ? (
 
-        <Cards>
-          <Grid container spacing={1} justifyContent='center' bgcolor='#f9b52ea8'>
-            {currentBook.map((c, index) => (
-              <Grid item xs={12} sm={6} md={4} lg={3} key={c.id}>
-                <div key={index}>
-                  <Card
-                    id={c.id}
-                    authors={c.authors}
-                    image={c.image}
-                    title={c.title}
-                    stock={c.stock}
-                    price={c.price}
-
-                  />
-                </div>
+            <Cards>
+              <Grid container spacing={1} justifyContent='center' bgcolor='#f9b52ea8'>
+                {currentBook.map((c, index) => (
+                  <Grid item xs={12} sm={6} md={4} lg={3} key={c.id}>
+                    <div key={index}>
+                      <Card
+                        id={c.id}
+                        authors={c.authors}
+                        image={c.image}
+                        title={c.title}
+                        price={c.price}
+                        editorial={c.editorial}
+                      />
+                    </div>
+                  </Grid>
+                ))}
               </Grid>
-            ))}
-          </Grid>
-        </Cards>
-      ) : (
-        //<ComponentError />
-        <img src={loading} alt="loading" />
-      )}
+            </Cards>
+          ) : (
+            //<ComponentError />
+            <img src={loading} alt="loading" />
+          )}
 
 
-      {Array.isArray(filteredBooks)&&filteredBooks.length?
+      {Array.isArray(filteredBooks) && filteredBooks.length ?
 
         <div className={style.paginate}>
           <Paginate

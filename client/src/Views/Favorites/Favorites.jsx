@@ -17,10 +17,6 @@ import { addProduct } from '../../redux/rootReducer/cartSlice';
 import { closeFav } from '../../redux/rootReducer/toogleFavSlice';
 
 
-
-
-
-
 const Favorites = () => {
     const favorites = useSelector(state => state.favorite.favorites);
     const dispatch = useDispatch();
@@ -66,9 +62,9 @@ const Favorites = () => {
                             </colgroup>
                             <TableHead>
                                 <TableRow sx={{ bgcolor: '#FFD600' }}>
-                                    <TableCell>ID</TableCell>
                                     <TableCell>Title</TableCell>
                                     <TableCell>Authors</TableCell>
+                                    <TableCell>Editorial</TableCell>
                                     <TableCell>Image</TableCell>
                                     <TableCell>Price</TableCell>
                                     <TableCell>Delete</TableCell>
@@ -78,9 +74,9 @@ const Favorites = () => {
                             <TableBody>
                                 {favorites ? favorites.favorites.map((favorite, index) => (
                                     <TableRow sx={styles.tableRow} key={index}>
-                                        <TableCell sx={styles.tableCell}>{favorite.id}</TableCell>
                                         <TableCell sx={styles.tableCell}>{favorite.title}</TableCell>
                                         <TableCell sx={styles.tableCell}>{favorite.authors.join(', ')}</TableCell>
+                                        <TableCell sx={styles.tableCell}>{favorite.editorial}</TableCell>
                                         <TableCell sx={{ ...styles.tableCell, maxWidth: '100px' }}>
                                             <img src={favorite.image} alt='asdf' style={{ width: '30%', height: 'auto' }} />
                                         </TableCell>
