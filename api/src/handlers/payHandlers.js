@@ -13,9 +13,9 @@ const preferencePayHandler = async function (req, res) {
       external_reference: items.id,
       statement_descriptor: "Books Kingdom",
       back_urls: {
-        success: 'https://localhost:3001/paySuccess',
+        success: 'https://pfhenry-production.up.railway.app/payStatus',
         pending: '',
-        failure: 'https://localhost:3001/checkout/failure'
+        failure: 'https://pfhenry-production.up.railway.app/payStatus'
       },
       auto_return: 'approved',
       binary_mode: true,
