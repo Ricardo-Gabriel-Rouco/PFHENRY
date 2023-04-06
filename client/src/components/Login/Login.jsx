@@ -8,13 +8,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { addFavoritesDB } from "../../redux/rootReducer/favoriteSlice";
 import { addCartDB } from "../../redux/rootReducer/cartSlice";
 
-
 const Login = () => {
-  const favLS = useSelector(state => state.favorite.favorites.favorites)
-  const cartLS = useSelector(sate => sate.cart)
-  console.log(cartLS)
-  console.log(cartLS.cart)
-  console.log(cartLS.cart.cart)
+  const favLS = useSelector((state) => state.favorite.favorites.favorites);
+  const cartLS = useSelector((sate) => sate.cart);
+  console.log(cartLS);
+  console.log(cartLS.cart);
+  console.log(cartLS.cart.cart);
 
   const { login, loginWithGoogle, resetPassword, userStatus } = useAuth();
   const navigate = useNavigate();
@@ -22,7 +21,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const [errors, setErrors] = useState({
     email: "",
@@ -39,13 +38,10 @@ const Login = () => {
     e.preventDefault();
     try {
       if (!userData.email) {
-        if (!userData.password)
-          throw 'bothEmpty'
-        else
-          throw 'emptyEmail'
+        if (!userData.password) throw "bothEmpty";
+        else throw "emptyEmail";
       }
-      if (!userData.password)
-        throw 'emptyPass'
+      if (!userData.password) throw "emptyPass";
 
       await login(userData.email, userData.password);
       const favDB = await getFavorites(userStatus.userId);
@@ -53,14 +49,12 @@ const Login = () => {
       if (favDB && favLS) {
         const combinedFavorites = [...favDB, ...favLS];
 
+        const uniqueFavorites = combinedFavorites.filter((obj, index, self) => {
+          return index === self.findIndex((o) => o.id === obj.id);
+        });
 
-      const combinedFavorites = [...favDB, ...favLS];
-
-      const uniqueFavorites = combinedFavorites.filter((obj, index, self) => {
-        return index === self.findIndex((o) => o.id === obj.id);
-      });
-      
-      dispatch(addFavoritesDB(uniqueFavorites));
+        dispatch(addFavoritesDB(uniqueFavorites));
+      }
 
       const cartDB = await getCart(userStatus.userId);
       let combinedCart = [];
@@ -68,39 +62,40 @@ const Login = () => {
       if (cartDB && cartLS) {
         const booksMap = {};
 
-        cartDB.forEach(book => {
+        cartDB.forEach((book) => {
           if (!booksMap[book.id]) {
             booksMap[book.id] = { ...book, quantity: 0 };
           }
           booksMap[book.id].quantity += book.quantity;
         });
 
-
-        cartLS.cart.cart.forEach(book => {
+        cartLS.cart.cart.forEach((book) => {
           if (!booksMap[book.id]) {
             booksMap[book.id] = { ...book, quantity: 0 };
           }
           booksMap[book.id].quantity += book.quantity;
         });
         combinedCart = Object.values(booksMap);
-        dispatch(addCartDB(combinedCart))
+        dispatch(addCartDB(combinedCart));
       }
 
-      navigate('/home')
+      navigate("/home");
     } catch (error) {
-      console.log(error)
+      console.log(error);
       if (error.code === "auth/wrong-password")
         setErrors({ ...errors, password: "Wrong password" });
       else if (error.code === "auth/user-not-found")
         setErrors({ ...errors, email: "User not found" });
-      else if (error === 'emptyEmail')
-        setErrors({ ...errors, email: "Must insert email" })
-      else if (error === 'emptyPass')
-        setErrors({ ...errors, password: "Must insert password" })
-      else if (error === 'bothEmpty')
-        setErrors({ ...errors, email: "Must insert email", password: "Must insert password" })
-
-
+      else if (error === "emptyEmail")
+        setErrors({ ...errors, email: "Must insert email" });
+      else if (error === "emptyPass")
+        setErrors({ ...errors, password: "Must insert password" });
+      else if (error === "bothEmpty")
+        setErrors({
+          ...errors,
+          email: "Must insert email",
+          password: "Must insert password",
+        });
     }
   }
 
@@ -110,7 +105,6 @@ const Login = () => {
 
       const favDB = await getFavorites(userStatus.userId);
       if (favDB && favLS) {
-
         const combinedFavorites = [...favDB, ...favLS];
 
         const uniqueFavorites = combinedFavorites.filter((obj, index, self) => {
@@ -125,15 +119,14 @@ const Login = () => {
       if (cartDB && cartLS) {
         const booksMap = {};
 
-        cartDB.forEach(book => {
+        cartDB.forEach((book) => {
           if (!booksMap[book.id]) {
             booksMap[book.id] = { ...book, quantity: 0 };
           }
           booksMap[book.id].quantity += book.quantity;
         });
 
-
-        cartLS.cart.cart.forEach(book => {
+        cartLS.cart.cart.forEach((book) => {
           if (!booksMap[book.id]) {
             booksMap[book.id] = { ...book, quantity: 0 };
           }
@@ -141,7 +134,7 @@ const Login = () => {
         });
 
         combinedCart = Object.values(booksMap);
-        dispatch(addCartDB(combinedCart))
+        dispatch(addCartDB(combinedCart));
       }
       navigate("/home");
     } catch (error) {
@@ -154,18 +147,19 @@ const Login = () => {
   }
 
   const handleResetPassword = async () => {
-    if (!userData.email) return setErrors({ ...userData, email: 'ingresa un email' })
+    if (!userData.email)
+      return setErrors({ ...userData, email: "ingresa un email" });
     try {
-      await resetPassword(userData.email)
-      alert('we send you an email to reset your password')
+      await resetPassword(userData.email);
+      alert("we send you an email to reset your password");
     } catch (error) {
-      alert(error.message)
+      alert(error.message);
     }
-  }
+  };
 
-
-  return (
-    userStatus.logged ? navigate('/home') :
+  return userStatus.logged ? (
+    navigate("/home")
+  ) : (
     <form
       onSubmit={handleSubmit}
       style={{
