@@ -13,14 +13,14 @@ const preferencePayHandler = async function (req, res) {
       external_reference: items.id,
       statement_descriptor: "Books Kingdom",
       back_urls: {
-        success: 'https://localhost:3001/home',
+        success: 'https://localhost:3001/paySuccess',
         pending: '',
         failure: 'https://localhost:3001/checkout/failure'
       },
       auto_return: 'approved',
       binary_mode: true,
-      };
-    
+    };
+
     items.forEach(item => {
       let book = {
         id: item.idBook,
@@ -33,12 +33,10 @@ const preferencePayHandler = async function (req, res) {
     })
     const response = await sendPreferencePayment(preference)
     let order = {
-      user:response.body.payer.name,
-      email:response.body.payer.email,
-      idOrder:response.body.id,
-      link:response.body.init_point,
-    
-
+      user: response.body.payer.name,
+      email: response.body.payer.email,
+      idOrder: response.body.id,
+      link: response.body.sandbox_init_point,
     }
     res.send(order)
   } catch (error) {

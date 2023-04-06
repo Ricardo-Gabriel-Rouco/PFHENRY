@@ -26,36 +26,27 @@ import CardDetail from "../CardDetail/CardDetail";
 
 
   
-const Card = ({ image, id, title, authors, price, stock }) => {
+const Card = ({ image, id, title, authors, price, editorial }) => {
     const favorite = useSelector(state => state.favorite.favorites)
     const dispatch = useDispatch();
 
 
-    //FAVORITES
-    const [isFav, setIsFav] = useState(false);
+  //FAVORITES
+  const [isFav, setIsFav] = useState(false);
 
-    useEffect(() => {
-        if(favorite.favorites.some((book) =>book.id === id))
-        {
-            if (!isFav) 
-                setIsFav(true);
-        }
-        else
-            if(isFav)
-                setIsFav(false)
-                // eslint-disable-next-line
-    }, [favorite, id]);
-
-  
-    
- 
+  useEffect(() => {
+    if (favorite.favorites.some((book) => book.id === id)) {
+      if (!isFav) setIsFav(true);
+    } else if (isFav) setIsFav(false);
+    // eslint-disable-next-line
+  }, [favorite, id]);
 
   const handleFavorite = () => {
     if (isFav) {
       dispatch(deleteFavorite(id));
       setIsFav(false);
     } else {
-      dispatch(addFavorite({ image, id, title, authors, price, stock }));
+      dispatch(addFavorite({ image, id, title, authors, price, editorial }));
 
       setIsFav(true);
     }
@@ -125,9 +116,6 @@ const Card = ({ image, id, title, authors, price, stock }) => {
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           {title}
         </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          {stock ? <p>Stock: {stock}</p> : null}
-        </Typography>
         <Typography variant="body2">
           {price ? <p>Price $ {price}</p> : null}
         </Typography>
@@ -138,26 +126,27 @@ const Card = ({ image, id, title, authors, price, stock }) => {
           <Link to={`/home/${id}`}>Details</Link>
         </Button> */}
 
-        <Button
-          variant="contained"
-                   onClick={handleClickOpen}
-        >
+        <Button variant="contained" onClick={handleClickOpen}>
           Details
         </Button>
-        {/* <Link to={`/home/${id}`}></Link> */}
-        <Dialog open={open} onClose={handleClose} fullWidth={true} PaperProps={{
-        style: {
-          height: '100vh',
-          overflow: 'hidden',
-        },
-      }} >
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          fullWidth={true}
+          PaperProps={{
+            style: {
+              height: "99vh",
+              overflow: "hidden",
+            },
+          }}
+        >
           <DialogContent>
             <CardDetail id={id} />
           </DialogContent>
         </Dialog>
 
         <Button
-          onClick={() => handleAdd({ image, id, title, authors, price, stock })}
+          onClick={() => handleAdd({ image, id, title, authors, price })}
         >
           <IconButton
             variant="contained"
