@@ -106,7 +106,7 @@ import HomeIcon from "@mui/icons-material/Home";
 
 import loading from "../../Assets/Loading.gif";
 
-let nickname = "Manu"; //Traer el "nickname" del usuario que esta loogeado
+let nickname = "Claudio"; //Traer el "nickname" del usuario que esta loogeado
 
 const CardDetail = ({ id }) => {
   // const { id } = useParams();
@@ -185,30 +185,75 @@ const CardDetail = ({ id }) => {
           bookDetail.reviews.find((obj) => obj.user === nickname) ? (
             ""
           ) : (
-            <CardNewReview
-              key={bookDetail.id}
-              id={bookDetail.id}
-              nickname={nickname}
-            />
+            <>
+              <Paper
+                elevation={4}
+                sx={{
+                  maxHeight: 200,
+                  overflow: "auto",
+                  margin: "auto",
+                  width: "90%",
+                }}
+              >
+                <List
+                  sx={{
+                    width: "95%",
+                    margin: "auto",
+                  }}
+                >
+                  <CardNewReview
+                    key={bookDetail.id}
+                    id={bookDetail.id}
+                    nickname={nickname}
+                  />
+                </List>
+              </Paper>
+            </>
           )
         ) : (
-          <CardNewReview
-            key={bookDetail.id}
-            id={bookDetail.id}
-            nickname={nickname}
-          />
+          <>
+            <Paper
+              elevation={4}
+              sx={{
+                maxHeight: 200,
+                overflow: "auto",
+                margin: "auto",
+                width: "90%",
+              }}
+            >
+              <List
+                sx={{
+                  width: "95%",
+                  margin: "auto",
+                }}
+              >
+                <CardNewReview
+                  key={bookDetail.id}
+                  id={bookDetail.id}
+                  nickname={nickname}
+                />
+              </List>
+            </Paper>
+          </>
         )}
         {bookDetail.reviews ? (
           <>
-            <Paper elevation={4} style={{ maxHeight: 200, overflow: "auto" }}>
+            <Paper
+              elevation={4}
+              sx={{
+                maxHeight: 200,
+                overflow: "auto",
+                margin: "auto",
+                width: "90%",
+              }}
+            >
               <List
                 sx={{
-                  width: "100%",
-                  maxWidth: 400,
-                  bgcolor: "background.paper",
+                  width: "95%",
+                  margin: "auto",
                 }}
                 subheader={
-                  <ListSubheader sx={{ display: "flex" }}>
+                  <ListSubheader color="primary" sx={{ display: "flex" }}>
                     Comments
                   </ListSubheader>
                 }
