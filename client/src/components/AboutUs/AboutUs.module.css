@@ -1,5 +1,5 @@
 .container {
-  background-color: rgb(59, 59, 59);
+  background-color: #F9B52E;
   height: 100%;
 
 }
@@ -21,7 +21,7 @@
 
 .cardsContainer {
   display: grid;
-  background-color: rgb(59, 59, 59);
+  background-color: #F9B52E;
   grid-template-rows: repeat(2, 1fr);
   grid-template-columns: repeat(4, 1fr);
 

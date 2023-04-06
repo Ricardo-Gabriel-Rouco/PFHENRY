@@ -21,6 +21,10 @@ import { Badge } from '@mui/material';
 import { reset } from "../../redux/rootReducer/bookSlice";
 import { toogleCart } from '../../redux/rootReducer/toogleSlice';
 import { toogleFav } from '../../redux/rootReducer/toogleFavSlice'
+import { postCart } from "../../firebase/firestore/cart";
+import { postFav } from "../../firebase/firestore/favorites";
+import { removeAllProducts } from "../../redux/rootReducer/cartSlice";
+import { removeAllFavorites } from "../../redux/rootReducer/favoriteSlice";
 
 
 const NavBar = () => {
@@ -34,7 +38,6 @@ const NavBar = () => {
   const favorites = useSelector(state => state.favorite.favorites);
   const cart = useSelector(state => state.cart);
 
-
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -44,8 +47,11 @@ const NavBar = () => {
   };
 
   const handleLogOut = async () => {
+    await postCart(cart.cart.cart, userStatus.userId)
+    await postFav(favorites.favorites, userStatus.userId)
     logout();
-    alert("Session was closed");
+    dispatch(removeAllProducts());
+    dispatch(removeAllFavorites())
   };
 
   const goHome = () => {
@@ -55,7 +61,7 @@ const NavBar = () => {
       navigate('/home')
   }
 
-  return (((location.pathname !== '/') && (location.pathname.slice(0,6) !== '/admin')) &&
+  return (((location.pathname !== '/') && (location.pathname.slice(0, 6) !== '/admin')) &&
     <Box sx={{ flexGrow: 1, bgcolor: "#F9B52E", color: "#F7F6F6", p: 1 }}>
       {/* <FormGroup>
         <FormControlLabel
@@ -110,11 +116,12 @@ const NavBar = () => {
               aria-label="buttons"
               sx={{ mr: 2 }}
               color="inherit"
+              onClick={() => dispatch(toogleFav())}
             >
 
 
               <Badge badgeContent={favorites && favorites.favorites.length} color="info">
-                  <BookmarkOutlinedIcon onClick = {() => dispatch(toogleFav())} sx={{ color: "#F7F6F6" }} />{" "}
+                <BookmarkOutlinedIcon  sx={{ color: "#F7F6F6" }} />{" "}
               </Badge>
             </IconButton>
 
@@ -124,10 +131,11 @@ const NavBar = () => {
               aria-label="buttons"
               sx={{ mr: 2 }}
               color="warning"
+              onClick={() => dispatch(toogleCart())}
             >
 
               <Badge badgeContent={cart && cart.cart.cart.length} color="info">
-                <ShoppingCart onClick={() => dispatch(toogleCart())} sx={{ color: "#F7F6F6" }} />
+                <ShoppingCart  sx={{ color: "#F7F6F6" }} />
               </Badge>
             </IconButton>
 
@@ -148,7 +156,7 @@ const NavBar = () => {
                 id="menu-appbar"
                 anchorEl={anchorEl}
                 anchorOrigin={{
-                  vertical: "botton",
+                  vertical: "bottom",
                   horizontal: "right",
                 }}
                 keepMounted
@@ -163,10 +171,10 @@ const NavBar = () => {
                   <>
                     <MenuItem onClick={handleClose}>Profile</MenuItem>
                     <MenuItem onClick={handleClose}>My account</MenuItem>
-                    <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
+                    <MenuItem onClick={()=>{handleClose();handleLogOut()}}>Log Out</MenuItem>
                   </>
                 ) : (
-                  <MenuItem>
+                  <MenuItem onClick={handleClose}>
                     <Link to={"/login"}>Log In</Link>
                   </MenuItem>
                 )}

@@ -50,7 +50,10 @@ export const cartReducer = createSlice({
       state.totalPrice = 0;
   // Elimina el carrito del almacenamiento persistente
     },
-
+    addCartDB: (state, action) => {
+      state.cart = action.payload;
+    
+  },
     clearCart: (state, action) => {
       //esta función queda por si necesitamos limpiar base de datos de carrito
     },
@@ -65,7 +68,7 @@ export const cartReducer = createSlice({
   }
 }
 )
-export const { addProduct, removeProduct, removeAllProducts } = cartReducer.actions;
+export const { addProduct, removeProduct, removeAllProducts, addCartDB } = cartReducer.actions;
 const persistedCartReducer = persistReducer(
   cartPersistConfig,
   cartReducer.reducer // utiliza el reducer directamente aquí

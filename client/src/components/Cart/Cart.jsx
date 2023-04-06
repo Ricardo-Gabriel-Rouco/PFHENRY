@@ -14,7 +14,8 @@ import { toogleCart } from "../../redux/rootReducer/toogleSlice";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../../context/authContext";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { postOrder } from "../../firebase/firestore/orders";
 
 const Cart = () => {
   const { userStatus } = useAuth();
@@ -42,7 +43,6 @@ const Cart = () => {
     // eslint-disable-next-line
   }, [cart.cart.cart]);
 
-  console.log(order);
 
   //handlers
 
@@ -50,20 +50,20 @@ const Cart = () => {
     if (userStatus.logged) {
       try {
         const response = await axios.post(
-          "http://localhost:3001/checkout",
+          "https://pfhenry-production.up.railway.app/checkout",
           order
         );
-        console.log("Response:", response);
+        await postOrder(response.data);
         dispatch(removeAllProducts());
+        localStorage.removeItem("cart")
         window.open(response.data.link);
-        // Hacer algo con la respuesta exitosa
       } catch (error) {
         console.error("Error:", error.response.data);
-        // Manejar el error
       }
     } else {
-        alert('You must be logged to buy')
-        navigate('/login')
+      dispatch(toogleCart());
+      alert('You must be logged to buy')
+      navigate('/login')
     }
   };
 
@@ -151,29 +151,55 @@ const Cart = () => {
             {"Total Price: $ " + cart.cart.totalPrice}
           </Typography>
         )}
-        <Button
-          onClick={() => handleRemoveAll()}
-          variant="contained"
-          color="secondary"
-          size="small"
-          sx={{ marginTop: 2, marginRight: 2 }}
-        >
-          Remove all products
-        </Button>
-        <Button
-          onClick={() => handleBuy()}
-          variant="contained"
-          color="secondary"
-          size="small"
-          sx={{ marginTop: 2 }}
-        >
-          Buy Products
-        </Button>
+        {cart.cart.cart.length !== 0 ? (
+          <>
+            <Button
+              onClick={() => handleRemoveAll()}
+              variant="contained"
+              color="secondary"
+              size="small"
+              sx={{ marginTop: 2, marginRight: 2 }}
+            >
+              Remove all products
+            </Button>
+            <Button
+              onClick={() => handleBuy()}
+              variant="contained"
+              color="secondary"
+              size="small"
+              sx={{ marginTop: 2 }}
+            >
+              Buy Products
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button
+              disabled
+              onClick={() => handleRemoveAll()}
+              variant="contained"
+              color="secondary"
+              size="small"
+              sx={{ marginTop: 2, marginRight: 2 }}
+            >
+              Remove all products
+            </Button>
+            <Button
+              disabled
+              onClick={() => handleBuy()}
+              variant="contained"
+              color="secondary"
+              size="small"
+              sx={{ marginTop: 2 }}
+            >
+              Buy Products
+            </Button>
+          </>
+        )}
+
       </Box>
     </Drawer>
   );
 };
 
 export default Cart;
-
-//link snackbar para notificación de agregado de libro // https://mui.com/material-ui/react-snackbar/

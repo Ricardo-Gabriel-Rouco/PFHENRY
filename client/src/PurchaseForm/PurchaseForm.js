@@ -25,7 +25,7 @@ const PurchaseForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Aquí podrías enviar la información del formulario a un servidor para procesar la compra
-    axios.post('http://localhost:3001/checkout')
+    axios.post('https://pfhenry-production.up.railway.app/checkout')
     console.log('Form submitted:', formValues);
   };
 
