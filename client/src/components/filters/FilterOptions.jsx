@@ -126,9 +126,11 @@ export const FilterOptions = ({ setCurrentPage }) => {
             <option value="maxPrice">Max price</option>
           </select>
 
-          <button onClick={handlerReset} className={style.filters}>
+          {filters.authors.length || filters.genres.length ?
+            <button onClick={handlerReset} className={style.filters}>
             Reset
           </button>
+          :null}
         </div>
 
         <div className={style.divContainer}>
