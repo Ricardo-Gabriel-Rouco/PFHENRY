@@ -116,11 +116,12 @@ const NavBar = () => {
               aria-label="buttons"
               sx={{ mr: 2 }}
               color="inherit"
+              onClick={() => dispatch(toogleFav())}
             >
 
 
               <Badge badgeContent={favorites && favorites.favorites.length} color="info">
-                <BookmarkOutlinedIcon onClick={() => dispatch(toogleFav())} sx={{ color: "#F7F6F6" }} />{" "}
+                <BookmarkOutlinedIcon  sx={{ color: "#F7F6F6" }} />{" "}
               </Badge>
             </IconButton>
 
@@ -130,10 +131,11 @@ const NavBar = () => {
               aria-label="buttons"
               sx={{ mr: 2 }}
               color="warning"
+              onClick={() => dispatch(toogleCart())}
             >
 
               <Badge badgeContent={cart && cart.cart.cart.length} color="info">
-                <ShoppingCart onClick={() => dispatch(toogleCart())} sx={{ color: "#F7F6F6" }} />
+                <ShoppingCart  sx={{ color: "#F7F6F6" }} />
               </Badge>
             </IconButton>
 
@@ -154,7 +156,7 @@ const NavBar = () => {
                 id="menu-appbar"
                 anchorEl={anchorEl}
                 anchorOrigin={{
-                  vertical: "botton",
+                  vertical: "bottom",
                   horizontal: "right",
                 }}
                 keepMounted
@@ -169,10 +171,10 @@ const NavBar = () => {
                   <>
                     <MenuItem onClick={handleClose}>Profile</MenuItem>
                     <MenuItem onClick={handleClose}>My account</MenuItem>
-                    <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
+                    <MenuItem onClick={()=>{handleClose();handleLogOut()}}>Log Out</MenuItem>
                   </>
                 ) : (
-                  <MenuItem>
+                  <MenuItem onClick={handleClose}>
                     <Link to={"/login"}>Log In</Link>
                   </MenuItem>
                 )}

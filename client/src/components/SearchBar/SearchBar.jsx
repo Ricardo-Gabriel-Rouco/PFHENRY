@@ -58,8 +58,8 @@ const SearchBar = ({
                         onKeyDown={handlerKeyDown}
                         sx={{ ml: 1, flex: 1 }}
                     />
-                    <IconButton type='button' sx={{ p: 'px' }} aria-label='search'>
-                        <SearchIcon onClick={handlerSearchClick} />
+                    <IconButton type='button' sx={{ p: 'px' }} aria-label='search' onClick={handlerSearchClick}>
+                        <SearchIcon  />
                     </IconButton>
                 </Paper>
             </div>
