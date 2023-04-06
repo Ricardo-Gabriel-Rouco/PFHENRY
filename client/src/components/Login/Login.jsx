@@ -4,11 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { getFavorites } from "../../firebase/firestore/favorites";
 import { getCart } from "../../firebase/firestore/cart";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addFavoritesDB } from "../../redux/rootReducer/favoriteSlice";
 import { addCartDB } from "../../redux/rootReducer/cartSlice";
 
+
 const Login = () => {
+  const favLS = useSelector(state => state.favorite.favorites.favorites)
   const { login, loginWithGoogle, resetPassword, userStatus } = useAuth();
   const navigate = useNavigate();
   const [userData, setUserData] = useState({
@@ -16,7 +18,7 @@ const Login = () => {
     password: "",
   });
   const dispatch = useDispatch()
-  
+
   const [errors, setErrors] = useState({
     email: "",
     password: "",
@@ -25,24 +27,29 @@ const Login = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      if(!userData.email) 
-      {
-        if(!userData.password)
+      if (!userData.email) {
+        if (!userData.password)
           throw 'bothEmpty'
         else
           throw 'emptyEmail'
       }
-      if(!userData.password)
-          throw 'emptyPass'
-      
+      if (!userData.password)
+        throw 'emptyPass'
+
       await login(userData.email, userData.password);
-      const favDB = await getFavorites(userStatus.userId)
-      if(favDB){
-        dispatch(addFavoritesDB(favDB))
-      }
+      const favDB = await getFavorites(userStatus.userId);
+      
+      const combinedFavorites = [...favDB, ...favLS];
+
+      const uniqueFavorites = combinedFavorites.filter((obj, index, self) => {
+        return index === self.findIndex((o) => o.id === obj.id);
+      });
+      
+      dispatch(addFavoritesDB(uniqueFavorites));
+
 
       const cartDB = await getCart(userStatus.userId);
-      if (cartDB){
+      if (cartDB) {
         dispatch(addCartDB(cartDB))
       }
 
@@ -53,26 +60,35 @@ const Login = () => {
         setErrors({ ...errors, password: "Wrong password" });
       else if (error.code === "auth/user-not-found")
         setErrors({ ...errors, email: "User not found" });
-      else if(error === 'emptyEmail') 
-        setErrors({...errors, email: "Must insert email"})
-      else if(error === 'emptyPass') 
-        setErrors({...errors, password: "Must insert password"})
-      else if(error === 'bothEmpty') 
-        setErrors({...errors, email: "Must insert email", password: "Must insert password"})
-      
-        
+      else if (error === 'emptyEmail')
+        setErrors({ ...errors, email: "Must insert email" })
+      else if (error === 'emptyPass')
+        setErrors({ ...errors, password: "Must insert password" })
+      else if (error === 'bothEmpty')
+        setErrors({ ...errors, email: "Must insert email", password: "Must insert password" })
+
+
     }
   }
 
   async function registerGoogle() {
     try {
       await loginWithGoogle();
-      const favDB = await getFavorites(userStatus.userId)
-      if(favDB){
-        dispatch(addFavoritesDB(favDB))
+      const favDB = await getFavorites(userStatus.userId);
+      if (favDB && favLS) {
+      
+      const combinedFavorites = [...favDB, ...favLS];
+
+      const uniqueFavorites = combinedFavorites.filter((obj, index, self) => {
+        return index === self.findIndex((o) => o.id === obj.id);
+      });
+      dispatch(addFavoritesDB(uniqueFavorites));
+
+      
       }
+
       const cartDB = await getCart(userStatus.userId);
-      if (cartDB){
+      if (cartDB) {
         dispatch(addCartDB(cartDB))
       }
       navigate("/home");
@@ -85,8 +101,8 @@ const Login = () => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   }
 
-  const handleResetPassword = async() => {
-    if(!userData.email) return setErrors({...userData, email:'ingresa un email'})
+  const handleResetPassword = async () => {
+    if (!userData.email) return setErrors({ ...userData, email: 'ingresa un email' })
     try {
       await resetPassword(userData.email)
       alert('we send you an email to reset your password')
