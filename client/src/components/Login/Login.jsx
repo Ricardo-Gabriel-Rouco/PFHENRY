@@ -5,7 +5,7 @@ import { useAuth } from "../../context/authContext";
 import { getFavorites } from "../../firebase/firestore/favorites";
 import { getCart } from "../../firebase/firestore/cart";
 import { useDispatch, useSelector } from "react-redux";
-import { addFavorite, addFavoritesDB } from "../../redux/rootReducer/favoriteSlice";
+import { addFavoritesDB } from "../../redux/rootReducer/favoriteSlice";
 import { addCartDB } from "../../redux/rootReducer/cartSlice";
 
 
@@ -44,15 +44,13 @@ const Login = () => {
 
       await login(userData.email, userData.password);
       const favDB = await getFavorites(userStatus.userId);
-      console.log(favLS)
-      console.log(favDB)
+
       const combinedFavorites = [...favDB, ...favLS];
 
       const uniqueFavorites = combinedFavorites.filter((obj, index, self) => {
         return index === self.findIndex((o) => o.id === obj.id);
       });
       
-      console.log(uniqueFavorites);
       dispatch(addFavoritesDB(uniqueFavorites));
 
 
@@ -82,12 +80,16 @@ const Login = () => {
   async function registerGoogle() {
     try {
       await loginWithGoogle();
-      const favDB = await getFavorites(userStatus.userId)
 
+      const favDB = await getFavorites(userStatus.userId);
       if (favDB && favLS) {
-        const combinedFavorites = [...favDB, ...favLS];
-        const uniqueFavorites = [...new Set(combinedFavorites)];
-        dispatch(addFavoritesDB(uniqueFavorites))
+      
+      const combinedFavorites = [...favDB, ...favLS];
+
+      const uniqueFavorites = combinedFavorites.filter((obj, index, self) => {
+        return index === self.findIndex((o) => o.id === obj.id);
+      });
+      dispatch(addFavoritesDB(uniqueFavorites));
       }
 
       const cartDB = await getCart(userStatus.userId);
