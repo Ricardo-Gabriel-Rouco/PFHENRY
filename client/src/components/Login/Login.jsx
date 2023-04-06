@@ -85,11 +85,12 @@ const Login = () => {
       if (error.code === "auth/wrong-password")
         setErrors({ password: "Wrong password" });
       else if (error.code === "auth/user-not-found")
-        setErrors({ email: "User not found" });
+
+        setErrors({ ...errors, email: "User not found" });
       else if (error === "emptyEmail")
-        setErrors({ email: "Must insert email" });
+        setErrors({ ...errors, email: "Must insert email" });
       else if (error === "emptyPass")
-        setErrors({ password: "Must insert password" });
+        setErrors({ ...errors, password: "Must insert password" });
       else if (error === "bothEmpty")
         setErrors({
           ...errors,
