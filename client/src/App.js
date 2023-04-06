@@ -32,7 +32,7 @@ const toogleFav = useSelector(state => state.toogleFav)
         {toogleFav && <Favorites />}
         <Routes>
           <Route exact path="/" element={<Landing />} />
-          <Route exact path="/admin/*" element={<AdminRoutes><AdminDashboard /></AdminRoutes> } />
+          <Route exact path="/admin/*" element={<AdminDashboard /> } />
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/about" element={<About />} />
           <Route exact path="/favorites" element={<Favorites />} />
