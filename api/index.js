@@ -19,11 +19,12 @@ ______ ______   _                                             _
 
 const { app } = require("./src/app");
 const { db } = require("./src/db.js");
+const {PORT} = process.env
 
-db.sync({ force: true }).then(() => {
-  app.listen(3001, () => {
-    console.log("listening on port 3001");
+// db.sync({ force: true }).then(() => {
+  app.listen(PORT, () => {
+    console.log("listening on port ", PORT);
   });
-});
+// });
 
 

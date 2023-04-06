@@ -1,0 +1,61 @@
+.mainDiv {
+  background-color: none;
+  margin-top: 1rem;
+  padding: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.divFiltersContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 60%;
+  margin-top: 0.5rem;
+}
+
+.filters {
+  background-color: #FFD600;
+  outline: none;
+  border-color: #FFD600;
+  border-radius: 5px;
+  gap: 1rem;
+  padding: 0.5rem;
+  color: #000000;
+  text-align: center;
+  font-size: 1rem;
+  cursor: pointer;
+  /* width: 20%; */
+}
+.filters:focus {
+ border: none;
+ outline: none
+}
+.divContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.divFiltersApplied {
+  display: flex;
+  margin-top: 1rem;
+  padding: 0.3rem;
+  border: 1px solid;
+  border-radius: 5px;
+  background-color: #FFD600;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btnFiltersApplied {
+  padding: 0.3rem;
+  background-color: #FFD600;
+  border-radius: 2px;
+  border-color: red;
+  color: red;
+  cursor: pointer;
+}

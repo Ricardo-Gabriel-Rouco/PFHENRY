@@ -1,14 +1,15 @@
-import NavBar from "../components/NavBar/NavBar";
-import Footer from "../components/Footer/Footer";
+
 import CardContainer from "../components/CardContainer/CardContainer";
-import db from "../firebase-config";
+import {db} from "../firebase/firebase-config";
 import { collection } from "firebase/firestore";
 import { getDocs } from "firebase/firestore";
 import { useDispatch } from "react-redux";
 import { addBook } from "../redux/rootReducer/bookSlice";
-import { useEffect } from "react";
+import { useEffect} from "react";
 
-const Home = () => {
+
+
+const Home = ({cartOpen}) => {
   const dispatch = useDispatch();
 
   const bookCollectionRef = collection(db, "books");
@@ -18,18 +19,20 @@ const Home = () => {
       try {
         const data = await getDocs(bookCollectionRef);
         const filterData = data.docs.map((books) => ({ ...books.data(), id: books.id }));
+        
         dispatch(addBook(filterData));
       } catch (error) {}
     };
 
     getBooksList();
+    // eslint-disable-next-line
   }, []);
+
+
 
   return (
     <>
-      <NavBar />
-      <CardContainer />
-      <Footer />
+      <CardContainer cartOpen={cartOpen}/>
     </>
   );
 };

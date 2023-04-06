@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
 
 function Form() {
@@ -6,9 +6,9 @@ function Form() {
   return (
     <div>
       <form action="">
-        <input type="text" placeholder='Titulo'/>
-        <input type="text" placeholder='Stock'/>
-        <input type="text" placeholder='Price'/>
+        <input type="text" placeholder='Titulo' />
+        <input type="text" placeholder='Stock' />
+        <input type="text" placeholder='Price' />
         <button type='submit'></button>
       </form>
     </div>
