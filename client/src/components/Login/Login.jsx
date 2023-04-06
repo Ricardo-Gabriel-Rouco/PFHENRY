@@ -11,9 +11,11 @@ import { addCartDB } from "../../redux/rootReducer/cartSlice";
 const Login = () => {
   const favLS = useSelector((state) => state.favorite.favorites.favorites);
   const cartLS = useSelector((sate) => sate.cart);
+
   // console.log(cartLS);
   // console.log(cartLS.cart);
   // console.log(cartLS.cart.cart);
+
 
   const { login, loginWithGoogle, resetPassword, userStatus } = useAuth();
   const navigate = useNavigate();
@@ -78,6 +80,7 @@ const Login = () => {
 
       navigate("/home");
     } catch (error) {
+
       // console.log(error);
       if (error.code === "auth/user-not-found")
       setErrors("User not found");
@@ -144,6 +147,7 @@ const Login = () => {
 
   const handleResetPassword = async () => {
     if (!userData.email)
+
       return setErrors({ ...userData, email: "insert an email" });
     try {
       await resetPassword(userData.email);
@@ -174,6 +178,7 @@ const Login = () => {
         style={{ margin: "1rem" }}
       />
 
+
       <TextField
         type="password"
         name="password"
@@ -182,6 +187,7 @@ const Login = () => {
         onChange={handleInputChange}
         style={{ margin: "1rem" }}
       />
+
       {errors && (
         <Typography sx={{ fontSize: "1em" }} color="red" gutterBottom>
           {errors}
