@@ -5,6 +5,7 @@ import { getDocs } from "firebase/firestore";
 import { useDispatch } from "react-redux";
 import { addBook } from "../redux/rootReducer/bookSlice";
 import { useEffect} from "react";
+import { useParams } from "react-router-dom";
 
 
 
@@ -12,8 +13,9 @@ const Home = ({cartOpen}) => {
   const dispatch = useDispatch();
 
   const bookCollectionRef = collection(db, "books");
-  const query = new URLSearchParams(window.location.search);
-  const data = JSON.parse(query.get('data'));
+  // const query = new URLSearchParams(window.location.search);
+  // const data = JSON.parse(query.get('data'));
+  const params = useParams()
 
   useEffect(() => {
     const getBooksList = async () => {
@@ -33,7 +35,7 @@ const Home = ({cartOpen}) => {
 
   return (
     <>
-    {console.log(data)}
+    {console.log(params)}
       <CardContainer cartOpen={cartOpen}/>
     </>
   );
