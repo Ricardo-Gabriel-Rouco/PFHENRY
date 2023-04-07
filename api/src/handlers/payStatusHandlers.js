@@ -19,7 +19,7 @@ const payStatusHandlers = async function (req, res) {
         paymentId: req.query.payment_id
     }
     const query = `?data=${JSON.stringify(infoPay)}`;
-    res.redirect(`https://pfhenry-jzy1.vercel.app/home${query}`);
+    res.redirect(`http://localhost:3000/home${query}`);
 }
 
 module.exports = {
