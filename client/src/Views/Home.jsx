@@ -11,11 +11,7 @@ const Home = ({ cartOpen }) => {
   const dispatch = useDispatch();
 
   const bookCollectionRef = collection(db, "books");
-  const querystring = window.location.search;
-  const params = new URLSearchParams(querystring);
-  const data2 = params.get('data');
-  const dataObj = JSON.parse(data2);
-
+  
   useEffect(() => {
     const getBooksList = async () => {
       try {
@@ -32,7 +28,6 @@ const Home = ({ cartOpen }) => {
 
 
   
-  console.log(dataObj)
   return (
     <>
       <CardContainer cartOpen={cartOpen} />
