@@ -25,6 +25,10 @@ const CardContainer = () => {
   const indexOfLastBook = currentPage * booksPerPage;
   const indexOfFirstBook = indexOfLastBook - booksPerPage;
   const currentBook = filteredBooks.slice(indexOfFirstBook, indexOfLastBook);
+  const querystring = window.location.search;
+  const params = new URLSearchParams(querystring);
+  const data2 = params.get('data');
+  const dataObj = JSON.parse(data2);
 
 
   function nextHandler() {
@@ -51,8 +55,11 @@ const CardContainer = () => {
   }, [filteredBooks])
 
   return (
+    
     <div className={style.container}>
-
+      {console.log(dataObj)}
+      {console.log(querystring)}
+      {console.log("prueba")}
       {filteredBooks.length ? <FilterOptions setCurrentPage={setCurrentPage} /> : null}
       {
         filteredBooks === 'not found' ?
