@@ -15,7 +15,7 @@ const Home = ({cartOpen}) => {
   const bookCollectionRef = collection(db, "books");
   // const query = new URLSearchParams(window.location.search);
   // const data = JSON.parse(query.get('data'));
-  const params = useParams()
+  const {data} = useParams()
 
   useEffect(() => {
     const getBooksList = async () => {
@@ -35,7 +35,7 @@ const Home = ({cartOpen}) => {
 
   return (
     <>
-    {console.log(params)}
+    {console.log(data)}
       <CardContainer cartOpen={cartOpen}/>
     </>
   );
