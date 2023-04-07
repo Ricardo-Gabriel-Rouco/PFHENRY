@@ -13,7 +13,7 @@ const preferencePayHandler = async function (req, res) {
       external_reference: items.id,
       statement_descriptor: "Books Kingdom",
       back_urls: {
-        success: 'https://pfhenry-production.up.railway.app/payStatus',
+        success: `https://pfhenry-production.up.railway.app/payStatus?userID=${user.name}`,
         pending: '',
         failure: 'https://pfhenry-production.up.railway.app/payStatus'
       },
