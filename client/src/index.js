@@ -29,6 +29,9 @@ const theme = createTheme({
     info: {
       main: "#ffc400",
     },
+    text: {
+      main: "#3e2723"
+    },
     divider: "rgba(93,64,55,0.68)",
   },
 });
