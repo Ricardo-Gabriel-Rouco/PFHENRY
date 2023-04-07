@@ -1,4 +1,3 @@
-
 import CardContainer from "../components/CardContainer/CardContainer";
 import {db} from "../firebase/firebase-config";
 import { collection } from "firebase/firestore";
@@ -13,6 +12,8 @@ const Home = ({cartOpen}) => {
   const dispatch = useDispatch();
 
   const bookCollectionRef = collection(db, "books");
+  const query = new URLSearchParams(window.location.search);
+  const data = JSON.parse(query.get('data'));
 
   useEffect(() => {
     const getBooksList = async () => {
@@ -32,8 +33,10 @@ const Home = ({cartOpen}) => {
 
   return (
     <>
+    {console.log(data)}
       <CardContainer cartOpen={cartOpen}/>
     </>
   );
 };
 export default Home;
+
