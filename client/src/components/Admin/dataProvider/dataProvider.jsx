@@ -1,5 +1,5 @@
 
-import { getBooks, modifyBook } from "../../../firebase/firestore/books";
+import { getBooks, postBook} from "../../../firebase/firestore/books";
 import { getAllTheUsers } from "../../../firebase/firestore/users";
 
 
@@ -34,20 +34,19 @@ const dataProvider = {
     
     };
   },
-  update: async (resource,params) =>{
-    if(resource === "books"){
-      const {id,data} = params;
-      await modifyBook(id,
-        data.authors,
-        data.editorial,
-        data.genres,
-        data.image,
-        data.price,
-        data.rating,
-        data.title,
-        data.year)
-      console.log(`Book with ID ${id} has been modified with the following data: `, data);
-      return {data:{id:id,...data}}
+  create: async (resource,params) =>{
+    if(resource === 'books'){
+      try{
+        const response = await postBook(params.data)
+        return{
+          data:response,
+        }
+      
+      }catch(error){
+        return{
+          error:error.message || "Something went wrong"
+        }
+      }
     }
   }
 };

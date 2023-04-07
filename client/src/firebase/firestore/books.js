@@ -107,14 +107,19 @@ export async function postBook(book) {
       const docRef = doc(collectionRef, book.isbn)
       console.log(newBook)
       await setDoc(docRef, newBook)
-      return "Libro creado"
+      return {
+        date:newBook
+      }
     }
     else{
-      return "Ya existe un libro con ese ID"
+      return {error: "Ya existe un libro con ese ID"}
     }
 
   } catch (error) {
     console.log(error)
+    return{
+      error:"Error al crear el libro"
+    }
   }
 }
 // despues voy a revisar esta funcion, por favor usarla con precaucion
