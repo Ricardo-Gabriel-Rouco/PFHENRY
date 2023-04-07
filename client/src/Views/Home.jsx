@@ -5,8 +5,6 @@ import { getDocs } from "firebase/firestore";
 import { useDispatch } from "react-redux";
 import { addBook } from "../redux/rootReducer/bookSlice";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
-
 
 
 const Home = ({ cartOpen }) => {
@@ -33,10 +31,10 @@ const Home = ({ cartOpen }) => {
   }, []);
 
 
-
+  
+  console.log(dataObj)
   return (
     <>
-      {console.log(dataObj)}
       <CardContainer cartOpen={cartOpen} />
     </>
   );
