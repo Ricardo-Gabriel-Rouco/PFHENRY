@@ -58,6 +58,8 @@ const CardContainer = () => {
     
     <div className={style.container}>
       {console.log(dataObj)}
+      {console.log(querystring)}
+      {console.log("prueba")}
       {filteredBooks.length ? <FilterOptions setCurrentPage={setCurrentPage} /> : null}
       {
         filteredBooks === 'not found' ?
