@@ -1,3 +1,5 @@
+const { verifyIdPayment } = require("../controlers/payStatusControllers");
+
 const payStatusHandlers = async function (req, res) {
 
     // "userID": "xLv2xh4AGHX143e6lUEQQ03rwOB3",
@@ -12,14 +14,21 @@ const payStatusHandlers = async function (req, res) {
     // "site_id": "MLA",
     // "processing_mode": "aggregator",
     // "merchant_account_id": "null"
-    const infoPay = {
-        payer: req.query.userID,
-        status: req.query.status,
-        preferenceId: req.query.preference_id,
-        paymentId: req.query.payment_id
+    const id = req.body.payment_id;
+    try {
+        res.send(await verifyIdPayment(id))
+    } catch (error) {
+        console.error(error);
+        res.sendStatus(500);
     }
-    const query = `?data=${JSON.stringify(infoPay)}`;
-    res.redirect(`http://localhost:3000/home${query}`);
+    // const infoPay = {
+    //     payer: req.query.userID,
+    //     status: req.query.status,
+    //     preferenceId: req.query.preference_id,
+    //     paymentId: req.query.payment_id
+    // }
+    // const query = `?data=${JSON.stringify(infoPay)}`;
+    // res.redirect(`http://localhost:3000/home${query}`);
 }
 
 module.exports = {

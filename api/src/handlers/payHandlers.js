@@ -13,9 +13,9 @@ const preferencePayHandler = async function (req, res) {
       external_reference: items.id,
       statement_descriptor: "Books Kingdom",
       back_urls: {
-        success: `https://pfhenry-production.up.railway.app/payStatus?userID=${user.name}`,
+        success: `https://pfhenry-jzy1.vercel.app/payStatus?${user.name}`,
         pending: '',
-        failure: 'https://pfhenry-production.up.railway.app/payStatus'
+        failure: `https://pfhenry-jzy1.vercel.app/payStatus?${user.name}`
       },
       auto_return: 'approved',
       binary_mode: true,
@@ -37,6 +37,7 @@ const preferencePayHandler = async function (req, res) {
       email: response.body.payer.email,
       idOrder: response.body.id,
       link: response.body.sandbox_init_point,
+      status:""
     }
     res.send(order)
   } catch (error) {

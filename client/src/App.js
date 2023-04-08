@@ -18,6 +18,7 @@ import PurchaseForm from "./PurchaseForm/PurchaseForm";
 import { AdminDashboard } from "./Views/AdminDashboard/AdminDashboard";
 import AdminRoutes from './components/AdminRoutes/AdminRoutes'
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
+import PayStatus from "./components/PayStatus/PayStatus";
 
 function App() {
 const toogleCart = useSelector(state => state.toogle)
@@ -41,7 +42,8 @@ const toogleFav = useSelector(state => state.toogleFav)
           <Route path='/home/:id' element={<CardDetail />} /> 
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register />} /> 
-          <Route path='/checkout' element={<ProtectedRoutes><PurchaseForm/></ProtectedRoutes>} /> 
+          <Route path='/checkout' element={<ProtectedRoutes><PurchaseForm/></ProtectedRoutes>} />
+          <Route path='/payStatus' element={< PayStatus/>} />  
           <Route path="*" element={<Error />} />
         </Routes>
       </AuthProvider>
