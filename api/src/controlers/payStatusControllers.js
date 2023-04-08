@@ -2,6 +2,7 @@ const {mercadopago} = require('../mpConfig/mpConfig')
 
 const verifyIdPayment = async function (id) {
     try {
+        console.log(id)
         const payment = await mercadopago.payment.get(id);
         console.log(payment)
         if (payment.status === 'approved') {
