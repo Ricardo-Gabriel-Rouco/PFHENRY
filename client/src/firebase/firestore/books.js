@@ -40,9 +40,7 @@ export async function getAllTheBooks() {
 }
 
 
-export const getBookById = createAsyncThunk(
-  'books/getById',
-  async (id) => {
+export async function getBookById (id) {
     try {
       const docsRef = doc(db, 'books', id);
       const docSnap = await getDoc(docsRef);
@@ -53,7 +51,7 @@ export const getBookById = createAsyncThunk(
       }
     } catch (error) {
       console.log(error);}
-  })
+  }
 
 export async function deleteBook(id) {
   try {

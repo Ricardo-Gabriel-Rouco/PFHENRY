@@ -1,4 +1,4 @@
-import { Admin, Resource, CustomRoutes } from "react-admin";
+import { Admin, Resource, CustomRoutes, EditGuesser } from "react-admin";
 import { MyLayout } from "../../components/Admin/Layout/Layout";
 import { Route } from "react-router-dom";
 import { Dashboard } from "../../components/Admin/Dashboard/Dashboard";
@@ -13,17 +13,19 @@ import dataProvider from "../../components/Admin/dataProvider/dataProvider";
 
 export const AdminDashboard = () => {
   return (
-    <Admin dataProvider={dataProvider} layout={MyLayout} dashboard={Dashboard}>
+    <Admin dataProvider={dataProvider} layout={MyLayout} dashboard={Dashboard} basename="/admin">
       <CustomRoutes>
         <Route path="/admin" element={<>Home</>} />
       </CustomRoutes>
       <Resource
         name="books"
         list={BookList}
-        edit={BookEdit}
+        edit={EditGuesser}
         basePath="/admin/books"
         options={{ label: "Books" }}
-      />
+      >
+        <Route path="/:id/edit" element={BookEdit}/>
+      </Resource>
       <Resource
         name="users"
         list={Userlist}

@@ -109,15 +109,17 @@ import loading from "../../Assets/Loading.gif";
 let nickname = "Claudio"; //Traer el "nickname" del usuario que esta loogeado
 
 const CardDetail = ({ id }) => {
-  // const { id } = useParams();
+  const paramId = useParams().id;
+  if(!id)
+    id = paramId  
   const dispatch = useDispatch();
   const [bookDetail, setBookDetail] = useState({});
 
   useEffect(() => {
-    dispatch(getBookById(id))
+    getBookById(id)
       .then((response) => {
         // setBookDetail(MyBook); //reemplazar en modo PRODUCCION
-        setBookDetail(response.payload);
+        setBookDetail(response);
       })
       .catch((error) => {
         console.log(error);
