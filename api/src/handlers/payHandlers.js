@@ -38,7 +38,7 @@ const preferencePayHandler = async function (req, res) {
       user: response.body.payer.name,
       email: response.body.payer.email,
       idOrder: response.body.id,
-      link: response.body.sandbox_init_point,
+      link: response.body.init_point,
       status:""
     }
     res.send(order)
