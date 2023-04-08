@@ -17,7 +17,7 @@ const PayStatus = () => {
     async function checkPayStatus() {
       const response = await axios.post("https://pfhenry-production.up.railway.app/payStatus",
         payment_id)
-      console.log(response)
+      console.log(response.data)
       if (response.data === "approved") {
         setStatus(response.data)
         dispatch(removeAllProducts());
