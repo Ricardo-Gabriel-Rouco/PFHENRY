@@ -1,22 +1,19 @@
 import { Admin, Resource, CustomRoutes, EditGuesser, ShowGuesser } from "react-admin";
 import { MyLayout } from "../../components/Admin/Layout/Layout";
-import { Route } from "react-router-dom";
 import { Dashboard } from "../../components/Admin/Dashboard/Dashboard";
-
 import { BookList } from "../../components/Admin/Booklist/Booklist";
 import { Userlist } from "../../components/Admin/Userlist/Userlist";
-import { BookEdit } from "../../components/Admin/Booklist/Bookedit";
 import dataProvider from "../../components/Admin/dataProvider/dataProvider";
 import CardDetail from "../../components/CardDetail/CardDetail";
-
-
+import { Route } from "react-router-dom";
+import { BookCreate } from "../../components/Admin/BookCreate/BookCreate";
 
 
 export const AdminDashboard = () => {
   return (
     <Admin dataProvider={dataProvider} layout={MyLayout} dashboard={Dashboard} basename="/admin">
       <CustomRoutes>
-        <Route path="/admin" element={<>Home</>} />
+        <Route path="/admin" />
       </CustomRoutes>
       <Resource
         name="books"
@@ -24,6 +21,7 @@ export const AdminDashboard = () => {
         edit={EditGuesser}
         basePath="/admin/books"
         show={ShowGuesser}
+        create={BookCreate}
         options={{ label: "Books" }}
       >
         <Route path="/:id" element={<BookEdit/>}/>
@@ -38,3 +36,5 @@ export const AdminDashboard = () => {
     </Admin>
   );
 };
+
+export default AdminDashboard;

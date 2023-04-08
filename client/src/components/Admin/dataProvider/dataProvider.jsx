@@ -84,7 +84,21 @@ const dataProvider = {
         `Book with ID ${id} has been modified with the following data: `,
         data
       );
-      return { data: { id: id, ...data } };
+      return { data: { id: id, ...data } }
+    }},
+  create: async (resource,params) =>{
+    if(resource === 'books'){
+      try{
+        const response = await postBook(params.data)
+        return{
+          data:response,
+        }
+      
+      }catch(error){
+        return{
+          error:error.message || "Something went wrong"
+        }
+      }
     }
   },
 };
