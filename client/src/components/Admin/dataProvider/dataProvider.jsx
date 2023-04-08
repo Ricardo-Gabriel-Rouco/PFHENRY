@@ -2,6 +2,7 @@ import {
   getAllTheBooks,
   modifyBook,
   getBookById,
+  postBook
 } from "../../../firebase/firestore/books";
 import { getAllTheUsers } from "../../../firebase/firestore/users";
 

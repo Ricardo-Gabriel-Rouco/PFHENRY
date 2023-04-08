@@ -6,8 +6,7 @@ import { Userlist } from "../../components/Admin/Userlist/Userlist";
 import dataProvider from "../../components/Admin/dataProvider/dataProvider";
 import CardDetail from "../../components/CardDetail/CardDetail";
 import { Route } from "react-router-dom";
-import { BookCreate } from "../../components/Admin/BookCreate/BookCreate";
-
+import BookForm from "../../components/BookForm/BookForm";
 
 export const AdminDashboard = () => {
   return (
@@ -21,10 +20,10 @@ export const AdminDashboard = () => {
         edit={EditGuesser}
         basePath="/admin/books"
         show={ShowGuesser}
-        create={BookCreate}
+        create={BookForm}
         options={{ label: "Books" }}
       >
-        <Route path="/:id" element={<BookEdit/>}/>
+        <Route path="/:id" element={<EditGuesser/>}/>
         <Route path="/:id/show" element={ <CardDetail/> }/>
       </Resource>
       <Resource
