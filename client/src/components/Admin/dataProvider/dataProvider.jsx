@@ -51,7 +51,7 @@ const dataProvider = {
   getOne: async (resource, params) => {
     let data = {};
     const { id } = params;
-    console.log(params);
+    // console.log(params);
 
     try {
       if (resource === "books") {
