@@ -15,7 +15,7 @@ const PayStatus = () => {
   useEffect(() => {
     // Elimina los productos del carrito al montar el componente
     async function checkPayStatus() {
-      const response = await axios.post("https://pfhenry-production.up.railway.app/payStatus",
+      const response = await axios.post("https://shaky-friend-production.up.railway.app/payStatus",
         payment_id)
       console.log(response)
       if (response.data === "approved") {

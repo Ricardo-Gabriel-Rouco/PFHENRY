@@ -50,7 +50,7 @@ const Cart = () => {
     if (userStatus.logged) {
       try {
         const response = await axios.post(
-          "https://pfhenry-production.up.railway.app/checkout",
+          "https://shaky-friend-production.up.railway.app/checkout",
           order
         );
         await postOrder(response.data);

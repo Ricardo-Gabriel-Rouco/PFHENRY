@@ -9,6 +9,7 @@ const verifyIdPayment = async function (id) {
         //     return "approved";
         // }
         // return "failure";
+        console.log(payment)
         return payment
     } catch (error) {
         console.log(error)

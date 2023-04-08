@@ -16,7 +16,8 @@ const payStatusHandlers = async function (req, res) {
     // "merchant_account_id": "null"
     const { payment_id } = req.body;
     try {
-        res.send(await verifyIdPayment(payment_id))
+        // res.send(await verifyIdPayment(payment_id))
+        res.send(payment_id)
     } catch (error) {
         console.error(error);
         res.sendStatus(500);
