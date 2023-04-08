@@ -16,7 +16,8 @@ const preferencePayHandler = async function (req, res) {
         // success: `https://pfhenry-jzy1.vercel.app/payStatus?${user.name}`,
         success: `http://localhost:3000/payStatus?${user.name}`,
         pending: '',
-        failure: `https://pfhenry-jzy1.vercel.app/payStatus?${user.name}`
+        // failure: `https://pfhenry-jzy1.vercel.app/payStatus?${user.name}`
+        failure: `http://localhost:3000/payStatus?${user.name}`
       },
       auto_return: 'approved',
       binary_mode: true,
