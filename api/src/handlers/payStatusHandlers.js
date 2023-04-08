@@ -15,7 +15,6 @@ const payStatusHandlers = async function (req, res) {
     // "processing_mode": "aggregator",
     // "merchant_account_id": "null"
     const {payment_id} = req.body;
-    console.log(id)
     try {
         res.send(await verifyIdPayment(payment_id))
     } catch (error) {
