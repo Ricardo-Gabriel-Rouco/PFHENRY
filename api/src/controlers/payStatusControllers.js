@@ -2,7 +2,7 @@ const { mercadopago } = require('../mpConfig/mpConfig')
 
 const verifyIdPayment = async function (id) {
     try {
-        const payment = await mercadopago.payment.get(id);
+        const payment = await mercadopago.payment.findById(id);
         // if (payment.status === 'approved') {
         //     // Actualiza el estado del pago en la base de datos
         //     // y realiza cualquier otra acción necesaria
