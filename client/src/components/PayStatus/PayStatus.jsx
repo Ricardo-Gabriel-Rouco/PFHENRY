@@ -2,31 +2,32 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { removeAllProducts } from '../../redux/rootReducer/cartSlice';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const PayStatus = () => {
   const dispatch = useDispatch();
   const querystring = window.location.search;
   const params = new URLSearchParams(querystring);
-  const data2 = params.get('data');
-  const dataObj = JSON.parse(data2);
+  const payment_id = params.get('payment_id');
+  // const dataObj = JSON.parse(data2);
   const [status, setStatus] = useState("")
 
   useEffect(() => {
     // Elimina los productos del carrito al montar el componente
     async function checkPayStatus() {
       const response = await axios.post("https://pfhenry-production.up.railway.app/payStatus",
-        dataObj.payment_id)
-      return response;
+        payment_id)
+      console.log(response)
+      if (response.data === "approved") {
+        setStatus(response.data)
+        dispatch(removeAllProducts());
+        localStorage.removeItem("cart");
+      }
+      else {
+        setStatus(response.data)
+      }
     }
-    const payStatus = checkPayStatus()
-    if (payStatus) {
-      setStatus(payStatus)
-      dispatch(removeAllProducts());
-      localStorage.removeItem("cart");
-    }
-    else{
-      setStatus(payStatus)
-    }
+    checkPayStatus()
   }, []);
 
   return (
