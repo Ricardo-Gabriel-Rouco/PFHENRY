@@ -8,7 +8,7 @@ import style from "./CardContainer.module.css";
 import { useSelector } from "react-redux";
 import Paginate from "../../components/Paginate/Paginate";
 import { FilterOptions } from "../filters/FilterOptions";
-
+import Carrousel from "../Carrousel/Carrousel";
 import { Grid } from "@mui/material";
 import Cards from "@mui/material/Card";
 import loading from '../../Assets/Loading.gif'
@@ -52,42 +52,38 @@ const CardContainer = () => {
 
   return (
     <div className={style.container}>
-
       {filteredBooks.length ? <FilterOptions setCurrentPage={setCurrentPage} /> : null}
-      {
-        filteredBooks === 'not found' ?
-          <div className={style.notFound}>
-            <h1>No books were found</h1>
-            <img src={notFound} alt="Not Found" />
-          </div>
-          : filteredBooks.length ? (
-
-            <Cards>
-              <Grid container spacing={1} justifyContent='center' bgcolor='#f9b52ea8'>
-                {currentBook.map((c, index) => (
-                  <Grid item xs={12} sm={6} md={4} lg={3} key={c.id}>
-                    <div key={index}>
-                      <Card
-                        id={c.id}
-                        authors={c.authors}
-                        image={c.image}
-                        title={c.title}
-                        price={c.price}
-                        editorial={c.editorial}
-                      />
-                    </div>
-                  </Grid>
-                ))}
+      {filteredBooks === 'not found' ? (
+        <div className={style.notFound}>
+          <h1>No books were found</h1>
+          <img src={notFound} alt="Not Found" />
+        </div>
+      ) : filteredBooks.length ? (
+        <Cards>
+          <Carrousel currentBook={currentBook} />
+          <Grid container spacing={1} justifyContent="center" bgcolor="#f9b52ea8">
+            {currentBook.map((c, index) => (
+              <Grid item xs={12} sm={6} md={4} lg={3} key={c.id}>
+                <div key={index}>
+                  <Card
+                    id={c.id}
+                    authors={c.authors}
+                    image={c.image}
+                    title={c.title}
+                    price={c.price}
+                    editorial={c.editorial}
+                  />
+                </div>
               </Grid>
-            </Cards>
-          ) : (
-            //<ComponentError />
-            <img src={loading} alt="loading" />
-          )}
+            ))}
+          </Grid>
+        </Cards>
+      ) : (
+        //<ComponentError />
+        <img src={loading} alt="loading" />
+      )}
 
-
-      {Array.isArray(filteredBooks) && filteredBooks.length ?
-
+      {Array.isArray(filteredBooks) && filteredBooks.length ? (
         <div className={style.paginate}>
           <Paginate
             paginated={paginated}
@@ -98,8 +94,7 @@ const CardContainer = () => {
             prevHandler={prevHandler}
           />
         </div>
-        : null
-      }
+      ) : null}
     </div>
   );
 };
