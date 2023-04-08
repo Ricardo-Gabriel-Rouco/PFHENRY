@@ -17,7 +17,7 @@ const payStatusHandlers = async function (req, res) {
     const {payment_id} = req.body;
     try {
         // res.send(await verifyIdPayment(payment_id))
-        res.send(payment_id)
+        res.send(req.body)
     } catch (error) {
         console.error(error);
         res.sendStatus(500);
