@@ -17,7 +17,7 @@ const PayStatus = () => {
     async function checkPayStatus() {
       const response = await axios.post("https://shaky-friend-production.up.railway.app/payStatus",
         payment_id)
-      console.log(typeof response.data)
+      console.log(response.data)
       if (response.data === "approved") {
         setStatus(response.data)
         dispatch(removeAllProducts());

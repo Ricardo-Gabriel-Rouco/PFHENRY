@@ -12,7 +12,7 @@ const verifyIdPayment = async function (id) {
         console.log(payment)
         return payment
     } catch (error) {
-        console.log(error)
+        return error
     }
 }
 
