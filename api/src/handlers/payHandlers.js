@@ -14,7 +14,7 @@ const preferencePayHandler = async function (req, res) {
       statement_descriptor: "Books Kingdom",
       back_urls: {
         // success: `https://pfhenry-jzy1.vercel.app/payStatus?${user.name}`,
-        success: `http://localhost:3000/payStatus?${user.name}`,
+        success: `http://localhost:3000/payStatus?idUser=${user.name}`,
         pending: '',
         // failure: `https://pfhenry-jzy1.vercel.app/payStatus?${user.name}`
         failure: `http://localhost:3000/payStatus?${user.name}`
