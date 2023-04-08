@@ -8,16 +8,17 @@ const PayStatus = () => {
   const dispatch = useDispatch();
   const querystring = window.location.search;
   const params = new URLSearchParams(querystring);
-  const payment_id = params.get('payment_id');
+  const payment_id = {payment_id : params.get('payment_id')}
   // const dataObj = JSON.parse(data2);
   const [status, setStatus] = useState("")
+  console.log(payment_id)
 
   useEffect(() => {
     // Elimina los productos del carrito al montar el componente
     async function checkPayStatus() {
       const response = await axios.post("https://pfhenry-production.up.railway.app/payStatus",
         payment_id)
-      console.log(response.data)
+      console.log(response)
       if (response.data === "approved") {
         setStatus(response.data)
         dispatch(removeAllProducts());

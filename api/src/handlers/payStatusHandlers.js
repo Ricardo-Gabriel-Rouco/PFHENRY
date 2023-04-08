@@ -14,10 +14,9 @@ const payStatusHandlers = async function (req, res) {
     // "site_id": "MLA",
     // "processing_mode": "aggregator",
     // "merchant_account_id": "null"
-    const {payment_id} = req.body;
+    const { payment_id } = req.body;
     try {
-        // res.send(await verifyIdPayment(payment_id))
-        res.send(req.body)
+        res.send(await verifyIdPayment(payment_id))
     } catch (error) {
         console.error(error);
         res.sendStatus(500);
