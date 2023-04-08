@@ -13,6 +13,25 @@ export async function postOrder(order) {
         await setDoc(orderRef, newOrder)
         return "Orden creado"
     } catch (error) {
-      console.log(error)
+      return error
     }
   }
+
+  export async function modifyOrder(status) {
+    try {
+      const findOrder = doc(db, 'orders', `${isbn}`)
+      await updateDoc(newBook, {
+        authors: authors,
+        display: true,
+        editorial: editorial,
+        genres: genres.map(g => g.id),
+        image: urlImage,
+        price: price,
+        rating: rating,
+        title: title,
+        year: year
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  } 
