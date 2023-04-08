@@ -14,11 +14,28 @@ import {
   useRecordContext,
   FunctionField,
 } from "react-admin";
+import { Input } from "@mui/material";
 import BookListFilter from "./BooklistFilter";
+import { modifyBook } from "../../../firebase/firestore/books";
+
+
+const DisplayCheckbox = () => {
+
+  const record = useRecordContext();
+
+  return (
+    <Input 
+      type="checkbox" 
+      checked={record.display}
+      onChange={()=>modifyBook(record.id, !record.display)}/>
+  )
+}
+
 
 export const BookList = (props) => (
   <List {...props} filters={<BookListFilter />} pagination={false}>
     <Datagrid bulkActionButtons={false}>
+      <DisplayCheckbox/>
       <BooleanField source="display" />
       <TextField source="id" />
       <ImageField source="image" />

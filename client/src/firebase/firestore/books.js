@@ -116,19 +116,19 @@ export async function postBook(book) {
   }
 }
 // despues voy a revisar esta funcion, por favor usarla con precaucion
-export async function modifyBook(isbn, authors, editorial, genres, urlImage, price, rating, title, year) {
+export async function modifyBook(isbn, display) {
   try {
     const newBook = doc(db, 'books', `${isbn}`)
     await updateDoc(newBook, {
-      authors: authors,
-      display: true,
-      editorial: editorial,
-      genres: genres.map(g => g.id),
-      image: urlImage,
-      price: price,
-      rating: rating,
-      title: title,
-      year: year
+      // authors: authors,
+      display ,
+      // editorial: editorial,
+      // genres: genres.map(g => g.id),
+      // image: urlImage,
+      // price: price,
+      // rating: rating,
+      // title: title,
+      // year: year
     })
   } catch (error) {
     console.log(error)
