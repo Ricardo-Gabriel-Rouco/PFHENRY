@@ -9,10 +9,10 @@ const PayStatus = () => {
   const dispatch = useDispatch();
   const querystring = window.location.search;
   const params = new URLSearchParams(querystring);
-  const payment_id = {payment_id : params.get('payment_id')};
+  const payment_id = { payment_id: params.get('payment_id') };
   const [status, setStatus] = useState("");
   const navigate = useNavigate()
- 
+
   useEffect(() => {
     // Elimina los productos del carrito al montar el componente
     async function checkPayStatus() {
@@ -21,16 +21,14 @@ const PayStatus = () => {
       if (response.data === "approved") {
         setStatus(response.data)
         const order = {
-          user:params.get('idUser'),
-          idOrder:params.get('payment_id'),
-          status:response.data
+          user: params.get('idUser'),
+          idOrder: params.get('payment_id'),
+          status: response.data
         }
+        window.history.replaceState({}, document.title, window.location.pathname);
         postOrder(order)
         dispatch(removeAllProducts());
         localStorage.removeItem("cart");
-        setTimeout(()=>{
-          navigate('/home')
-        },3000)
       }
       else {
         setStatus(response.data)
@@ -41,7 +39,7 @@ const PayStatus = () => {
 
   return (
     <div>
-      { 
+      {
         status === "approved" ? (
           <div>
             <h1>Compra Exitosa</h1>
