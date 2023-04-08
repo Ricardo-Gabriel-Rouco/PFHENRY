@@ -14,9 +14,13 @@ export async function postOrder(order) {
       ordersArray = existingData.orders;
     }
 
-    ordersArray.push({
-      idOrder:order.idOrder,
-      status:order.status
+    ordersArray.forEach(e => {
+      if(e.idOrder !== order.idOrder){
+        ordersArray.push({
+          idOrder:order.idOrder,
+          status:order.status
+        });
+      }
     });
 
     const newOrder = {
