@@ -9,39 +9,41 @@ import {
   SingleFieldList,
   ChipField,
   EditButton,
-  useRecordContext,
   ImageField,
+  ShowButton,
+  useRecordContext,
+  FunctionField,
 } from "react-admin";
 import BookListFilter from "./BooklistFilter";
-import { Link } from "react-router-dom";
-
-const MyEditButton = () => {
-  const record = useRecordContext();
-  return <EditButton to={`${record.id}/edit`} />;
-};
 
 export const BookList = (props) => (
   <List {...props} filters={<BookListFilter />} pagination={false}>
-    <Datagrid rowClick="edit">
-      <NumberField source="price" />
-      <ImageField source="image" />
+    <Datagrid bulkActionButtons={false}>
       <BooleanField source="display" />
-      <NumberField source="year" />
-      <TextField source="description" />
-
-      <ArrayField source="reviews">
-        <SingleFieldList>
-          <ChipField source="rating" />
+      <TextField source="id" />
+      <ImageField source="image" />
+      <TextField source="title" />
+      <FunctionField label="Description" render={record => record.description ? `${record.description.substring(0, 100)}...` : ''} />
+      <ArrayField source="authors">
+        <SingleFieldList sx={{ display: "flex", flexDirection: "column" }}>
+          <ChipField source="author" />
         </SingleFieldList>
       </ArrayField>
-      <TextField source="title" />
-      <TextField source="genres" />
+      <ArrayField source="genres">
+        <SingleFieldList sx={{ display: "flex", flexDirection: "column" }}>
+          <ChipField source="genre" />
+        </SingleFieldList>
+      </ArrayField>
+      <TextField source="year" />
       <TextField source="editorial" />
       <NumberField source="rating" />
-      <TextField source="authors" />
-      <TextField source="id" />
-      <EditButton/>
-      <MyEditButton />
+      <NumberField source="reviews.length" label="reviews" textAlign="center" />
+      <NumberField
+        source="price"
+        options={{ style: "currency", currency: "USD" }}
+      />
+      <ShowButton />
+      <EditButton />
     </Datagrid>
   </List>
 );

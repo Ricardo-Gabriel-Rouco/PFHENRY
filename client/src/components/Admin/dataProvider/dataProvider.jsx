@@ -12,7 +12,13 @@ const dataProvider = {
     if (resource === "books") {
       const { title, genre, author } = params.filter || {}; // extrae los valores del filtro si se proporcionan
       const books = await getAllTheBooks();
-      data = books.filter((book) => {
+      data = books.map(el=>{return {
+        ...el,
+        authors: el.authors?.map(a=>{return {author:a}}),
+        genres: el.genres?.map(g=>{return {genre:g}})
+      }})
+      
+      data = data.filter((book) => {
         // filtra los libros según los valores del filtro
         if (title && !book.title.toLowerCase().includes(title.toLowerCase())) {
           return false;
