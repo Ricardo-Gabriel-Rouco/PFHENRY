@@ -13,7 +13,8 @@ const preferencePayHandler = async function (req, res) {
       external_reference: items.id,
       statement_descriptor: "Books Kingdom",
       back_urls: {
-        success: `https://pfhenry-jzy1.vercel.app/payStatus?${user.name}`,
+        // success: `https://pfhenry-jzy1.vercel.app/payStatus?${user.name}`,
+        success: `http://localhost:3000/payStatus?${user.name}`,
         pending: '',
         failure: `https://pfhenry-jzy1.vercel.app/payStatus?${user.name}`
       },

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { removeAllProducts } from '../../redux/rootReducer/cartSlice';
 import axios from 'axios';
