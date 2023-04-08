@@ -11,8 +11,7 @@ const PayStatus = () => {
   const payment_id = {payment_id : params.get('payment_id')}
   // const dataObj = JSON.parse(data2);
   const [status, setStatus] = useState("")
-  console.log(payment_id)
-
+ 
   useEffect(() => {
     // Elimina los productos del carrito al montar el componente
     async function checkPayStatus() {
