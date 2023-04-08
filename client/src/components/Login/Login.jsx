@@ -78,7 +78,7 @@ const Login = () => {
         dispatch(addCartDB(combinedCart));
       }
 
-      navigate("/home");
+      navigate(-1);
     } catch (error) {
 
       // console.log(error);

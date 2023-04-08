@@ -5,6 +5,7 @@ const clients = require("./routes/clientsRoutes.js");
 const products = require("./routes/productsRoutes.js");
 const payChoosen = require("./routes/payRoutes.js");
 const payStatus = require("./routes/payStatus.js");
+const mailRoute = require('./routes/mailRoute.js');
 const cors = require("cors");
 
 //iniciamos el servidor
@@ -21,6 +22,8 @@ app.use("/clients", clients);
 app.use("/products", products);
 app.use("/checkout", payChoosen);
 app.use("/payStatus", payStatus);
+app.use("/mail", mailRoute)
+
 
 //test route
 
