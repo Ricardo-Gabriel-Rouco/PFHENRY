@@ -24,6 +24,7 @@ export function AuthProvider({ children }) {
     userId: "",
     email: "",
     role: "",
+    userName: ""
   });
   const [loading, setLoading] = useState(true);
 
@@ -45,6 +46,7 @@ export function AuthProvider({ children }) {
           userId: currentUser.uid,
           email: currentUser.email,
           role: userRole.rol,
+          username: currentUser.username
         });
       }
       setLoading(false);
