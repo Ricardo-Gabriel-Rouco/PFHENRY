@@ -205,7 +205,7 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
                   {isFav ? (
                     <Button
                       variant="outlined"
-                      color="text"
+                      color="primary"
                       sx={{
                         transition: "color 1s",
                         "&:hover": {
@@ -220,7 +220,7 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
                   ) : (
                     <Button
                       variant="outlined"
-                      color="text"
+                      color="primary"
                       sx={{
                         transition: "color 1s",
                         "&:hover": {
@@ -245,7 +245,7 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
                 >
                   <Button
                     variant="outlined"
-                    color="text"
+                    color="primary"
                     sx={{
                       transition: "color 1s",
                       "&:hover": {
@@ -264,7 +264,7 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
 
               <Button
                 variant="outlined"
-                color="text"
+                color="primary"
                 endIcon={<ExitToAppIcon />}
                 onClick={handleClose}
                 sx={{

@@ -140,7 +140,6 @@ export async function modifyBook(isbn, authors, editorial, genres, urlImage, pri
 // Metodo update para Reviews
 export async function updateBookReviews({id, nickname, comment, rating, display}) {
   try {
-    console.log("ESTO ES ID ==> ",id);
     const udBookReview = doc(db, 'books', id)
     await updateDoc(udBookReview, {
       reviews:  arrayUnion({
@@ -149,8 +148,6 @@ export async function updateBookReviews({id, nickname, comment, rating, display}
         user: nickname,
         display,
       })
-      
-      // reviews.push({nickname, comment, rating, display}),
     })
     return alert("Comment register!")
   } catch (error) {

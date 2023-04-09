@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { TextField, Rating, Button, Grid } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import { updateBookReviews } from "../../firebase/firestore/books";
 
-const CardNewReview = ({ id, nickname }) => {
+const CardNewReview = ({ id, nickname, handleNewReview }) => {
   const initialState = {
     id: id,
     nickname: nickname,
@@ -12,21 +11,14 @@ const CardNewReview = ({ id, nickname }) => {
     display: true,
   };
   const [input, setInput] = useState(initialState);
-
   const handleinputReview = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    try {
-      console.log(input);
-      const res = await updateBookReviews(input);
-      console.log(res);
-      setInput(initialState);
-    } catch (error) {
-      console.log(error);
-    }
+    handleNewReview(input);
+    setInput(initialState);
   };
 
   return (
