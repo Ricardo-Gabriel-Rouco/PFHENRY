@@ -7,10 +7,12 @@ function Register() {
   const [userData, setUserData] = useState({
     email: "",
     password: "",
+    userName: ""
   });
   const [errors, setErrors] = useState({
     email: "",
     password: "",
+    userName: ""
   });
   const navigate = useNavigate();
 
@@ -56,7 +58,16 @@ function Register() {
         margin: "2rem",
       }}
       onSubmit={handleSubmit}
-    >
+      >
+      <TextField
+        type="text"
+        label="Nombre de usuario"
+        name="userName"
+        value={userData.userName}
+        onChange={handleInputChange}
+        style={{ margin: "1rem" }}
+      />
+      {errors.userName && <p>{errors.userName}</p>}
       <TextField
         type="email"
         label="Correo electrónico"
