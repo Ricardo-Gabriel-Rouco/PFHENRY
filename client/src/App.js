@@ -19,6 +19,10 @@ import { AdminDashboard } from "./Views/AdminDashboard/AdminDashboard";
 import AdminRoutes from './components/AdminRoutes/AdminRoutes'
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
 import PayStatus from "./components/PayStatus/PayStatus";
+import axios from 'axios'
+
+axios.defaults.baseURL = 'https://shaky-friend-production.up.railway.app/'
+
 
 function App() {
 const toogleCart = useSelector(state => state.toogle)

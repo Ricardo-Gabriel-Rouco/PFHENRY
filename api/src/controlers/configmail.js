@@ -1,11 +1,18 @@
 const from = 'bookskingdom@outlook.es'
-const to = 'ml.salerno@outlook.com'
-const subject = 'Esto es una prueba'
-const text = 'Si lees esto es porque te llego un mail y todo funciona bien, sino no te llego nada'
+const successPay = 'Pago Realizado'
+const failedPay = 'Pago Rechazado'
+const link = 'Link de Descarga'
+const successText = 'Tu pago fue aceptado'
+const failedText = 'Tu pago fue rechazado, no tenes un sope'
+const linkText = 'Aca tene para descargar'
+
 
 module.exports = {
   from,
-  to,
-  subject,
-  text
+  successPay,
+  failedPay,
+  link,
+  successText,
+  failedText,
+  linkText
 }
