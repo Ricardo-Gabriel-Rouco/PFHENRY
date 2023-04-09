@@ -13,15 +13,13 @@ export async function postOrder(order) {
       const existingData = orderDoc.data();
       ordersArray = existingData.orders;
     }
-
-    ordersArray.forEach(e => {
-      if(e.idOrder !== order.idOrder){
-        ordersArray.push({
-          idOrder:order.idOrder,
-          status:order.status
-        });
-      }
-    });
+    const orderExists = ordersArray.some(e => e.idOrder === order.idOrder);
+    if (!orderExists) {
+      ordersArray.push({
+        idOrder: order.idOrder,
+        status: order.status,
+      });
+    }
 
     const newOrder = {
       orders: ordersArray,

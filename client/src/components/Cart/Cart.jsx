@@ -15,7 +15,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from 'react-router-dom'
-import { postOrder } from "../../firebase/firestore/orders";
 
 const Cart = () => {
   const { userStatus } = useAuth();
@@ -25,7 +24,7 @@ const Cart = () => {
   const abrir = useSelector((state) => state.toogle.isOpen);
 
   const [order, setOrder] = useState({});
-
+  
   useEffect(() => {
     setOrder({
       user: {

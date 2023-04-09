@@ -7,6 +7,7 @@ export async function createUser(email, password) {
         const res = await createUserWithEmailAndPassword(auth, email, password);
         const newUser = {
             uid: res.user.uid,
+            email:res.user.email,
             rol: "USER",
             display: true,
         }
