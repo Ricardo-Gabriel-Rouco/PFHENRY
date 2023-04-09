@@ -1,4 +1,3 @@
-import style from "./Card.module.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -7,29 +6,26 @@ import {
   addFavorite,
 } from "../../redux/rootReducer/favoriteSlice";
 import {
-  Box,
   CardActions,
   CardContent,
   Button,
   Typography,
   CardMedia,
-  IconButton,
   Dialog,
   DialogContent,
+  DialogActions,
+  Grid,
 } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { addProduct } from "../../redux/rootReducer/cartSlice";
 import CardDetail from "../CardDetail/CardDetail";
 
-
-
-  
 const Card = ({ image, id, title, authors, price, editorial }) => {
-    const favorite = useSelector(state => state.favorite.favorites)
-    const dispatch = useDispatch();
-
+  const favorite = useSelector((state) => state.favorite.favorites);
+  const dispatch = useDispatch();
 
   //FAVORITES
   const [isFav, setIsFav] = useState(false);
@@ -47,7 +43,6 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
       setIsFav(false);
     } else {
       dispatch(addFavorite({ image, id, title, authors, price, editorial }));
-
       setIsFav(true);
     }
   };
@@ -68,96 +63,228 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
   };
 
   return (
-    <Box
+    <Grid
+      container
+      spacing={2}
       sx={{
-        margin: "30px",
-        flexDirection: "column",
+        margin: "15px",
         textAlign: "center",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        transition: "box-shadow 0.3s ease",
         height: "450px",
         width: "300px",
+        bgcolor: "primary",
+        borderRadius: "10px",
+        boxShadow: "0px 0px 15px black",
+        transition: "bgcolor 1s, color 1s",
+        "&:hover": {
+          bgcolor: "#ffb74d",
+          color: "#fff",
+        },
       }}
-      className={style.card}
     >
-      {isFav ? (
+      <Grid
+        item
+        xs={12}
+        sm={6}
+        md={6}
+        lg={6}
+        xl={6}
+        sx={{ display: "flex", justifyContent: "center" }}
+      >
+        {isFav ? (
+          <Button
+            variant="contained"
+            size="small"
+            onClick={() => handleFavorite()}
+          >
+            <BookmarkOutlinedIcon />
+          </Button>
+        ) : (
+          <Button
+            variant="contained"
+            size="small"
+            onClick={() => handleFavorite()}
+          >
+            <BookmarkBorderOutlinedIcon />
+          </Button>
+        )}
+      </Grid>
+      <Grid
+        item
+        xs={12}
+        sm={6}
+        md={6}
+        lg={6}
+        xl={6}
+        sx={{ display: "flex", justifyContent: "center" }}
+      >
         <Button
           variant="contained"
           size="small"
-          onClick={() => handleFavorite()}
-        >
-          {" "}
-          <BookmarkOutlinedIcon />
-        </Button>
-      ) : (
-        <Button
-          variant="contained"
-          size="small"
-          onClick={() => handleFavorite()}
-        >
-          <BookmarkBorderOutlinedIcon />
-        </Button>
-      )}
-      <CardMedia
-        component="img"
-        height="300"
-        sx={{
-          width: "10rem",
-          height: "14rem",
-          objectFit: "cover",
-          marginTop: "25px",
-        }}
-        image={image}
-        alt={title}
-      />
-      <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          {title}
-        </Typography>
-        <Typography variant="body2">
-          {price ? <p>Price $ {price}</p> : null}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        {/* <Button variant="contained" size="small">
-          {" "}
-          <Link to={`/home/${id}`}>Details</Link>
-        </Button> */}
-
-        <Button variant="contained" onClick={handleClickOpen}>
-          Details
-        </Button>
-        <Dialog
-          open={open}
-          onClose={handleClose}
-          fullWidth={true}
-          PaperProps={{
-            style: {
-              height: "99vh",
-              overflow: "hidden",
-            },
-          }}
-        >
-          <DialogContent>
-            <CardDetail id={id} />
-          </DialogContent>
-        </Dialog>
-
-        <Button
           onClick={() => handleAdd({ image, id, title, authors, price })}
         >
-          <IconButton
-            variant="contained"
-            // color="primary"
-            aria-label="add to shopping cart"
-          >
-            <ShoppingCartIcon />
-          </IconButton>
+          <ShoppingCartIcon />
         </Button>
-      </CardActions>
-    </Box>
+      </Grid>
+      <Grid
+        item
+        xs={12}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+          margin: "0px auto",
+        }}
+      >
+        <CardMedia
+          component="img"
+          height="300"
+          sx={{
+            width: "10rem",
+            height: "14rem",
+            objectFit: "cover",
+            marginTop: "0px",
+          }}
+          image={image}
+          alt={title}
+        />
+        <CardContent sx={{ padding: "5px" }}>
+          <Typography
+            sx={{ fontSize: "1rem", fontWeight: "bold" }}
+            color="text.secondary"
+            gutterBottom
+          >
+            {title}
+          </Typography>
+          <Typography variant="body2">
+            {price ? <p>Price $ {price}</p> : null}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button variant="contained" onClick={handleClickOpen}>
+            Details
+          </Button>
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            PaperProps={{
+              sx: {
+                width: "100%",
+                height: "100%",
+                overflow: "hidden",
+                bgcolor: "#ffb74d",
+                color: "#fff",
+              },
+            }}
+          >
+            <DialogContent>
+              <CardDetail id={id} />
+            </DialogContent>
+            <DialogActions>
+              <Grid
+                container
+                spacing={3}
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  width: "100%",
+                  margin: "auto",
+                }}
+              >
+                <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  md={6}
+                  lg={6}
+                  xl={6}
+                  sx={{ display: "flex", justifyContent: "center" }}
+                >
+                  {isFav ? (
+                    <Button
+                      variant="outlined"
+                      color="text"
+                      sx={{
+                        transition: "color 1s",
+                        "&:hover": {
+                          color: "#fff",
+                        },
+                      }}
+                      endIcon={<BookmarkOutlinedIcon />}
+                      onClick={() => handleFavorite()}
+                    >
+                      Add
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="outlined"
+                      color="text"
+                      sx={{
+                        transition: "color 1s",
+                        "&:hover": {
+                          color: "#fff",
+                        },
+                      }}
+                      endIcon={<BookmarkBorderOutlinedIcon />}
+                      onClick={() => handleFavorite()}
+                    >
+                      Add
+                    </Button>
+                  )}
+                </Grid>
+                <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  md={6}
+                  lg={6}
+                  xl={6}
+                  sx={{ display: "flex", justifyContent: "center" }}
+                >
+                  <Button
+                    variant="outlined"
+                    color="text"
+                    sx={{
+                      transition: "color 1s",
+                      "&:hover": {
+                        color: "#fff",
+                      },
+                    }}
+                    endIcon={<ShoppingCartIcon />}
+                    onClick={() =>
+                      handleAdd({ image, id, title, authors, price })
+                    }
+                  >
+                    Add
+                  </Button>
+                </Grid>
+              </Grid>
+
+              <Button
+                variant="outlined"
+                color="text"
+                endIcon={<ExitToAppIcon />}
+                onClick={handleClose}
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  position: "absolute",
+                  zIndex: 2,
+                  top: "20px",
+                  right: "20px",
+                  transition: "color 1s",
+                  "&:hover": {
+                    color: "#fff",
+                  },
+                }}
+              ></Button>
+            </DialogActions>
+          </Dialog>
+        </CardActions>
+      </Grid>
+    </Grid>
   );
 };
 
