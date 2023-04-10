@@ -6,6 +6,7 @@ const verifyIdPayment = async function (id) {
         // if (payment.response.status === 'approved') {
         //     return "approved";
         // }
+        //a
         return id;
     } catch (error) {
         return error
