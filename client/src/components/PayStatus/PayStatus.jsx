@@ -8,6 +8,7 @@ import { Button } from '@mui/material';
 import { useAuth } from '../../context/authContext';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../firebase/firebase-config';
+import { getMailOfUser } from '../../firebase/firestore/users';
 
 const PayStatus = () => {
   const { userStatus } = useAuth();
@@ -42,6 +43,8 @@ const PayStatus = () => {
         }
         window.history.replaceState({}, document.title, window.location.pathname);
         postOrder(order)
+        let email= await getMailOfUser(idUser);
+        await axios.post("https://shaky-friend-production.up.railway.app/mail", {mail:email, reason:"Compra finalizada"})
         dispatch(removeAllProducts());
         localStorage.removeItem("cart");
       }
