@@ -17,7 +17,6 @@ const PayStatus = () => {
   const payment_id = { payment_id: params.get('payment_id') };
   const idUser = params.get('idUser');
   const [status, setStatus] = useState("");
-  const [order, setOrder] = useState();
   const navigate = useNavigate()
 
   const handleNavigate = () => {
@@ -29,6 +28,11 @@ const PayStatus = () => {
     async function checkPayStatus() {
       const response = await axios.post("https://shaky-friend-production.up.railway.app/payStatus",
         payment_id)
+      const userLogged = onAuthStateChanged(auth, async (currentUser)=>{
+        return currentUser.email
+      })
+      console.log(userLogged)
+      // if (userStatus.userId === idUser) {
       if (response.data === "approved") {
         setStatus(response.data)
         const order = {
@@ -37,7 +41,6 @@ const PayStatus = () => {
           status: response.data
         }
         window.history.replaceState({}, document.title, window.location.pathname);
-        setOrder(order)
         postOrder(order)
         dispatch(removeAllProducts());
         localStorage.removeItem("cart");
@@ -46,8 +49,13 @@ const PayStatus = () => {
         setStatus(response.data)
       }
     }
+    // else {
+    //   console.log(userStatus.userId)
+    //   navigate('/home')
+    // }
+    // }
     checkPayStatus()
-    
+
   }, []);
 
   return (
