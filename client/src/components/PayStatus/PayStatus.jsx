@@ -30,7 +30,6 @@ const PayStatus = () => {
       const response = await axios.post("https://shaky-friend-production.up.railway.app/payStatus",
         payment_id)
       // if (userStatus.userId === idUser) {
-        console.log(typeof payment_id)
         console.log(response.data)
       if (response.data === "approved") {
         setStatus(response.data)
