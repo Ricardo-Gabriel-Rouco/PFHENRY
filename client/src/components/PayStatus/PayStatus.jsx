@@ -15,7 +15,7 @@ const PayStatus = () => {
   const dispatch = useDispatch();
   const querystring = window.location.search;
   const params = new URLSearchParams(querystring);
-  const payment_id = { payment_id: params.get('payment_id') };
+  const payment_id = params.get('payment_id') ;
   const idUser = params.get('idUser');
   const [status, setStatus] = useState("");
   const navigate = useNavigate()
@@ -29,21 +29,18 @@ const PayStatus = () => {
     async function checkPayStatus() {
       const response = await axios.post("https://shaky-friend-production.up.railway.app/payStatus",
         payment_id)
-      const userLogged = onAuthStateChanged(auth, async (currentUser)=>{
-        return currentUser.email
-      })
-      console.log(userLogged)
       // if (userStatus.userId === idUser) {
       if (response.data === "approved") {
         setStatus(response.data)
         const order = {
           user: idUser,
-          idOrder: params.get('payment_id'),
+          idOrder: payment_id,
           status: response.data
         }
         window.history.replaceState({}, document.title, window.location.pathname);
-        postOrder(order)
+        await postOrder(order)
         let email= await getMailOfUser(idUser);
+        console.log(email)
         await axios.post("https://shaky-friend-production.up.railway.app/mail", {mail:email, reason:"link"})
         dispatch(removeAllProducts());
         localStorage.removeItem("cart");
