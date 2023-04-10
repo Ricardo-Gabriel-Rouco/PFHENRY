@@ -15,6 +15,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from 'react-router-dom'
+import CartModal from "./CartModal"
 
 const Cart = () => {
   const { userStatus } = useAuth();
@@ -24,7 +25,11 @@ const Cart = () => {
   const abrir = useSelector((state) => state.toogle.isOpen);
 
   const [order, setOrder] = useState({});
-  
+  const [showIframe, setShowIframe] = useState(false);
+  const [iFrameUrl, setIframeUrl] = useState("");
+console.log(showIframe)
+console.log(iFrameUrl)
+
   useEffect(() => {
     setOrder({
       user: {
@@ -44,7 +49,6 @@ const Cart = () => {
 
 
   //handlers
-
   const handleBuy = async () => {
     if (userStatus.logged) {
       try {
@@ -52,7 +56,11 @@ const Cart = () => {
           "https://shaky-friend-production.up.railway.app/checkout",
           order
         );
-        window.open(response.data);
+        // await postOrder(response.data);
+        // dispatch(removeAllProducts());
+        // localStorage.removeItem("cart")
+        setIframeUrl(response.data);
+        setShowIframe(true);
       } catch (error) {
         console.error("Error:", error.response.data);
       }
@@ -61,6 +69,11 @@ const Cart = () => {
       alert('You must be logged to buy')
       navigate('/login')
     }
+  };
+
+  const handleCloseModal = () => {
+    setShowIframe(false);
+    setIframeUrl("");
   };
 
   const handleClose = () => {
@@ -137,6 +150,9 @@ const Cart = () => {
             </Grid>
           );
         })}
+        {showIframe && 
+        <CartModal url={iFrameUrl} onClose={handleCloseModal} />
+        }
         {cart.cart.cart.length === 0 && (
           <Typography variant="subtitle1">
             There is no product in your cart
