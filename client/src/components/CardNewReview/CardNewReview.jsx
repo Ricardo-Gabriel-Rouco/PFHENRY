@@ -49,7 +49,7 @@ const CardNewReview = ({ id, nickname, handleNewReview }) => {
           value={input.comment}
           label={nickname}
           variant="standard"
-          color="secondary"
+          color="primary"
           onChange={handleinputReview}
           required
         />
@@ -73,7 +73,7 @@ const CardNewReview = ({ id, nickname, handleNewReview }) => {
       <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
         <Button
           type="submit"
-          color="secondary"
+          color="primary"
           onClick={handleOnSubmit}
           variant="contained"
           size="small"

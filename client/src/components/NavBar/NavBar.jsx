@@ -73,7 +73,7 @@ const NavBar = ({passTheme, mode}) => {
   // }
 
   return (((location.pathname !== '/') && (location.pathname.slice(0, 6) !== '/admin')) &&
-    <Box sx={{ flexGrow: 1, bgcolor: "#F9B52E", color: "#F7F6F6", p: 1 }}>
+    <Box sx={{ flexGrow: 1, bgcolor: "secondary", color: "#F7F6F6", p: 1 }}>
       {/* <FormGroup>
         <FormControlLabel
           control={
@@ -86,7 +86,7 @@ const NavBar = ({passTheme, mode}) => {
           label={authorized ? "Logout" : "Login"}
         />
       </FormGroup> */}
-      <AppBar position="sticky" color="secondary">
+      <AppBar position="sticky" color="primary">
         <Box>
           <Toolbar>
             <IconButton

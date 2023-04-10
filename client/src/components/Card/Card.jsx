@@ -74,13 +74,12 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
         alignItems: "center",
         height: "450px",
         width: "300px",
-        bgcolor: "primary",
         borderRadius: "10px",
         boxShadow: "0px 0px 15px black",
-        transition: "bgcolor 1s, color 1s",
+        transition: "bgcolor 1s, color 0.5s",
         "&:hover": {
-          bgcolor: "#ffb74d",
-          color: "#fff",
+          bgcolor: "primary.main",
+          color: "secondary.contrastText",
         },
       }}
     >
@@ -153,7 +152,6 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
         <CardContent sx={{ padding: "5px" }}>
           <Typography
             sx={{ fontSize: "1rem", fontWeight: "bold" }}
-            color="text.secondary"
             gutterBottom
           >
             {title}
@@ -174,8 +172,8 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
                 width: "100%",
                 height: "100%",
                 overflow: "hidden",
-                bgcolor: "#ffb74d",
-                color: "#fff",
+                bgcolor: "primary.main",
+                color: "primary",
               },
             }}
           >
@@ -205,11 +203,11 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
                   {isFav ? (
                     <Button
                       variant="outlined"
-                      color="primary"
+                      color="secondary"
                       sx={{
-                        transition: "color 1s",
+                        transition: "color 0.5s",
                         "&:hover": {
-                          color: "#fff",
+                          color: "secondary.contrastText",
                         },
                       }}
                       endIcon={<BookmarkOutlinedIcon />}
@@ -220,11 +218,11 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
                   ) : (
                     <Button
                       variant="outlined"
-                      color="primary"
+                      color="secondary"
                       sx={{
-                        transition: "color 1s",
+                        transition: "color 0.5s",
                         "&:hover": {
-                          color: "#fff",
+                          color: "secondary.contrastText",
                         },
                       }}
                       endIcon={<BookmarkBorderOutlinedIcon />}
@@ -245,11 +243,11 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
                 >
                   <Button
                     variant="outlined"
-                    color="primary"
+                    color="secondary"
                     sx={{
-                      transition: "color 1s",
+                      transition: "color 0.5s",
                       "&:hover": {
-                        color: "#fff",
+                        color: "secondary.contrastText",
                       },
                     }}
                     endIcon={<ShoppingCartIcon />}
@@ -264,7 +262,7 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
 
               <Button
                 variant="outlined"
-                color="primary"
+                color="secondary"
                 endIcon={<ExitToAppIcon />}
                 onClick={handleClose}
                 sx={{
@@ -274,9 +272,9 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
                   zIndex: 2,
                   top: "20px",
                   right: "20px",
-                  transition: "color 1s",
+                  transition: "color 0.5s",
                   "&:hover": {
-                    color: "#fff",
+                    color: "secondary.contrastText",
                   },
                 }}
               ></Button>

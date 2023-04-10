@@ -2,7 +2,6 @@ import {
   Typography,
   Divider,
   ListItemText,
-  Avatar,
   Rating,
   Grid,
   List,
@@ -26,9 +25,7 @@ const CardsReview = ({ user, comment, rating }) => {
           xl={2}
           sx={{ display: "flex", justifyContent: "center" }}
         >
-          <Avatar alt="User" color="primary">
-            <AccountCircleIcon fontSize="large" color="secondary" />
-          </Avatar>
+          <AccountCircleIcon fontSize="large" color="secondary" />
         </Grid>
         <Grid item xs={12} sm={7} md={7} lg={7} xl={7}>
           <ListItemText
@@ -39,7 +36,7 @@ const CardsReview = ({ user, comment, rating }) => {
                   sx={{ display: "inline", width: "100%" }}
                   component="span"
                   variant="body2"
-                  color="text.primary"
+                  color="secondary"
                 ></Typography>
                 {comment}
               </>
@@ -61,6 +58,17 @@ const CardsReview = ({ user, comment, rating }) => {
             size="small"
             precision={0.5}
             readOnly
+            sx={{
+              "& .MuiRating-iconFilled": {
+                color: "secondary.main",
+              },
+              // "& .MuiRating-iconFocus": {
+              //   color: "orange",
+              // },
+              // "& .MuiRating-iconHover": {
+              //   color: "green",
+              // },
+            }}
           />
         </Grid>
       </Grid>
