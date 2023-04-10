@@ -40,10 +40,7 @@ function App() {
             {toogleFav && <Favorites />}
             <Routes>
               <Route exact path="/" element={<Landing />} />
-              <Route
-                exact
-                path="/admin/*"
-                element={
+              <Route exact path="/admin/*" element={
                   <AdminRoutes>
                     <AdminDashboard />
                   </AdminRoutes>
@@ -53,10 +50,7 @@ function App() {
               <Route exact path="/about" element={<About />} />
               <Route exact path="/favorites" element={<Favorites />} />
               <Route exact path="/cart" element={<Cart />} />
-              <Route
-                exact
-                path="/create"
-                element={
+              <Route exact path="/create" element={
                   <AdminRoutes>
                     <AddBooks />
                   </AdminRoutes>
@@ -65,9 +59,7 @@ function App() {
               <Route path="/home/:id" element={<CardDetail />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route
-                path="/checkout"
-                element={
+              <Route path="/checkout" element={
                   <ProtectedRoutes>
                     <PurchaseForm />
                   </ProtectedRoutes>

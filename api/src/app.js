@@ -4,8 +4,7 @@ const morgan = require("morgan");
 const clients = require("./routes/clientsRoutes.js");
 const products = require("./routes/productsRoutes.js");
 const payChoosen = require("./routes/payRoutes.js");
-const payFailure = require("./routes/payFailure.js");
-const paySuccess = require("./routes/paySuccess.js");
+const payStatus = require("./routes/payStatus.js");
 const cors = require("cors");
 
 //iniciamos el servidor
@@ -16,13 +15,12 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(cors({
   // https://pfhenry-jzy1.vercel.app/*
-  origin: ['https://pfhenry-jzy1.vercel.app/*', 'https://pfhenry-production.up.railway.app/checkout', 'https://pfhenry-jzy1-ds8p7673k-ricardo-gabriel-rouco.vercel.app', 'http://www.mercadopago.com.ar'] // Allow requests from these origins only
+  origin: ['https://pfhenry-jzy1.vercel.app/*', 'https://pfhenry-production.up.railway.app/payStatus', 'https://pfhenry-jzy1-ds8p7673k-ricardo-gabriel-rouco.vercel.app', 'http://www.mercadopago.com.ar'] // Allow requests from these origins only
 }));
 app.use("/clients", clients);
 app.use("/products", products);
 app.use("/checkout", payChoosen);
-app.use("/paySuccess", paySuccess);
-// app.use("/checkout/failure", payFailure);
+app.use("/payStatus", payStatus);
 
 //test route
 
