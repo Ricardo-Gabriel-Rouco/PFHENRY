@@ -37,7 +37,7 @@ const CardNewReview = ({ id, nickname, handleNewReview }) => {
         xl={2}
         sx={{ display: "flex", justifyContent: "center" }}
       >
-        <AccountCircle color="primary" fontSize="large" />
+        <AccountCircle color="primary.main" fontSize="large" />
       </Grid>
       <Grid item xs={12} sm={7} md={7} lg={7} xl={7}>
         <TextField

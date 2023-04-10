@@ -14,12 +14,12 @@ import { toogleCart } from "../../redux/rootReducer/toogleSlice";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../../context/authContext";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import { postOrder } from "../../firebase/firestore/orders";
 
 const Cart = () => {
   const { userStatus } = useAuth();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const abrir = useSelector((state) => state.toogle.isOpen);
@@ -43,7 +43,6 @@ const Cart = () => {
     // eslint-disable-next-line
   }, [cart.cart.cart]);
 
-
   //handlers
 
   const handleBuy = async () => {
@@ -55,15 +54,15 @@ const Cart = () => {
         );
         await postOrder(response.data);
         dispatch(removeAllProducts());
-        localStorage.removeItem("cart")
+        localStorage.removeItem("cart");
         window.open(response.data.link);
       } catch (error) {
         console.error("Error:", error.response.data);
       }
     } else {
       dispatch(toogleCart());
-      alert('You must be logged to buy')
-      navigate('/login')
+      alert("You must be logged to buy");
+      navigate("/login");
     }
   };
 
@@ -156,7 +155,7 @@ const Cart = () => {
             <Button
               onClick={() => handleRemoveAll()}
               variant="contained"
-              color="secondary"
+              color="info"
               size="small"
               sx={{ marginTop: 2, marginRight: 2 }}
             >
@@ -165,7 +164,7 @@ const Cart = () => {
             <Button
               onClick={() => handleBuy()}
               variant="contained"
-              color="secondary"
+              color="info"
               size="small"
               sx={{ marginTop: 2 }}
             >
@@ -196,7 +195,6 @@ const Cart = () => {
             </Button>
           </>
         )}
-
       </Box>
     </Drawer>
   );

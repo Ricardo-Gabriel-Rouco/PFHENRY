@@ -75,10 +75,10 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
         height: "450px",
         width: "300px",
         borderRadius: "10px",
-        boxShadow: "0px 0px 15px black",
+        boxShadow: "0px 0px 10px black",
         transition: "bgcolor 1s, color 0.5s",
         "&:hover": {
-          bgcolor: "primary.main",
+          bgcolor: "primary.light",
           color: "secondary.contrastText",
         },
       }}
@@ -94,6 +94,7 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
       >
         {isFav ? (
           <Button
+            color="primary"
             variant="contained"
             size="small"
             onClick={() => handleFavorite()}
@@ -172,7 +173,7 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
                 width: "100%",
                 height: "100%",
                 overflow: "hidden",
-                bgcolor: "primary.main",
+                bgcolor: "primary.light",
                 color: "primary",
               },
             }}
