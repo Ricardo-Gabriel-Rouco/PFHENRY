@@ -16,9 +16,9 @@ import {
 import CardsReview from "../CardsReview/CardsReview";
 import CardNewReview from "../CardNewReview/CardNewReview";
 import loading from "../../Assets/Loading.gif";
+import { updateBookReviews } from "../../firebase/firestore/books";
 
 let nickname = "Claudio"; //Traer el "nickname" del usuario que esta loogeado
-
 const CardDetail = ({ id }) => {
   // const { id } = useParams();
   const dispatch = useDispatch();
@@ -27,13 +27,28 @@ const CardDetail = ({ id }) => {
   useEffect(() => {
     dispatch(getBookById(id))
       .then((response) => {
-        // setBookDetail(MyBook); //reemplazar en modo PRODUCCION
         setBookDetail(response.payload);
       })
       .catch((error) => {
         console.log(error);
       });
   }, [dispatch, id]);
+
+  const handleNewReview = async (input) => {
+    try {
+      const res = await updateBookReviews(input);
+      console.log(res);
+      dispatch(getBookById(id))
+        .then((response) => {
+          setBookDetail(response.payload);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return bookDetail.id ? (
     <Card
@@ -72,28 +87,54 @@ const CardDetail = ({ id }) => {
           variant="h4"
           component="h2"
           gutterBottom
-          sx={{ mt: 2, fontWeight: "bold" }}
+          sx={{ fontWeight: "bold", marginTop: "15px", marginBottom: 0 }}
         >
           {bookDetail?.title}
         </Typography>
-        <Typography variant="h5" gutterBottom>
-          {bookDetail?.author}
+        <Typography
+          variant="h5"
+          gutterBottom
+          sx={{ fontWeight: "bold", marginBottom: "15px" }}
+        >
+          {bookDetail?.authors}
         </Typography>
-        <Typography variant="subtitle1" gutterBottom>
-          {bookDetail?.editorial}
-        </Typography>
-        <Typography variant="body1" align="center" gutterBottom>
+        <Typography
+          variant="body1"
+          align="justify"
+          gutterBottom
+          sx={{ marginBottom: "15px", width: "90%" }}
+        >
           {bookDetail?.description}
         </Typography>
-        <Typography variant="body1" gutterBottom>
+        <Typography
+          variant="body1"
+          gutterBottom
+          sx={{ fontWeight: "bold", marginBottom: "15px" }}
+        >
           {`Price: $${bookDetail?.price}`}
         </Typography>
-        <Typography variant="body1" gutterBottom>
+        <Typography
+          variant="body1"
+          gutterBottom
+          sx={{ fontWeight: "bold", marginBottom: "15px" }}
+        >
           {`Rating: ${bookDetail?.rating}`}
         </Typography>
-        <Typography variant="body1" gutterBottom>
+        <Typography
+          variant="body1"
+          gutterBottom
+          sx={{ fontWeight: "bold", marginBottom: "15px" }}
+        >
           {`Year: ${bookDetail?.year}`}
         </Typography>
+        <Typography
+          variant="subtitle1"
+          gutterBottom
+          sx={{ fontWeight: "bold", marginBottom: "15px" }}
+        >
+          Editorial: {bookDetail?.editorial}
+        </Typography>
+
         {/* new change "Show reviews" */}
         {bookDetail.reviews ? (
           bookDetail.reviews.find((obj) => obj.user === nickname) ? (
@@ -119,6 +160,7 @@ const CardDetail = ({ id }) => {
                     key={bookDetail.id}
                     id={bookDetail.id}
                     nickname={nickname}
+                    handleNewReview={handleNewReview}
                   />
                 </List>
               </Paper>
@@ -145,6 +187,7 @@ const CardDetail = ({ id }) => {
                   key={bookDetail.id}
                   id={bookDetail.id}
                   nickname={nickname}
+                  handleNewReview={handleNewReview}
                 />
               </List>
             </Paper>

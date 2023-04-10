@@ -11,7 +11,7 @@ import ShoppingCart from "@mui/icons-material/ShoppingCart";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import Home from "@mui/icons-material/Home";
-import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
+import { AppBar, Box, IconButton, Toolbar, Button } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 // import LoginIcon from '@mui/icons-material/Login'
@@ -25,9 +25,13 @@ import { postCart } from "../../firebase/firestore/cart";
 import { postFav } from "../../firebase/firestore/favorites";
 import { removeAllProducts } from "../../redux/rootReducer/cartSlice";
 import { removeAllFavorites } from "../../redux/rootReducer/favoriteSlice";
+import light from "../../Theme/light";
+import dark from "../../Theme/dark";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import ModeNightIcon from "@mui/icons-material/ModeNight";
 
 
-const NavBar = () => {
+const NavBar = ({passTheme, mode}) => {
 
   const { userStatus } = useAuth();
   const { logout } = useAuth();
@@ -60,6 +64,13 @@ const NavBar = () => {
     else
       navigate('/home')
   }
+
+  //Estableciendo modos de Theme para el py
+  // const [mode, setMode] = useState(light);
+  // const currentModeTheme = (theme) => {
+  //   setMode(theme);
+  //   passTheme(theme);
+  // }
 
   return (((location.pathname !== '/') && (location.pathname.slice(0, 6) !== '/admin')) &&
     <Box sx={{ flexGrow: 1, bgcolor: "#F9B52E", color: "#F7F6F6", p: 1 }}>
@@ -109,6 +120,30 @@ const NavBar = () => {
                 <AddCircleOutlineIcon sx={{ color: "#F7F6F6" }} />
               </Link>
             </IconButton> : null}
+
+              {mode === light ? (
+              <Button
+                size="large"
+                variant="text"
+                color="inherit"
+                sx={{
+                  mr:2
+                }}
+                endIcon={<ModeNightIcon />}
+                onClick={()=> passTheme(dark)}
+              />
+            ) : (
+              <Button
+                size="large"
+                variant="text"
+                color="inherit"
+                sx={{
+                  mr:2
+                }}
+                endIcon={<LightModeIcon />}
+                onClick={()=>passTheme(light)}
+              />
+            )}
 
             <IconButton
               size="large"
