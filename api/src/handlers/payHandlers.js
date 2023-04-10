@@ -34,7 +34,7 @@ const preferencePayHandler = async function (req, res) {
       preference.items.push(book)
     })
     const response = await sendPreferencePayment(preference)
-    let link = response.body.init_point
+    let link = response.body.sandbox_init_point
     // {
     //   user: response.body.payer.name,
     //   email: response.body.payer.email,
