@@ -44,7 +44,7 @@ const PayStatus = () => {
         window.history.replaceState({}, document.title, window.location.pathname);
         postOrder(order)
         let email= await getMailOfUser(idUser);
-        await axios.post("https://shaky-friend-production.up.railway.app/mail", {mail:email, reason:"Compra finalizada"})
+        await axios.post("https://shaky-friend-production.up.railway.app/mail", {mail:email, reason:"link"})
         dispatch(removeAllProducts());
         localStorage.removeItem("cart");
       }
