@@ -17,6 +17,21 @@ import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
 import { postOrder } from "../../firebase/firestore/orders";
 
+export const availableItems = (displayableBooks, cart) => {
+  return displayableBooks
+  .filter(
+    (book) => book.display && cart.cart.cart.find((el) => el.id === book.id)
+  )
+  .map((el) => {
+    const {price:unit_price, ...rest} = el
+    return {
+      quantity: cart.cart.cart.find(book=>book.id===el.id).quantity,
+      unit_price,
+      ...rest
+  }
+  })
+}
+
 const Cart = () => {
   const { userStatus } = useAuth();
   const navigate = useNavigate();
@@ -28,19 +43,15 @@ const Cart = () => {
   const [order, setOrder] = useState({});
 
   useEffect(() => {
-    
+   
+      console.log(availableItems(displayableBooks, cart))
 
     setOrder({
       user: {
         name: userStatus.userId,
         email: userStatus.email,
       },
-      items: cart.cart.cart.map((product, i) => {
-        const { price: unit_price, ...rest } = displayableBooks.find(
-          (el) => el.id === product.id
-        );
-        return { quantity: product.quantity, unit_price, ...rest };
-      }),
+      items: availableItems(displayableBooks, cart),
     });
     // eslint-disable-next-line
   }, [cart.cart.cart]);
@@ -72,7 +83,6 @@ const Cart = () => {
     dispatch(toogleCart());
   };
   const handleAdd = (id) => {
-    console.log(id);
     dispatch(addProduct({ id }));
   };
 
@@ -104,11 +114,7 @@ const Cart = () => {
           </Button>
         </Stack>
         <Divider sx={{ my: 1.5 }} />
-        {cart.cart.cart
-          .map((product, i) => ({
-            quantity: product.quantity,
-            ...displayableBooks.find((el) => el.id === product.id),
-          }))
+        {availableItems(displayableBooks, cart)
           .map((product) => {
             return (
               <Grid container spacing={2} key={product.id}>
@@ -155,13 +161,13 @@ const Cart = () => {
         )}
         {cart.cart.cart.length !== 0 && (
           <Typography variant="subtitle1">
-            {"Total Price: $ " + cart.cart.cart
-          .map((product, i) => ({
-            quantity: product.quantity,
-            ...displayableBooks.find((el) => el.id === product.id),
-          }))
-          .reduce((totalPrice,book)=>totalPrice+(book.quantity*book.price),0).toFixed(2)
-            }
+            {"Total Price: $ " +
+              availableItems(displayableBooks, cart)
+                .reduce(
+                  (totalPrice, book) => totalPrice + book.quantity * book.unit_price,
+                  0
+                )
+                .toFixed(2)}
           </Typography>
         )}
         {cart.cart.cart.length !== 0 ? (
@@ -169,7 +175,7 @@ const Cart = () => {
             <Button
               onClick={() => handleRemoveAll()}
               variant="contained"
-              color="secondary"
+              color="info"
               size="small"
               sx={{ marginTop: 2, marginRight: 2 }}
             >
@@ -178,7 +184,7 @@ const Cart = () => {
             <Button
               onClick={() => handleBuy()}
               variant="contained"
-              color="secondary"
+              color="info"
               size="small"
               sx={{ marginTop: 2 }}
             >

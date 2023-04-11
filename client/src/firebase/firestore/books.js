@@ -1,6 +1,5 @@
 import { getDocs, query, collection, where, doc, getDoc, updateDoc, setDoc, arrayUnion } from "firebase/firestore"
 import { db } from '../firebase-config';
-import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const regexTitle = /^[a-zA-Z0-9\s]+$/
 const regexAuthor = /^[a-zA-Z\s]+(\.[a-zA-Z\s]+)*$/;
@@ -143,7 +142,6 @@ export async function modifyBook(isbn, display) {
 // Metodo update para Reviews
 export async function updateBookReviews({id, nickname, comment, rating, display}) {
   try {
-    console.log("ESTO ES ID ==> ",id);
     const udBookReview = doc(db, 'books', id)
     await updateDoc(udBookReview, {
       reviews:  arrayUnion({
@@ -152,8 +150,6 @@ export async function updateBookReviews({id, nickname, comment, rating, display}
         user: nickname,
         display,
       })
-      
-      // reviews.push({nickname, comment, rating, display}),
     })
     return alert("Comment register!")
   } catch (error) {

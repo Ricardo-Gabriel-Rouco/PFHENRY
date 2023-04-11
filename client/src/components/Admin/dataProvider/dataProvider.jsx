@@ -25,17 +25,17 @@ const dataProvider = {
       });
       
       // Filtra los libros según los valores del filtro
-      if (title)
+      if (title)  // eslint-disable-next-line
         data = data.filter((book) => {
           if (book.title.toLowerCase().includes(title.toLowerCase())) 
             return true;
         })
-      if(author)
+      if(author)  // eslint-disable-next-line
         data = data.filter((book) => {
           if (book.authors.map((a) => a.author.toLowerCase()).some(item => item.includes(author.toLowerCase())))
             return true;
         });
-      if(genre)
+      if(genre) // eslint-disable-next-line
         data = data.filter((book) => {
           if (book.genres.map((g) => g.genre.toLowerCase()).some(item => item.includes(genre.toLowerCase()))) 
             return true

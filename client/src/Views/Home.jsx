@@ -1,10 +1,6 @@
 
 import CardContainer from "../components/CardContainer/CardContainer";
-import {db} from "../firebase/firebase-config";
-import { collection } from "firebase/firestore";
-import { getDocs } from "firebase/firestore";
 import { useDispatch } from "react-redux";
-import { addBook } from "../redux/rootReducer/bookSlice";
 import { useEffect} from "react";
 import { importBooks } from "../redux/actions/booksActions";
 

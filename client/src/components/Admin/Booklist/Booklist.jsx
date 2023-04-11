@@ -4,7 +4,6 @@ import {
   Datagrid,
   TextField,
   NumberField,
-  BooleanField,
   ArrayField,
   SingleFieldList,
   ChipField,
@@ -14,7 +13,6 @@ import {
   useRecordContext,
   FunctionField,
 } from "react-admin";
-import { Input } from "@mui/material";
 import BookListFilter from "./BooklistFilter";
 import { modifyBook } from "../../../firebase/firestore/books";
 import Checkbox from '@mui/material/Checkbox';
@@ -25,7 +23,7 @@ const DisplayCheckbox = () => {
   const record = useRecordContext();
 
   useEffect(()=>{
-    setChecked(record.display)
+    setChecked(record.display)// eslint-disable-next-line
   },[])
 
   const handleChange = (event) => {
