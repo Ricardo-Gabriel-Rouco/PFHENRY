@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   List,
   Datagrid,
@@ -17,26 +17,45 @@ import {
 import { Input } from "@mui/material";
 import BookListFilter from "./BooklistFilter";
 import { modifyBook } from "../../../firebase/firestore/books";
+import Checkbox from '@mui/material/Checkbox';
 
 
 const DisplayCheckbox = () => {
-
+  const [checked, setChecked] = useState(true)
   const record = useRecordContext();
 
+  useEffect(()=>{
+    setChecked(record.display)
+  },[])
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+    modifyBook(record.id, !checked)
+  }
+  
+
   return (
-    <Input 
-      type="checkbox" 
-      checked={record.display}
-      onChange={()=>modifyBook(record.id, !record.display)}/>
+    <Checkbox
+      checked={checked}
+      onChange={handleChange}
+      inputProps={{ 'aria-label': 'controlled' }}
+    />
   )
 }
 
 
-export const BookList = (props) => (
+export const BookList = (props) => {
+  
+  
+  return (
   <List {...props} filters={<BookListFilter />} pagination={false}>
     <Datagrid bulkActionButtons={false}>
-      <DisplayCheckbox/>
-      <BooleanField source="display" />
+      <FunctionField 
+        label="Display"
+        render={()=><DisplayCheckbox/>}
+      />
+      {/* <DisplayCheckbox /> */}
+      {/* <BooleanField source="display" /> */}
       <TextField source="id" />
       <ImageField source="image" />
       <TextField source="title" />
@@ -63,7 +82,7 @@ export const BookList = (props) => (
       <EditButton />
     </Datagrid>
   </List>
-);
+)};
 
 BookList.filterDefaultValues = {
   title: "",
