@@ -46,7 +46,8 @@ export function AuthProvider({ children }) {
           userId: currentUser.uid,
           email: currentUser.email,
           role: userRole.rol,
-          nickName: currentUser.nickname
+          nickName: userRole.nickname,
+          fullName: userRole.fullname
         });
       }
       setLoading(false);
