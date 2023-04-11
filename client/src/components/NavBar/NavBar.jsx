@@ -1,6 +1,6 @@
 import SearchBar from "../SearchBar/SearchBar";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../context/authContext";
 
 // import Switch from "@mui/material/Switch";
@@ -25,6 +25,7 @@ import { postCart } from "../../firebase/firestore/cart";
 import { postFav } from "../../firebase/firestore/favorites";
 import { removeAllProducts } from "../../redux/rootReducer/cartSlice";
 import { removeAllFavorites } from "../../redux/rootReducer/favoriteSlice";
+import { importBooks } from "../../redux/actions/booksActions";
 
 
 const NavBar = () => {
@@ -37,6 +38,7 @@ const NavBar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const favorites = useSelector(state => state.favorite.favorites);
   const cart = useSelector(state => state.cart);
+  const displayableBooks = useSelector((state) => state.books.displayableBooks);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -60,6 +62,10 @@ const NavBar = () => {
     else
       navigate('/home')
   }
+
+  useEffect(() => {
+    dispatch(importBooks())
+  },[])
 
   return (((location.pathname !== '/') && (location.pathname.slice(0, 6) !== '/admin')) &&
     <Box sx={{ flexGrow: 1, bgcolor: "#F9B52E", color: "#F7F6F6", p: 1 }}>
@@ -119,8 +125,7 @@ const NavBar = () => {
               onClick={() => dispatch(toogleFav())}
             >
 
-
-              <Badge badgeContent={favorites && favorites.favorites.length} color="info">
+              <Badge badgeContent={favorites && displayableBooks.filter(book => favorites.favorites.includes(book.id)).length} color="info">
                 <BookmarkOutlinedIcon  sx={{ color: "#F7F6F6" }} />{" "}
               </Badge>
             </IconButton>

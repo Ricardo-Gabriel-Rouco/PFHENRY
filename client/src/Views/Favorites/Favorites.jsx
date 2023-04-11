@@ -12,15 +12,17 @@ import {
     Box
 } from '@mui/material';
 
-import { deleteFavorite } from '../../redux/rootReducer/favoriteSlice'
+import { deleteFavorite, setFavorites } from '../../redux/rootReducer/favoriteSlice'
 import { addProduct } from '../../redux/rootReducer/cartSlice';
 import { closeFav } from '../../redux/rootReducer/toogleFavSlice';
+import { useEffect } from 'react';
 
 
 const Favorites = () => {
     const favorites = useSelector(state => state.favorite.favorites);
     const dispatch = useDispatch();
     const toogleFav = useSelector(state => state.toogleFav.isOpen);
+    const displayableBooks = useSelector((state) => state.books.displayableBooks);
 
     const handleDelete = (id) => {
         dispatch(deleteFavorite(id));
@@ -71,8 +73,9 @@ const Favorites = () => {
                                     <TableCell></TableCell>
                                 </TableRow>
                             </TableHead>
-                            <TableBody>
-                                {favorites ? favorites.favorites.map((favorite, index) => (
+                            <TableBody> 
+                                {favorites ? displayableBooks.filter(book => favorites.favorites.includes(book.id)).map((favorite, index) => (
+                                    favorite.display?
                                     <TableRow sx={styles.tableRow} key={index}>
                                         <TableCell sx={styles.tableCell}>{favorite.title}</TableCell>
                                         <TableCell sx={styles.tableCell}>{favorite.authors.join(', ')}</TableCell>
@@ -88,6 +91,7 @@ const Favorites = () => {
                                             <Button onClick={() => addToCart(favorite)} variant="contained" color="primary" size='small'>Add to Cart</Button>
                                         </TableCell>
                                     </TableRow>
+                                    :null
                                 )) : 'There is no Favorites added'}
                             </TableBody>
                         </Table>

@@ -33,17 +33,17 @@ const toogleFav = useSelector(state => state.toogleFav)
         {toogleFav && <Favorites />}
         <Routes>
           <Route exact path="/" element={<Landing />} />
-          <Route exact path="/admin/*" element={<AdminDashboard /> } />
+          <Route exact path="/admin/*" element={<AdminRoutes><AdminDashboard /></AdminRoutes> } />
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/about" element={<About />} />
-          <Route exact path="/favorites" element={<Favorites />} />
-          <Route exact path="/cart" element={<Cart />} />
+          {/* <Route exact path="/favorites" element={<Favorites />} /> */}
+          {/* <Route exact path="/cart" element={<Cart />} /> */}
           <Route exact path="/create" element={<AdminRoutes><AddBooks/></AdminRoutes>}/>
-          <Route path='/home/:id' element={<CardDetail />} /> 
+          {/* <Route path='/home/:id' element={<CardDetail />} />  */}
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register />} /> 
           <Route path='/checkout' element={<ProtectedRoutes><PurchaseForm/></ProtectedRoutes>} /> 
-          {/* <Route path="*" element={<Error />} /> */}
+          <Route path="*" element={<Error />} />
         </Routes>
       </AuthProvider>
       </BrowserRouter>

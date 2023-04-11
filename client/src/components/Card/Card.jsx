@@ -26,7 +26,7 @@ import CardDetail from "../CardDetail/CardDetail";
 
 
   
-const Card = ({ image, id, title, authors, price, editorial }) => {
+const Card = ({ image, id, title, authors, price, editorial, display }) => {
     const favorite = useSelector(state => state.favorite.favorites)
     const dispatch = useDispatch();
 
@@ -35,7 +35,7 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
   const [isFav, setIsFav] = useState(false);
 
   useEffect(() => {
-    if (favorite.favorites.some((book) => book.id === id)) {
+    if (favorite.favorites.includes(id)) {
       if (!isFav) setIsFav(true);
     } else if (isFav) setIsFav(false);
     // eslint-disable-next-line
@@ -46,7 +46,7 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
       dispatch(deleteFavorite(id));
       setIsFav(false);
     } else {
-      dispatch(addFavorite({ image, id, title, authors, price, editorial }));
+      dispatch(addFavorite(id));
 
       setIsFav(true);
     }
