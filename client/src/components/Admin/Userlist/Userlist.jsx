@@ -1,7 +1,7 @@
 import { BooleanField, Datagrid, List, TextField } from 'react-admin';
 
 export const Userlist = () => (
-    <List perPage={10}>
+    <List pagination={false}>
         <Datagrid rowClick="edit">
             <TextField source="uid" />
             <BooleanField source="display" />

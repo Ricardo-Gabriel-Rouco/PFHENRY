@@ -101,14 +101,14 @@ function Register() {
       <Button
         type="submit"
         variant="contained"
-        color="primary"
+        color="info"
         style={{ margin: "2rem" }}
       >
         Registrarse
       </Button>
       <Button
         variant="contained"
-        color="secondary"
+        color="success"
         onClick={handleGoogleSignIn}
         style={{ margin: "2rem" }}
       >
