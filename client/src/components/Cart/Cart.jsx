@@ -14,20 +14,19 @@ import { toogleCart } from "../../redux/rootReducer/toogleSlice";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../../context/authContext";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
+//import { postOrder } from "../../firebase/firestore/orders";
+
 
 const Cart = () => {
   const { userStatus } = useAuth();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const abrir = useSelector((state) => state.toogle.isOpen);
 
   const [order, setOrder] = useState({});
-  const [showIframe, setShowIframe] = useState(false);
-  const [iFrameUrl, setIframeUrl] = useState("");
-console.log(showIframe)
-console.log(iFrameUrl)
+
 
   useEffect(() => {
     setOrder({
@@ -46,7 +45,6 @@ console.log(iFrameUrl)
     // eslint-disable-next-line
   }, [cart.cart.cart]);
 
-
   //handlers
   const handleBuy = async () => {
     if (userStatus.logged) {
@@ -55,18 +53,18 @@ console.log(iFrameUrl)
           "https://shaky-friend-production.up.railway.app/checkout",
           order
         );
-        // await postOrder(response.data);
-        // dispatch(removeAllProducts());
-        // localStorage.removeItem("cart")
-        setIframeUrl(response.data);
-        setShowIframe(true);
+        //await postOrder(response.data);
+        //dispatch(removeAllProducts());
+        //localStorage.removeItem("cart");
+        window.open(response.data, _self);
+
       } catch (error) {
         console.error("Error:", error.response.data);
       }
     } else {
       dispatch(toogleCart());
-      alert('You must be logged to buy')
-      navigate('/login')
+      alert("You must be logged to buy");
+      navigate("/login");
     }
   };
 
@@ -160,7 +158,7 @@ console.log(iFrameUrl)
             <Button
               onClick={() => handleRemoveAll()}
               variant="contained"
-              color="secondary"
+              color="info"
               size="small"
               sx={{ marginTop: 2, marginRight: 2 }}
             >
@@ -169,7 +167,7 @@ console.log(iFrameUrl)
             <Button
               onClick={() => handleBuy()}
               variant="contained"
-              color="secondary"
+              color="info"
               size="small"
               sx={{ marginTop: 2 }}
             >
@@ -200,7 +198,6 @@ console.log(iFrameUrl)
             </Button>
           </>
         )}
-
       </Box>
     </Drawer>
   );

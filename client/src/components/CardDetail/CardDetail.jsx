@@ -1,113 +1,24 @@
-// import { useState, useEffect } from "react";
-// import { useParams } from "react-router-dom";
-// import { getBookById } from "../../firebase/firestore/books";
-// import { Link } from 'react-router-dom';
-// import { useDispatch } from "react-redux";
-// import style from './CardDetail.module.css';
-// import CardContent from '@mui/material/CardContent';
-// import { Box } from '@mui/material';
-// import Typography from '@mui/material/Typography';
-// import { CardMedia } from '@mui/material'
-// import { IconButton } from '@mui/material';
-// import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-// import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-
-// const CardDetail = () => {
-
-//     const { id } = useParams();
-//     const dispatch = useDispatch();
-//     const [bookDetail, setBookDetail] = useState(null);
-//     const [showDetail, setShowDetail] = useState(false)
-
-//     useEffect(() => {
-//         dispatch(getBookById(id))
-//             .then((response) => {
-//                 setBookDetail(response.payload);
-//                 setShowDetail(true)
-//             })
-//             .catch((error) => {
-//                 console.log(error);
-//             });
-//     }, [dispatch, id]);
-
-//     return (
-//         <div className={style.container}>
-//             {showDetail ? (
-//                 <Box sx={{ flexDirection: 'column', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', transition: 'box-shadow 0.3s ease', height: '40%', width: '40%' }} className={style.card}>
-//                     <CardContent>
-//                         <Typography variant='h4' color="text.primary" gutterBottom>
-//                             {bookDetail.title}
-//                         </Typography>
-//                         <Typography variant="h5">
-//                             <p>Authors: {bookDetail.authors.join(', ')}</p>
-//                             <p>Editorial: {bookDetail.editorial}</p>
-//                             <p>Genres: {bookDetail.genres.join(', ')}</p>
-//                         </Typography>
-//                         <CardMedia
-//                             component="img"
-//                             height='300px'
-//                             sx={{width: '20%', height: '20%', marginTop: '25px', marginLeft: '40%'}}
-//                             image={bookDetail.image}
-//                             alt={bookDetail.name}
-//                         />
-//                         <Typography variant="body2">
-//                             <p>Price: {bookDetail.price}</p>
-//                             <p>Rating: {bookDetail.rating}</p>
-//                             <p>Year: {bookDetail.year}</p>
-//                         </Typography>
-//                     </CardContent>
-//                     <Box>
-//                         <CardContent>
-//                             <IconButton color='primary'>
-//                                 <Link to='/home'><HomeOutlinedIcon /></Link>
-//                             </IconButton>
-//                             <IconButton color="primary" aria-label="add to shopping cart">
-//                                 <Link to={`/home/cart`}>
-//                                     <ShoppingCartIcon />
-//                                 </Link>
-//                             </IconButton>
-//                         </CardContent>
-//                     </Box>
-//                 </Box>
-//             ) : (
-//                 <p>Loading book detail...</p>
-//             )}
-//         </div>
-
-//     );
-// };
-
-// export default CardDetail;
-
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getBookById } from "../../firebase/firestore/books";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-
-import style from "./CardDetail.module.css";
 import {
   Box,
-  Button,
   Card,
   CardMedia,
   Typography,
-  IconButton,
-  CardContent,
   Paper,
   List,
   ListSubheader,
+  Grid,
 } from "@mui/material";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import CardsReview from "../CardsReview/CardsReview";
 import CardNewReview from "../CardNewReview/CardNewReview";
-import HomeIcon from "@mui/icons-material/Home";
-
 import loading from "../../Assets/Loading.gif";
+import { updateBookReviews } from "../../firebase/firestore/books";
 
 let nickname = "Claudio"; //Traer el "nickname" del usuario que esta loogeado
-
 const CardDetail = ({ id }) => {
   // const { id } = useParams();
   const dispatch = useDispatch();
@@ -116,13 +27,28 @@ const CardDetail = ({ id }) => {
   useEffect(() => {
     dispatch(getBookById(id))
       .then((response) => {
-        // setBookDetail(MyBook); //reemplazar en modo PRODUCCION
         setBookDetail(response.payload);
       })
       .catch((error) => {
         console.log(error);
       });
   }, [dispatch, id]);
+
+  const handleNewReview = async (input) => {
+    try {
+      const res = await updateBookReviews(input);
+      console.log(res);
+      dispatch(getBookById(id))
+        .then((response) => {
+          setBookDetail(response.payload);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return bookDetail.id ? (
     <Card
@@ -131,13 +57,14 @@ const CardDetail = ({ id }) => {
         top: "50%",
         left: "50%",
         transform: "translate(-50%, -50%)",
-        p: 3,
-        bgcolor: "rgba(253,216,53,0.38)",
-        width: 850,
+        p: 4,
+        bgcolor: "primary",
+        width: 800,
         maxWidth: "50vw",
-        maxHeight: "95vh",
+        maxHeight: "71vh",
         overflowY: "auto",
         marginLeft: "4px",
+        marginTop: "5px",
       }}
     >
       <Box
@@ -146,6 +73,8 @@ const CardDetail = ({ id }) => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
+          position: "relative",
+          zIndex: 1,
         }}
       >
         <CardMedia
@@ -158,28 +87,54 @@ const CardDetail = ({ id }) => {
           variant="h4"
           component="h2"
           gutterBottom
-          sx={{ mt: 2, fontWeight: "bold" }}
+          sx={{ fontWeight: "bold", marginTop: "15px", marginBottom: 0 }}
         >
           {bookDetail?.title}
         </Typography>
-        <Typography variant="h5" gutterBottom>
-          {bookDetail?.author}
+        <Typography
+          variant="h5"
+          gutterBottom
+          sx={{ fontWeight: "bold", marginBottom: "15px" }}
+        >
+          {bookDetail?.authors}
         </Typography>
-        <Typography variant="subtitle1" gutterBottom>
-          {bookDetail?.editorial}
-        </Typography>
-        <Typography variant="body1" align="center" gutterBottom>
+        <Typography
+          variant="body1"
+          align="justify"
+          gutterBottom
+          sx={{ marginBottom: "15px", width: "90%" }}
+        >
           {bookDetail?.description}
         </Typography>
-        <Typography variant="body1" gutterBottom>
+        <Typography
+          variant="body1"
+          gutterBottom
+          sx={{ fontWeight: "bold", marginBottom: "15px" }}
+        >
           {`Price: $${bookDetail?.price}`}
         </Typography>
-        <Typography variant="body1" gutterBottom>
+        <Typography
+          variant="body1"
+          gutterBottom
+          sx={{ fontWeight: "bold", marginBottom: "15px" }}
+        >
           {`Rating: ${bookDetail?.rating}`}
         </Typography>
-        <Typography variant="body1" gutterBottom>
+        <Typography
+          variant="body1"
+          gutterBottom
+          sx={{ fontWeight: "bold", marginBottom: "15px" }}
+        >
           {`Year: ${bookDetail?.year}`}
         </Typography>
+        <Typography
+          variant="subtitle1"
+          gutterBottom
+          sx={{ fontWeight: "bold", marginBottom: "15px" }}
+        >
+          Editorial: {bookDetail?.editorial}
+        </Typography>
+
         {/* new change "Show reviews" */}
         {bookDetail.reviews ? (
           bookDetail.reviews.find((obj) => obj.user === nickname) ? (
@@ -205,6 +160,7 @@ const CardDetail = ({ id }) => {
                     key={bookDetail.id}
                     id={bookDetail.id}
                     nickname={nickname}
+                    handleNewReview={handleNewReview}
                   />
                 </List>
               </Paper>
@@ -231,6 +187,7 @@ const CardDetail = ({ id }) => {
                   key={bookDetail.id}
                   id={bookDetail.id}
                   nickname={nickname}
+                  handleNewReview={handleNewReview}
                 />
               </List>
             </Paper>
@@ -243,7 +200,7 @@ const CardDetail = ({ id }) => {
               sx={{
                 maxHeight: 200,
                 overflow: "auto",
-                margin: "auto",
+                margin: "8px auto",
                 width: "90%",
               }}
             >
@@ -272,46 +229,10 @@ const CardDetail = ({ id }) => {
           </>
         ) : null}
         {/* new change "Show reviews" */}
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            mt: 2,
-            width: "100%",
-          }}
-        >
-          <Button
-            color="secondary"
-            sx={{
-              height: 30,
-              width: 30,
-              borderRadius: "50%",
-              p: 6,
-            }}
-          >
-            <Link to="/home">
-              <HomeIcon />
-            </Link>
-          </Button>
-
-          <Button
-            color="secondary"
-            sx={{
-              height: 60,
-              width: 60,
-              borderRadius: "50%",
-              p: 6,
-            }}
-          >
-            <Link to={`/home/cart`}>
-              <ShoppingCartIcon />
-            </Link>
-          </Button>
-        </Box>
       </Box>
     </Card>
   ) : (
-    <img className={style.loading} src={loading} alt="loading" />
+    <img style={{ width: "100%" }} src={loading} alt="loading" />
   );
 };
 
