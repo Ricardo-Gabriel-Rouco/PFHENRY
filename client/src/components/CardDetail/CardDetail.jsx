@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { getBookById } from "../../firebase/firestore/books";
 import { useDispatch } from "react-redux";
 import {
+  Grid,
   Box,
   Card,
   CardMedia,
@@ -17,6 +18,8 @@ import loading from "../../Assets/Loading.gif";
 import { updateBookReviews } from "../../firebase/firestore/books";
 
 let nickname = "Claudio"; //Traer el "nickname" del usuario que esta loogeado
+
+
 const CardDetail = ({ id }) => {
   const paramId = useParams().id;
   if(!id)
@@ -52,6 +55,16 @@ const CardDetail = ({ id }) => {
   };
 
   return bookDetail.id ? (
+    <Grid
+      container
+      spacing={3}
+      direction="column"
+      alignItems="center"
+      justifyContent="center"
+      sx={{ padding: 2 }}
+    >
+      <Grid item xs={12} md={6} lg={4}>
+      
     <Card
       sx={{
         position: "absolute",
@@ -70,6 +83,7 @@ const CardDetail = ({ id }) => {
     >
       <Box
         sx={{
+          
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -189,6 +203,7 @@ const CardDetail = ({ id }) => {
                   id={bookDetail.id}
                   nickname={nickname}
                   handleNewReview={handleNewReview}
+
                 />
               </List>
             </Paper>
@@ -232,6 +247,8 @@ const CardDetail = ({ id }) => {
         {/* new change "Show reviews" */}
       </Box>
     </Card>
+    </Grid>
+    </Grid>
   ) : (
     <img style={{ width: "100%" }} src={loading} alt="loading" />
   );

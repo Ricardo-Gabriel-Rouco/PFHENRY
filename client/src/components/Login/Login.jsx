@@ -45,12 +45,19 @@ const Login = () => {
       await login(userData.email, userData.password);
       const favDB = await getFavorites(userStatus.userId);
 
+      console.log(favDB)
+      console.log(favLS)
+
       if (favDB && favLS) {
         const combinedFavorites = [...favDB, ...favLS];
 
+        console.log(combinedFavorites)
+
         const uniqueFavorites = combinedFavorites.filter((obj, index, self) => {
-          return index === self.findIndex((o) => o.id === obj.id);
+          return index === self.findIndex((o) => o === obj);
         });
+
+        console.log(uniqueFavorites)
 
         dispatch(addFavoritesDB(uniqueFavorites));
       }
