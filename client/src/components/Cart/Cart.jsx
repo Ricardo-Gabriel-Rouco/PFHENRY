@@ -18,29 +18,42 @@ import { useNavigate } from "react-router-dom";
 //import { postOrder } from "../../firebase/firestore/orders";
 
 
+export const availableItems = (displayableBooks, cart) => {
+  return displayableBooks
+  .filter(
+    (book) => book.display && cart.cart.cart.find((el) => el.id === book.id)
+  )
+  .map((el) => {
+    const {price:unit_price, ...rest} = el
+    return {
+      quantity: cart.cart.cart.find(book=>book.id===el.id).quantity,
+      unit_price,
+      ...rest
+  }
+  })
+}
+
 const Cart = () => {
   const { userStatus } = useAuth();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const abrir = useSelector((state) => state.toogle.isOpen);
+  const displayableBooks = useSelector((state) => state.books.displayableBooks);
 
   const [order, setOrder] = useState({});
 
 
   useEffect(() => {
+   
+      console.log(availableItems(displayableBooks, cart))
+
     setOrder({
       user: {
         name: userStatus.userId,
         email: userStatus.email,
       },
-      items: cart.cart.cart.map((product) => ({
-        id: product.id,
-        title: product.title,
-        unit_price: product.price,
-        quantity: product.quantity,
-        image: product.image,
-      })),
+      items: availableItems(displayableBooks, cart),
     });
     // eslint-disable-next-line
   }, [cart.cart.cart]);
@@ -73,7 +86,7 @@ const Cart = () => {
     dispatch(toogleCart());
   };
   const handleAdd = (id) => {
-    dispatch(addProduct(id));
+    dispatch(addProduct({ id }));
   };
 
   const handleRemove = (id) => {
@@ -104,45 +117,46 @@ const Cart = () => {
           </Button>
         </Stack>
         <Divider sx={{ my: 1.5 }} />
-        {cart.cart.cart.map((product) => {
-          return (
-            <Grid container spacing={2} key={product.id}>
-              <Grid item xs={4}>
-                <img src={product.image} alt={product.title} width="100%" />
+        {availableItems(displayableBooks, cart)
+          .map((product) => {
+            return (
+              <Grid container spacing={2} key={product.id}>
+                <Grid item xs={4}>
+                  <img src={product.image} alt={product.title} width="100%" />
+                </Grid>
+                <Grid item xs={8}>
+                  <Typography variant="subtitle1">{product.title}</Typography>
+                  <Typography variant="subtitle2" color="text.secondary">
+                    ({product.authors})
+                  </Typography>
+                  <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+                    ${product.price}
+                  </Typography>
+                  <Box sx={{ display: "flex" }}>
+                    <Button
+                      onClick={() => handleRemove(product.id)}
+                      variant="contained"
+                      color="primary"
+                      size="small"
+                      sx={{ ml: 1 }}
+                    >
+                      <RemoveIcon />
+                    </Button>
+                    <Button
+                      onClick={() => handleAdd(product.id)}
+                      variant="contained"
+                      color="primary"
+                      size="small"
+                      sx={{ mr: 1 }}
+                    >
+                      <AddIcon />
+                    </Button>
+                    <Typography>{product.quantity}</Typography>
+                  </Box>
+                </Grid>
               </Grid>
-              <Grid item xs={8}>
-                <Typography variant="subtitle1">{product.title}</Typography>
-                <Typography variant="subtitle2" color="text.secondary">
-                  ({product.authors})
-                </Typography>
-                <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
-                  ${product.price}
-                </Typography>
-                <Box sx={{ display: "flex" }}>
-                  <Button
-                    onClick={() => handleRemove(product.id)}
-                    variant="contained"
-                    color="primary"
-                    size="small"
-                    sx={{ ml: 1 }}
-                  >
-                    <RemoveIcon />
-                  </Button>
-                  <Button
-                    onClick={() => handleAdd(product)}
-                    variant="contained"
-                    color="primary"
-                    size="small"
-                    sx={{ mr: 1 }}
-                  >
-                    <AddIcon />
-                  </Button>
-                  <Typography>{product.quantity}</Typography>
-                </Box>
-              </Grid>
-            </Grid>
-          );
-        })}
+            );
+          })}
         {cart.cart.cart.length === 0 && (
           <Typography variant="subtitle1">
             There is no product in your cart
@@ -150,7 +164,13 @@ const Cart = () => {
         )}
         {cart.cart.cart.length !== 0 && (
           <Typography variant="subtitle1">
-            {"Total Price: $ " + cart.cart.totalPrice}
+            {"Total Price: $ " +
+              availableItems(displayableBooks, cart)
+                .reduce(
+                  (totalPrice, book) => totalPrice + book.quantity * book.unit_price,
+                  0
+                )
+                .toFixed(2)}
           </Typography>
         )}
         {cart.cart.cart.length !== 0 ? (

@@ -12,14 +12,16 @@ import {
   Box,
 } from "@mui/material";
 
-import { deleteFavorite } from "../../redux/rootReducer/favoriteSlice";
-import { addProduct } from "../../redux/rootReducer/cartSlice";
-import { closeFav } from "../../redux/rootReducer/toogleFavSlice";
+import { deleteFavorite } from '../../redux/rootReducer/favoriteSlice'
+import { addProduct } from '../../redux/rootReducer/cartSlice';
+import { closeFav } from '../../redux/rootReducer/toogleFavSlice';
+
 
 const Favorites = () => {
-  const favorites = useSelector((state) => state.favorite.favorites);
-  const dispatch = useDispatch();
-  const toogleFav = useSelector((state) => state.toogleFav.isOpen);
+    const favorites = useSelector(state => state.favorite.favorites);
+    const dispatch = useDispatch();
+    const toogleFav = useSelector(state => state.toogleFav.isOpen);
+    const displayableBooks = useSelector((state) => state.books.displayableBooks);
 
   const handleDelete = (id) => {
     dispatch(deleteFavorite(id));
@@ -67,7 +69,7 @@ const Favorites = () => {
                 <col width="10%" />
               </colgroup>
               <TableHead>
-                <TableRow sx={{color:"InfoBackground"}} hover="true">
+                <TableRow sx={{color:"InfoBackground"}} hover={true}>
                   <TableCell>Title</TableCell>
                   <TableCell>Authors</TableCell>
                   <TableCell>Editorial</TableCell>
@@ -77,9 +79,10 @@ const Favorites = () => {
                   <TableCell></TableCell>
                 </TableRow>
               </TableHead>
-              <TableBody>
+              <TableBody> 
                 {favorites
-                  ? favorites.favorites.map((favorite, index) => (
+                  ? displayableBooks.filter(book => favorites.favorites.includes(book.id)).map((favorite, index) => (
+                                    favorite.display?
                       <TableRow  key={index}>
                         <TableCell sx={styles.tableCell}>
                           {favorite.title}
@@ -114,7 +117,7 @@ const Favorites = () => {
                         </TableCell>
                         <TableCell>
                           <Button
-                            onClick={() => addToCart(favorite)}
+                            onClick={() => addToCart({id:favorite.id})}
                             variant="contained"
                             color="primary"
                             size="small"
@@ -123,6 +126,7 @@ const Favorites = () => {
                           </Button>
                         </TableCell>
                       </TableRow>
+                                    :null
                     ))
                   : "There is no Favorites added"}
               </TableBody>

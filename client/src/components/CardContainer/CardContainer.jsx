@@ -69,6 +69,7 @@ const CardContainer = () => {
                     title={c.title}
                     price={c.price}
                     editorial={c.editorial}
+                    display={c.display}
                   />
                 </div>
 
