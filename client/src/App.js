@@ -49,6 +49,7 @@ const toogleFav = useSelector(state => state.toogleFav)
           <Route path='/checkout' element={<ProtectedRoutes><PurchaseForm/></ProtectedRoutes>} />
           <Route path='/payStatus' element={<PayStatus/>} />  
           <Route path="*" element={<Error />} />
+          <Route></Route>
         </Routes>
       </AuthProvider>
       </BrowserRouter>

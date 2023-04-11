@@ -7,6 +7,7 @@ import {
 } from "../firebase/auth/auth";
 import { useNavigate } from "react-router-dom";
 import { registerWithGoogle } from "../firebase/auth/googleLogIn";
+import {updateUser} from '../firebase/auth/customizeUser'
 import { auth } from "../firebase/firebase-config";
 import { onAuthStateChanged, sendPasswordResetEmail } from "firebase/auth";
 
@@ -24,7 +25,8 @@ export function AuthProvider({ children }) {
     userId: "",
     email: "",
     role: "",
-    nickName: ""
+    nickName: "",
+    fullName: ""
   });
   const [loading, setLoading] = useState(true);
 
@@ -35,6 +37,15 @@ export function AuthProvider({ children }) {
   const login = async (email, password) => {
     await sigInWithMail(email, password);
   };
+
+  const customize = async (userId, nickname, fullname) => {
+    await updateUser(userId, nickname, fullname)
+    setUserStatus({
+      ...userStatus,
+      nickName: nickname,
+      fullName: fullname
+    })
+  }
 
   useEffect(() => {
     onAuthStateChanged(auth, async (currentUser) => {
@@ -85,6 +96,7 @@ export function AuthProvider({ children }) {
         loading,
         loginWithGoogle,
         resetPassword,
+        customize
       }}
     >
       {children}

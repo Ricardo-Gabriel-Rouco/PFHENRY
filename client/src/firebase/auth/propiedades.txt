@@ -2,6 +2,16 @@ propiedades de usuario
 
 id
 email
-nickname
-full name
 
+profile
+  nickname
+  full name
+  img // para despues
+
+account
+  cambio de contraseña
+  mis compras
+  mis reviews + rating
+  mis cupones
+
+logout
