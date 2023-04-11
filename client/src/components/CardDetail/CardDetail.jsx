@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getBookById } from "../../firebase/firestore/books";
-import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
   Box,
@@ -11,7 +10,6 @@ import {
   Paper,
   List,
   ListSubheader,
-  Grid,
 } from "@mui/material";
 import CardsReview from "../CardsReview/CardsReview";
 import CardNewReview from "../CardNewReview/CardNewReview";
@@ -20,14 +18,17 @@ import { updateBookReviews } from "../../firebase/firestore/books";
 
 let nickname = "Claudio"; //Traer el "nickname" del usuario que esta loogeado
 const CardDetail = ({ id }) => {
-  // const { id } = useParams();
+  const paramId = useParams().id;
+  if(!id)
+    id = paramId  
   const dispatch = useDispatch();
   const [bookDetail, setBookDetail] = useState({});
 
   useEffect(() => {
-    dispatch(getBookById(id))
+    getBookById(id)
       .then((response) => {
-        setBookDetail(response.payload);
+        // setBookDetail(MyBook); //reemplazar en modo PRODUCCION
+        setBookDetail(response);
       })
       .catch((error) => {
         console.log(error);

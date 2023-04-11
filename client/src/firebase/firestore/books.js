@@ -1,6 +1,5 @@
 import { getDocs, query, collection, where, doc, getDoc, updateDoc, setDoc, arrayUnion } from "firebase/firestore"
 import { db } from '../firebase-config';
-import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const regexTitle = /^[a-zA-Z0-9\s]+$/
 const regexAuthor = /^[a-zA-Z\s]+(\.[a-zA-Z\s]+)*$/;
@@ -40,9 +39,7 @@ export async function getAllTheBooks() {
 }
 
 
-export const getBookById = createAsyncThunk(
-  'books/getById',
-  async (id) => {
+export async function getBookById (id) {
     try {
       const docsRef = doc(db, 'books', id);
       const docSnap = await getDoc(docsRef);
@@ -53,7 +50,7 @@ export const getBookById = createAsyncThunk(
       }
     } catch (error) {
       console.log(error);}
-  })
+  }
 
 export async function deleteBook(id) {
   try {
@@ -107,30 +104,35 @@ export async function postBook(book) {
       const docRef = doc(collectionRef, book.isbn)
       console.log(newBook)
       await setDoc(docRef, newBook)
-      return "Libro creado"
+      return {
+        date:newBook
+      }
     }
     else{
-      return "Ya existe un libro con ese ID"
+      return {error: "Ya existe un libro con ese ID"}
     }
 
   } catch (error) {
     console.log(error)
+    return{
+      error:"Error al crear el libro"
+    }
   }
 }
 // despues voy a revisar esta funcion, por favor usarla con precaucion
-export async function modifyBook(isbn, authors, editorial, genres, urlImage, price, rating, title, year) {
+export async function modifyBook(isbn, display) {
   try {
     const newBook = doc(db, 'books', `${isbn}`)
     await updateDoc(newBook, {
-      authors: authors,
-      display: true,
-      editorial: editorial,
-      genres: genres.map(g => g.id),
-      image: urlImage,
-      price: price,
-      rating: rating,
-      title: title,
-      year: year
+      // authors: authors,
+      display ,
+      // editorial: editorial,
+      // genres: genres.map(g => g.id),
+      // image: urlImage,
+      // price: price,
+      // rating: rating,
+      // title: title,
+      // year: year
     })
   } catch (error) {
     console.log(error)

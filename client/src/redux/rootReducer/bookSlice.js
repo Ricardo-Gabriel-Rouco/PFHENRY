@@ -17,8 +17,8 @@ const booksSlice = createSlice({
         if (b.title > a.title) return -1;
         return 0;
       });
-      state.allBooks = alfa;
-      state.booksToFilter = state.displayableBooks = alfa.filter(el=>el.display);
+      // state.allBooks = alfa;
+      state.booksToFilter = state.displayableBooks = alfa;
     },
 
     searchBook: (state, {payload}) => {
