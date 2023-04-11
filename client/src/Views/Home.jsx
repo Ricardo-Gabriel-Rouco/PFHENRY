@@ -26,7 +26,7 @@ const Home = ({ cartOpen }) => {
     };
 
     getBooksList();
-
+  })
 
   useEffect(() => {
     dispatch(importBooks())

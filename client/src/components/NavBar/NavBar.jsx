@@ -210,7 +210,7 @@ const NavBar = ({passTheme, mode}) => {
               >
                 {userStatus.logged ? (
                   <>
-                    <MenuItem onClick={handleClose}>Profile</MenuItem>
+                    <MenuItem ><Link to={'/modify'}>Profile</Link></MenuItem>
                     <MenuItem onClick={handleClose}>My account</MenuItem>
                     <MenuItem onClick={()=>{handleClose();handleLogOut()}}>Log Out</MenuItem>
                   </>

@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Typography, Snackbar } from "@mui/material";
 import { useAuth } from "../../context/authContext";
 
-function Register() {
-  const {customize} = useAuth()
+function EditUser() {
+  const {customize, userStatus} = useAuth()
   const [userData, setUserData] = useState({
     nickName: "",
-    fullName: ""
+    fullName: "",
+    userId: userStatus.userId
   });
   // const [errors, setErrors] = useState({
   //   nickName: "",
@@ -23,7 +24,8 @@ function Register() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await customize(userData.nickName, userData.fullName);
+      await customize(userStatus.userId,userData.nickName || userStatus.nickName, userData.fullName || userStatus.fullName);
+      
       navigate("/home");
     } catch (error) {
       console.log(error)
@@ -40,6 +42,9 @@ function Register() {
       }}
       onSubmit={handleSubmit}
       >
+      <Typography>Email de usuario {userStatus.email}</Typography>
+      <br />
+      <Typography>Nombre de ususario actual: {userStatus.nickName}</Typography>
       <TextField
         type="text"
         label="Nombre de usuario"
@@ -49,7 +54,7 @@ function Register() {
         style={{ margin: "1rem" }}
       />
       {/* {errors.nickName && <p>{errors.nickName}</p>} */}
-
+      <Typography>Nombre Completo actual: {userStatus.fullName}</Typography>
       <TextField
         type="text"
         label="Nombre completo"
@@ -65,11 +70,11 @@ function Register() {
         color="primary"
         style={{ margin: "2rem" }}
       >
-        Registrarse
+        Modificar
       </Button>
     </form>
   );
 }
 
 
-export default Register;
+export default EditUser;

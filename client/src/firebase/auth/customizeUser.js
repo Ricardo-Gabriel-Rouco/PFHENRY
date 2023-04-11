@@ -8,7 +8,7 @@ export async function updateUser(userId, nickname, fullname){
         if (nickname) updateObj.nickname = nickname
         if (fullname) updateObj.fullname = fullname
         
-        await updateDoc(userRef, updateObj)
+        await updateDoc(userRef, {...updateObj})
     } catch (error) {
       console.log(error)
     }
