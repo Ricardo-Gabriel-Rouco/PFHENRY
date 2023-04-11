@@ -127,7 +127,7 @@ const Cart = () => {
                     ({product.authors})
                   </Typography>
                   <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
-                    ${product.price}
+                    ${product.unit_price}
                   </Typography>
                   <Box sx={{ display: "flex" }}>
                     <Button
