@@ -15,7 +15,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from 'react-router-dom'
-import CartModal from "./CartModal"
 
 const Cart = () => {
   const { userStatus } = useAuth();
@@ -71,10 +70,6 @@ console.log(iFrameUrl)
     }
   };
 
-  const handleCloseModal = () => {
-    setShowIframe(false);
-    setIframeUrl("");
-  };
 
   const handleClose = () => {
     dispatch(toogleCart());
@@ -150,9 +145,6 @@ console.log(iFrameUrl)
             </Grid>
           );
         })}
-        {showIframe && 
-        <CartModal url={iFrameUrl} onClose={handleCloseModal} />
-        }
         {cart.cart.cart.length === 0 && (
           <Typography variant="subtitle1">
             There is no product in your cart
