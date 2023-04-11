@@ -13,6 +13,8 @@ export async function registerWithGoogle(){
         rol: "USER",
         email:res.user.email,
         display: true,
+        fullname: res.user.displayName,
+        nickname: res.user.displayName,
     }
     const collectionRef = collection(db, 'users')
     const userRef = doc(collectionRef, res.user.uid)
