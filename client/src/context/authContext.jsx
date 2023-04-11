@@ -24,12 +24,12 @@ export function AuthProvider({ children }) {
     userId: "",
     email: "",
     role: "",
-    userName: ""
+    nickName: ""
   });
   const [loading, setLoading] = useState(true);
 
-  const signup = async (email, password) => {
-    await createUser(email, password);
+  const signup = async (email, password, nickName, fullName) => {
+    await createUser(email, password, fullName, nickName);
   };
 
   const login = async (email, password) => {
@@ -46,7 +46,7 @@ export function AuthProvider({ children }) {
           userId: currentUser.uid,
           email: currentUser.email,
           role: userRole.rol,
-          username: currentUser.username
+          nickName: currentUser.nickname
         });
       }
       setLoading(false);

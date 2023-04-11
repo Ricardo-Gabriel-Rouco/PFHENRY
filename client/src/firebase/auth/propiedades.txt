@@ -1,0 +1,7 @@
+propiedades de usuario
+
+id
+email
+nickname
+full name
+
