@@ -23,6 +23,7 @@ const Cart = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const abrir = useSelector((state) => state.toogle.isOpen);
+  const displayableBooks = useSelector((state) => state.books.displayableBooks);
 
   const [order, setOrder] = useState({});
 
@@ -32,12 +33,9 @@ const Cart = () => {
         name: userStatus.userId,
         email: userStatus.email,
       },
-      items: cart.cart.cart.map((product) => ({
-        id: product.id,
-        title: product.title,
-        unit_price: product.price,
+      items: cart.cart.cart.map((product,i) => ({
         quantity: product.quantity,
-        image: product.image,
+        ...displayableBooks.find(el=>el.id===product.id)
       })),
     });
     // eslint-disable-next-line
@@ -102,7 +100,10 @@ const Cart = () => {
           </Button>
         </Stack>
         <Divider sx={{ my: 1.5 }} />
-        {cart.cart.cart.map((product) => {
+        {cart.cart.cart.map((product,i) => ({
+        quantity: product.quantity,
+        ...displayableBooks.find(el=>el.id===product.id)
+      })).map((product) => {
           return (
             <Grid container spacing={2} key={product.id}>
               <Grid item xs={4}>
@@ -127,7 +128,7 @@ const Cart = () => {
                     <RemoveIcon />
                   </Button>
                   <Button
-                    onClick={() => handleAdd(product)}
+                    onClick={() => handleAdd(product.id)}
                     variant="contained"
                     color="primary"
                     size="small"

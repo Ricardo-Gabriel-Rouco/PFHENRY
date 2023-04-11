@@ -53,7 +53,7 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
   };
 
   const handleAdd = (id) => {
-    dispatch(addProduct(id));
+    dispatch(addProduct({id}));
   };
 
   //CUADRO DE DIALOGO
@@ -146,7 +146,7 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
         </Dialog>
 
         <Button
-          onClick={() => handleAdd({ image, id, title, authors, price })}
+          onClick={() => handleAdd(id)}
         >
           <IconButton
             variant="contained"

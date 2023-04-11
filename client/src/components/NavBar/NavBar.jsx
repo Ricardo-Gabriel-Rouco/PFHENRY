@@ -139,7 +139,7 @@ const NavBar = () => {
               onClick={() => dispatch(toogleCart())}
             >
 
-              <Badge badgeContent={cart && cart.cart.cart.length} color="info">
+              <Badge badgeContent={cart && cart.cart.cart.filter(product=>displayableBooks.find(book=>book.id===product.id)?.display).length} color="info">
                 <ShoppingCart  sx={{ color: "#F7F6F6" }} />
               </Badge>
             </IconButton>
