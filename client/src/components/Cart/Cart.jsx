@@ -56,7 +56,7 @@ const Cart = () => {
         await postOrder(response.data);
         dispatch(removeAllProducts());
         localStorage.removeItem("cart")
-        window.open(response.data.link);
+        window.open(response.data);
       } catch (error) {
         console.error("Error:", error.response.data);
       }
