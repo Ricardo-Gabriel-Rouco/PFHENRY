@@ -1,60 +1,65 @@
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-import { CardMedia, styled } from "@mui/material";
+import { Swiper, SwiperSlide } from "swiper/react";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import SwiperCore, { Navigation, Pagination } from "swiper/core";
+import { CardMedia, Grid, Typography,styled } from "@mui/material";
 
-// Estilos para el Carousel
-const CarouselContainer = styled('div')({
-    backgroundColor: "#f9b52ea8",
-    margin: 'auto',
-    maxWidth: '100vw',
-});
-
-const BookCardMedia = styled(CardMedia)({
-    width: "10rem",
-    height: "14rem",
-    objectFit: "cover",
-    marginLeft: "20%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: "50%"
-});
-
-const responsive = {
-    superLargeDesktop: {
-        breakpoint: { max: 4000, min: 3000 },
-        items: 3,
-    },
-    desktop: {
-        breakpoint: { max: 3000, min: 1024 },
-        items: 3,
-        },
-    tablet: {
-        breakpoint: { max: 1024, min: 464 },
-        items: 3,
-
-    },
-    mobile: {
-        breakpoint: { max: 464, min: 0 },
-        items: 1,
-        }
-    }
-
+SwiperCore.use([Navigation, Pagination]);
 
 const Carrousel = ({ currentBook }) => {
+    const CarouselContainer = styled('div')({
+        backgroundColor: "#f9b52ea8",
+        margin: 'auto',
+        maxWidth: '100vw',
+    });
+    const BookCardMedia = styled(CardMedia)({
+        border: "1px",
+        borderRadius: "10px",
+        width: "10rem",
+        height: "14rem",
+        objectFit: "cover",
+    });
+
     return (
         <CarouselContainer>
-            <Carousel responsive={responsive} showDots={true}>
+            <Swiper
+                slidesPerView={1}
+                spaceBetween={100}
+                navigation
+                pagination={{ clickable: true }}
+                breakpoints={{
+                    640: {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                    },
+                    768: {
+                        slidesPerView: 3,
+                        spaceBetween: 30,
+                    },
+                    1024: {
+                        slidesPerView: 4,
+                        spaceBetween: 10,
+                    },
+                }}
+            >
                 {currentBook.map((book) => (
-                    <BookCardMedia
-                        component="img"
-                        height="300"
-                        image={book.image}
-                        alt={book.title}
-                    />
+                    <SwiperSlide key={book.id}>
+                        <Grid container justifyContent="center" alignItems="center" style={{ height: '100%' }}>
+                            <Grid item>
+                                <BookCardMedia
+                                    component="img"
+                                    height="300"
+                                    image={book.image}
+                                    alt={book.title} />
+                               <Typography align="center" variant="subtitle2">{book.title}</Typography>
+                            </Grid>
+                        </Grid>
+                    </SwiperSlide>
                 ))}
-            </Carousel>
+            </Swiper>
         </CarouselContainer>
     );
 };
-export default Carrousel
+
+export default Carrousel;
