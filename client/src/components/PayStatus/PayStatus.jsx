@@ -8,16 +8,16 @@ import { Button } from '@mui/material';
 import { useAuth } from '../../context/authContext';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../firebase/firebase-config';
+import { getMailOfUser } from '../../firebase/firestore/users';
 
 const PayStatus = () => {
   const { userStatus } = useAuth();
   const dispatch = useDispatch();
   const querystring = window.location.search;
   const params = new URLSearchParams(querystring);
-  const payment_id = { payment_id: params.get('payment_id') };
+  const payment_id = params.get('payment_id') ;
   const idUser = params.get('idUser');
   const [status, setStatus] = useState("");
-  const [order, setOrder] = useState();
   const navigate = useNavigate()
 
   const handleNavigate = () => {
@@ -29,16 +29,20 @@ const PayStatus = () => {
     async function checkPayStatus() {
       const response = await axios.post("https://shaky-friend-production.up.railway.app/payStatus",
         payment_id)
+      // if (userStatus.userId === idUser) {
+        console.log(response.data)
       if (response.data === "approved") {
         setStatus(response.data)
         const order = {
           user: idUser,
-          idOrder: params.get('payment_id'),
+          idOrder: payment_id,
           status: response.data
         }
         window.history.replaceState({}, document.title, window.location.pathname);
-        setOrder(order)
-        postOrder(order)
+        await postOrder(order)
+        let email= await getMailOfUser(idUser);
+        console.log(email)
+        await axios.post("https://shaky-friend-production.up.railway.app/mail", {mail:email, reason:"link"})
         dispatch(removeAllProducts());
         localStorage.removeItem("cart");
       }
@@ -46,8 +50,13 @@ const PayStatus = () => {
         setStatus(response.data)
       }
     }
+    // else {
+    //   console.log(userStatus.userId)
+    //   navigate('/home')
+    // }
+    // }
     checkPayStatus()
-    
+
   }, []);
 
   return (

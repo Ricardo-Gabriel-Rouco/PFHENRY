@@ -1,32 +1,26 @@
 const nodemailer = require('nodemailer')
 const template = require('./configmail')
-// const { collection, getDocs, query} = require("firebase/firestore");
+// const { collection, onSnapshot} = require("firebase/firestore");
 // const db = require('../../firebase-config')
 require('dotenv').config();
 const {MAILUSER, MAILPASSWORD} = process.env
 
 
 // async function getConfig(){
-//     const q = query(collection(db, "mailConfig"))
-//     const querySnapshot = await getDocs(q);
-//     let data = [];
-//     querySnapshot.forEach((doc) => {
-//       // doc.data() is never undefined for query doc snapshots
-//       data.push({
-//         ...doc.data(),
-//         id: doc.id
-//       }
-//       )
-//     })
-//     return data
-//   }
-
+//   let options = []
+//   const data = collection(db, "mailConfig")
+//   const results = await onSnapshot(data, (option)=> {
+//     option.docs.map(doc => options.push(doc.data()))
+//   })
+//   return results
+// }
 
 async function sender(mail, reason){
   // let testAccount = await nodemailer.createTestAccount()
 
   // const configs = await getConfig()
 
+  // console.log(configs)
   let transporter = nodemailer.createTransport({
     // host: 'smtp.ethereal.email',
     service: 'hotmail',
