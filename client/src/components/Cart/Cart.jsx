@@ -28,15 +28,19 @@ const Cart = () => {
   const [order, setOrder] = useState({});
 
   useEffect(() => {
+    
+
     setOrder({
       user: {
         name: userStatus.userId,
         email: userStatus.email,
       },
-      items: cart.cart.cart.map((product, i) => ({
-        quantity: product.quantity,
-        ...displayableBooks.find((el) => el.id === product.id),
-      })),
+      items: cart.cart.cart.map((product, i) => {
+        const { price: unit_price, ...rest } = displayableBooks.find(
+          (el) => el.id === product.id
+        );
+        return { quantity: product.quantity, unit_price, ...rest };
+      }),
     });
     // eslint-disable-next-line
   }, [cart.cart.cart]);
@@ -156,7 +160,7 @@ const Cart = () => {
             quantity: product.quantity,
             ...displayableBooks.find((el) => el.id === product.id),
           }))
-          .reduce((totalPrice,book)=>totalPrice+(book.quantity*book.price),0)
+          .reduce((totalPrice,book)=>totalPrice+(book.quantity*book.price),0).toFixed(2)
             }
           </Typography>
         )}
