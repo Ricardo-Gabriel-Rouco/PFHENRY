@@ -18,12 +18,12 @@ export async function postOrder(order) {
       ordersArray.push({
         idOrder: order.idOrder,
         status: order.status,
+        items:order.items
       });
     }
 
     const newOrder = {
       orders: ordersArray,
-      display: true,
     };
 
     await setDoc(orderRef, newOrder);

@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { removeAllProducts } from '../../redux/rootReducer/cartSlice';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { postOrder } from '../../firebase/firestore/orders';
 import { Button } from '@mui/material';
 import { useAuth } from '../../context/authContext';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../../firebase/firebase-config';
 import { getMailOfUser } from '../../firebase/firestore/users';
+import { availableItems } from '../Cart/Cart';
 
 const PayStatus = () => {
   const { userStatus } = useAuth();
@@ -18,6 +17,9 @@ const PayStatus = () => {
   const payment_id = params.get('payment_id');
   const idUser = params.get('idUser');
   const statusPayment = params.get('status');
+  const displayableBooks = useSelector((state) => state.books.displayableBooks);
+  const cart = useSelector((state) => state.cart);
+  const book = availableItems(displayableBooks, cart)
   const [status, setStatus] = useState("");
   const navigate = useNavigate()
 
@@ -51,11 +53,13 @@ const PayStatus = () => {
       }*/}
       switch (statusPayment) {
         case "approved":
+          console.log(book)
           setStatus(statusPayment)
           let order = {
             user: idUser,
             idOrder: payment_id,
-            status: status
+            status: statusPayment,
+            items: cart.cart.cart
           }
           window.history.replaceState({}, document.title, window.location.pathname);
           await postOrder(order)
@@ -65,7 +69,7 @@ const PayStatus = () => {
           localStorage.removeItem("cart");
           break
 
-          case "failure":
+        case "failure":
           setStatus(statusPayment)
           order = {
             user: idUser,
@@ -78,7 +82,7 @@ const PayStatus = () => {
           await axios.post("https://shaky-friend-production.up.railway.app/mail", { mail: email, reason: "failed" })
           break
 
-          case "null":
+        case "null":
           navigate('/home')
           break;
 

@@ -15,22 +15,20 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
-//import { postOrder } from "../../firebase/firestore/orders";
-
 
 export const availableItems = (displayableBooks, cart) => {
   return displayableBooks
-  .filter(
-    (book) => book.display && cart.cart.cart.find((el) => el.id === book.id)
-  )
-  .map((el) => {
-    const {price:unit_price, ...rest} = el
-    return {
-      quantity: cart.cart.cart.find(book=>book.id===el.id).quantity,
-      unit_price,
-      ...rest
-  }
-  })
+    .filter(
+      (book) => book.display && cart.cart.cart.find((el) => el.id === book.id)
+    )
+    .map((el) => {
+      const { price: unit_price, ...rest } = el
+      return {
+        quantity: cart.cart.cart.find(book => book.id === el.id).quantity,
+        unit_price,
+        ...rest
+      }
+    })
 }
 
 const Cart = () => {
@@ -45,8 +43,8 @@ const Cart = () => {
 
 
   useEffect(() => {
-   
-      console.log(availableItems(displayableBooks, cart))
+
+    // console.log(availableItems(displayableBooks, cart))
 
     setOrder({
       user: {
@@ -58,6 +56,7 @@ const Cart = () => {
     // eslint-disable-next-line
   }, [cart.cart.cart]);
 
+  console.log(cart.cart.cart)
   //handlers
   const handleBuy = async () => {
     if (userStatus.logged) {
