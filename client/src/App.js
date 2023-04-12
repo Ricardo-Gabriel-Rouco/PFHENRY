@@ -16,10 +16,14 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import PurchaseForm from "./PurchaseForm/PurchaseForm";
 import { AdminDashboard } from "./Views/AdminDashboard/AdminDashboard";
-import AdminRoutes from "./components/AdminRoutes/AdminRoutes";
-import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
+import EditUser from './components/EditUser/EditUser'
+import AdminRoutes from './components/AdminRoutes/AdminRoutes'
+import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
+// import PayStatus from "./components/PayStatus/PayStatus";
+import axios from 'axios'
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import light from "./Theme/light";
+axios.defaults.baseURL = 'https://shaky-friend-production.up.railway.app/'
 
 function App() {
   const toogleCart = useSelector((state) => state.toogle);
@@ -66,6 +70,7 @@ function App() {
                 }
               />
               <Route path="*" element={<Error />} />
+              <Route path="/modify" element={<ProtectedRoutes><EditUser/></ProtectedRoutes>}/>
             </Routes>
           </AuthProvider>
         </BrowserRouter>

@@ -48,10 +48,9 @@ const CardContainer = () => {
   }, [filteredBooks]);
 
   return (
+    
     <div className={style.container}>
-      {filteredBooks.length ? (
-        <FilterOptions setCurrentPage={setCurrentPage} />
-      ) : null}
+      {filteredBooks.length ? (<FilterOptions setCurrentPage={setCurrentPage} />) : null}
       {filteredBooks === "not found" ? (
         <div className={style.notFound}>
           <h1>No books were found</h1>
@@ -76,6 +75,7 @@ const CardContainer = () => {
                     display={c.display}
                   />
                 </div>
+
               </Grid>
             ))}
           </Grid>

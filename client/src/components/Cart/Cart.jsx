@@ -15,7 +15,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
-import { postOrder } from "../../firebase/firestore/orders";
+//import { postOrder } from "../../firebase/firestore/orders";
+
 
 export const availableItems = (displayableBooks, cart) => {
   return displayableBooks
@@ -42,6 +43,7 @@ const Cart = () => {
 
   const [order, setOrder] = useState({});
 
+
   useEffect(() => {
    
       console.log(availableItems(displayableBooks, cart))
@@ -57,18 +59,19 @@ const Cart = () => {
   }, [cart.cart.cart]);
 
   //handlers
-
   const handleBuy = async () => {
     if (userStatus.logged) {
       try {
         const response = await axios.post(
-          "https://pfhenry-production.up.railway.app/checkout",
+          "https://shaky-friend-production.up.railway.app/checkout",
           order
         );
-        await postOrder(response.data);
-        dispatch(removeAllProducts());
-        localStorage.removeItem("cart")
-        window.open(response.data);
+
+        //await postOrder(response.data);
+        //dispatch(removeAllProducts());
+        //localStorage.removeItem("cart");
+        window.open(response.data, "_self");
+
       } catch (error) {
         console.error("Error:", error.response.data);
       }
@@ -78,6 +81,7 @@ const Cart = () => {
       navigate("/login");
     }
   };
+
 
   const handleClose = () => {
     dispatch(toogleCart());
