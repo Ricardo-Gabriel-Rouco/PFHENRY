@@ -9,7 +9,7 @@ const dark = createTheme({
     },
     secondary: {
       main: "#e4704c",
-      contrastText: "#ffcdd2",
+      contrastText: "#ffffff",
     },
     warning: {
       main: "#fd7373",

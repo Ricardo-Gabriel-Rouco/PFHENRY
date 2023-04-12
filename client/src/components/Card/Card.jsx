@@ -204,8 +204,9 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
                   {isFav ? (
                     <Button
                       variant="outlined"
-                      color="secondary"
                       sx={{
+                        color: "primary.contrastText",
+
                         transition: "color 0.5s",
                         "&:hover": {
                           color: "secondary.contrastText",
@@ -219,8 +220,9 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
                   ) : (
                     <Button
                       variant="outlined"
-                      color="secondary"
                       sx={{
+                        color: "primary.contrastText",
+
                         transition: "color 0.5s",
                         "&:hover": {
                           color: "secondary.contrastText",
@@ -244,8 +246,9 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
                 >
                   <Button
                     variant="outlined"
-                    color="secondary"
                     sx={{
+                      color: "primary.contrastText",
+
                       transition: "color 0.5s",
                       "&:hover": {
                         color: "secondary.contrastText",
@@ -263,7 +266,6 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
 
               <Button
                 variant="outlined"
-                color="secondary"
                 endIcon={<ExitToAppIcon />}
                 onClick={handleClose}
                 sx={{
@@ -273,6 +275,8 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
                   zIndex: 2,
                   top: "20px",
                   right: "20px",
+                  color: "primary.contrastText",
+
                   transition: "color 0.5s",
                   "&:hover": {
                     color: "secondary.contrastText",
