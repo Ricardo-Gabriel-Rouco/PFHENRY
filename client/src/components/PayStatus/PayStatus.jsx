@@ -64,7 +64,8 @@ const PayStatus = () => {
           console.log(email)
           dispatch(removeAllProducts());
           localStorage.removeItem("cart");
-          await axios.post("https://shaky-friend-production.up.railway.app/mail", { mail: email, reason: "link" })
+          let response = await axios.post("https://shaky-friend-production.up.railway.app/mail", { mail: email, reason: "link" })
+          console.log(response)
           break
 
         case "failure":
