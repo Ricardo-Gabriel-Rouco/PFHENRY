@@ -61,11 +61,10 @@ const PayStatus = () => {
           window.history.replaceState({}, document.title, window.location.pathname);
           await postOrder(order)
           let email = await getMailOfUser(idUser);
-          console.log(email)
           dispatch(removeAllProducts());
           localStorage.removeItem("cart");
           let response = await axios.post("https://shaky-friend-production.up.railway.app/mail", { mail: email, reason: "link" })
-          console.log(response)
+          console.log(response.data)
           break
 
         case "failure":

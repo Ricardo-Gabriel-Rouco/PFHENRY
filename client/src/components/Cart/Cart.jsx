@@ -56,7 +56,6 @@ const Cart = () => {
     // eslint-disable-next-line
   }, [cart.cart.cart]);
 
-  console.log(cart.cart.cart)
   //handlers
   const handleBuy = async () => {
     if (userStatus.logged) {
