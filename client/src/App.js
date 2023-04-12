@@ -16,7 +16,7 @@ import { useSelector } from "react-redux";
 // import { useState } from "react";
 import PurchaseForm from "./PurchaseForm/PurchaseForm";
 import { AdminDashboard } from "./Views/AdminDashboard/AdminDashboard";
-
+import SupportAdmin from "./chatBot/SupportAdmin";
 function App() {
 const toogleCart = useSelector(state => state.toogle)
 const toogleFav = useSelector(state => state.toogleFav)
@@ -41,6 +41,7 @@ const toogleFav = useSelector(state => state.toogleFav)
           <Route path='/register' element={<Register />} /> 
           <Route path='/checkout' element={<PurchaseForm/>} /> 
           <Route path="*" element={<Error />} />
+          <Route exact path='/support' element={<SupportAdmin /> }/>
         </Routes>
       </AuthProvider>
       </BrowserRouter>

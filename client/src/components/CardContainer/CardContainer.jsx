@@ -13,7 +13,7 @@ import { Grid } from "@mui/material";
 import Cards from "@mui/material/Card";
 import loading from '../../Assets/Loading.gif'
 import notFound from '../../Assets/notFound.gif'
-
+import SupportEngine from '../../chatBot/SupportEngine/index'
 
 const CardContainer = () => {
   const filteredBooks = useSelector((state) => state.books.booksToFilter);
@@ -82,6 +82,7 @@ const CardContainer = () => {
         //<ComponentError />
         <img src={loading} alt="loading" />
       )}
+            <SupportEngine />
 
       {Array.isArray(filteredBooks) && filteredBooks.length ? (
         <div className={style.paginate}>
