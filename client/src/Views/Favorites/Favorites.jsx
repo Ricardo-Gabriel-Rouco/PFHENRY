@@ -75,7 +75,7 @@ const Favorites = () => {
                                 {favorites ? favorites.favorites.map((favorite, index) => (
                                     <TableRow sx={styles.tableRow} key={index}>
                                         <TableCell sx={styles.tableCell}>{favorite.title}</TableCell>
-                                        <TableCell sx={styles.tableCell}>{favorite.authors.join(', ')}</TableCell>
+                                        <TableCell sx={styles.tableCell}>{favorite.authors/* .join(', ') */}</TableCell>
                                         <TableCell sx={styles.tableCell}>{favorite.editorial}</TableCell>
                                         <TableCell sx={{ ...styles.tableCell, maxWidth: '100px' }}>
                                             <img src={favorite.image} alt='asdf' style={{ width: '30%', height: 'auto' }} />
