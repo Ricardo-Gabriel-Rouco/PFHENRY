@@ -63,8 +63,7 @@ const PayStatus = () => {
           let email = await getMailOfUser(idUser);
           dispatch(removeAllProducts());
           localStorage.removeItem("cart");
-          let response = await axios.post("https://shaky-friend-production.up.railway.app/mail", { mail: email, reason: "link" })
-          console.log(response.data)
+          axios.post("https://shaky-friend-production.up.railway.app/mail", { mail: email, reason: "link" })
           break
 
         case "failure":
@@ -77,7 +76,7 @@ const PayStatus = () => {
           window.history.replaceState({}, document.title, window.location.pathname);
           await postOrder(order)
           email = await getMailOfUser(idUser);
-          await axios.post("https://shaky-friend-production.up.railway.app/mail", { mail: email, reason: "failed" })
+          axios.post("https://shaky-friend-production.up.railway.app/mail", { mail: email, reason: "failed" })
           break
 
         case "null":
