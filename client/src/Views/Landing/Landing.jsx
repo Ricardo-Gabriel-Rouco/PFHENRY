@@ -14,13 +14,13 @@ const Landing = () => {
     }
   }
 
-    useEffect(() => {
+    // useEffect(() => {
 
-      (async function(){
-        let response = await axios.post('http://localhost:3001/mail', { mail: "asdasd", reason: "link" })
-        console.log(response)
-      })()
-    }, [])
+    //   (async function(){
+    //     let response = await axios.post('http://localhost:3001/mail', { mail: "asdasd", reason: "link" })
+    //     console.log(response.data)
+    //   })()
+    // }, [])
     
   return (
     <>

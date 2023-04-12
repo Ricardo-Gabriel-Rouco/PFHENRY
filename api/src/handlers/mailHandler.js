@@ -1,11 +1,12 @@
 const { sender } = require('../controlers/mailsender')
 const { getDocs, query, collection, where } = require("firebase/firestore")
+const { db } = require('../../firebase-config');
 
 const sendingEmail = async function (req, res) {
   const { mail, reason } = req.body
   try {
-    // const result = await sender(mail, reason)
-    const q = query(collection(db, "books"), where('display', '==', true))
+    const result = await sender(mail, reason)
+    {/*const q = query(collection(db, "books"), where('display', '==', true))
     const querySnapshot = await getDocs(q);
     let data = [];
     querySnapshot.forEach((doc) => {
@@ -15,10 +16,10 @@ const sendingEmail = async function (req, res) {
         id: doc.id
       }
       )
-    })
-    res.send(data)
+    })*/}
+    res.send(result)
   } catch (error) {
-    res.send(error)
+    res.send(error.message)
   }
 }
 
