@@ -11,7 +11,7 @@ const functions = require("firebase-functions");
 // });
 
 
-exports.weeklyDiscount = functions.pubsub.schedule('every monday 00:00').onRun(async (context) => {
+exports.weeklyDiscount = functions.pubsub.schedule('every tuesday 16:31').onRun(async (context) => {
   const originalDB = query(collection(db, "books"), where('display', '==', true))
   const discountDB = db.collection("discount");
 
