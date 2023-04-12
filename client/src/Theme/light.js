@@ -24,6 +24,7 @@ const light = createTheme({
       primary: "#522806",
       secondary: "#3e2723",
       hint: "#331e1e",
+      shiny: "#ffffff",
     },
     success: {
       main: "#C79E3F",

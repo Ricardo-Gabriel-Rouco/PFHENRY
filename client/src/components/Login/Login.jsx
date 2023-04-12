@@ -16,7 +16,6 @@ const Login = () => {
   // console.log(cartLS.cart);
   // console.log(cartLS.cart.cart);
 
-
   const { login, loginWithGoogle, resetPassword, userStatus } = useAuth();
   const navigate = useNavigate();
   const [userData, setUserData] = useState({
@@ -80,21 +79,16 @@ const Login = () => {
 
       navigate("/home");
     } catch (error) {
-
       // console.log(error);
-      if (error.code === "auth/user-not-found")
-      setErrors("User not found");
-      else if (error.code === "auth/invalid-email")
-      setErrors("Invalid email");
-      else if (error === "emptyEmail")
-      setErrors("Must insert email");
+      if (error.code === "auth/user-not-found") setErrors("User not found");
+      else if (error.code === "auth/invalid-email") setErrors("Invalid email");
+      else if (error === "emptyEmail") setErrors("Must insert email");
       else if (error.code === "auth/wrong-password")
         setErrors("Wrong password");
-      else if (error === "emptyPass")
-        setErrors("Must insert password");
+      else if (error === "emptyPass") setErrors("Must insert password");
       else if (error === "bothEmpty")
         setErrors("Must insert email and password");
-      else console.log(error.code)
+      else console.log(error.code);
     }
   }
 
@@ -147,7 +141,6 @@ const Login = () => {
 
   const handleResetPassword = async () => {
     if (!userData.email)
-
       return setErrors({ ...userData, email: "insert an email" });
     try {
       await resetPassword(userData.email);
@@ -166,7 +159,8 @@ const Login = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        margin: "2rem",
+        margin: "1rem",
+        marginTop: "70px",
       }}
     >
       <TextField
@@ -175,9 +169,8 @@ const Login = () => {
         value={userData.email}
         label="Email"
         onChange={handleInputChange}
-        style={{ margin: "1rem" }}
+        style={{ margin: "0.5rem" }}
       />
-
 
       <TextField
         type="password"
@@ -185,11 +178,11 @@ const Login = () => {
         value={userData.password}
         label="Password"
         onChange={handleInputChange}
-        style={{ margin: "1rem" }}
+        style={{ margin: "0.5rem" }}
       />
 
       {errors && (
-        <Typography sx={{ fontSize: "1em" }} color="red" gutterBottom>
+        <Typography sx={{ fontSize: "0.5em" }} color="red" gutterBottom>
           {errors}
         </Typography>
       )}
@@ -197,7 +190,7 @@ const Login = () => {
         type="submit"
         variant="contained"
         color="primary"
-        style={{ margin: "2rem" }}
+        style={{ margin: "0.5rem" }}
       >
         Login
       </Button>
@@ -207,12 +200,19 @@ const Login = () => {
         onClick={() => {
           registerGoogle();
         }}
-        style={{ margin: "2rem" }}
+        style={{ margin: "3rem" }}
       >
         Login with Google
       </Button>
-      <Link to={"/register"}>No tienes Cuenta? crea una</Link>
-      <Link onClick={handleResetPassword}>Forgot password?</Link>
+      <Link style={{ color: "#e4704c", margin: "1rem" }} to={"/register"}>
+        No tienes Cuenta? crea una
+      </Link>
+      <Link
+        style={{ color: "#ffc400", margin: "1rem" }}
+        onClick={handleResetPassword}
+      >
+        Forgot password?
+      </Link>
     </form>
   );
 };

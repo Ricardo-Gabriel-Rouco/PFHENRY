@@ -8,8 +8,8 @@ const dark = createTheme({
       contrastText: "#fff9c4",
     },
     secondary: {
-      main: '#e4704c',
-      contrastText: '#ffcdd2',
+      main: "#e4704c",
+      contrastText: "#ffcdd2",
     },
     warning: {
       main: "#fd7373",
@@ -20,8 +20,9 @@ const dark = createTheme({
     divider: "#a1887f",
     text: {
       primary: "#fff59d",
-      disabled: "rgba(255,255,255,0.07)",
       secondary: "#fff8e1",
+      disabled: "rgba(255,255,255,0.07)",
+      shiny: "#ffffff",
     },
     success: {
       main: "#857e61",

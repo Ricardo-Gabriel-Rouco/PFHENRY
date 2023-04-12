@@ -79,7 +79,7 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
         transition: "bgcolor 1s, color 0.5s",
         "&:hover": {
           bgcolor: "primary.light",
-          color: "secondary.contrastText",
+          color: "text.shiny",
         },
       }}
     >
