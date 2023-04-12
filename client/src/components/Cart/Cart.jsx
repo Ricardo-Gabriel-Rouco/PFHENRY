@@ -66,6 +66,7 @@ const Cart = () => {
           "https://shaky-friend-production.up.railway.app/checkout",
           order
         );
+
         //await postOrder(response.data);
         //dispatch(removeAllProducts());
         //localStorage.removeItem("cart");
