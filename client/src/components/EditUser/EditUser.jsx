@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Button, TextField, Typography, Snackbar } from "@mui/material";
+// import { useNavigate } from "react-router-dom";
+import { Button, TextField, Typography, Snackbar, IconButton } from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close';
 import { useAuth } from "../../context/authContext";
 
 function EditUser() {
   const {customize, userStatus} = useAuth()
+  const [open, setOpen] = useState(false)
   const [userData, setUserData] = useState({
     nickName: "",
     fullName: "",
@@ -14,7 +16,7 @@ function EditUser() {
   //   nickName: "",
   //   fullName: ""
   // });
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
 
   function handleInputChange(e) {
@@ -25,14 +27,27 @@ function EditUser() {
     e.preventDefault();
     try {
       await customize(userStatus.userId,userData.nickName || userStatus.nickName, userData.fullName || userStatus.fullName);
-      
-      navigate("/home");
+      setOpen(true)
+      // navigate("/home");
     } catch (error) {
       console.log(error)
   }
 }
 
+const action = (
+  <>
+    <IconButton
+      size="small"
+      aria-label="close"
+      color="inherit"
+    >
+      <CloseIcon fontSize="small" />
+    </IconButton>
+  </>
+);
+
   return (
+    <>
     <form
       style={{
         display: "flex",
@@ -73,6 +88,13 @@ function EditUser() {
         Modificar
       </Button>
     </form>
+    <Snackbar
+        open={open}
+        autoHideDuration={5000}
+        message="Se cambiaron los datos con exito"
+        action={action}
+      />
+    </>
   );
 }
 
