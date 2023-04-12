@@ -39,10 +39,11 @@ async function sender(mail, reason){
           subject: template.successPay,
           text: template.successText,
         })
+        return "Message sent"
       } catch (error) {
-        console.log(error)
+        return(error)
       }
-      break
+      
     case 'failed':
       try {
         let info = await transporter.sendMail({
@@ -51,10 +52,11 @@ async function sender(mail, reason){
           subject: template.failedPay,
           text: template.failedText,
         })
+        return "Message sent"
       } catch (error) {
-        console.log(error)
+        return(error)
       }
-      break
+      
     case 'link':
       try {
         let info = await transporter.sendMail({
@@ -63,11 +65,11 @@ async function sender(mail, reason){
           subject: template.link,
           text: template.linkText,
         })
-        console.log(info)
+        return "Message sent"
       } catch (error) {
-        console.log(error)
+        return(error)
       }
-      break
+      
     default:
       break;
   }

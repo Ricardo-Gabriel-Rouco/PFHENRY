@@ -4,7 +4,7 @@ const sendingEmail = async function (req, res){
   const {mail, reason} = req.body
   try {
     const result = await sender(mail, reason)
-    res.status(200).send(result)
+    res.send(result)
   } catch (error) {
     res.status(404).send(error)
   }

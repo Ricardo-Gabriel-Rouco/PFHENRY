@@ -17,9 +17,7 @@ const PayStatus = () => {
   const payment_id = params.get('payment_id');
   const idUser = params.get('idUser');
   const statusPayment = params.get('status');
-  const displayableBooks = useSelector((state) => state.books.displayableBooks);
   const cart = useSelector((state) => state.cart);
-  const book = availableItems(displayableBooks, cart)
   const [status, setStatus] = useState("");
   const navigate = useNavigate()
 
@@ -53,7 +51,6 @@ const PayStatus = () => {
       }*/}
       switch (statusPayment) {
         case "approved":
-          console.log(book)
           setStatus(statusPayment)
           let order = {
             user: idUser,
@@ -64,9 +61,10 @@ const PayStatus = () => {
           window.history.replaceState({}, document.title, window.location.pathname);
           await postOrder(order)
           let email = await getMailOfUser(idUser);
-          await axios.post("https://shaky-friend-production.up.railway.app/mail", { mail: email, reason: "link" })
+          console.log(email)
           dispatch(removeAllProducts());
           localStorage.removeItem("cart");
+          await axios.post("https://shaky-friend-production.up.railway.app/mail", { mail: email, reason: "link" })
           break
 
         case "failure":
@@ -74,7 +72,7 @@ const PayStatus = () => {
           order = {
             user: idUser,
             idOrder: payment_id,
-            status: status
+            status: statusPayment
           }
           window.history.replaceState({}, document.title, window.location.pathname);
           await postOrder(order)
