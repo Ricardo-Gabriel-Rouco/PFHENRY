@@ -40,6 +40,7 @@ const SearchBar = ({ placeholder }) => {
   const handlerKeyDown = (e) => {
     if (e.key === "Enter") {
       handlerSearchClick();
+      setSearchValue("");
     }
   };
 
@@ -58,26 +59,30 @@ const SearchBar = ({ placeholder }) => {
     <div className={style.SearchBarContainer}>
       <div className={style.SearchBar}>
         <Paper
-          sx={{ display: "flex", alignSelf: "center", width: "80%" }}
-        //   margin="dense"
+          sx={{ display: "flex", alignSelf: "center", width: "80%", p: "0" }}
+          //   margin="dense"
         >
           <Autocomplete
             freeSolo
             // id="free-solo-2-demo"
             disableClearable
             options={books.map((el) => el.title)}
-            sx={{ ml: 1, flex: 1 }}
-
+            sx={{ flex: 1, width: "100%", borderWidth: "0" }}
             filterOptions={filterOptions}
+            value={searchValue}
+            onInput={handlerInputChange}
+            onKeyDown={handlerKeyDown}
             renderInput={(params) => (
-                <TextField
+              <TextField
                 {...params}
-                sx={{ flex: 1, border:"none"}}
-                label="Search input"
-                margin="dense"
+                sx={{ ml: 1, flex: 1, marginLeft: "0", marginRight: "1px" }}
+                label="Search book"
+                InputLabelProps={{ focused: true, style: { color: "black" } }}
+                // margin="dense"
                 InputProps={{
                   ...params.InputProps,
                   type: "search",
+                  endAdornment:true
                 }}
               />
             )}
