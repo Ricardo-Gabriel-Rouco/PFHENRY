@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import PurchaseForm from "./PurchaseForm/PurchaseForm";
 import { AdminDashboard } from "./Views/AdminDashboard/AdminDashboard";
+import SupportAdmin from "./chatBot/SupportAdmin";
 import EditUser from './components/EditUser/EditUser'
 import AdminRoutes from './components/AdminRoutes/AdminRoutes'
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
@@ -47,6 +48,12 @@ function App() {
               <Route exact path="/admin/*" element={
                   <AdminRoutes>
                     <AdminDashboard />
+                  </AdminRoutes>
+                }
+              />
+              <Route exact path='/support' element={
+                  <AdminRoutes>
+                    <SupportAdmin /> 
                   </AdminRoutes>
                 }
               />
