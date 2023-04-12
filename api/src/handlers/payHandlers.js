@@ -14,10 +14,12 @@ const preferencePayHandler = async function (req, res) {
       statement_descriptor: "Books Kingdom",
       back_urls: {
         // success: `https://pfhenry-jzy1.vercel.app/payStatus?${user.name}`,
-        success: `http://localhost:3000/payStatus?idUser=${user.name}`,
+        // success: `https://pfhenry-production.up.railway.app/payStatus?idUser=${user.name}`,
+        success: `http://localhost:3000/payStatus?idUser=${user.name}`,   //por ahora la respuesta del pago llega a la ruta del front del componente PayStatus
         pending: '',
         // failure: `https://pfhenry-jzy1.vercel.app/payStatus?${user.name}`
-        failure: `http://localhost:3000/payStatus?idUser=${user.name}`
+        // failure: `https://pfhenry-production.up.railway.app/payStatus?idUser=${user.name}`,
+        failure: `http://localhost:3000/payStatus?idUser=${user.name}`  //por ahora la respuesta del pago llega a la ruta del front del componente PayStatus
       },
       auto_return: 'approved',
       binary_mode: true,

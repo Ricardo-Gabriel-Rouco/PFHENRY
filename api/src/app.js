@@ -21,7 +21,7 @@ app.use(cors({
 app.use("/clients", clients);
 app.use("/products", products);
 app.use("/checkout", payChoosen);
-app.use("/payStatus", payStatus);
+app.use("/payStatus", payStatus);   //esta ruta queda en standBy por el momento
 app.use("/mail", mailRoute)
 
 
