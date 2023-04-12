@@ -1,5 +1,7 @@
 import { getDocs, query, collection, where, doc, getDoc, updateDoc, setDoc, arrayUnion } from "firebase/firestore"
 import {db} from "../src/firebase/firebase-config";
+const admin = require('firebase-admin');
+admin.initializeApp();
 const functions = require("firebase-functions");
 
 // // Create and deploy your first functions
