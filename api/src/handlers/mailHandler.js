@@ -18,7 +18,7 @@ const sendingEmail = async function (req, res) {
     })
     res.send(data)
   } catch (error) {
-    res.status(404).send(error)
+    res.send(error)
   }
 }
 

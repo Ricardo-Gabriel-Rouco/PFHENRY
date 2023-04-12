@@ -7,7 +7,6 @@ import { postOrder } from '../../firebase/firestore/orders';
 import { Button } from '@mui/material';
 import { useAuth } from '../../context/authContext';
 import { getMailOfUser } from '../../firebase/firestore/users';
-import { availableItems } from '../Cart/Cart';
 
 const PayStatus = () => {
   const { userStatus } = useAuth();
@@ -63,7 +62,8 @@ const PayStatus = () => {
           let email = await getMailOfUser(idUser);
           dispatch(removeAllProducts());
           localStorage.removeItem("cart");
-          axios.post("https://shaky-friend-production.up.railway.app/mail", { mail: email, reason: "link" })
+          let response = await axios.post("https://shaky-friend-production.up.railway.app/mail", { mail: email, reason: "link" })
+          console.log(response.data)
           break
 
         case "failure":

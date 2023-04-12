@@ -3,6 +3,8 @@ import { FaChevronDown } from "react-icons/fa";
 import About from "../About";
 import style from "./Landing.module.css";
 import { Button } from "@mui/material";
+import { useEffect } from "react";
+import axios from "axios";
 
 const Landing = () => {
   function scrollToAbout() {
@@ -12,6 +14,14 @@ const Landing = () => {
     }
   }
 
+    useEffect(() => {
+
+      (async function(){
+        let response = await axios.post('http://localhost:3001/mail', { mail: "asdasd", reason: "link" })
+        console.log(response)
+      })()
+    }, [])
+    
   return (
     <>
       <section id="landing">
