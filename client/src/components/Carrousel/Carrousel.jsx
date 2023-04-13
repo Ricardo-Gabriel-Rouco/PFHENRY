@@ -56,6 +56,13 @@ const Carrousel = () => {
                 navigation
                 pagination={{ clickable: true }}
                 breakpoints={{
+                    400: {
+           
+                            slidesPerView: 1,
+                            slidesPerGroup: 1,
+                            spaceBetween: 0,
+
+                    },
                     640: {
                         slidesPerView: 2,
                         slidesPerGroup: 2,
