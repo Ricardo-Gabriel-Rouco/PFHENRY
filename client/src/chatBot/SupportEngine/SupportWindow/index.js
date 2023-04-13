@@ -14,8 +14,9 @@ const SupportWindow = props => {
             className='transition-5'
             style={{
                 ...styles.supportWindow,
-                ...{ opacity: props.visible ? '1' : '0' }
-            }}
+                opacity: props.visible ? 1 : 0,
+                ...(props.visible ? {} : styles.supportWindowClosed)
+                }}
         >
             <EmailForm 
                 visible={user === null || chat === null}

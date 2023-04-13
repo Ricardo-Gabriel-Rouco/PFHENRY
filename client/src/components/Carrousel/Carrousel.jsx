@@ -13,6 +13,7 @@ const Carrousel = () => {
         backgroundColor: "#f9b52ea8",
         margin: 'auto',
         maxWidth: '100vw',
+        zIndex: 0
     });
     const BookCardMedia = styled(CardMedia)({
         border: "1px",
@@ -20,6 +21,7 @@ const Carrousel = () => {
         width: "10rem",
         height: "14rem",
         objectFit: "cover",
+        zIndex: 0
     });
 
     const displayableBooks = useSelector((state) => state.books.displayableBooks);

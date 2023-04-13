@@ -1,5 +1,6 @@
 * {
   font-family: Avenir !important;
+  color: black
 }
 
 .ce-my-message-bubble {
@@ -10,7 +11,7 @@
   color: #fdd835!important;
 }
 
-.ce-chat-subtitle-text {
+.ce-chat-suƒbtitle-text {
   color: #fdd835!important;
   font-weight: 600;
 }

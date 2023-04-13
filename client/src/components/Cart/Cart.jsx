@@ -15,8 +15,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
-//import { postOrder } from "../../firebase/firestore/orders";
-
 
 export const availableItems = (displayableBooks, cart) => {
   return displayableBooks

@@ -51,7 +51,15 @@ const Card = ({ image, id, title, authors, price, editorial, display, discount})
   };
 
   const handleAdd = (id) => {
-    dispatch(addProduct({ id }));
+    dispatch(addProduct({
+      image, 
+      id, 
+      title, 
+      authors, 
+      price, 
+      editorial, 
+      display
+    }));
   };
 
   //CUADRO DE DIALOGO
