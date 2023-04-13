@@ -4,11 +4,11 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import SwiperCore, { Navigation, Pagination } from "swiper/core";
 import { CardMedia, Grid, Typography, styled } from "@mui/material";
-import { getDocs, query, collection, where, doc, getDoc, updateDoc, setDoc, arrayUnion } from "firebase/firestore";
+import { getDocs, collection } from "firebase/firestore";
 import { db } from '../../firebase/firebase-config';
 import { useState } from "react";
 import { useEffect } from "react";
-import { applyDiscounts } from '../../firebase/firestore/discount'
+
 
 SwiperCore.use([Navigation, Pagination]);
 
@@ -17,6 +17,7 @@ const Carrousel = () => {
         backgroundColor: "#f9b52ea8",
         margin: 'auto',
         maxWidth: '100vw',
+        zIndex: 0
     });
     const BookCardMedia = styled(CardMedia)({
         border: "1px",
@@ -24,6 +25,7 @@ const Carrousel = () => {
         width: "10rem",
         height: "14rem",
         objectFit: "cover",
+        zIndex: 0
     });
     const [discounts, setDiscounts] = useState([]);
 

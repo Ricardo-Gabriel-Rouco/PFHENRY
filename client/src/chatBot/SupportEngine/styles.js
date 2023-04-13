@@ -45,6 +45,8 @@ export const styles = {
         overflow: 'hidden',
         // Shadow
         boxShadow: '0px 0px 16px 6px rgba(0, 0, 0, 0.33)',
+        //
+        zIndex: 100
     },
     emailFormWindow: { 
         width: '100%',  
@@ -102,5 +104,20 @@ export const styles = {
     chatEngineWindow: {
         width: '100%',  
         backgroundColor: '#fdd835',
-    }
+    },
+    supportWindowClosed: {
+        position: 'fixed',
+        bottom: '116px',
+        right: '24px',
+        width: '420px',
+        height: '530px',
+        borderRadius: '12px',
+        border: `2px solid #FFD600`,
+        pointerEvents: 'none',
+        transition: 'all 0.5s ease',
+        WebkitTransition: 'all 0.5s ease',
+        MozTransition: 'all 0.5s ease',
+        opacity: 0,
+        visibility: 'hidden',
+    },
 }
