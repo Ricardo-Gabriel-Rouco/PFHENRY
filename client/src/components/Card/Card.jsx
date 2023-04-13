@@ -90,7 +90,7 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
         transition: "bgcolor 1s, color 0.5s",
         "&:hover": {
           bgcolor: "primary.light",
-          color: "secondary.contrastText",
+          color: "text.shiny",
         },
       }}
     >
@@ -215,8 +215,9 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
                   {isFav ? (
                     <Button
                       variant="outlined"
-                      color="secondary"
                       sx={{
+                        color: "primary.contrastText",
+
                         transition: "color 0.5s",
                         "&:hover": {
                           color: "secondary.contrastText",
@@ -230,8 +231,9 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
                   ) : (
                     <Button
                       variant="outlined"
-                      color="secondary"
                       sx={{
+                        color: "primary.contrastText",
+
                         transition: "color 0.5s",
                         "&:hover": {
                           color: "secondary.contrastText",
@@ -255,8 +257,9 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
                 >
                   <Button
                     variant="outlined"
-                    color="secondary"
                     sx={{
+                      color: "primary.contrastText",
+
                       transition: "color 0.5s",
                       "&:hover": {
                         color: "secondary.contrastText",
@@ -274,7 +277,6 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
 
               <Button
                 variant="outlined"
-                color="secondary"
                 endIcon={<ExitToAppIcon />}
                 onClick={handleClose}
                 sx={{
@@ -284,6 +286,8 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
                   zIndex: 2,
                   top: "20px",
                   right: "20px",
+                  color: "primary.contrastText",
+
                   transition: "color 0.5s",
                   "&:hover": {
                     color: "secondary.contrastText",
