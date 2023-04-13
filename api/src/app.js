@@ -15,7 +15,7 @@ const app = express();
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(cors({
-  // https://pfhenry-jzy1.vercel.app/*
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], 
   origin: ['http://localhost:3000', 'https://pfhenry-jzy1.vercel.app', 'https://pfhenry-production.up.railway.app/payStatus', 'https://pfhenry-jzy1-ds8p7673k-ricardo-gabriel-rouco.vercel.app', 'http://www.mercadopago.com.ar'] // Allow requests from these origins only
 }));
 app.use("/clients", clients);
