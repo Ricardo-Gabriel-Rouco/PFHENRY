@@ -1,5 +1,6 @@
 const { mercadopago } = require('../mpConfig/mpConfig')
 
+//esta funcion queda en standBy por le momento
 const verifyIdPayment = async function (id) {
     try {
         const payment = await mercadopago.payment.get(id);
