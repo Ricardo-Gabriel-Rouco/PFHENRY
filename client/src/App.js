@@ -80,6 +80,7 @@ function App() {
               />
               <Route path="*" element={<Error />} />
               <Route path="/modify" element={<ProtectedRoutes><EditUser/></ProtectedRoutes>}/>
+              <Route path="/purchases" element={<MyPurchases/>}/>
             </Routes>
           </AuthProvider>
         </BrowserRouter>
