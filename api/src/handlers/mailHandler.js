@@ -1,22 +1,10 @@
-const { sender } = require('../controlers/mailsender')
-const { getDocs, query, collection, where } = require("firebase/firestore")
-const { db } = require('../../firebase-config');
+const { sender, getUrlPDF } = require('../controlers/mailsender')
 
 const sendingEmail = async function (req, res) {
-  const { mail, reason } = req.body
+  const { mail, reason, items } = req.body
   try {
-    const result = await sender(mail, reason)
-    {/*const q = query(collection(db, "books"), where('display', '==', true))
-    const querySnapshot = await getDocs(q);
-    let data = [];
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      data.push({
-        ...doc.data(),
-        id: doc.id
-      }
-      )
-    })*/}
+    const urlsPdfItems = await getUrlPDF(items) 
+    const result = await sender(mail, reason, urlsPdfItems)
     res.send(result)
   } catch (error) {
     res.send(error.message)

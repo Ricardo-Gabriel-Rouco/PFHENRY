@@ -9,7 +9,6 @@ import { useAuth } from '../../context/authContext';
 import { getMailOfUser } from '../../firebase/firestore/users';
 
 const PayStatus = () => {
-  const { userStatus } = useAuth();
   const dispatch = useDispatch();
   const querystring = window.location.search;
   const params = new URLSearchParams(querystring);
@@ -60,10 +59,10 @@ const PayStatus = () => {
           window.history.replaceState({}, document.title, window.location.pathname);
           await postOrder(order)
           let email = await getMailOfUser(idUser);
+          // let response = axios.post("http://localhost:3001/mail", { mail: email, reason: "link", items:cart.cart.cart})
+          axios.post("https://shaky-friend-production.up.railway.app/mail", { mail: email, reason: "link", items:cart.cart.cart})
           dispatch(removeAllProducts());
           localStorage.removeItem("cart");
-          let response = await axios.post("https://shaky-friend-production.up.railway.app/mail", { mail: email, reason: "link" })
-          console.log(response.data)
           break
 
         case "failure":
