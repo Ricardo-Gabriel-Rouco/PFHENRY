@@ -120,24 +120,14 @@ export async function postBook(book) {
   }
 }
 // despues voy a revisar esta funcion, por favor usarla con precaucion
-export async function modifyBook(isbn, display) {
+export async function modifyBook(isbn, props) {
   try {
     const newBook = doc(db, 'books', `${isbn}`)
-    await updateDoc(newBook, {
-      // authors: authors,
-      display ,
-      // editorial: editorial,
-      // genres: genres.map(g => g.id),
-      // image: urlImage,
-      // price: price,
-      // rating: rating,
-      // title: title,
-      // year: year
-    })
+    await updateDoc(newBook, props)
   } catch (error) {
     console.log(error)
   }
-} 
+}
 
 // Metodo update para Reviews
 export async function updateBookReviews({id, nickname, comment, rating, display}) {
