@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { removeAllProducts } from '../../redux/rootReducer/cartSlice';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { postOrder } from '../../firebase/firestore/orders';
 import { Button } from '@mui/material';
 import { useAuth } from '../../context/authContext';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../../firebase/firebase-config';
 import { getMailOfUser } from '../../firebase/firestore/users';
 
 const PayStatus = () => {
-  const { userStatus } = useAuth();
   const dispatch = useDispatch();
   const querystring = window.location.search;
   const params = new URLSearchParams(querystring);
-  const payment_id = params.get('payment_id') ;
+  const payment_id = params.get('payment_id');
   const idUser = params.get('idUser');
+  const statusPayment = params.get('status');
+  const cart = useSelector((state) => state.cart);
   const [status, setStatus] = useState("");
   const navigate = useNavigate()
 
@@ -27,10 +26,8 @@ const PayStatus = () => {
   useEffect(() => {
 
     async function checkPayStatus() {
-      const response = await axios.post("https://shaky-friend-production.up.railway.app/payStatus",
+      {/*const response = await axios.post("https://shaky-friend-production.up.railway.app/payStatus",
         payment_id)
-      // if (userStatus.userId === idUser) {
-        console.log(response.data)
       if (response.data === "approved") {
         setStatus(response.data)
         const order = {
@@ -38,6 +35,7 @@ const PayStatus = () => {
           idOrder: payment_id,
           status: response.data
         }
+
         window.history.replaceState({}, document.title, window.location.pathname);
         await postOrder(order)
         let email= await getMailOfUser(idUser);
@@ -48,15 +46,47 @@ const PayStatus = () => {
       }
       else {
         setStatus(response.data)
+      }*/}
+      switch (statusPayment) {
+        case "approved":
+          setStatus(statusPayment)
+          let order = {
+            user: idUser,
+            idOrder: payment_id,
+            status: statusPayment,
+            items: cart.cart.cart
+          }
+          window.history.replaceState({}, document.title, window.location.pathname);
+          await postOrder(order)
+          let email = await getMailOfUser(idUser);
+          // let response = axios.post("http://localhost:3001/mail", { mail: email, reason: "link", items:cart.cart.cart})
+          axios.post("https://shaky-friend-production.up.railway.app/mail", { mail: email, reason: "link", items:cart.cart.cart})
+          dispatch(removeAllProducts());
+          localStorage.removeItem("cart");
+          break
+
+        case "failure":
+          setStatus(statusPayment)
+          order = {
+            user: idUser,
+            idOrder: payment_id,
+            status: statusPayment
+          }
+          window.history.replaceState({}, document.title, window.location.pathname);
+          await postOrder(order)
+          email = await getMailOfUser(idUser);
+          axios.post("https://shaky-friend-production.up.railway.app/mail", { mail: email, reason: "failed" })
+          break
+
+        case "null":
+          navigate('/home')
+          break;
+
+        default:
+          break;
       }
     }
-    // else {
-    //   console.log(userStatus.userId)
-    //   navigate('/home')
-    // }
-    // }
     checkPayStatus()
-
   }, []);
 
   return (

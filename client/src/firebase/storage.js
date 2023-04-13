@@ -1,6 +1,7 @@
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
-import { storage } from '../firebase/firebase-config'
+import { db, storage } from '../firebase/firebase-config'
 import axios from 'axios'
+import { collection, doc, getDocs, query, updateDoc, where } from "firebase/firestore";
 
 ////// Crear input para subir imagen a storage
 
@@ -41,6 +42,35 @@ export const uploadImage = async ({file,link}, id) => {
 
 }
 
+export const updateBookAddLinkPDF = async () => {
+    try {
+        const q = query(collection(db, "books"), where('display', '==', true))
+    const querySnapshot = await getDocs(q);
+    let data = [];
+    querySnapshot.forEach((doc) => {
+      data.push({
+        ...doc.data(),
+        id: doc.id
+      }
+      )
+    })
+
+    const getURL = async (id) => {
+      let response = await getDownloadURL(ref(storage, `Books/${id}.pdf`))
+      return response
+    };
+    
+    data.forEach(async e => {
+      let urlBook = await getURL(e.id)
+      const newBook = doc(db, 'books', e.id)
+      await updateDoc(newBook, {
+        linkBook:urlBook
+      })
+    })
+    } catch (error) {
+        return error.message
+    }
+}
 
 // const [image, setImage] = useState('');
 

@@ -45,15 +45,18 @@ export default function Paginate({
   return (
     <nav>
       <div className={styles.navPages}>
-        <button
-          disabled={currentPage === 1}
-          className={`${styles.pageBtn} ${styles.prev}`}
-          onClick={() => prevHandler()}
-        ></button>
+        {currentPage !== 1 ? (
+          <button
+            className={`${styles.pageBtn} ${styles.prev}`}
+            onClick={() => prevHandler()}
+          ></button>
+        ) : null}
         <ul className={styles.pageList}>
           {getDisplayedPageNumbers().map((number, index) => (
             <button
-              className={currentPage === number ? styles.match : styles.numberPage}
+              className={
+                currentPage === number ? styles.match : styles.numberPage
+              }
               key={index}
               onClick={number === "..." ? null : () => paginated(number)}
             >
@@ -61,11 +64,12 @@ export default function Paginate({
             </button>
           ))}
         </ul>
-        <button
-          disabled={currentPage === pageNumbers[pageNumbers.length - 1]}
-          className={`${styles.pageBtn} ${styles.next}`}
-          onClick={() => nextHandler()}
-        ></button>
+        {currentPage !== pageNumbers[pageNumbers.length - 1] ? (
+          <button
+            className={`${styles.pageBtn} ${styles.next}`}
+            onClick={() => nextHandler()}
+          ></button>
+        ) : null}
       </div>
     </nav>
   );

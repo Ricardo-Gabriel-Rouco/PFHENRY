@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import '../../index.css'
 import { ChatEngineWrapper, Socket, ChatFeed } from 'react-chat-engine'
 
 const ChatEngine = props => {
@@ -44,6 +44,6 @@ export default ChatEngine;
 const styles = {
     chatEngineWindow: {
         width: '100%',  
-        backgroundColor: '#fff',
+        backgroundColor: '#fdd835',
     }
 }

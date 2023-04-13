@@ -25,7 +25,7 @@ const EmailForm = props => {
     function getOrCreateChat(callback) {
         axios.put(
             'https://api.chatengine.io/chats/',
-            {usernames: [email, 'jsoliveiran@gmail.com'], is_direct_chat: true},
+            {usernames: [email, 'bookskingdom@outlook.com'], is_direct_chat: true},
             {headers: {
                 "Project-ID": '31c8f011-468e-4001-a485-f2c84746e009',
                 "User-Name": email,
