@@ -5,7 +5,7 @@ export const styles = {
         // Border
         borderRadius: '50%',
         // Background 
-        backgroundImage: "url('../../Assets/download.jpeg')", 
+        backgroundImage: "url('https://firebasestorage.googleapis.com/v0/b/pf-henry-2d98b.appspot.com/o/favicon.ico?alt=media&token=fe6e262a-c981-46d9-9945-f5350652d956')",
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         backgroundSize: '84px',
