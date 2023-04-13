@@ -1,8 +1,6 @@
 const nodemailer = require('nodemailer')
 const template = require('./configmail');
-const { getDocs, query, collection, where, doc, getDoc, updateDoc, setDoc, arrayUnion } = require("firebase/firestore")
-const { FieldPath } = require("@google-cloud/firestore");
-const { ref, getDownloadURL } = require("firebase/storage");
+const { getDocs, query, collection } = require("firebase/firestore")
 const { db, storage } = require('../../firebase-config');
 require('dotenv').config();
 const { MAILUSER, MAILPASSWORD } = process.env
@@ -69,7 +67,7 @@ async function sender(mail, reason, urlBooks) {
         let info = await transporter.sendMail({
           from: template.from,
           to: mail,
-          subject: template.successPay,
+          subject: 'Tu pago fue aceptado',
           text: message,
         })
         return "Message sent"
