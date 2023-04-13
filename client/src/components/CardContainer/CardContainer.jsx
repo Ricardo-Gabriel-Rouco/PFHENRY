@@ -17,7 +17,8 @@ import SupportEngine from '../../chatBot/SupportEngine/index'
 
 
 const CardContainer = () => {
-  const filteredBooks = useSelector((state) => state.books.booksToFilter.filter((book) => !book.discount));
+  const filteredBooks = useSelector((state) => state.books.booksToFilter);
+
 
   //PAGINATED
   const [currentPage, setCurrentPage] = useState(1);
@@ -48,8 +49,6 @@ const CardContainer = () => {
   useEffect(() => {
     paginated(1);
   }, [filteredBooks]);
-
-
   return (
 
     <div className={style.container}>
@@ -65,9 +64,9 @@ const CardContainer = () => {
           <Carrousel />
           <Grid container spacing={1} justifyContent="center" bgcolor="#f9b52ea8">
             {currentBook
-              .filter(c => !c.discount) // no funciona
               .map((c, index) => (
-                  <Grid item xs={12} sm={6} md={4} lg={3} key={c.id}>
+                <Grid item xs={12} sm={6} md={4} lg={3} key={c.id}>
+                  {c.display ?
                     <div key={index}>
                       <Card
                         id={c.id}
@@ -79,9 +78,9 @@ const CardContainer = () => {
                         display={c.display}
                         discount={c.discount}
                       />
-                    </div>
-                  </Grid>
-                )
+                    </div> : null}
+                </Grid>
+              )
               )}
           </Grid>
         </Cards>

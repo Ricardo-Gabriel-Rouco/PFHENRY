@@ -132,7 +132,7 @@ const Cart = () => {
                       <>
                         <s>{product.unit_price}</s>{" "}
                         <span>
-                          {(product.unit_price * (100 - product.discount) / 100).toFixed(0)}
+                          {(product.unit_price * (100 - product.discount) / 100).toFixed(2)}
                         </span>
                       </>
                     ) : (

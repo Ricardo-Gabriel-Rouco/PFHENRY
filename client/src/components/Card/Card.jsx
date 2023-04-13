@@ -165,7 +165,7 @@ const Card = ({ image, id, title, authors, price, editorial, display, discount})
             {discount ?
               <>
                 <p style={{ textDecoration: 'line-through' }}>Price $ {price}</p>
-                <p>Price $ {(price * (100 - discount) / 100).toFixed(0)}</p> discount: {discount}%
+                <p>Price $ {(price * (100 - discount) / 100).toFixed(2)}</p> discount: {discount}%
               </>
               :
               <p>Price $ {price}</p>
