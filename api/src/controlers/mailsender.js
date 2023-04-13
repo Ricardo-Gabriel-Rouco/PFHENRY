@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer')
 const template = require('./configmail');
 const { getDocs, query, collection } = require("firebase/firestore")
-const { db, storage } = require('../../firebase-config');
+const { db } = require('../../firebase-config');
 require('dotenv').config();
 const { MAILUSER, MAILPASSWORD } = process.env
 
@@ -62,13 +62,11 @@ async function sender(mail, reason, urlBooks) {
   switch (reason) {
     case 'success':
       try {
-        const bookList = urlBooks.map(book => `- ${book.title}: ${book.link}`).join('\n');
-        const message = `Thank you for your purchase! Here's the list of books you bought:\n${bookList}`;
         let info = await transporter.sendMail({
           from: template.from,
           to: mail,
-          subject: 'Tu pago fue aceptado',
-          text: message,
+          subject: template.successPay,
+          text: template.successText,
         })
         return "Message sent"
       } catch (error) {
@@ -90,11 +88,13 @@ async function sender(mail, reason, urlBooks) {
 
     case 'link':
       try {
+        const bookList = urlBooks.map(book => `- ${book.title}: ${book.link}`).join('\n');
+        const message = `Thank you for your purchase! Here's the list of books you bought:\n${bookList}`;
         let info = await transporter.sendMail({
           from: template.from,
           to: mail,
           subject: template.link,
-          text: template.linkText,
+          text: message,
         })
         return "Message sent"
       } catch (error) {
