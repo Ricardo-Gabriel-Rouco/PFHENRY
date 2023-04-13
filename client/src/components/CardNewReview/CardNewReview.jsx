@@ -68,6 +68,18 @@ const CardNewReview = ({ id, nickname, handleNewReview }) => {
           value={input.rating}
           precision={0.5}
           onChange={handleinputReview}
+          sx={{
+            "& .MuiRating-iconFilled": {
+              color: "text.primary",
+            },
+            "& .MuiRating-iconFocus": {
+              color: "text.primary",
+            },
+            "& .MuiRating-iconHover": {
+              color: "text.primary",
+            },
+          }}
+
         />
       </Grid>
       <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>

@@ -1,4 +1,3 @@
-import style from "./SearchBar.module.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // eslint-disable-next-line
@@ -56,14 +55,22 @@ const SearchBar = ({ placeholder }) => {
           .slice(0, 5); // Limit the number of displayed options to 5
   }
 
+ 
   return (
-    <div className={style.SearchBarContainer}>
-      <div className={style.SearchBar}>
-        <Paper
-          sx={{ display: "flex", alignSelf: "center", width: "80%", p: "0" }}
-          //   margin="dense"
-        >
-          <Autocomplete
+    <>
+      <Paper
+        sx={{
+          display: "flex",
+          alignSelf: "center",
+          width: "80%",
+          borderColor: "primary",
+          borderRadius: "10px",
+          boxShadow: "-0.2px 0.4px 0.4px 0.95px rgba(255, 253, 231, 0.9)",
+          bgcolor: "secondary",
+        }}
+        margin="dense"
+      >
+        <Autocomplete
             freeSolo
             // id="free-solo-2-demo"
             disableClearable
@@ -90,17 +97,16 @@ const SearchBar = ({ placeholder }) => {
               />
             )}
           />
-          <IconButton
-            type="button"
-            sx={{ p: "px" }}
-            aria-label="search"
-            onClick={handlerSearchClick}
-          >
-            <SearchIcon />
-          </IconButton>
-        </Paper>
-      </div>
-    </div>
+        <IconButton
+          type="button"
+          sx={{ p: "px" }}
+          aria-label="search"
+          onClick={handlerSearchClick}
+        >
+          <SearchIcon />
+        </IconButton>
+      </Paper>
+    </>
   );
 };
 
