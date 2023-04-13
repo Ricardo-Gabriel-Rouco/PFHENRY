@@ -16,7 +16,7 @@ const SupportWindow = props => {
                 ...styles.supportWindow,
                 opacity: props.visible ? 1 : 0,
                 ...(props.visible ? {} : styles.supportWindowClosed)
-              }}
+                }}
         >
             <EmailForm 
                 visible={user === null || chat === null}
