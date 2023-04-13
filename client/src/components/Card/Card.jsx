@@ -24,10 +24,10 @@ import CardDetail from "../CardDetail/CardDetail";
 
 
 
-  
-const Card = ({ image, id, title, authors, price, editorial, display }) => {
-    const favorite = useSelector(state => state.favorite.favorites)
-    const dispatch = useDispatch();
+
+const Card = ({ image, id, title, authors, price, editorial, display, discount}) => {
+  const favorite = useSelector(state => state.favorite.favorites)
+  const dispatch = useDispatch();
 
   //FAVORITES
   const [isFav, setIsFav] = useState(false);
@@ -51,7 +51,7 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
   };
 
   const handleAdd = (id) => {
-    dispatch(addProduct({id}));
+    dispatch(addProduct({ id }));
   };
 
   //CUADRO DE DIALOGO
@@ -67,24 +67,24 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
 
   return (
     <Grid
-      container
-      spacing={2}
-      sx={{
-        margin: "15px",
-        textAlign: "center",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "450px",
-        width: "300px",
-        borderRadius: "10px",
-        boxShadow: "0px 0px 10px black",
-        transition: "bgcolor 1s, color 0.5s",
-        "&:hover": {
-          bgcolor: "primary.light",
-          color: "text.shiny",
-        },
-      }}
+    container
+    spacing={2}
+    sx={{
+      margin: "15px",
+      textAlign: "center",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "450px",
+      width: "300px",
+      borderRadius: "10px",
+      boxShadow: "0px 0px 10px black",
+      transition: "bgcolor 1s, color 0.5s",
+      "&:hover": {
+        bgcolor: "primary.light",
+        color: "text.shiny",
+      },
+    }}
     >
       <Grid
         item
@@ -94,13 +94,14 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
         lg={6}
         xl={6}
         sx={{ display: "flex", justifyContent: "center" }}
-      >
+        >
+        
         {isFav ? (
           <Button
-            color="primary"
-            variant="contained"
-            size="small"
-            onClick={() => handleFavorite()}
+          color="primary"
+          variant="contained"
+          size="small"
+          onClick={() => handleFavorite()}
           >
             <BookmarkOutlinedIcon />
           </Button>
@@ -126,7 +127,7 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
         <Button
           variant="contained"
           size="small"
-          onClick={() => handleAdd( id )}
+          onClick={() => handleAdd(id)}
         >
           <ShoppingCartIcon />
         </Button>
@@ -161,7 +162,14 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
             {title}
           </Typography>
           <Typography variant="body2">
-            {price ? <p>Price $ {price}</p> : null}
+            {discount ?
+              <>
+                <p style={{ textDecoration: 'line-through' }}>Price $ {price}</p>
+                <p>Price $ {(price * (100 - discount) / 100).toFixed(0)}</p> discount: {discount}%
+              </>
+              :
+              <p>Price $ {price}</p>
+            }
           </Typography>
         </CardContent>
         <CardActions>

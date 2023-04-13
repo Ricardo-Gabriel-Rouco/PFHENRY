@@ -4,11 +4,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import SwiperCore, { Navigation, Pagination } from "swiper/core";
 import { CardMedia, Grid, Typography, styled } from "@mui/material";
-import { getDocs, query, collection, where, doc, getDoc, updateDoc, setDoc, arrayUnion } from "firebase/firestore";
-import { db } from '../../firebase/firebase-config';
-import { useState } from "react";
-import { useEffect } from "react";
-import { applyDiscounts } from '../../firebase/firestore/discount'
+import { useSelector } from "react-redux";
 
 SwiperCore.use([Navigation, Pagination]);
 
@@ -25,27 +21,9 @@ const Carrousel = () => {
         height: "14rem",
         objectFit: "cover",
     });
-    const [discounts, setDiscounts] = useState([]);
 
+    const displayableBooks = useSelector((state) => state.books.displayableBooks);
 
-    useEffect(() => {
-        const fetchDiscounts = async () => {
-            const q = collection(db, 'discount');
-            const querySnapshot = await getDocs(q);
-            const data = [];
-            querySnapshot.forEach((doc) => {
-                data.push({
-                    ...doc.data(),
-                    id: doc.id,
-                });
-            });
-            setDiscounts(data);
-        };
-        fetchDiscounts()
-        
-    }, []);
-
-    console.log(discounts)
 
     return (
         <CarouselContainer>
@@ -57,10 +35,10 @@ const Carrousel = () => {
                 pagination={{ clickable: true }}
                 breakpoints={{
                     400: {
-           
-                            slidesPerView: 1,
-                            slidesPerGroup: 1,
-                            spaceBetween: 0,
+
+                        slidesPerView: 1,
+                        slidesPerGroup: 1,
+                        spaceBetween: 0,
 
                     },
                     640: {
@@ -80,23 +58,27 @@ const Carrousel = () => {
                     },
                 }}
             >
-                {discounts.map((book) => (
-                    <SwiperSlide key={book.id}>
-                        <Grid container justifyContent="center" alignItems="center" style={{ height: '100%' }}>
-                            <Grid item>
-                                <BookCardMedia
-                                    component="img"
-                                    height="300"
-                                    image={book.image}
-                                    alt={book.title} />
-                                <Typography align="center" variant="subtitle2">{book.title}</Typography>
+                {displayableBooks.map((book) => (
+                    book.display && book.discount?
+                        <SwiperSlide key={book.id}>
+                            <Grid container justifyContent="center" alignItems="center" style={{ height: '100%' }}>
+                                <Grid item>
+                                    <BookCardMedia
+                                        component="img"
+                                        height="300"
+                                        image={book.image}
+                                        alt={book.title} />
+                                    <Typography align="center" variant="subtitle2">{book.title}</Typography>
+                                </Grid>
                             </Grid>
-                        </Grid>
-                    </SwiperSlide>
-                ))}
+                        </SwiperSlide>
+                        : null))}
             </Swiper>
         </CarouselContainer>
     );
 };
 
 export default Carrousel;
+
+
+

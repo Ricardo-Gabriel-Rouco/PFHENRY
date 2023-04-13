@@ -20,17 +20,17 @@ import { useNavigate } from "react-router-dom";
 
 export const availableItems = (displayableBooks, cart) => {
   return displayableBooks
-  .filter(
-    (book) => book.display && cart.cart.cart.find((el) => el.id === book.id)
-  )
-  .map((el) => {
-    const {price:unit_price, ...rest} = el
-    return {
-      quantity: cart.cart.cart.find(book=>book.id===el.id).quantity,
-      unit_price,
-      ...rest
-  }
-  })
+    .filter(
+      (book) => book.display && cart.cart.cart.find((el) => el.id === book.id)
+    )
+    .map((el) => {
+      const { price: unit_price, ...rest } = el
+      return {
+        quantity: cart.cart.cart.find(book => book.id === el.id).quantity,
+        unit_price,
+        ...rest
+      }
+    })
 }
 
 const Cart = () => {
@@ -45,9 +45,6 @@ const Cart = () => {
 
 
   useEffect(() => {
-   
-      console.log(availableItems(displayableBooks, cart))
-
     setOrder({
       user: {
         name: userStatus.userId,
@@ -131,7 +128,16 @@ const Cart = () => {
                     ({product.authors})
                   </Typography>
                   <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
-                    ${product.unit_price}
+                    {product.discount ? (
+                      <>
+                        <s>{product.unit_price}</s>{" "}
+                        <span>
+                          {(product.unit_price * (100 - product.discount) / 100).toFixed(0)}
+                        </span>
+                      </>
+                    ) : (
+                      product.unit_price
+                    )}
                   </Typography>
                   <Box sx={{ display: "flex" }}>
                     <Button
