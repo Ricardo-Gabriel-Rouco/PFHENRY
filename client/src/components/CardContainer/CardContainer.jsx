@@ -8,11 +8,13 @@ import style from "./CardContainer.module.css";
 import { useSelector } from "react-redux";
 import Paginate from "../../components/Paginate/Paginate";
 import { FilterOptions } from "../filters/FilterOptions";
-
+import Carrousel from "../Carrousel/Carrousel";
 import { Grid } from "@mui/material";
 import Cards from "@mui/material/Card";
-import loading from "../../Assets/Loading.gif";
-import notFound from "../../Assets/notFound.gif";
+import loading from '../../Assets/Loading.gif'
+import notFound from '../../Assets/notFound.gif'
+import SupportEngine from '../../chatBot/SupportEngine/index'
+
 
 const CardContainer = () => {
   const filteredBooks = useSelector((state) => state.books.booksToFilter);
@@ -48,10 +50,9 @@ const CardContainer = () => {
   }, [filteredBooks]);
 
   return (
+    
     <div className={style.container}>
-      {filteredBooks.length ? (
-        <FilterOptions setCurrentPage={setCurrentPage} />
-      ) : null}
+      {filteredBooks.length ? (<FilterOptions setCurrentPage={setCurrentPage} />) : null}
       {filteredBooks === "not found" ? (
         <div className={style.notFound}>
           <h1>No books were found</h1>
@@ -59,7 +60,10 @@ const CardContainer = () => {
         </div>
       ) : filteredBooks.length ? (
         <Cards>
-          <Grid container spacing={1} justifyContent="center">
+        
+          <Carrousel currentBook={currentBook} />
+          
+          <Grid container spacing={1} justifyContent="center" bgcolor="#f9b52ea8">
             {currentBook.map((c, index) => (
               <Grid item xs={12} sm={6} md={4} lg={3} key={c.id}>
                 <div key={index}>
@@ -70,8 +74,10 @@ const CardContainer = () => {
                     title={c.title}
                     price={c.price}
                     editorial={c.editorial}
+                    display={c.display}
                   />
                 </div>
+
               </Grid>
             ))}
           </Grid>
@@ -80,6 +86,7 @@ const CardContainer = () => {
         //<ComponentError />
         <img src={loading} alt="loading" />
       )}
+            <SupportEngine />
 
       {Array.isArray(filteredBooks) && filteredBooks.length ? (
         <div className={style.paginate}>

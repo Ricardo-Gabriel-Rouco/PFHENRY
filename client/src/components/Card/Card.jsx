@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -23,15 +22,18 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { addProduct } from "../../redux/rootReducer/cartSlice";
 import CardDetail from "../CardDetail/CardDetail";
 
-const Card = ({ image, id, title, authors, price, editorial }) => {
-  const favorite = useSelector((state) => state.favorite.favorites);
-  const dispatch = useDispatch();
+
+
+  
+const Card = ({ image, id, title, authors, price, editorial, display }) => {
+    const favorite = useSelector(state => state.favorite.favorites)
+    const dispatch = useDispatch();
 
   //FAVORITES
   const [isFav, setIsFav] = useState(false);
 
   useEffect(() => {
-    if (favorite.favorites.some((book) => book.id === id)) {
+    if (favorite.favorites.includes(id)) {
       if (!isFav) setIsFav(true);
     } else if (isFav) setIsFav(false);
     // eslint-disable-next-line
@@ -42,13 +44,14 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
       dispatch(deleteFavorite(id));
       setIsFav(false);
     } else {
-      dispatch(addFavorite({ image, id, title, authors, price, editorial }));
+      dispatch(addFavorite(id));
+
       setIsFav(true);
     }
   };
 
   const handleAdd = (id) => {
-    dispatch(addProduct(id));
+    dispatch(addProduct({id}));
   };
 
   //CUADRO DE DIALOGO
@@ -123,7 +126,7 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
         <Button
           variant="contained"
           size="small"
-          onClick={() => handleAdd({ image, id, title, authors, price })}
+          onClick={() => handleAdd( id )}
         >
           <ShoppingCartIcon />
         </Button>
@@ -256,7 +259,7 @@ const Card = ({ image, id, title, authors, price, editorial }) => {
                     }}
                     endIcon={<ShoppingCartIcon />}
                     onClick={() =>
-                      handleAdd({ image, id, title, authors, price })
+                      handleAdd(id)
                     }
                   >
                     Add

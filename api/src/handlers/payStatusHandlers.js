@@ -1,10 +1,14 @@
-const payStatusHandlers = async function(req,res){
-    // const responsePayment = {
-    //     status : req.query.collection_status
-    // }
-    console.log(req.query)
-    let status = req.query.status
-    res.send(status)
+const { verifyIdPayment } = require("../controlers/payStatusControllers");
+
+const payStatusHandlers = async function (req, res) {
+
+    const { payment_id } = req.body;
+    try {
+        const response = await verifyIdPayment(payment_id)
+        res.send(response)
+    } catch (error) {
+        res.send(error);
+    }
 }
 
 module.exports = {

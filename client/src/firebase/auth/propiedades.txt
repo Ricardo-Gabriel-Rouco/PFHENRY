@@ -1,0 +1,17 @@
+propiedades de usuario
+
+id
+email
+
+profile
+  nickname
+  full name
+  img // para despues
+
+account
+  cambio de contraseña
+  mis compras
+  mis reviews + rating
+  mis cupones
+
+logout

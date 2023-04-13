@@ -7,10 +7,14 @@ function Register() {
   const [userData, setUserData] = useState({
     email: "",
     password: "",
+    nickName: "",
+    fullName: ""
   });
   const [errors, setErrors] = useState({
     email: "",
     password: "",
+    nickName: "",
+    fullName: ""
   });
   const navigate = useNavigate();
 
@@ -23,7 +27,7 @@ function Register() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await signup(userData.email, userData.password);
+      await signup(userData.email, userData.password, userData.nickName, userData.fullName);
       navigate("/home");
     } catch (error) {
       if (error.code === "auth/weak-password")
@@ -56,7 +60,26 @@ function Register() {
         margin: "2rem",
       }}
       onSubmit={handleSubmit}
-    >
+      >
+      <TextField
+        type="text"
+        label="Nombre de usuario"
+        name="nickName"
+        value={userData.nickName}
+        onChange={handleInputChange}
+        style={{ margin: "1rem" }}
+      />
+      {errors.nickName && <p>{errors.nickName}</p>}
+
+      <TextField
+        type="text"
+        label="Nombre completo"
+        name="fullName"
+        value={userData.fullName}
+        onChange={handleInputChange}
+        style={{ margin: "1rem" }}
+      />
+      {errors.fullName && <p>{errors.fullName}</p>}
       <TextField
         type="email"
         label="Correo electrónico"

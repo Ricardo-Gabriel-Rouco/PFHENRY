@@ -1,6 +1,5 @@
-import { getDocs, query, collection } from "firebase/firestore"
+import { getDocs, query, collection, getDoc, doc } from "firebase/firestore"
 import { db } from '../firebase-config';
-
 
 export async function getAllTheUsers() {
 
@@ -16,6 +15,16 @@ export async function getAllTheUsers() {
     )
   })
   return data
+}
+
+export async function getMailOfUser(id) {
+  const docRef = doc(db, "users", id);
+  const docSnap = await getDoc(docRef);
+  if (docSnap.exists()) {
+    return docSnap.data().email;
+  } else {
+    return "No existe el documento con el id especificado";
+  }
 }
 
 
