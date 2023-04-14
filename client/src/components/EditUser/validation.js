@@ -1,4 +1,4 @@
-import { getUserByName } from "../../firebase/auth/";
+import { getUserByName } from "../../firebase/auth/auth";
 
 export async function validate(nickname){
   let errors = ''
