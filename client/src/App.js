@@ -24,7 +24,7 @@ import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
 import axios from 'axios'
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import light from "./Theme/light";
-import PayStatus from "./components/PayStatus/PayStatus";
+import MyPurchases from "./components/MyPurchases/MyPurchases";
 axios.defaults.baseURL = 'https://shaky-friend-production.up.railway.app/'
 
 function App() {
@@ -79,7 +79,7 @@ function App() {
               />
               <Route path="*" element={<Error />} />
               <Route path="/modify" element={<ProtectedRoutes><EditUser/></ProtectedRoutes>}/>
-              <Route path="/payStatus" element={<PayStatus/>}/>
+              <Route path="/purchases" element={<MyPurchases/>}/>
             </Routes>
           </AuthProvider>
         </BrowserRouter>

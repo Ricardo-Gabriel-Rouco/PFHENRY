@@ -26,27 +26,27 @@ const PayStatus = () => {
   useEffect(() => {
 
     async function checkPayStatus() {
-      {/*const response = await axios.post("https://shaky-friend-production.up.railway.app/payStatus",
-        payment_id)
-      if (response.data === "approved") {
-        setStatus(response.data)
-        const order = {
-          user: idUser,
-          idOrder: payment_id,
-          status: response.data
-        }
+      // {/*const response = await axios.post("https://shaky-friend-production.up.railway.app/payStatus",
+      //   payment_id)
+      // if (response.data === "approved") {
+      //   setStatus(response.data)
+      //   const order = {
+      //     user: idUser,
+      //     idOrder: payment_id,
+      //     status: response.data
+      //   }
 
-        window.history.replaceState({}, document.title, window.location.pathname);
-        await postOrder(order)
-        let email= await getMailOfUser(idUser);
-        console.log(email)
-        await axios.post("https://shaky-friend-production.up.railway.app/mail", {mail:email, reason:"link"})
-        dispatch(removeAllProducts());
-        localStorage.removeItem("cart");
-      }
-      else {
-        setStatus(response.data)
-      }*/}
+      //   window.history.replaceState({}, document.title, window.location.pathname);
+      //   await postOrder(order)
+      //   let email= await getMailOfUser(idUser);
+      //   console.log(email)
+      //   await axios.post("https://shaky-friend-production.up.railway.app/mail", {mail:email, reason:"link"})
+      //   dispatch(removeAllProducts());
+      //   localStorage.removeItem("cart");
+      // }
+      // else {
+      //   setStatus(response.data)
+      // }*/}
       switch (statusPayment) {
         case "approved":
           setStatus(statusPayment)
@@ -60,7 +60,7 @@ const PayStatus = () => {
           await postOrder(order)
           let email = await getMailOfUser(idUser);
           // let response = axios.post("http://localhost:3001/mail", { mail: email, reason: "link", items:cart.cart.cart})
-          axios.post("https://shaky-friend-production.up.railway.app/mail", { mail: email, reason: "link", items:cart.cart.cart})
+          axios.post("/mail", { mail: email, reason: "link", items:cart.cart.cart})
           dispatch(removeAllProducts());
           localStorage.removeItem("cart");
           break
@@ -75,7 +75,7 @@ const PayStatus = () => {
           window.history.replaceState({}, document.title, window.location.pathname);
           await postOrder(order)
           email = await getMailOfUser(idUser);
-          axios.post("https://shaky-friend-production.up.railway.app/mail", { mail: email, reason: "failed" })
+          axios.post("/mail", { mail: email, reason: "failed" })
           break
 
         case "null":
