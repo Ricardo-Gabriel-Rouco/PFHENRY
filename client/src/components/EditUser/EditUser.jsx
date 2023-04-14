@@ -3,30 +3,31 @@ import { useState } from "react";
 import { Button, TextField, Typography, Snackbar, IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import { useAuth } from "../../context/authContext";
+import { validate } from './validation'
 
 function EditUser() {
   const {customize, userStatus} = useAuth()
   const [open, setOpen] = useState(false)
   const [userData, setUserData] = useState({
     nickName: "",
-    fullName: "",
     userId: userStatus.userId
   });
-  // const [errors, setErrors] = useState({
-  //   nickName: "",
-  //   fullName: ""
-  // });
+  const [errors, setErrors] = useState({
+    nickName: "",
+  });
   // const navigate = useNavigate();
 
 
   function handleInputChange(e) {
     setUserData({ ...userData, [e.target.name]: e.target.value });
+    setErrors(validate(userData.nickName))
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
+    if(errors) throw new Error('No se puede cambiar el nombre de usuario')
     try {
-      await customize(userStatus.userId,userData.nickName || userStatus.nickName, userData.fullName || userStatus.fullName);
+      await customize(userStatus.userId,userData.nickName || userStatus.nickName);
       setOpen(true)
       // navigate("/home");
     } catch (error) {
