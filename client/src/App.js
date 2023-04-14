@@ -14,7 +14,6 @@ import NavBar from "./components/NavBar/NavBar";
 import Cart from "./components/Cart/Cart";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import PurchaseForm from "./PurchaseForm/PurchaseForm";
 import { AdminDashboard } from "./Views/AdminDashboard/AdminDashboard";
 import SupportAdmin from "./chatBot/SupportAdmin";
 import EditUser from './components/EditUser/EditUser'
@@ -71,12 +70,6 @@ function App() {
               <Route path="/home/:id" element={<CardDetail />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/checkout" element={
-                  <ProtectedRoutes>
-                    <PurchaseForm />
-                  </ProtectedRoutes>
-                }
-              />
               <Route path="*" element={<Error />} />
               <Route path="/modify" element={<ProtectedRoutes><EditUser/></ProtectedRoutes>}/>
               <Route path="/purchases" element={<MyPurchases/>}/>
