@@ -1,8 +1,11 @@
-import { Create, SimpleForm, TextInput, ArrayInput, SimpleFormIterator, FileInput, ImageInput, ImageField, ReferenceInput, SelectInput, ChipField, ArrayField } from 'react-admin';
+import { Create, SimpleForm, TextInput, ArrayInput, SimpleFormIterator, FileInput, ImageInput, ImageField, ReferenceInput, SelectInput, ChipField, ArrayField, Button } from 'react-admin';
 import { postBook } from '../../../firebase/firestore/books';
 import { useState,useEffect } from 'react';
 import { getGenres } from '../../../firebase/firestore/genres';
 import { InputLabel } from '@mui/material';
+import validation from './validation';
+import ErrorIcon from "@mui/icons-material/Error";
+import styles from "./BookForm.module.css";
 // import { makeStyles } from '@material-ui/core/styles'
 
 
@@ -31,17 +34,20 @@ export const BookCreate = (props) => {
   };
     const [imageType,setImageType] = useState('file');
     const [imageUrl,setImageUrl] = useState(null)
-    const [title,setTitle]= useState('');
-    const [author,setAuthor]= useState('');
-    // const [description,setDescription] = useState('')
-    // const [price,setPrice] = useState('')
-    // const [rating,setRating] = useState('')
-    // const [year,setYear] = useState('')
-    // const [editorial,setEditorial] = useState('')
-    const [id,setId] = useState('')
     const [genres,setGenres]= useState([])
     const [bookData,setBookData]=useState({})
-    const [selectedGenres,setSelectedGenres]=useState([])
+    const [errors,setErrors] = useState({});
+
+    const handleInputChange = (e) =>{
+      setBookData({
+        ...bookData,
+        [e.target.name]:e.target.value
+      })
+    }
+
+    useEffect(()=>{
+      setErrors(validation(bookData))
+    },[bookData])
 
     useEffect(() => {
       async function fetchGenres() {
@@ -55,7 +61,7 @@ export const BookCreate = (props) => {
     const handleOptions = (e) => {
       let selectedValues = [];
   
-      if (selectedGenres) selectedValues = [...selectedGenres];
+      if (bookData.genres) selectedValues = [...bookData.genres];
   
       const options = e.target.options;
       for (let i = 0; i < options.length; i++) {
@@ -63,7 +69,10 @@ export const BookCreate = (props) => {
           selectedValues.push(options[i].value);
         }
       }
-      setSelectedGenres([...selectedValues]);
+      setBookData({
+        ...bookData,
+        genres:[...selectedValues]
+      });
     };
   
     const handleRemove = (value) => {
@@ -74,31 +83,6 @@ export const BookCreate = (props) => {
       });
     };
 
-
-    const handleTitleChange= (e) =>{
-      setTitle(e.target.value)
-    }
-    const handleAuthorChange= (e) =>{
-      setAuthor(e.target.value)
-    }
-    // const handleDescriptionChange = (e) =>{
-    //   setDescription(e.target.value)
-    // }
-    // const handlePriceChange = (e) =>{
-    //   setPrice(e.target.value)
-    // }
-    // const handleRatingChange = (e) =>{
-    //   setRating(e.target.value)
-    // }
-    // const handleYearChange = (e) =>{
-    //   setYear(e.target.value)
-    // }
-    // const handleEditorialChange = (e) =>{
-    //   setEditorial(e.target.value)
-    // }
-    const handleIdChange = (e) =>{
-      setId(e.target.value)
-    }
 
     const handleImageType = (e) => {
       setImageType(e.target.value);
@@ -129,76 +113,127 @@ export const BookCreate = (props) => {
         )
       }
     }
-    
-    // const classes = useStyles()
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        const res = await postBook({ ...bookData, authors: [bookData.authors] });
+        console.log(res);
+      } catch (error) {
+        let toHighlight = {};
+        for (const key in errors) {
+          console.log(key);
+          if (bookData[key] === undefined) toHighlight[key] = "";
+        }
+        setBookData({ ...bookData, ...toHighlight });
+  
+        window.alert(error);
+      }
+    };
+
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width:'75%',alignSelf:'center' , margin:'25rem'}}>
       <Create {...props} style={{alignSelf:'center', display:'flex'}}>
-        <SimpleForm >
-        <div style={{alignSelf:'center', display:'flex',flexDirection:'column'}}>
-          
-            <SelectInput optionText='name' onChange={handleImageType} choices={imageTypeOptions} source='image-type' style={{alignSelf:'center', display:'flex'}} />
-          <ImageInputField style={{alignSelf:'center', display:'flex'}}/>
-        </div>
-          <div>
-          <TextInput label='Title' source='title' onChange={handleTitleChange} style={{margin:'0 2rem '}} />
-          <TextInput label='Author' source='author' onChange={handleAuthorChange} style={{margin:'0 2rem '}} />
-          <h2>{title}</h2>
-          <h3>{author}</h3>
-          <TextInput multiline label='Descritpion' source=' description'  style={{width:'50rem'}} />
-          <br></br>
-          <TextInput label='Price' source='price'  style={{margin:'0 2rem '}}/>
-          {/* <h4>Price: ${price}</h4> */}
-          <TextInput label='Rating' source='rating'style={{margin:'0 2rem '}}  />
-          {/* <h4>Rating: {rating}</h4> */}
-          <TextInput label='Year' source='year' style={{margin:'0 2rem '}}  />
-          {/* <h4>Year: {year}</h4> */}
-          <TextInput label='Editorial' source='editorial'style={{margin:'0 2rem '}} />
-          {/* <h4>Editorial: {editorial}</h4> */}
-          <InputLabel htmlFor="genres">Genres:</InputLabel>
-            <select
-              multiple={true}
-              value={bookData.genres}
-              onChange={handleOptions}
-            >
-              {genres
-                ?.sort((a, b) => a.name.localeCompare(b.name))
-                .map((genre) => (
-                  <option key={genre.name} value={genre.name}>
-                    {genre.name}
-                  </option>
-                ))}
-            </select>
-            <div>
-              {bookData.genres &&
-                bookData.genres.map(
-                  (genre) =>
-                    bookData.genres.indexOf(genre) ===
-                      bookData.genres.lastIndexOf(genre) && (
-                        <div key={genre}>
-                        <ArrayField source='genres' label='Genres'>
-                          
-                          <ChipField source="name" />
-                        </ArrayField>
-                        <button onClick={() => handleRemove(genre, "genres")}>
-                          X
-                        </button>
-                      </div>
-                    )
-                )}
-            </div>
-            {/* {errors.genres ? (
-              <p className={styles.formError}>
-                <ErrorIcon />
-                {errors.genres && errors.genres}
-              </p>
-            ) : null} */}
+        <SimpleForm onSubmit={createBook}>
 
-            <br></br>
-          <TextInput label='ISBN' source='isbn' onChange={handleIdChange} />
-          <h4>ISBN: {id}</h4>
+          <div style={{alignSelf:'center', display:'flex',flexDirection:'column'}}>
+            
+              <SelectInput optionText='name' onChange={handleImageType} choices={imageTypeOptions} source='image-type' style={{alignSelf:'center', display:'flex'}} />
+            <ImageInputField style={{alignSelf:'center', display:'flex'}}/>
           </div>
+            <div>
+            <TextInput 
+            defaultValue={bookData.title} 
+            onChange={handleInputChange} 
+            label='Title' 
+            source='title' 
+            style={{margin:'0 ', fontSize:'2rem', fontWeight: 'bold'}} />
+            { errors.title ? (<p className={styles.formError}>
+              <ErrorIcon/>
+              {errors.title && errors.title}</p>) : null}
+              <br></br>
+              <TextInput 
+            label='Author' 
+            source='authors'
+            defaultValue={bookData.authors}  
+            style={{margin:'0 2rem '}} 
+            onChange={handleInputChange} />
+            {errors.authors ? (<p className={styles.formError}>
+              <ErrorIcon/>
+              {errors.authors && errors.authors}
+            </p>):null}
+            <br></br>
+            <TextInput multiline label='Descritpion' source=' description'  style={{width:'50rem'}} />
+            <br></br>
+            <TextInput 
+            label='Price $' 
+            source='price'
+            onChange={handleInputChange}
+            defaultValue= {bookData.price}  
+            style={{margin:'0 2rem '}}/>
+            {errors.price ? (<p className={styles.formError}><ErrorIcon/>{errors.price && errors.price}</p>):null}
+            <br></br>
+            <TextInput 
+            label='Year'
+            source='year'
+            onChange={handleInputChange}
+            defaultValue ={bookData.year} 
+            style={{margin:'0 2rem '}}  />
+            {errors.year ? (<p className={styles.formError}><ErrorIcon/>{errors.year && errors.year}</p>):null}
+            <br></br>
+            <TextInput 
+            label='Editorial' 
+            source='editorial'
+            onChange={handleInputChange}
+            defaultValue={bookData.editorial}
+            style={{margin:'0 2rem '}} />
+            {errors.editorial ? (<p className={styles.formError}><ErrorIcon/>{errors.editorial && errors.editorial}</p>):null}
+            <InputLabel htmlFor="genres">Genres:</InputLabel>
+              <select
+                multiple={true}
+                value={bookData.genres}
+                onChange={handleOptions}
+              >
+                {genres
+                  ?.sort((a, b) => a.name.localeCompare(b.name))
+                  .map((genre) => (
+                    <option key={genre.name} value={genre.name}>
+                      {genre.name}
+                    </option>
+                  ))}
+              </select>
+              <div>
+                {bookData.genres &&
+                  bookData.genres.map(
+                    (genre) =>
+                      bookData.genres.indexOf(genre) ===
+                        bookData.genres.lastIndexOf(genre) && (
+                          <div key={genre}>
+                            {genre}
+                          <button onClick={() => handleRemove(genre, "genres")}>
+                            X
+                          </button>
+                        </div>
+                      )
+                  )}
+              </div>
+              {errors.genres ? (
+                <p className={styles.formError}>
+                  <ErrorIcon />
+                  {errors.genres && errors.genres}
+                </p>
+              ) : null}
+
+              <br></br>
+            <TextInput label='ISBN' source='isbn' onChange={handleInputChange} name='isbn' defaultValue={bookData.isbn}/>
+            {errors.isbn ? (
+              <p className={styles.formError}>
+                <ErrorIcon/>
+                {errors.isbn && errors.isbn}</p>
+              
+            ):null}
+            </div>
 
         </SimpleForm>
       </Create>

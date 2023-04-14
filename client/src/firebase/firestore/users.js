@@ -1,5 +1,6 @@
-import { getDocs, query, collection } from "firebase/firestore"
+import { getDocs, query, collection, where, doc, getDoc, updateDoc, setDoc, arrayUnion } from "firebase/firestore"
 import { db } from '../firebase-config';
+
 
 
 export async function getAllTheUsers() {
@@ -16,6 +17,18 @@ export async function getAllTheUsers() {
     )
   })
   return data
+}
+
+export async function modifyUser(uid, display) {
+  try {
+    const userRef = doc(db, 'users', `${uid}`)
+    await updateDoc(userRef, {
+      display ,
+
+    })
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 
