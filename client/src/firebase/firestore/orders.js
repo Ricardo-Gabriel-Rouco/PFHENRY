@@ -1,5 +1,34 @@
-import { collection, doc, getDoc, setDoc } from "firebase/firestore"
+import { collection, doc, getDoc, getDocs, query, setDoc } from "firebase/firestore"
 import { db } from '../firebase-config';
+
+export async function getOrders() {
+
+  const q = query(collection(db, "orders"))
+  const querySnapshot = await getDocs(q);
+  let data = [];
+  querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    data.push({
+      ...doc.data(),
+      id: doc.id
+    }
+    )
+  })
+  return data
+}
+
+export async function getOrdersByUser (id) {
+  try {
+    const docsRef = doc(db, 'orders', id);
+    const docSnap = await getDoc(docsRef);
+    if (docSnap.exists()) {
+      return { ...docSnap.data(), id: id };
+    } else {
+      console.log('No such document!');
+    }
+  } catch (error) {
+    console.log(error);}
+}
 
 export async function postOrder(order) {
   try {

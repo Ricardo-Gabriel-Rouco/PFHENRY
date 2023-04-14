@@ -4,46 +4,57 @@ import {
   getBookById,
   postBook
 } from "../../../firebase/firestore/books";
+import { getOrders } from "../../../firebase/firestore/orders";
 import { getAllTheUsers } from "../../../firebase/firestore/users";
 
 const dataProvider = {
   getList: async (resource, params) => {
     let data = [];
-    if (resource === "books") {
-      const { title, genre, author } = params.filter || {}; // extrae los valores del filtro si se proporcionan
-      const books = await getAllTheBooks();
-      data = books.map((el) => {
-        return {
-          ...el,
-          authors: el.authors?.map((a) => {
-            return { author: a };
-          }),
-          genres: el.genres?.map((g) => {
-            return { genre: g };
-          }),
-        };
-      });
-      
-      // Filtra los libros según los valores del filtro
-      if (title)  // eslint-disable-next-line
-        data = data.filter((book) => {
-          if (book.title.toLowerCase().includes(title.toLowerCase())) 
-            return true;
-        })
-      if(author)  // eslint-disable-next-line
-        data = data.filter((book) => {
-          if (book.authors.map((a) => a.author.toLowerCase()).some(item => item.includes(author.toLowerCase())))
-            return true;
-        });
-      if(genre) // eslint-disable-next-line
-        data = data.filter((book) => {
-          if (book.genres.map((g) => g.genre.toLowerCase()).some(item => item.includes(genre.toLowerCase()))) 
-            return true
-        })
 
-    } else if (resource === "users") {
-      data = await getAllTheUsers();
+    switch (resource) {
+      case "books":
+          const { title, genre, author } = params.filter || {}; // extrae los valores del filtro si se proporcionan
+        const books = await getAllTheBooks();
+        data = books.map((el) => {
+          return {
+            ...el,
+            authors: el.authors?.map((a) => {
+              return { author: a };
+            }),
+            genres: el.genres?.map((g) => {
+              return { genre: g };
+            }),
+          };
+        });
+        // Filtra los libros según los valores del filtro
+        if (title)  // eslint-disable-next-line
+          data = data.filter((book) => {
+            if (book.title.toLowerCase().includes(title.toLowerCase())) 
+              return true;
+          })
+        if(author)  // eslint-disable-next-line
+          data = data.filter((book) => {
+            if (book.authors.map((a) => a.author.toLowerCase()).some(item => item.includes(author.toLowerCase())))
+              return true;
+          });
+        if(genre) // eslint-disable-next-line
+          data = data.filter((book) => {
+            if (book.genres.map((g) => g.genre.toLowerCase()).some(item => item.includes(genre.toLowerCase()))) 
+              return true
+          })
+        break;
+    
+      case "users":
+        data = await getAllTheUsers();
+        break;
+        
+      case "orders":
+        data = await getOrders();
+        break;
+      default:
+        break;
     }
+    
     return {
       data: data,
       total: data.length,

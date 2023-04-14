@@ -1,4 +1,4 @@
-import { Admin, Resource, CustomRoutes, EditGuesser, ShowGuesser } from "react-admin";
+import { Admin, Resource, CustomRoutes, EditGuesser, ShowGuesser, ListGuesser } from "react-admin";
 import { MyLayout } from "../../components/Admin/Layout/Layout";
 import { Dashboard } from "../../components/Admin/Dashboard/Dashboard";
 import { BookList } from "../../components/Admin/Booklist/Booklist";
@@ -31,6 +31,12 @@ export const AdminDashboard = () => {
         list={Userlist}
         basePath="/admin/users"
         options={{ label: "Users" }}
+      />
+      <Resource
+        name="orders"
+        list={ListGuesser}
+        basePath="/admin/orders"
+        options={{ label: "Orders" }}
       />
     </Admin>
   );
