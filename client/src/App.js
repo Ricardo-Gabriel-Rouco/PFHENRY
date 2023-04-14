@@ -25,7 +25,6 @@ import axios from 'axios'
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import light from "./Theme/light";
 import MyPurchases from "./components/MyPurchases/MyPurchases";
-import PayStatus from "./components/PayStatus/PayStatus";
 axios.defaults.baseURL = 'https://shaky-friend-production.up.railway.app/'
 
 function App() {
