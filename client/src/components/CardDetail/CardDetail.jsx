@@ -18,13 +18,15 @@ import CardsReview from "../CardsReview/CardsReview";
 import CardNewReview from "../CardNewReview/CardNewReview";
 import loading from "../../Assets/Loading.gif";
 import { updateBookReviews } from "../../firebase/firestore/books";
+import {useAuth} from '../../context/authContext'
 
-let nickname = "Claudio"; //Traer el "nickname" del usuario que esta loogeado
 
 
 const CardDetail = ({ id }) => {
   const [details, setMoreDetails] = useState(false);
   const [description, setDescription] = useState(false);
+
+  const {userStatus} = useAuth()
 
   const paramId = useParams().id;
   if (!id)
@@ -156,7 +158,7 @@ const CardDetail = ({ id }) => {
 
             {/* new change "Show reviews" */}
             {bookDetail.reviews ? (
-              bookDetail.reviews.find((obj) => obj.user === nickname) ? (
+              bookDetail.reviews.find((obj) => obj.user === userStatus.nickname) ? (
                 ""
               ) : (
                 <>
@@ -178,7 +180,7 @@ const CardDetail = ({ id }) => {
                       <CardNewReview
                         key={bookDetail.id}
                         id={bookDetail.id}
-                        nickname={nickname}
+                        nickname={userStatus.nickname}
                         handleNewReview={handleNewReview}
                       />
                     </List>
@@ -205,7 +207,7 @@ const CardDetail = ({ id }) => {
                     <CardNewReview
                       key={bookDetail.id}
                       id={bookDetail.id}
-                      nickname={nickname}
+                      nickname={userStatus.nickname}
                       handleNewReview={handleNewReview}
 
                     />
