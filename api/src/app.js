@@ -47,7 +47,7 @@ app.use(morgan("dev"));
 //   res.send();
 // });
 
-module.exports = (req, res) => {
+app.use = (req, res) => {
   //set header first to allow request or origin domain (value can be different)
   res.setHeader('Access-Control-Allow-Origin', ['http://localhost:3000', 'https://pfhenry-jzy1.vercel.app']);
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
