@@ -18,7 +18,8 @@ export async function postOrder(order) {
       ordersArray.push({
         idOrder: order.idOrder,
         status: order.status,
-        items:order.items
+        items:order.items,
+        date: new Date().toISOString()
       });
     }
 
@@ -32,6 +33,19 @@ export async function postOrder(order) {
   } catch (error) {
     return error;
   }
+}
+
+export async function getOrders (id) {
+  try {
+    const docsRef = doc(db, 'orders', id);
+    const docSnap = await getDoc(docsRef);
+    if (docSnap.exists()) {
+      return { ...docSnap.data(), id: id };
+    } else {
+      console.log('No such document!');
+    }
+  } catch (error) {
+    console.log(error);}
 }
 
   // export async function modifyOrder(status) {

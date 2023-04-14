@@ -59,6 +59,15 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
         display,
       })
     );
+    dispatch(addProduct({
+      image,
+      id,
+      title,
+      authors,
+      price,
+      editorial,
+      display
+    }));
   };
 
   //CUADRO DE DIALOGO
@@ -102,6 +111,7 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
         xl={6}
         sx={{ display: "flex", justifyContent: "center" }}
       >
+
         {isFav ? (
           <Button
             color="primary.dark"
@@ -130,6 +140,11 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
         xl={6}
         sx={{ display: "flex", justifyContent: "center" }}
       >
+        <Button
+          variant="contained"
+          size="small"
+          onClick={() => handleAdd(id)}
+        >
         <Button variant="contained" size="small" onClick={() => handleAdd(id)}>
           <ShoppingCartIcon />
         </Button>
@@ -164,7 +179,16 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
             {title}
           </Typography>
           <Typography variant="body2">
-            {price ? <p>Price $ {price}</p> : null}
+            {discount ? (
+              <>
+                <s>{price}</s>{" "}
+                <span>
+                  {(price * (100 - discount) / 100).toFixed(2)}
+                </span>
+              </>
+            ) : (
+              price
+            )}
           </Typography>
         </CardContent>
         <CardActions>

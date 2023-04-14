@@ -19,6 +19,7 @@ import SupportEngine from '../../chatBot/SupportEngine/index'
 const CardContainer = () => {
   const filteredBooks = useSelector((state) => state.books.booksToFilter);
 
+
   //PAGINATED
   const [currentPage, setCurrentPage] = useState(1);
   const [booksPerPage] = useState(8);
@@ -48,9 +49,8 @@ const CardContainer = () => {
   useEffect(() => {
     paginated(1);
   }, [filteredBooks]);
-
   return (
-    
+
     <div className={style.container}>
       {filteredBooks.length ? (<FilterOptions setCurrentPage={setCurrentPage} />) : null}
       {filteredBooks === "not found" ? (
@@ -60,33 +60,35 @@ const CardContainer = () => {
         </div>
       ) : filteredBooks.length ? (
         <Cards>
-        
-          <Carrousel currentBook={currentBook} />
-          
-          <Grid container spacing={1} justifyContent="center" >
-            {currentBook.map((c, index) => (
-              <Grid item xs={12} sm={6} md={4} lg={3} key={c.id}>
-                <div key={index}>
-                  <Card
-                    id={c.id}
-                    authors={c.authors}
-                    image={c.image}
-                    title={c.title}
-                    price={c.price}
-                    editorial={c.editorial}
-                    display={c.display}
-                  />
-                </div>
 
-              </Grid>
-            ))}
+          <Carrousel />
+          <Grid container spacing={1} justifyContent="center" >
+            {currentBook
+              .map((c, index) => (
+                <Grid item xs={12} sm={6} md={4} lg={3} key={c.id}>
+                  {c.display ?
+                    <div key={index}>
+                      <Card
+                        id={c.id}
+                        authors={c.authors}
+                        image={c.image}
+                        title={c.title}
+                        price={c.price}
+                        editorial={c.editorial}
+                        display={c.display}
+                        discount={c.discount}
+                      />
+                    </div> : null}
+                </Grid>
+              )
+              )}
           </Grid>
         </Cards>
       ) : (
         //<ComponentError />
         <img src={loading} alt="loading" />
       )}
-            <SupportEngine />
+      <SupportEngine />
 
       {Array.isArray(filteredBooks) && filteredBooks.length ? (
         <div className={style.paginate}>

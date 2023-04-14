@@ -43,9 +43,6 @@ const Cart = () => {
 
 
   useEffect(() => {
-
-    // console.log(availableItems(displayableBooks, cart))
-
     setOrder({
       user: {
         name: userStatus.userId,
@@ -61,7 +58,7 @@ const Cart = () => {
     if (userStatus.logged) {
       try {
         const response = await axios.post(
-          "https://shaky-friend-production.up.railway.app/checkout",
+          "/checkout",
           order
         );
 
@@ -129,7 +126,16 @@ const Cart = () => {
                     ({product.authors})
                   </Typography>
                   <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
-                    ${product.unit_price}
+                    {product.discount ? (
+                      <>
+                        <s>{product.unit_price}</s>{" "}
+                        <span>
+                          {(product.unit_price * (100 - product.discount) / 100).toFixed(2)}
+                        </span>
+                      </>
+                    ) : (
+                      product.unit_price
+                    )}
                   </Typography>
                   <Box sx={{ display: "flex" }}>
                     <Button

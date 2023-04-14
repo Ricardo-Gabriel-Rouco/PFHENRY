@@ -28,7 +28,7 @@ const DisplayCheckbox = () => {
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
-    modifyBook(record.id, !checked)
+    modifyBook(record.id, {display: !checked})
   }
   
 
