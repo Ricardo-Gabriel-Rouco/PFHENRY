@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Box, TextField, Rating, Button, Paper } from "@mui/material";
+import React, { useState } from "react";
+import { TextField, Rating, Button, Grid } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import { updateBookReviews } from "../../firebase/firestore/books";
 
-const CardNewReview = ({ id, nickname }) => {
+const CardNewReview = ({ id, nickname, handleNewReview }) => {
   const initialState = {
     id: id,
     nickname: nickname,
@@ -12,40 +11,35 @@ const CardNewReview = ({ id, nickname }) => {
     display: true,
   };
   const [input, setInput] = useState(initialState);
-
   const handleinputReview = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    try {
-      console.log(input);
-      const res = await updateBookReviews(input);
-      console.log(res);
-      setInput(initialState);
-    } catch (error) {
-      console.log(error);
-    }
-    //hacer PUSH del objeto INPUT al registro con el "id" correspondiente
+    handleNewReview(input);
+    setInput(initialState);
   };
 
   return (
-    <Paper
-      elevation={8}
-      style={{ width: 415, height: 120, overflow: "auto", marginBottom: 5 }}
+    <Grid
+      container
+      spacing={1}
+      xs={12}
+      sx={{ display: "flex", alignItems: "center" }}
     >
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          width: "100%",
-          padding: 1,
-        }}
-        component="form"
+      <Grid
+        item
+        xs={12}
+        sm={2}
+        md={2}
+        lg={2}
+        xl={2}
+        sx={{ display: "flex", justifyContent: "center" }}
       >
-        <AccountCircle color="secondary" sx={{ mr: 0.5, my: 0.5 }} />
+        <AccountCircle color="primary.main" fontSize="large" />
+      </Grid>
+      <Grid item xs={12} sm={7} md={7} lg={7} xl={7}>
         <TextField
           sx={{ width: "100%" }}
           id="input-with-sx"
@@ -55,27 +49,51 @@ const CardNewReview = ({ id, nickname }) => {
           value={input.comment}
           label={nickname}
           variant="standard"
-          color="secondary"
+          color="primary"
           onChange={handleinputReview}
           required
         />
+      </Grid>
+      <Grid
+        item
+        xs={12}
+        sm={3}
+        md={3}
+        lg={3}
+        xl={3}
+        sx={{ display: "flex", justifyContent: "center" }}
+      >
         <Rating
           name="rating"
           value={input.rating}
           precision={0.5}
           onChange={handleinputReview}
+          sx={{
+            "& .MuiRating-iconFilled": {
+              color: "text.primary",
+            },
+            "& .MuiRating-iconFocus": {
+              color: "text.primary",
+            },
+            "& .MuiRating-iconHover": {
+              color: "text.primary",
+            },
+          }}
+
         />
-      </Box>
-      <Button
-        type="submit"
-        color="secondary"
-        onClick={handleOnSubmit}
-        variant="contained"
-        size="small"
-      >
-        Review
-      </Button>
-    </Paper>
+      </Grid>
+      <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
+        <Button
+          type="submit"
+          color="primary"
+          onClick={handleOnSubmit}
+          variant="contained"
+          size="small"
+        >
+          Review
+        </Button>
+      </Grid>
+    </Grid>
   );
 };
 

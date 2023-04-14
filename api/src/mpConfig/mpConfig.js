@@ -1,7 +1,7 @@
 const mercadopago = require('mercadopago');
 
 mercadopago.configure({
-    access_token: 'APP_USR-6176663913976174-040115-df5fe447a7510c43fb3a958041b8075f-1343626762'
+    access_token: 'APP_USR-3594846635662107-041019-7bd48c43894ac0e2bd16975b12b28dbc-1349625519'
 });
 
 module.exports = {

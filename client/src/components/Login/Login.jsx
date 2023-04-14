@@ -11,9 +11,10 @@ import { addCartDB } from "../../redux/rootReducer/cartSlice";
 const Login = () => {
   const favLS = useSelector((state) => state.favorite.favorites.favorites);
   const cartLS = useSelector((sate) => sate.cart);
-  console.log(cartLS);
-  console.log(cartLS.cart);
-  console.log(cartLS.cart.cart);
+
+  // console.log(cartLS);
+  // console.log(cartLS.cart);
+  // console.log(cartLS.cart.cart);
 
   const { login, loginWithGoogle, resetPassword, userStatus } = useAuth();
   const navigate = useNavigate();
@@ -23,10 +24,7 @@ const Login = () => {
   });
   const dispatch = useDispatch();
 
-  const [errors, setErrors] = useState({
-    email: "",
-    password: "",
-  });
+  const [errors, setErrors] = useState("");
 
   useEffect(() => {
     if (userStatus.logged) {
@@ -46,12 +44,19 @@ const Login = () => {
       await login(userData.email, userData.password);
       const favDB = await getFavorites(userStatus.userId);
 
+      console.log(favDB)
+      console.log(favLS)
+
       if (favDB && favLS) {
         const combinedFavorites = [...favDB, ...favLS];
 
+        console.log(combinedFavorites)
+
         const uniqueFavorites = combinedFavorites.filter((obj, index, self) => {
-          return index === self.findIndex((o) => o.id === obj.id);
+          return index === self.findIndex((o) => o === obj);
         });
+
+        console.log(uniqueFavorites)
 
         dispatch(addFavoritesDB(uniqueFavorites));
       }
@@ -79,24 +84,18 @@ const Login = () => {
         dispatch(addCartDB(combinedCart));
       }
 
-      navigate("/home");
+      navigate(-1);
     } catch (error) {
-      console.log(error);
-      if (error.code === "auth/wrong-password")
-        setErrors({ password: "Wrong password" });
-      else if (error.code === "auth/user-not-found")
-
-        setErrors({ ...errors, email: "User not found" });
-      else if (error === "emptyEmail")
-        setErrors({ ...errors, email: "Must insert email" });
-      else if (error === "emptyPass")
-        setErrors({ ...errors, password: "Must insert password" });
+      // console.log(error);
+      if (error.code === "auth/user-not-found") setErrors("User not found");
+      else if (error.code === "auth/invalid-email") setErrors("Invalid email");
+      else if (error === "emptyEmail") setErrors("Must insert email");
+      else if (error.code === "auth/wrong-password")
+        setErrors("Wrong password");
+      else if (error === "emptyPass") setErrors("Must insert password");
       else if (error === "bothEmpty")
-        setErrors({
-          ...errors,
-          email: "Must insert email",
-          password: "Must insert password",
-        });
+        setErrors("Must insert email and password");
+      else console.log(error.code);
     }
   }
 
@@ -139,7 +138,7 @@ const Login = () => {
       }
       navigate("/home");
     } catch (error) {
-      setErrors({ ...errors, error });
+      setErrors({ error });
     }
   }
 
@@ -149,10 +148,10 @@ const Login = () => {
 
   const handleResetPassword = async () => {
     if (!userData.email)
-      return setErrors({ ...userData, email: "ingresa un email" });
+      return setErrors({ ...userData, email: "insert an email" });
     try {
       await resetPassword(userData.email);
-      alert("we send you an email to reset your password");
+      alert("we've sent you an email to reset your password");
     } catch (error) {
       alert(error.message);
     }
@@ -167,7 +166,8 @@ const Login = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        margin: "2rem",
+        margin: "1rem",
+        marginTop: "70px",
       }}
     >
       <TextField
@@ -176,13 +176,8 @@ const Login = () => {
         value={userData.email}
         label="Email"
         onChange={handleInputChange}
-        style={{ margin: "1rem" }}
+        style={{ margin: "0.5rem" }}
       />
-      {errors.email && (
-        <Typography sx={{ fontSize: "1em" }} color="red" gutterBottom>
-          {errors.email}
-        </Typography>
-      )}
 
       <TextField
         type="password"
@@ -190,20 +185,21 @@ const Login = () => {
         value={userData.password}
         label="Password"
         onChange={handleInputChange}
-        style={{ margin: "1rem" }}
+        style={{ margin: "0.5rem" }}
       />
-      {errors.password && (
-        <Typography sx={{ fontSize: "1em" }} color="red" gutterBottom>
-          {errors.password}
+
+      {errors && (
+        <Typography sx={{ fontSize: "0.5em" }} color="red" gutterBottom>
+          {errors}
         </Typography>
       )}
       <Button
         type="submit"
         variant="contained"
         color="primary"
-        style={{ margin: "2rem" }}
+        style={{ margin: "0.5rem" }}
       >
-        Iniciar Sesion
+        Login
       </Button>
       <Button
         variant="contained"
@@ -211,12 +207,19 @@ const Login = () => {
         onClick={() => {
           registerGoogle();
         }}
-        style={{ margin: "2rem" }}
+        style={{ margin: "3rem" }}
       >
-        Inicia sesion con Google
+        Login with Google
       </Button>
-      <Link to={"/register"}>No tienes Cuenta? crea una</Link>
-      <Link onClick={handleResetPassword}>Forgot password?</Link>
+      <Link style={{ color: "#e4704c", margin: "1rem" }} to={"/register"}>
+        No tienes Cuenta? crea una
+      </Link>
+      <Link
+        style={{ color: "#ffc400", margin: "1rem" }}
+        onClick={handleResetPassword}
+      >
+        Forgot password?
+      </Link>
     </form>
   );
 };
