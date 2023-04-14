@@ -39,8 +39,8 @@ const NavBar = ({ passTheme, mode }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
-  const favorites = useSelector(state => state.favorite.favorites);
-  const cart = useSelector(state => state.cart);
+  const favorites = useSelector((state) => state.favorite.favorites);
+  const cart = useSelector((state) => state.cart);
   const displayableBooks = useSelector((state) => state.books.displayableBooks);
 
   const handleMenu = (event) => {
@@ -66,10 +66,9 @@ const NavBar = ({ passTheme, mode }) => {
 
   //Estableciendo modos de Theme para el py
 
-
   useEffect(() => {
-    dispatch(importBooks())
-  },[dispatch])
+    dispatch(importBooks());
+  }, [dispatch]);
 
   return (
     location.pathname !== "/" &&
@@ -108,8 +107,8 @@ const NavBar = ({ passTheme, mode }) => {
                   sx={{ mr: 2 }}
                   color="inherit"
                 >
-                  <Link style={{ color: "#ffc400" }} to="/create">
-                    <AddCircleOutlineIcon />
+                  <Link to="/create">
+                    <AddCircleOutlineIcon color="success" />
                   </Link>
                 </IconButton>
               ) : null}
@@ -138,34 +137,40 @@ const NavBar = ({ passTheme, mode }) => {
                 </IconButton>
               )}
 
-            <IconButton
-              size="large"
-              edge="start"
-              aria-label="buttons"
-              sx={{ mr: 2 }}
-              color="inherit"
-              onClick={() => dispatch(toogleFav())}
-            >
+              <IconButton
+                size="large"
+                edge="start"
+                aria-label="buttons"
+                sx={{ mr: 2 }}
+                color="inherit"
+                onClick={() => dispatch(toogleFav())}
+              >
+                <Badge
+                  badgeContent={
+                    favorites &&
+                    displayableBooks.filter((book) =>
+                      favorites.favorites.includes(book.id)
+                    ).length
+                  }
+                >
+                  <BookmarkOutlinedIcon />
+                </Badge>
+              </IconButton>
 
-              <Badge badgeContent={favorites && displayableBooks.filter(book => favorites.favorites.includes(book.id)).length}>
-                <BookmarkOutlinedIcon  />
-              </Badge>
-            </IconButton>
-
-            <IconButton
-              size="large"
-              edge="start"
-              aria-label="buttons"
-              sx={{ mr: 2 }}
-              color="inherit"
-              onClick={() => dispatch(toogleCart())}
-            >
-
-              <Badge badgeContent={availableItems(displayableBooks,cart).length}>
-                <ShoppingCart />
-              </Badge>
-            </IconButton>
-
+              <IconButton
+                size="large"
+                edge="start"
+                aria-label="buttons"
+                sx={{ mr: 2 }}
+                color="inherit"
+                onClick={() => dispatch(toogleCart())}
+              >
+                <Badge
+                  badgeContent={availableItems(displayableBooks, cart).length}
+                >
+                  <ShoppingCart />
+                </Badge>
+              </IconButton>
 
               {/* {userStatus.logged ? ( */}
               <div>
@@ -180,41 +185,50 @@ const NavBar = ({ passTheme, mode }) => {
                   <AccountCircle />
                 </IconButton>
 
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-                color="inherit"
-              >
-                {userStatus.logged ? (
-                  <>
-                    <MenuItem onClick={handleClose}><Link to={'/modify'}>Profile</Link></MenuItem>
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
-                    <MenuItem onClick={()=>{handleClose();handleLogOut()}}>Log Out</MenuItem>
-                  </>
-                ) : (
-                  <MenuItem onClick={handleClose}>
-                    <Link style={{ color: "#ffc400" }} to={"/login"}>Log In</Link>
-                  </MenuItem>
-                )}
-              </Menu>
-            </div>
-          </Toolbar>
-        </Box>
-      </AppBar >
-      <Toolbar/>  {/* Este componente es solo para evitar que la NavBar fija pise elementos en la pagina*/}
-    </Box >
-                
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
+                  color="inherit"
+                >
+                  {userStatus.logged ? (
+                    <>
+                      <MenuItem onClick={handleClose}>
+                        <Link to={"/modify"}>Profile</Link>
+                      </MenuItem>
+                      <MenuItem onClick={handleClose}>My account</MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          handleClose();
+                          handleLogOut();
+                        }}
+                      >
+                        Log Out
+                      </MenuItem>
+                    </>
+                  ) : (
+                    <MenuItem onClick={handleClose}>
+                      <Link to={"/login"}>Log In</Link>
+                    </MenuItem>
+                  )}
+                </Menu>
+              </div>
+            </Toolbar>
+          </Box>
+        </AppBar>
+        <Toolbar />{" "}
+        {/* Este componente es solo para evitar que la NavBar fija pise elementos en la pagina*/}
+      </Box>
     )
   );
 };

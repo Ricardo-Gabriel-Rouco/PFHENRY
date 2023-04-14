@@ -44,19 +44,19 @@ const Login = () => {
       await login(userData.email, userData.password);
       const favDB = await getFavorites(userStatus.userId);
 
-      console.log(favDB)
-      console.log(favLS)
+      console.log(favDB);
+      console.log(favLS);
 
       if (favDB && favLS) {
         const combinedFavorites = [...favDB, ...favLS];
 
-        console.log(combinedFavorites)
+        console.log(combinedFavorites);
 
         const uniqueFavorites = combinedFavorites.filter((obj, index, self) => {
           return index === self.findIndex((o) => o === obj);
         });
 
-        console.log(uniqueFavorites)
+        console.log(uniqueFavorites);
 
         dispatch(addFavoritesDB(uniqueFavorites));
       }
@@ -189,7 +189,7 @@ const Login = () => {
       />
 
       {errors && (
-        <Typography sx={{ fontSize: "0.5em" }} color="red" gutterBottom>
+        <Typography sx={{ fontSize: "0.5em", color: "error" }} gutterBottom>
           {errors}
         </Typography>
       )}
@@ -211,13 +211,10 @@ const Login = () => {
       >
         Login with Google
       </Button>
-      <Link style={{ color: "#e4704c", margin: "1rem" }} to={"/register"}>
+      <Link style={{ margin: "1rem" }} to={"/register"}>
         No tienes Cuenta? crea una
       </Link>
-      <Link
-        style={{ color: "#ffc400", margin: "1rem" }}
-        onClick={handleResetPassword}
-      >
+      <Link style={{ margin: "1rem" }} onClick={handleResetPassword}>
         Forgot password?
       </Link>
     </form>

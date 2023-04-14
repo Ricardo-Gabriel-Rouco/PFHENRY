@@ -22,12 +22,9 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { addProduct } from "../../redux/rootReducer/cartSlice";
 import CardDetail from "../CardDetail/CardDetail";
 
-
-
-  
 const Card = ({ image, id, title, authors, price, editorial, display }) => {
-    const favorite = useSelector(state => state.favorite.favorites)
-    const dispatch = useDispatch();
+  const favorite = useSelector((state) => state.favorite.favorites);
+  const dispatch = useDispatch();
 
   //FAVORITES
   const [isFav, setIsFav] = useState(false);
@@ -51,15 +48,17 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
   };
 
   const handleAdd = (id) => {
-    dispatch(addProduct({
-      image, 
-      id, 
-      title, 
-      authors, 
-      price, 
-      editorial, 
-      display
-    }));
+    dispatch(
+      addProduct({
+        image,
+        id,
+        title,
+        authors,
+        price,
+        editorial,
+        display,
+      })
+    );
   };
 
   //CUADRO DE DIALOGO
@@ -105,7 +104,7 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
       >
         {isFav ? (
           <Button
-            color="primary"
+            color="primary.dark"
             variant="contained"
             size="small"
             onClick={() => handleFavorite()}
@@ -131,11 +130,7 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
         xl={6}
         sx={{ display: "flex", justifyContent: "center" }}
       >
-        <Button
-          variant="contained"
-          size="small"
-          onClick={() => handleAdd( id )}
-        >
+        <Button variant="contained" size="small" onClick={() => handleAdd(id)}>
           <ShoppingCartIcon />
         </Button>
       </Grid>
@@ -214,7 +209,7 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
                 >
                   {isFav ? (
                     <Button
-                      variant="outlined"
+                      variant="contained"
                       sx={{
                         color: "primary.contrastText",
 
@@ -230,7 +225,7 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
                     </Button>
                   ) : (
                     <Button
-                      variant="outlined"
+                      variant="contained"
                       sx={{
                         color: "primary.contrastText",
 
@@ -256,7 +251,7 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
                   sx={{ display: "flex", justifyContent: "center" }}
                 >
                   <Button
-                    variant="outlined"
+                    variant="contained"
                     sx={{
                       color: "primary.contrastText",
 
@@ -266,9 +261,7 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
                       },
                     }}
                     endIcon={<ShoppingCartIcon />}
-                    onClick={() =>
-                      handleAdd(id)
-                    }
+                    onClick={() => handleAdd(id)}
                   >
                     Add
                   </Button>
@@ -276,7 +269,7 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
               </Grid>
 
               <Button
-                variant="outlined"
+                variant="contained"
                 endIcon={<ExitToAppIcon />}
                 onClick={handleClose}
                 sx={{

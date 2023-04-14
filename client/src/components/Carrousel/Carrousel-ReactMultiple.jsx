@@ -4,7 +4,7 @@ import { CardMedia, styled } from "@mui/material";
 
 // Estilos para el Carousel
 const CarouselContainer = styled('div')({
-    backgroundColor: "#f9b52ea8",
+    // backgroundColor: "#f9b52ea8",
     margin: 'auto',
     maxWidth: '100vw',
 });

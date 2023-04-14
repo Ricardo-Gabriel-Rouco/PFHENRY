@@ -12,7 +12,7 @@ import {
   List,
   ListSubheader,
   Collapse,
-  Button
+  Button,
 } from "@mui/material";
 import CardsReview from "../CardsReview/CardsReview";
 import CardNewReview from "../CardNewReview/CardNewReview";
@@ -21,14 +21,12 @@ import { updateBookReviews } from "../../firebase/firestore/books";
 
 let nickname = "Claudio"; //Traer el "nickname" del usuario que esta loogeado
 
-
 const CardDetail = ({ id }) => {
   const [details, setMoreDetails] = useState(false);
   const [description, setDescription] = useState(false);
 
   const paramId = useParams().id;
-  if (!id)
-    id = paramId
+  if (!id) id = paramId;
   const dispatch = useDispatch();
   const [bookDetail, setBookDetail] = useState({});
 
@@ -69,7 +67,6 @@ const CardDetail = ({ id }) => {
       sx={{ padding: 2 }}
     >
       <Grid item xs={12} md={6} lg={4}>
-
         <Card
           sx={{
             position: "absolute",
@@ -77,7 +74,7 @@ const CardDetail = ({ id }) => {
             left: "50%",
             transform: "translate(-50%, -50%)",
             p: 4,
-            bgcolor: "primary",
+            bgcolor: "primary.dark",
             width: 800,
             maxWidth: "50vw",
             maxHeight: "71vh",
@@ -88,7 +85,6 @@ const CardDetail = ({ id }) => {
         >
           <Box
             sx={{
-
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -130,28 +126,30 @@ const CardDetail = ({ id }) => {
               gutterBottom
               sx={{ fontWeight: "bold", marginBottom: "15px" }}
             >
-              <Collapse in={details} collapsedHeight={'500px'}>
-                {bookDetail?.year} - {bookDetail?.editorial} - {bookDetail?.authors}
+              <Collapse in={details} collapsedHeight={"500px"}>
+                {bookDetail?.year} - {bookDetail?.editorial} -{" "}
+                {bookDetail?.authors}
               </Collapse>
             </Typography>
             <Button onClick={() => setMoreDetails(!details)}>
-              {details ? 'View less' : 'View Details'}
+              {details ? "View less" : "View Details"}
             </Button>
-            {bookDetail && bookDetail.description && ( <> 
+            {bookDetail && bookDetail.description && (
+              <>
                 <Typography
                   variant="body1"
                   align="justify"
                   gutterBottom
                   sx={{ marginBottom: "15px", width: "90%" }}
                 >
-                  <Collapse in={description} collapsedHeight={'500px'}>
+                  <Collapse in={description} collapsedHeight={"500px"}>
                     {bookDetail.description}
                   </Collapse>
                 </Typography>
                 <Button onClick={() => setDescription(!description)}>
-                  {description ? 'View less' : 'View Description'}
+                  {description ? "View less" : "View Description"}
                 </Button>
-                </>
+              </>
             )}
 
             {/* new change "Show reviews" */}
@@ -207,7 +205,6 @@ const CardDetail = ({ id }) => {
                       id={bookDetail.id}
                       nickname={nickname}
                       handleNewReview={handleNewReview}
-
                     />
                   </List>
                 </Paper>
@@ -230,7 +227,10 @@ const CardDetail = ({ id }) => {
                       margin: "auto",
                     }}
                     subheader={
-                      <ListSubheader color="primary" sx={{ display: "flex" }}>
+                      <ListSubheader
+                        color="primary.dark"
+                        sx={{ display: "flex" }}
+                      >
                         Comments
                       </ListSubheader>
                     }

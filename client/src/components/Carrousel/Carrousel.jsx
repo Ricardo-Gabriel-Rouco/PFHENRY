@@ -14,7 +14,6 @@ SwiperCore.use([Navigation, Pagination]);
 
 const Carrousel = () => {
     const CarouselContainer = styled('div')({
-        backgroundColor: "#f9b52ea8",
         margin: 'auto',
         maxWidth: '100vw',
         zIndex: 0

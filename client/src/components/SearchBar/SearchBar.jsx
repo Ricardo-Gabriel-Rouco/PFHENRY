@@ -1,16 +1,13 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // eslint-disable-next-line
-import {
-  searchBook
-} from "../../redux/rootReducer/bookSlice";
+import { searchBook } from "../../redux/rootReducer/bookSlice";
 import SearchIcon from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { IconButton, Paper } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import {matchSorter} from 'match-sorter';
-
+import { matchSorter } from "match-sorter";
 
 const SearchBar = ({ placeholder }) => {
   // eslint-disable-next-line
@@ -31,10 +28,9 @@ const SearchBar = ({ placeholder }) => {
   //HANDLER DEL BOTON DE BUSQUEDA
 
   const handlerSearchClick = (value) => {
-    if(typeof(value) !== "string")
-      value=searchValue
+    if (typeof value !== "string") value = searchValue;
     // console.log(value)
-    
+
     dispatch(searchBook(value));
     setSearchValue("");
     navigate("/home");
@@ -51,11 +47,9 @@ const SearchBar = ({ placeholder }) => {
     // Only show options that include the input value
     return !inputValue.length
       ? ""
-      : matchSorter(options, inputValue)
-          .slice(0, 5); // Limit the number of displayed options to 5
+      : matchSorter(options, inputValue).slice(0, 5); // Limit the number of displayed options to 5
   }
 
- 
   return (
     <>
       <Paper
@@ -71,32 +65,32 @@ const SearchBar = ({ placeholder }) => {
         margin="dense"
       >
         <Autocomplete
-            freeSolo
-            // id="free-solo-2-demo"
-            disableClearable
-            blurOnSelect
-            options={books.map((el) => el.title)}
-            sx={{ flex: 1, width: "100%", borderWidth: "0" }}
-            filterOptions={filterOptions}
-            value={searchValue}
-            onInput={handlerInputChange}
-            onChange={(e,value)=>handlerSearchClick(value)}
-            onKeyDown={handlerKeyDown}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                sx={{ ml: 1, flex: 1, marginLeft: "0", marginRight: "1px" }}
-                label="Search book"
-                InputLabelProps={{ focused: true, style: { color: "black" } }}
-                // margin="dense"
-                InputProps={{
-                  ...params.InputProps,
-                  type: "search",
-                  endAdornment:true
-                }}
-              />
-            )}
-          />
+          freeSolo
+          // id="free-solo-2-demo"
+          disableClearable
+          blurOnSelect
+          options={books.map((el) => el.title)}
+          sx={{ flex: 1, width: "100%", borderWidth: "0" }}
+          filterOptions={filterOptions}
+          value={searchValue}
+          onInput={handlerInputChange}
+          onChange={(e, value) => handlerSearchClick(value)}
+          onKeyDown={handlerKeyDown}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              sx={{ ml: 1, flex: 1, marginLeft: "0", marginRight: "1px" }}
+              label="Search book"
+              InputLabelProps={{ focused: true }}
+              // margin="dense"
+              InputProps={{
+                ...params.InputProps,
+                type: "search",
+                endAdornment: true,
+              }}
+            />
+          )}
+        />
         <IconButton
           type="button"
           sx={{ p: "px" }}
