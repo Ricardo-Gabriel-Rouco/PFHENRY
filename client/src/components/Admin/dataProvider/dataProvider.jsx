@@ -4,7 +4,7 @@ import {
   getBookById,
   postBook
 } from "../../../firebase/firestore/books";
-import { getAllTheUsers } from "../../../firebase/firestore/users";
+import { getAllTheUsers, modifyUser } from "../../../firebase/firestore/users";
 
 const dataProvider = {
   getList: async (resource, params) => {
@@ -86,6 +86,11 @@ const dataProvider = {
         data
       );
       return { data: { id: id, ...data } }
+    } else if (resource === 'users'){
+      const {id,data} = params;
+      await modifyUser(id,data.display)
+      console.log(`User with ID ${id} has been modified`)
+      return{data:{id:id,...data}}
     }},
   create: async (resource,params) =>{
     if(resource === 'books'){

@@ -10,25 +10,28 @@ const DisplayCheckbox =() =>{
 
     useEffect(()=>{
         setChecked(record.display)
-    },[])
+        modifyUser(record.id,checked)
+    },[record.display,checked,record.id])
 
     const handleChange = (e) =>{
         setChecked(e.target.checked)
-        modifyUser(record.uid,!checked)
+        // modifyUser(record.id,!checked)
+
+
     }
     return(
         <CheckBox
         checked={checked}
         onChange ={handleChange}
-        inputProps={{'aria-label':'controlled'}}
         />
     )
 }
 
-export const Userlist = () => (
-    <List pagination={false}>
+export const Userlist = (props) => (
+    <List {...props} pagination={false}>
         <Datagrid bulkActionButtons={false}>
-            <FunctionField label='Display'
+            <FunctionField 
+            label='Display'
             render={()=><DisplayCheckbox/>}
             />
             <TextField source="uid" />

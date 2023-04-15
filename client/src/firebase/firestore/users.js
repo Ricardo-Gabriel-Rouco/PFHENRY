@@ -19,11 +19,11 @@ export async function getAllTheUsers() {
   return data
 }
 
-export async function modifyUser(uid, display) {
+export async function modifyUser(id, display) {
   try {
-    const userRef = doc(db, 'users', `${uid}`)
+    const userRef = doc(db, 'users', `${id}`)
     await updateDoc(userRef, {
-      display ,
+      display:display ,
 
     })
   } catch (error) {
