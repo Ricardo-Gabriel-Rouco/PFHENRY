@@ -18,6 +18,7 @@ import CardsReview from "../CardsReview/CardsReview";
 import CardNewReview from "../CardNewReview/CardNewReview";
 import loading from "../../Assets/Loading.gif";
 import { updateBookReviews } from "../../firebase/firestore/books";
+import { useAuth } from "../../context/authContext";
 
 
 
@@ -156,7 +157,7 @@ const CardDetail = ({ id }) => {
 
             {/* new change "Show reviews" */}
             {bookDetail.reviews ? (
-              bookDetail.reviews.find((obj) => obj.user === userStatus.nickname) ? (
+              bookDetail.reviews.find((obj) => obj.user === userStatus.nickName) ? (
                 ""
               ) : (
                 <>

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { TextField, Rating, Button, Grid } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
+import { useAuth } from "../../context/authContext";
 
-const CardNewReview = ({ id, nickname, handleNewReview, uid }) => {
+const CardNewReview = ({ id, handleNewReview}) => {
+  const {userStatus} = useAuth() 
   const initialState = {
     id: id,
-    userId: uid,
-    nickname: nickname,
+    userId: userStatus.userId,
+    nickname: userStatus.nickName,
     comment: "",
     rating: 0,
     display: true,
@@ -48,7 +50,7 @@ const CardNewReview = ({ id, nickname, handleNewReview, uid }) => {
           maxRows={2}
           name="comment"
           value={input.comment}
-          label={nickname}
+          label={initialState.nickname}
           variant="standard"
           color="primary"
           onChange={handleinputReview}
