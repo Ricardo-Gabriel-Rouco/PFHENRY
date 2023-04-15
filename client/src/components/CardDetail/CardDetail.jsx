@@ -20,13 +20,11 @@ import loading from "../../Assets/Loading.gif";
 import { updateBookReviews } from "../../firebase/firestore/books";
 import { useAuth } from "../../context/authContext";
 
-
-
 const CardDetail = ({ id }) => {
   const [details, setMoreDetails] = useState(false);
   const [description, setDescription] = useState(false);
 
-  const {userStatus} = useAuth()
+  const { userStatus } = useAuth();
 
   const paramId = useParams().id;
   if (!id) id = paramId;
@@ -45,19 +43,14 @@ const CardDetail = ({ id }) => {
   }, [dispatch, id]);
 
   const handleNewReview = async (input) => {
-    try {
-      const res = await updateBookReviews(input);
-      console.log(res);
-      dispatch(getBookById(id))
-        .then((response) => {
-          setBookDetail(response.payload);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } catch (error) {
-      console.log(error);
-    }
+    await updateBookReviews(input);
+    dispatch(getBookById(id))
+      .then((response) => {
+        setBookDetail(response.payload);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return bookDetail.id ? (
@@ -157,34 +150,38 @@ const CardDetail = ({ id }) => {
 
             {/* new change "Show reviews" */}
             {bookDetail.reviews ? (
-              bookDetail.reviews.find((obj) => obj.user === userStatus.nickName) ? (
+              bookDetail.reviews.find(
+                (obj) => obj.user === userStatus.nickName
+              ) ? (
                 ""
               ) : (
                 <>
-                  <Paper
-                    elevation={4}
-                    sx={{
-                      maxHeight: 200,
-                      overflow: "auto",
-                      margin: "auto",
-                      width: "90%",
-                    }}
-                  >
-                    <List
+                  {userStatus.logged ? (
+                    <Paper
+                      elevation={4}
                       sx={{
-                        width: "95%",
+                        maxHeight: 200,
+                        overflow: "auto",
                         margin: "auto",
+                        width: "90%",
                       }}
                     >
-                      <CardNewReview
-                        key={bookDetail.id}
-                        id={bookDetail.id}
-                        nickname={userStatus.nickname}
-                        handleNewReview={handleNewReview}
-                        uid={userStatus.userId}
-                      />
-                    </List>
-                  </Paper>
+                      <List
+                        sx={{
+                          width: "95%",
+                          margin: "auto",
+                        }}
+                      >
+                        <CardNewReview
+                          key={bookDetail.id}
+                          id={bookDetail.id}
+                          nickname={userStatus.nickname}
+                          handleNewReview={handleNewReview}
+                          uid={userStatus.userId}
+                        />
+                      </List>
+                    </Paper>
+                  ) : null}
                 </>
               )
             ) : (

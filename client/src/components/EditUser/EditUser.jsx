@@ -70,16 +70,6 @@ const action = (
         style={{ margin: "1rem" }}
       />
       {/* {errors.nickName && <p>{errors.nickName}</p>} */}
-      <Typography>Nombre Completo actual: {userStatus.fullName}</Typography>
-      <TextField
-        type="text"
-        label="Nombre completo"
-        name="fullName"
-        value={userData.fullName}
-        onChange={handleInputChange}
-        style={{ margin: "1rem" }}
-      />
-      {/* {errors.fullName && <p>{errors.fullName}</p>} */}
       <Button
         type="submit"
         variant="contained"

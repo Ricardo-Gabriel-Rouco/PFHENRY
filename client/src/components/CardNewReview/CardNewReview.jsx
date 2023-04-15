@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TextField, Rating, Button, Grid } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { useAuth } from "../../context/authContext";
@@ -13,15 +13,32 @@ const CardNewReview = ({ id, handleNewReview}) => {
     rating: 0,
     display: true,
   };
+
+  const [errors, setErrors] = useState({
+    comment: '',
+    rating: 0
+  })
+  
   const [input, setInput] = useState(initialState);
+  useEffect(() => {
+    const newError = {comment: '', rating: ''}
+    if(!input.comment) newError.comment= 'El comentario no puede estar vacio'
+    if(parseInt(input.rating) <= 0) newError.rating= 'Debe calificar con al menos media estrella'
+    setErrors(newError)
+  }, [input])
+  
   const handleinputReview = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    handleNewReview(input);
-    setInput(initialState);
+    if(!errors.comment && !errors.rating){
+      handleNewReview(input);
+      setInput(initialState);
+    } else {
+
+    }
   };
 
   return (
@@ -54,7 +71,6 @@ const CardNewReview = ({ id, handleNewReview}) => {
           variant="standard"
           color="primary"
           onChange={handleinputReview}
-          required
         />
       </Grid>
       <Grid
