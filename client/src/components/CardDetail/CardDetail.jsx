@@ -182,6 +182,7 @@ const CardDetail = ({ id }) => {
                         id={bookDetail.id}
                         nickname={userStatus.nickname}
                         handleNewReview={handleNewReview}
+                        uid={userStatus.userId}
                       />
                     </List>
                   </Paper>
@@ -209,7 +210,7 @@ const CardDetail = ({ id }) => {
                       id={bookDetail.id}
                       nickname={userStatus.nickname}
                       handleNewReview={handleNewReview}
-
+                      uid={userStatus.userId}
                     />
                   </List>
                 </Paper>

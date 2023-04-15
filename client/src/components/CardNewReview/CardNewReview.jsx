@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { TextField, Rating, Button, Grid } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 
-const CardNewReview = ({ id, nickname, handleNewReview }) => {
+const CardNewReview = ({ id, nickname, handleNewReview, uid }) => {
   const initialState = {
     id: id,
+    userId: uid,
     nickname: nickname,
     comment: "",
     rating: 0,
