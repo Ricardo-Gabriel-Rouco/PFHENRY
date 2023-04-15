@@ -36,6 +36,7 @@ export const AdminDashboard = () => {
       <Resource
         name="orders"
         list={OrderList}
+        show={ShowGuesser}
         basePath="/admin/orders"
         options={{ label: "Orders" }}
       />

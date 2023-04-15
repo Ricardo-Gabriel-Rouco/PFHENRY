@@ -4,8 +4,8 @@ import {
   getBookById,
   postBook
 } from "../../../firebase/firestore/books";
-import { getOrders } from "../../../firebase/firestore/orders";
-import { getAllTheUsers } from "../../../firebase/firestore/users";
+import { getOrders, getOrdersByUser } from "../../../firebase/firestore/orders";
+import { getAllTheUsers, getUserById } from "../../../firebase/firestore/users";
 
 const dataProvider = {
   getList: async (resource, params) => {
@@ -55,7 +55,7 @@ const dataProvider = {
           data.push(user.orders.map((order) => {
             return {
               id: order.idOrder,
-              date: new Date(order.date),
+              date: order.date,
               userId: user.id,
               items: order.items.map((book) => {
                 return {
@@ -87,12 +87,22 @@ const dataProvider = {
     // console.log(params);
 
     try {
-      if (resource === "books") {
-        data = await getBookById(id);
-      } else {
-        //get user by ID
-        //data.data = await getUserById();
+
+      switch (resource) {
+        case "books":
+          data = await getBookById(id);
+          break;
+      
+        case "orders":
+          data = await getOrdersByUser(id)
+          
+          break;
+        default:
+          break;
       }
+
+
+      
       console.log(data);
       return { data };
     } catch (error) {
@@ -100,10 +110,13 @@ const dataProvider = {
     }
   },
   getMany: async (resource, params) => {
-    let data = [];
+    let data = []
+    
     if(resource === "users")
     {
-      data = await getAllTheUsers();
+      const {ids} = params;
+      const promises = ids.map(async id => await getUserById(id))
+      data = await Promise.all(promises)
     }
 
     return {data}

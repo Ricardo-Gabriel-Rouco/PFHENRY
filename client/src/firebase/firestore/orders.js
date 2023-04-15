@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, getDocs, query, setDoc } from "firebase/firestore"
+import { collection, doc, getDoc, getDocs, query, setDoc, where } from "firebase/firestore"
 import { db } from '../firebase-config';
 
 export async function getOrders() {
@@ -17,7 +17,24 @@ export async function getOrders() {
   return data
 }
 
-export async function getOrdersByUser (id) {
+export async function getOrdersByUser(userId) {
+
+  const q = query(collection(db, "orders"), where('userId', '==', userId))
+  const querySnapshot = await getDocs(q);
+  let data = [];
+  querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    data.push({
+      ...doc.data(),
+      id: doc.id
+    }
+    )
+  })
+  return data
+}
+
+
+export async function getOrdersById (id) {
   try {
     const docsRef = doc(db, 'orders', id);
     const docSnap = await getDoc(docsRef);
@@ -33,27 +50,14 @@ export async function getOrdersByUser (id) {
 export async function postOrder(order) {
   try {
     const collectionRef = collection(db, 'orders');
-    const orderRef = doc(collectionRef, order.user);
-    const orderDoc = await getDoc(orderRef);
+    const orderRef = doc(collectionRef, order.idOrder);
 
-    let ordersArray = [];
-
-    if (orderDoc.exists()) {
-      const existingData = orderDoc.data();
-      ordersArray = existingData.orders;
-    }
-    const orderExists = ordersArray.some(e => e.idOrder === order.idOrder);
-    if (!orderExists) {
-      ordersArray.push({
-        idOrder: order.idOrder,
+    const newOrder ={
+        date: new Date(),
+        userId: order.user,
+        items:order.items,
         status: order.status,
-        items:order.items
-      });
-    }
-
-    const newOrder = {
-      orders: ordersArray,
-    };
+      };
 
     await setDoc(orderRef, newOrder);
 
