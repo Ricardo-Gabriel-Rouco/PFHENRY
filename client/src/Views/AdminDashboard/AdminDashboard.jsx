@@ -1,7 +1,7 @@
 import { Admin, Resource, CustomRoutes, EditGuesser, ShowGuesser, ListGuesser } from "react-admin";
 import { MyLayout } from "../../components/Admin/Layout/Layout";
 import { Dashboard } from "../../components/Admin/Dashboard/Dashboard";
-import { BookList } from "../../components/Admin/Booklist/Booklist";
+import { BookList } from "../../components/Admin/BooksRoutes/Booklist";
 import { Userlist } from "../../components/Admin/Userlist/Userlist";
 import dataProvider from "../../components/Admin/dataProvider/dataProvider";
 import CardDetail from "../../components/CardDetail/CardDetail";

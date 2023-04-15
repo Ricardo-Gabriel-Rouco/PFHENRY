@@ -49,14 +49,34 @@ const dataProvider = {
         break;
         
       case "orders":
-        data = await getOrders();
+        const orders = await getOrders();
+
+        orders.forEach((user) => {
+          data.push(user.orders.map((order) => {
+            return {
+              id: order.idOrder,
+              date: order.date,
+              userId: user.id,
+              items: order.items.map((book) => {
+                return {
+                  id: book.id,
+                  title: book.title,
+                  quantity: book.quantity,
+                  price: book.price
+                }
+              }),
+            }
+          })
+            )
+        })
+
         break;
       default:
         break;
     }
-    
+
     return {
-      data: data,
+      data: data.flat(),
       total: data.length,
     };
   },
