@@ -2,7 +2,7 @@ import {
   getAllTheBooks,
   modifyBook,
   getBookById,
-  postBook
+  postBook,
 } from "../../../firebase/firestore/books";
 import { getOrders, getOrdersByUser } from "../../../firebase/firestore/orders";
 import { getAllTheUsers, getUserById } from "../../../firebase/firestore/users";
@@ -13,7 +13,7 @@ const dataProvider = {
 
     switch (resource) {
       case "books":
-          const { title, genre, author } = params.filter || {}; // extrae los valores del filtro si se proporcionan
+        const { title, genre, author } = params.filter || {}; // extrae los valores del filtro si se proporcionan
         const books = await getAllTheBooks();
         data = books.map((el) => {
           return {
@@ -27,49 +27,82 @@ const dataProvider = {
           };
         });
         // Filtra los libros según los valores del filtro
-        if (title)  // eslint-disable-next-line
+        if (title)
+          // eslint-disable-next-line
           data = data.filter((book) => {
-            if (book.title.toLowerCase().includes(title.toLowerCase())) 
-              return true;
-          })
-        if(author)  // eslint-disable-next-line
-          data = data.filter((book) => {
-            if (book.authors.map((a) => a.author.toLowerCase()).some(item => item.includes(author.toLowerCase())))
+            if (book.title.toLowerCase().includes(title.toLowerCase()))
               return true;
           });
-        if(genre) // eslint-disable-next-line
+        if (author)
+          // eslint-disable-next-line
           data = data.filter((book) => {
-            if (book.genres.map((g) => g.genre.toLowerCase()).some(item => item.includes(genre.toLowerCase()))) 
-              return true
-          })
+            if (
+              book.authors
+                .map((a) => a.author.toLowerCase())
+                .some((item) => item.includes(author.toLowerCase()))
+            )
+              return true;
+          });
+        if (genre)
+          // eslint-disable-next-line
+          data = data.filter((book) => {
+            if (
+              book.genres
+                .map((g) => g.genre.toLowerCase())
+                .some((item) => item.includes(genre.toLowerCase()))
+            )
+              return true;
+          });
         break;
-    
+
       case "users":
         data = await getAllTheUsers();
         break;
-        
+
       case "orders":
         const orders = await getOrders();
 
-        orders.forEach((user) => {
-          data.push(user.orders.map((order) => {
-            return {
-              id: order.idOrder,
-              date: order.date,
-              userId: user.id,
-              items: order.items.map((book) => {
-                return {
-                  id: book.id,
-                  title: book.title,
-                  quantity: book.quantity,
-                  price: book.price
-                }
-              }),
-            }
-          })
-            )
-        })
-        data = data.flat();
+        data = orders.map((order) => {
+          return {
+            id:order.id,
+            date: new Date(order.date),
+            userId: order.userId,
+            status: order.status,
+            items: order.items.map((book) => {
+              return {
+                id: book.id,
+                title: book.title,
+                quantity: book.quantity,
+                price: book.price,
+              };
+            }),
+          };
+
+
+          // date: new Date(),
+          // userId: order.user,
+          // items:order.items,
+          // status: order.status,
+          //   data.push(user.orders.map((order) => {
+          //     return {
+          //       id: order.idOrder,
+          //       date: order.date,
+          //       userId: user.id,
+          //       items: order.items.map((book) => {
+          //         return {
+          //           id: book.id,
+          //           title: book.title,
+          //           quantity: book.quantity,
+          //           price: book.price
+          //         }
+          //       }),
+          //     }
+          //   })
+          //     )
+        });
+        console.log(data)
+
+        // data = data.flat();
 
         break;
       default:
@@ -87,22 +120,19 @@ const dataProvider = {
     // console.log(params);
 
     try {
-
       switch (resource) {
         case "books":
           data = await getBookById(id);
           break;
-      
+
         case "orders":
-          data = await getOrdersByUser(id)
-          
+          data = await getOrdersByUser(id);
+
           break;
         default:
           break;
       }
 
-
-      
       console.log(data);
       return { data };
     } catch (error) {
@@ -110,17 +140,15 @@ const dataProvider = {
     }
   },
   getMany: async (resource, params) => {
-    let data = []
-    
-    if(resource === "users")
-    {
-      const {ids} = params;
-      const promises = ids.map(async id => await getUserById(id))
-      data = await Promise.all(promises)
+    let data = [];
+
+    if (resource === "users") {
+      const { ids } = params;
+      const promises = ids.map(async (id) => await getUserById(id));
+      data = await Promise.all(promises);
     }
 
-    return {data}
-
+    return { data };
   },
   update: async (resource, params) => {
     if (resource === "books") {
@@ -140,20 +168,20 @@ const dataProvider = {
         `Book with ID ${id} has been modified with the following data: `,
         data
       );
-      return { data: { id: id, ...data } }
-    }},
-  create: async (resource,params) =>{
-    if(resource === 'books'){
-      try{
-        const response = await postBook(params.data)
-        return{
-          data:response,
-        }
-      
-      }catch(error){
-        return{
-          error:error.message || "Something went wrong"
-        }
+      return { data: { id: id, ...data } };
+    }
+  },
+  create: async (resource, params) => {
+    if (resource === "books") {
+      try {
+        const response = await postBook(params.data);
+        return {
+          data: response,
+        };
+      } catch (error) {
+        return {
+          error: error.message || "Something went wrong",
+        };
       }
     }
   },
