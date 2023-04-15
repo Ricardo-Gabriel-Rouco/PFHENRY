@@ -1,14 +1,16 @@
 import { Menu } from "react-admin";
-import BookIcon from "@mui/icons-material/Book";
-import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import AccountCircleTwoToneIcon from '@mui/icons-material/AccountCircleTwoTone';
+import MenuBookTwoToneIcon from '@mui/icons-material/MenuBookTwoTone';
+import PaidTwoToneIcon from '@mui/icons-material/PaidTwoTone';
 
 export const MyMenu = () => (
   <Menu>
-    <Menu.Item to="/admin/books" primaryText="Books" leftIcon={<BookIcon />} />
+    <Menu.Item to="/admin/books" primaryText="Books" leftIcon={<MenuBookTwoToneIcon />} />
     <Menu.Item
       to="/admin/users"
       primaryText="Users"
-      leftIcon={<PersonOutlineIcon />}
+      leftIcon={<AccountCircleTwoToneIcon />}
     />
+    <Menu.Item to="/admin/orders" primaryText="Orders" leftIcon={<PaidTwoToneIcon />} />
   </Menu>
 );
