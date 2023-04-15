@@ -7,6 +7,7 @@ import dataProvider from "../../components/Admin/dataProvider/dataProvider";
 import CardDetail from "../../components/CardDetail/CardDetail";
 import { Route } from "react-router-dom";
 import BookForm from "../../components/BookForm/BookForm";
+import OrderList from "../../components/Admin/OrdersRoutes/OrderList.jsx";
 
 export const AdminDashboard = () => {
   return (
@@ -28,13 +29,13 @@ export const AdminDashboard = () => {
       </Resource>
       <Resource
         name="users"
-        list={Userlist}
+        list={ListGuesser}
         basePath="/admin/users"
         options={{ label: "Users" }}
       />
       <Resource
         name="orders"
-        list={ListGuesser}
+        list={OrderList}
         basePath="/admin/orders"
         options={{ label: "Orders" }}
       />

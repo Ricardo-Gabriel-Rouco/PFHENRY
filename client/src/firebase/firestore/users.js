@@ -17,6 +17,19 @@ export async function getAllTheUsers() {
   return data
 }
 
+export async function getUserById (id) {
+  try {
+    const docsRef = doc(db, 'users', id);
+    const docSnap = await getDoc(docsRef);
+    if (docSnap.exists()) {
+      return { ...docSnap.data(), id: id };
+    } else {
+      console.log('No such document!');
+    }
+  } catch (error) {
+    console.log(error);}
+}
+
 export async function getMailOfUser(id) {
   const docRef = doc(db, "users", id);
   const docSnap = await getDoc(docRef);

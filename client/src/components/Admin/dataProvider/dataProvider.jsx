@@ -55,7 +55,7 @@ const dataProvider = {
           data.push(user.orders.map((order) => {
             return {
               id: order.idOrder,
-              date: order.date,
+              date: new Date(order.date),
               userId: user.id,
               items: order.items.map((book) => {
                 return {
@@ -69,6 +69,7 @@ const dataProvider = {
           })
             )
         })
+        data = data.flat();
 
         break;
       default:
@@ -76,7 +77,7 @@ const dataProvider = {
     }
 
     return {
-      data: data.flat(),
+      data,
       total: data.length,
     };
   },
@@ -97,6 +98,16 @@ const dataProvider = {
     } catch (error) {
       console.log("Error en el servidor");
     }
+  },
+  getMany: async (resource, params) => {
+    let data = [];
+    if(resource === "users")
+    {
+      data = await getAllTheUsers();
+    }
+
+    return {data}
+
   },
   update: async (resource, params) => {
     if (resource === "books") {
