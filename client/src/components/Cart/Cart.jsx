@@ -58,7 +58,7 @@ const Cart = () => {
     if (userStatus.logged) {
       try {
         const response = await axios.post(
-          "https://shaky-friend-production.up.railway.app/checkout",
+          "/checkout",
           order
         );
 

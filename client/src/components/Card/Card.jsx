@@ -25,7 +25,7 @@ import CardDetail from "../CardDetail/CardDetail";
 
 
 
-const Card = ({ image, id, title, authors, price, editorial, display, discount}) => {
+const Card = ({ image, id, title, authors, price, editorial, display, discount }) => {
   const favorite = useSelector(state => state.favorite.favorites)
   const dispatch = useDispatch();
 
@@ -52,12 +52,12 @@ const Card = ({ image, id, title, authors, price, editorial, display, discount})
 
   const handleAdd = (id) => {
     dispatch(addProduct({
-      image, 
-      id, 
-      title, 
-      authors, 
-      price, 
-      editorial, 
+      image,
+      id,
+      title,
+      authors,
+      price,
+      editorial,
       display
     }));
   };
@@ -75,24 +75,24 @@ const Card = ({ image, id, title, authors, price, editorial, display, discount})
 
   return (
     <Grid
-    container
-    spacing={2}
-    sx={{
-      margin: "15px",
-      textAlign: "center",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      height: "450px",
-      width: "300px",
-      borderRadius: "10px",
-      boxShadow: "0px 0px 10px black",
-      transition: "bgcolor 1s, color 0.5s",
-      "&:hover": {
-        bgcolor: "primary.light",
-        color: "text.shiny",
-      },
-    }}
+      container
+      spacing={2}
+      sx={{
+        margin: "15px",
+        textAlign: "center",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "450px",
+        width: "300px",
+        borderRadius: "10px",
+        boxShadow: "0px 0px 10px black",
+        transition: "bgcolor 1s, color 0.5s",
+        "&:hover": {
+          bgcolor: "primary.light",
+          color: "text.shiny",
+        },
+      }}
     >
       <Grid
         item
@@ -102,14 +102,14 @@ const Card = ({ image, id, title, authors, price, editorial, display, discount})
         lg={6}
         xl={6}
         sx={{ display: "flex", justifyContent: "center" }}
-        >
-        
+      >
+
         {isFav ? (
           <Button
-          color="primary"
-          variant="contained"
-          size="small"
-          onClick={() => handleFavorite()}
+            color="primary"
+            variant="contained"
+            size="small"
+            onClick={() => handleFavorite()}
           >
             <BookmarkOutlinedIcon />
           </Button>
@@ -170,14 +170,16 @@ const Card = ({ image, id, title, authors, price, editorial, display, discount})
             {title}
           </Typography>
           <Typography variant="body2">
-            {discount ?
+            {discount ? (
               <>
-                <p style={{ textDecoration: 'line-through' }}>Price $ {price}</p>
-                <p>Price $ {(price * (100 - discount) / 100).toFixed(2)}</p> discount: {discount}%
+                <s>{price}</s>{" "}
+                <span>
+                  {(price * (100 - discount) / 100).toFixed(2)}
+                </span>
               </>
-              :
-              <p>Price $ {price}</p>
-            }
+            ) : (
+              price
+            )}
           </Typography>
         </CardContent>
         <CardActions>
