@@ -30,8 +30,6 @@ export const AdminDashboard = () => {
       <Resource
         name="users"
         list={Userlist}
-        edit={EditGuesser}
-
         basePath="/admin/users"
         options={{ label: "Users" }}
       />

@@ -21,6 +21,7 @@ import Checkbox from '@mui/material/Checkbox';
 const DisplayCheckbox = () => {
   const [checked, setChecked] = useState(true)
   const record = useRecordContext();
+  console.log(checked)
 
   useEffect(()=>{
     setChecked(record.display)// eslint-disable-next-line
@@ -28,7 +29,7 @@ const DisplayCheckbox = () => {
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
-    modifyBook(record.id, !checked)
+    modifyBook(record.id, {display: !checked})
   }
   
 

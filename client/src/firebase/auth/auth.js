@@ -2,11 +2,14 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 import { collection, setDoc, doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../firebase-config";
 
-export async function createUser(email, password) {
+export async function createUser(email, password, nickName, fullName) {
     try {
         const res = await createUserWithEmailAndPassword(auth, email, password);
         const newUser = {
             uid: res.user.uid,
+            email:res.user.email,
+            nickname: nickName,
+            fullname: fullName,
             rol: "USER",
             display: true,
         }

@@ -7,10 +7,14 @@ import { collection, doc, setDoc } from 'firebase/firestore'
 export async function registerWithGoogle(){
   try {
     const res = await signInWithPopup(auth, provider)
+    console.log(res)
     const newUser = {
         uid: res.user.uid,
         rol: "USER",
+        email:res.user.email,
         display: true,
+        fullname: res.user.displayName,
+        nickname: res.user.displayName,
     }
     const collectionRef = collection(db, 'users')
     const userRef = doc(collectionRef, res.user.uid)

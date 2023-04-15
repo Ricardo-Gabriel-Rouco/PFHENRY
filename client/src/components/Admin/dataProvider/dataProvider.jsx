@@ -4,7 +4,7 @@ import {
   getBookById,
   postBook
 } from "../../../firebase/firestore/books";
-import { getAllTheUsers, modifyUser } from "../../../firebase/firestore/users";
+import { getAllTheUsers, modifyUser, modifyUserRole } from "../../../firebase/firestore/users";
 
 const dataProvider = {
   getList: async (resource, params) => {
@@ -86,11 +86,27 @@ const dataProvider = {
         data
       );
       return { data: { id: id, ...data } }
-    } else if (resource === 'users'){
+    } 
+    else if (resource === 'users'){
       const {id,data} = params;
-      await modifyUser(id,data.display)
-      console.log(`User with ID ${id} has been modified`)
-      return{data:{id:id,...data}}
+      if(data.display !== undefined && data.rol !== undefined){
+        await modifyUser(id,data.display);
+        await modifyUserRole(id,data.rol)
+        console.log(`User with ID ${id} has been modified`)
+        return {data:{id:id, ...data}}
+      }
+      else if(data.display !== undefined){
+        await modifyUser(id,data.display)
+        console.log(`User display with ID ${id} has been modified`)
+        return {data:{id:id,...data}}
+      }else if(data.rol !== undefined){
+        await modifyUserRole(id,data.rol);
+        console.log(`User role with ID ${id} has been modified`)
+        return{data:{id:id,...data}}
+      }
+      // await modifyUser(id,data.display,data.rol)
+      // console.log(`User with ID ${id} has been modified`)
+      // return{data:{id:id,...data}}
     }},
   create: async (resource,params) =>{
     if(resource === 'books'){

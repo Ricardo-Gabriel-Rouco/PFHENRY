@@ -24,10 +24,10 @@ import CardDetail from "../CardDetail/CardDetail";
 
 
 
-  
-const Card = ({ image, id, title, authors, price, editorial, display }) => {
-    const favorite = useSelector(state => state.favorite.favorites)
-    const dispatch = useDispatch();
+
+const Card = ({ image, id, title, authors, price, editorial, display, discount }) => {
+  const favorite = useSelector(state => state.favorite.favorites)
+  const dispatch = useDispatch();
 
   //FAVORITES
   const [isFav, setIsFav] = useState(false);
@@ -51,7 +51,15 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
   };
 
   const handleAdd = (id) => {
-    dispatch(addProduct({id}));
+    dispatch(addProduct({
+      image,
+      id,
+      title,
+      authors,
+      price,
+      editorial,
+      display
+    }));
   };
 
   //CUADRO DE DIALOGO
@@ -82,7 +90,7 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
         transition: "bgcolor 1s, color 0.5s",
         "&:hover": {
           bgcolor: "primary.light",
-          color: "secondary.contrastText",
+          color: "text.shiny",
         },
       }}
     >
@@ -95,6 +103,7 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
         xl={6}
         sx={{ display: "flex", justifyContent: "center" }}
       >
+
         {isFav ? (
           <Button
             color="primary"
@@ -126,7 +135,7 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
         <Button
           variant="contained"
           size="small"
-          onClick={() => handleAdd( id )}
+          onClick={() => handleAdd(id)}
         >
           <ShoppingCartIcon />
         </Button>
@@ -161,7 +170,16 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
             {title}
           </Typography>
           <Typography variant="body2">
-            {price ? <p>Price $ {price}</p> : null}
+            {discount ? (
+              <>
+                <s>{price}</s>{" "}
+                <span>
+                  {(price * (100 - discount) / 100).toFixed(2)}
+                </span>
+              </>
+            ) : (
+              price
+            )}
           </Typography>
         </CardContent>
         <CardActions>
@@ -207,8 +225,9 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
                   {isFav ? (
                     <Button
                       variant="outlined"
-                      color="secondary"
                       sx={{
+                        color: "primary.contrastText",
+
                         transition: "color 0.5s",
                         "&:hover": {
                           color: "secondary.contrastText",
@@ -222,8 +241,9 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
                   ) : (
                     <Button
                       variant="outlined"
-                      color="secondary"
                       sx={{
+                        color: "primary.contrastText",
+
                         transition: "color 0.5s",
                         "&:hover": {
                           color: "secondary.contrastText",
@@ -247,8 +267,9 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
                 >
                   <Button
                     variant="outlined"
-                    color="secondary"
                     sx={{
+                      color: "primary.contrastText",
+
                       transition: "color 0.5s",
                       "&:hover": {
                         color: "secondary.contrastText",
@@ -266,7 +287,6 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
 
               <Button
                 variant="outlined"
-                color="secondary"
                 endIcon={<ExitToAppIcon />}
                 onClick={handleClose}
                 sx={{
@@ -276,6 +296,8 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
                   zIndex: 2,
                   top: "20px",
                   right: "20px",
+                  color: "primary.contrastText",
+
                   transition: "color 0.5s",
                   "&:hover": {
                     color: "secondary.contrastText",

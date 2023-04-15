@@ -4,22 +4,20 @@
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  /* height: 40vh; */
 }
 
 .notFound {
-  position:relative;
+  position: relative;
 }
 
 .notFound h1 {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
   z-index: 1;
 }
 
-.notFound img{
+.notFound img {
   height: 100%;
-
 }

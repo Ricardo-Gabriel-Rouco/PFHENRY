@@ -14,12 +14,17 @@ import NavBar from "./components/NavBar/NavBar";
 import Cart from "./components/Cart/Cart";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import PurchaseForm from "./PurchaseForm/PurchaseForm";
 import { AdminDashboard } from "./Views/AdminDashboard/AdminDashboard";
-import AdminRoutes from "./components/AdminRoutes/AdminRoutes";
-import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
+import SupportAdmin from "./chatBot/SupportAdmin";
+import EditUser from './components/EditUser/EditUser';
+import AdminRoutes from './components/AdminRoutes/AdminRoutes';
+import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
+import PayStatus from "./components/PayStatus/PayStatus";
+import axios from 'axios';
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import light from "./Theme/light";
+import MyPurchases from "./components/MyPurchases/MyPurchases";
+axios.defaults.baseURL = 'https://shaky-friend-production.up.railway.app/';
 
 function App() {
   const toogleCart = useSelector((state) => state.toogle);
@@ -46,6 +51,12 @@ function App() {
                   </AdminRoutes>
                 }
               />
+              <Route exact path='/support' element={
+                  <AdminRoutes>
+                    <SupportAdmin /> 
+                  </AdminRoutes>
+                }
+              />
               <Route exact path="/home" element={<Home />} />
               <Route exact path="/about" element={<About />} />
               <Route exact path="/favorites" element={<Favorites />} />
@@ -59,13 +70,10 @@ function App() {
               <Route path="/home/:id" element={<CardDetail />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/checkout" element={
-                  <ProtectedRoutes>
-                    <PurchaseForm />
-                  </ProtectedRoutes>
-                }
-              />
               <Route path="*" element={<Error />} />
+              <Route path="/modify" element={<ProtectedRoutes><EditUser/></ProtectedRoutes>}/>
+              <Route path="/purchases" element={<MyPurchases/>}/>
+              <Route path="/payStatus" element={<PayStatus />}/>
             </Routes>
           </AuthProvider>
         </BrowserRouter>
