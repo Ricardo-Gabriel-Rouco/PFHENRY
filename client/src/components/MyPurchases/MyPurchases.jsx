@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {getOrders} from '../../firebase/firestore/orders'
+import {getOrdersByUser} from '../../firebase/firestore/orders'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 const MyPurchases = () => {
 
@@ -8,7 +8,7 @@ const MyPurchases = () => {
   useEffect(() => {
     const userId = 'd0ans9GotBeTdRwFhft2Hl615nb2'
     async function fetchPurchases(){
-      const result = await getOrders(userId)
+      const result = await getOrdersByUser(userId)
       setPurchases(result)
     }
     fetchPurchases()

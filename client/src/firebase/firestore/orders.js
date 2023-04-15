@@ -67,18 +67,7 @@ export async function postOrder(order) {
   }
 }
 
-export async function getOrders (id) {
-  try {
-    const docsRef = doc(db, 'orders', id);
-    const docSnap = await getDoc(docsRef);
-    if (docSnap.exists()) {
-      return { ...docSnap.data(), id: id };
-    } else {
-      console.log('No such document!');
-    }
-  } catch (error) {
-    console.log(error);}
-}
+
 
   // export async function modifyOrder(status) {
   //   try {
