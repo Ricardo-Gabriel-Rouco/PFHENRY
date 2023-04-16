@@ -16,7 +16,7 @@ import {
 import CardsReview from "../CardsReview/CardsReview";
 import CardNewReview from "../CardNewReview/CardNewReview";
 import loading from "../../Assets/Loading.gif";
-import { updateBookReviews } from "../../firebase/firestore/books";
+import { updateBookReviews, modifyBook } from "../../firebase/firestore/books";
 import { useAuth } from "../../context/authContext";
 
 const CardDetail = ({ id }) => {
@@ -42,6 +42,7 @@ const CardDetail = ({ id }) => {
 
   const handleNewReview = async (input) => {
     await updateBookReviews(input);
+    await modifyBook(id, {rating: !bookDetail.rating ? input.rating : (parseInt(input.rating) + parseInt(bookDetail.rating)) / 2 })
     getBookById(id)
       .then((response) => {
         setBookDetail(response);
@@ -49,6 +50,7 @@ const CardDetail = ({ id }) => {
       .catch((error) => {
         console.log(error);
       });
+    
   };
 
   return bookDetail.id ? (

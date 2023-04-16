@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TextField, Rating, Button, Grid, Typography } from "@mui/material";
+import { TextField, Rating, Button, Grid } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { useAuth } from "../../context/authContext";
 import { getBookById } from "../../firebase/firestore/books";
