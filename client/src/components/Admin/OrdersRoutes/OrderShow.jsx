@@ -23,7 +23,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 
-const ShowModal = (props) => {
+const OrderShow = (props) => {
   const record = useRecordContext();
   const { record: loadedRecord, defaultTitle } = useShowController(props);
   const [open, setOpen] = useState(false);
@@ -74,4 +74,4 @@ const ShowModal = (props) => {
   );
 };
 
-export default ShowModal;
+export default OrderShow;
