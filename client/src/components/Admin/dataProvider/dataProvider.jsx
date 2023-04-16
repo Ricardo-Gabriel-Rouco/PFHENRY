@@ -91,7 +91,6 @@ const dataProvider = {
   getOne: async (resource, params) => {
     let data = {};
     const { id } = params;
-    console.log(params);
 
     try {
       switch (resource) {
@@ -125,13 +124,32 @@ const dataProvider = {
     }
   },
   getMany: async (resource, params) => {
+    const { ids } = params;
     let data = [];
+    let promises;
 
-    if (resource === "users") {
-      const { ids } = params;
-      const promises = ids.map(async (id) => await getUserById(id));
-      data = await Promise.all(promises);
+    try{
+
+    switch (resource) {
+      case "books":
+        promises = ids.map(async (id) => await getBookById(id));
+        data = await Promise.all(promises);
+        
+        break;
+
+      case "users":
+        promises = ids.map(async (id) => await getUserById(id));
+        data = await Promise.all(promises);
+        break
+    
+      default:
+        break;
     }
+
+  }catch(error){
+    console.log(error)
+  }
+
 
     return { data };
   },

@@ -8,14 +8,13 @@ import {
   TextField,
 } from "react-admin";
 
-import ShowModal from "./OrderShow";
 
 const OrderList = (props) => (
   <List {...props}>
     <Datagrid bulkActionButtons={false}>
       <DateField source="date" showTime />
       <TextField source="id" label="Order ID" />
-      <ReferenceField source="userId" reference="users" label="User Nickname">
+      <ReferenceField source="userId" reference="users" label="User Nickname" link={false}>
         <FunctionField render={record=>record.nickname}/> 
       </ReferenceField>
       <FunctionField label="items" render={(record) => record.items.length} />
@@ -26,7 +25,7 @@ const OrderList = (props) => (
             (total, current) => total + current.price * current.quantity, 0)
         }
       />
-      <ShowModal/>
+      <ShowButton/>
     </Datagrid>
   </List>
 );

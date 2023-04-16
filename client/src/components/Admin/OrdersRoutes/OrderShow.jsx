@@ -10,6 +10,7 @@ import {
   FunctionField,
   useShowController,
   useRecordContext,
+  ImageField,
 } from "react-admin";
 import {
   FormLabel,
@@ -28,59 +29,48 @@ const ShowModal = (props) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <>
-      <Button onClick={() => setOpen(true)}>View Details</Button>
-      <Dialog open={open} onClose={() => setOpen(false)}>
-        <DialogTitle>{defaultTitle}</DialogTitle>
-        <DialogContent>
-          <ShowBase sx={{ textAlign: "left" }}>
-            <SimpleShowLayout record={record}>
-              <span>
-                <FormLabel>ORDER #</FormLabel>
-                <TextField source="id" label={false} />{" "}
-              </span>
-              <span>
-                <FormLabel>Date: </FormLabel>
-                <DateField source="date" label={false} />{" "}
-              </span>
-              <span>
-                <FormLabel>User: </FormLabel>
-                <ReferenceField source="userId" reference="users">
-                  <TextField source="nickname" />
-                </ReferenceField>
-              </span>
-              <ArrayField source="items">
-                <Datagrid bulkActionButtons={false}>
-                  <TextField source="bookId" label="ISBN" />
-                  <TextField source="title" />
-                  <NumberField source="quantity" />
-                  <NumberField source="price" />
-                </Datagrid>
-              </ArrayField>
-              <TextField/>
-              <span>
-                <Typography>Total Price: $</Typography>
-              <FunctionField
-                label={false}
-                render={(record) =>
-                  record.items.reduce(
-                    (total, current) =>
-                      total + current.price * current.quantity,
-                    0
-                  )
-                }
-              />
-              </span>
-            </SimpleShowLayout>
-          </ShowBase>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setOpen(false)} color="primary">
-            Close
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </>
+    <ShowBase sx={{ textAlign: "left" }}>
+      <SimpleShowLayout record={record}>
+        <span>
+          <FormLabel>ORDER #</FormLabel>
+          <TextField source="id" label={false} />{" "}
+        </span>
+        <span>
+          <FormLabel>Date: </FormLabel>
+          <DateField source="date" label={false} />{" "}
+        </span>
+        <span>
+          <FormLabel>User: </FormLabel>
+          <ReferenceField source="userId" reference="users" link={false}>
+            <TextField source="nickname" />
+          </ReferenceField>
+        </span>
+        <ArrayField source="items">
+          <Datagrid bulkActionButtons={false}>
+            <TextField source="bookId" label="ISBN" />
+            <ReferenceField source="bookId" reference="books" link={false} sx={{alignContent:"center"}}>
+              <ImageField source="image" />
+            </ReferenceField>
+            <TextField source="title" />
+            <NumberField source="quantity" />
+            <NumberField source="price" />
+          </Datagrid>
+        </ArrayField>
+        <TextField />
+        <span>
+          <FormLabel>Total Price: $</FormLabel>
+          <FunctionField
+            label={false}
+            render={(record) =>
+              record.items.reduce(
+                (total, current) => total + current.price * current.quantity,
+                0
+              )
+            }
+          />
+        </span>
+      </SimpleShowLayout>
+    </ShowBase>
   );
 };
 
