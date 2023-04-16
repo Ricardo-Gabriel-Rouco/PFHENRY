@@ -67,8 +67,9 @@ const NavBar = ({ passTheme, mode }) => {
   //Estableciendo modos de Theme para el py
 
   useEffect(() => {
-    dispatch(importBooks());
-  }, [dispatch]);
+    dispatch(importBooks())
+  }, [dispatch])
+
 
   return (
     location.pathname !== "/" &&
@@ -182,6 +183,7 @@ const NavBar = ({ passTheme, mode }) => {
                   </Badge>
                 </IconButton>
               </Grid>
+
               {/* {userStatus.logged ? ( */}
               <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
                 <IconButton
@@ -215,10 +217,11 @@ const NavBar = ({ passTheme, mode }) => {
                 >
                   {userStatus.logged ? (
                     <>
+
                       <MenuItem onClick={handleClose}>
                         <Link to={"/modify"}>Profile</Link>
                       </MenuItem>
-                      <MenuItem onClick={handleClose}>My account</MenuItem>
+                       <MenuItem onClick={handleClose}><Link to={'/account'}>My Books</Link></MenuItem>
                       <MenuItem
                         onClick={() => {
                           handleClose();
@@ -241,6 +244,7 @@ const NavBar = ({ passTheme, mode }) => {
         {/* <Toolbar/> */}
         {/* Este componente es solo para evitar que la NavBar fija pise elementos en la pagina*/}
       </Box>
+
     )
   );
 };
