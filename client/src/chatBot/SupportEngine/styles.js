@@ -29,6 +29,8 @@ export const styles = {
     // Color
     backgroundColor: "#ffc400",
     color: "black",
+    //Font
+    fontSize: "16px",
   },
   supportWindow: {
     // Position
@@ -36,8 +38,8 @@ export const styles = {
     bottom: "116px",
     right: "24px",
     // Size
-    width: "420px",
-    height: "530px",
+    width: "400px",
+    height: "450px",
     maxWidth: "calc(100% - 48px)",
     maxHeight: "calc(100% - 48px)",
     backgroundColor: "white",
@@ -61,7 +63,7 @@ export const styles = {
     position: "relative",
     top: "-45px",
     width: "100%",
-    height: "308px",
+    height: "208px",
     backgroundColor: "#ffc400",
     transform: "skewY(-12deg)",
   },
@@ -69,8 +71,8 @@ export const styles = {
     position: "relative",
     width: "100%",
     top: "15%",
-    color: "white",
-    fontSize: "24px",
+    color: "black",
+    fontSize: "16px",
     fontWeight: "600",
   },
   emailInput: {
@@ -86,7 +88,7 @@ export const styles = {
     width: "100%",
     top: "60%",
     color: "#FFD600",
-    fontSize: "24px",
+    fontSize: "16px",
     fontWeight: "600",
   },
   loadingDiv: {

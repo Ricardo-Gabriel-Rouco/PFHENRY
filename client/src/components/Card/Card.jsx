@@ -22,7 +22,7 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { addProduct } from "../../redux/rootReducer/cartSlice";
 import CardDetail from "../CardDetail/CardDetail";
 
-const Card = ({ image, id, title, authors, price, editorial, display }) => {
+const Card = ({ image, id, title, authors, price, editorial, display, discount }) => {
   const favorite = useSelector((state) => state.favorite.favorites);
   const dispatch = useDispatch();
 
@@ -114,7 +114,7 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
 
         {isFav ? (
           <Button
-            color="primary.dark"
+            color="primary"
             variant="contained"
             size="small"
             onClick={() => handleFavorite()}
@@ -140,11 +140,6 @@ const Card = ({ image, id, title, authors, price, editorial, display }) => {
         xl={6}
         sx={{ display: "flex", justifyContent: "center" }}
       >
-        <Button
-          variant="contained"
-          size="small"
-          onClick={() => handleAdd(id)}
-        >
         <Button variant="contained" size="small" onClick={() => handleAdd(id)}>
           <ShoppingCartIcon />
         </Button>
