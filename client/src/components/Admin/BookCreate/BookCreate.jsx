@@ -6,6 +6,8 @@ import { InputLabel } from '@mui/material';
 import validation from './validation';
 import ErrorIcon from "@mui/icons-material/Error";
 import styles from "./BookForm.module.css";
+import { GenreList } from '../GenreList/GenreList';
+import { useNavigate } from 'react-router-dom';
 // import { makeStyles } from '@material-ui/core/styles'
 
 
@@ -19,18 +21,29 @@ import styles from "./BookForm.module.css";
 // })
 
 export const BookCreate = (props) => {
-
+  const navigate = useNavigate()
   const [imageType,setImageType] = useState('file');
   const [imageUrl,setImageUrl] = useState(null)
   const [genres,setGenres]= useState([])
-  const [bookData,setBookData]=useState({})
+  const [bookData,setBookData]=useState({genre:''})
   const [errors,setErrors] = useState({});
+
+  
+  useEffect(() => {
+    async function fetchGenres() {
+      const allGenres = await getGenres();
+      setGenres(allGenres);
+    }
+    fetchGenres();
+  }, []);
 
   const createBook = async (bookData) => {
 
     try{
-      const response = await postBook(bookData)
+      const newBookData = {...bookData, genre:bookData.genre}
+      const response = await postBook(newBookData)
       console.log(response)
+      navigate('/admin');
 
     }catch(error){
       console.log(error)
@@ -49,19 +62,13 @@ export const BookCreate = (props) => {
       setErrors(validation(bookData))
     },[bookData])
 
-    useEffect(() => {
-      async function fetchGenres() {
-        const allGenres = await getGenres();
-        setGenres(allGenres);
-      }
-      fetchGenres();
-    }, []);
 
 
     const handleOptions = (e) => {
       let selectedValues = [];
   
-      if (bookData.genres) selectedValues = [...bookData.genres];
+      if (bookData.genres)
+      { selectedValues = [...bookData.genres];}
   
       const options = e.target.options;
       for (let i = 0; i < options.length; i++) {
@@ -114,23 +121,6 @@ export const BookCreate = (props) => {
       }
     }
 
-    // const handleSubmit = async (e) => {
-    //   e.preventDefault();
-    //   try {
-    //     const res = await postBook({ ...bookData, authors: [bookData.authors] });
-    //     console.log(res);
-    //   } catch (error) {
-    //     let toHighlight = {};
-    //     for (const key in errors) {
-    //       console.log(key);
-    //       if (bookData[key] === undefined) toHighlight[key] = "";
-    //     }
-    //     setBookData({ ...bookData, ...toHighlight });
-  
-    //     window.alert(error);
-    //   }
-    // };
-
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width:'75%',alignSelf:'center' , margin:'15rem'}}>
@@ -164,7 +154,7 @@ export const BookCreate = (props) => {
               {errors.authors && errors.authors}
             </p>):null}
             <br></br>
-            <TextInput multiline label='Descritpion' source=' description'  style={{width:'50rem'}} />
+            <TextInput multiline label='Description' source='description'  style={{width:'50rem'}} />
             <br></br>
             <NumberInput 
             label='Price $' 
@@ -190,42 +180,15 @@ export const BookCreate = (props) => {
             defaultValue={bookData.editorial}
             style={{margin:'0 2rem '}} />
             {errors.editorial ? (<p className={styles.formError}><ErrorIcon/>{errors.editorial && errors.editorial}</p>):null}
-            <InputLabel htmlFor="genres">Genres:</InputLabel>
-              <select
-                name='genres'
-                multiple={true}
-                value={bookData.genres}
-                onChange={handleOptions}
-              >
-                {genres
-                  ?.sort((a, b) => a.name.localeCompare(b.name))
-                  .map((genre) => (
-                    <option key={genre.name} value={genre.name}>
-                      {genre.name}
-                    </option>
-                  ))}
-              </select>
-              <div>
-                {bookData.genres &&
-                  bookData.genres.map(
-                    (genre) =>
-                      bookData.genres.indexOf(genre) ===
-                        bookData.genres.lastIndexOf(genre) && (
-                          <div key={genre}>
-                            {genre}
-                          <button onClick={() => handleRemove(genre, "genres")}>
-                            X
-                          </button>
-                        </div>
-                      )
-                  )}
-              </div>
-              {errors.genres ? (
+            {/* <InputLabel htmlFor="genres">Genres:</InputLabel> */}
+            <GenreList errors={errors} defaultValue={bookData.genre}/>
+
+              {/* {errors.genres ? (
                 <p className={styles.formError}>
                   <ErrorIcon />
                   {errors.genres && errors.genres}
                 </p>
-              ) : null}
+              ) : null}  */}
 
               <br></br>
             <TextInput label='ISBN' source='isbn' onChange={handleInputChange} name='isbn' defaultValue={bookData.isbn}/>
