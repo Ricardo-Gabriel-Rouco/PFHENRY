@@ -8,6 +8,8 @@ import {
   TextField,
 } from "react-admin";
 
+import ShowModal from "./OrderShow";
+
 const OrderList = (props) => (
   <List {...props}>
     <Datagrid bulkActionButtons={false}>
@@ -24,7 +26,7 @@ const OrderList = (props) => (
             (total, current) => total + current.price * current.quantity, 0)
         }
       />
-      <ShowButton label="View Details"/>
+      <ShowModal/>
     </Datagrid>
   </List>
 );
