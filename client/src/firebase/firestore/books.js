@@ -131,13 +131,16 @@ export async function modifyBook(isbn, props) {
 }
 
 // Metodo update para Reviews
-export async function updateBookReviews({id, nickname, comment, rating, display}) {
+// Propuesta para mañana: solo guardar el id del ususario(userId) y con eso buscar el nombre del usuario, para asi prevenimos los cambios
+// lo que causaria que eliminemos directamente la propiedad nickname
+export async function updateBookReviews({id, nickname, comment, rating, display, userId}) {
   try {
     const udBookReview = doc(db, 'books', id)
     await updateDoc(udBookReview, {
       reviews:  arrayUnion({
         comment,
         rating,
+        userId,
         user: nickname,
         display,
       })

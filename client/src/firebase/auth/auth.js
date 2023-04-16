@@ -1,5 +1,6 @@
+// import { async } from "@firebase/util";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { collection, setDoc, doc, getDoc } from "firebase/firestore";
+import { collection, setDoc, doc, getDoc, getDocs ,query, where } from "firebase/firestore";
 import { auth, db } from "../firebase-config";
 
 export async function createUser(email, password, nickName, fullName) {
@@ -60,5 +61,16 @@ export async function getUserById(uid) {
         }
     } catch (error) {
         console.log(error);
+    }
+}
+
+export async function getUserByName(name){
+    try {
+        const userRef = collection(db, 'users')
+        const q = query((userRef), where('nickname', '==', name))
+        const querySnapshot = await getDocs(q)
+        return querySnapshot.data()
+    } catch (error) {
+        console.log(error)
     }
 }

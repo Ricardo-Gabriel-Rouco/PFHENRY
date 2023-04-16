@@ -26,24 +26,22 @@ export function AuthProvider({ children }) {
     email: "",
     role: "",
     nickName: "",
-    fullName: ""
   });
   const [loading, setLoading] = useState(true);
 
-  const signup = async (email, password, nickName, fullName) => {
-    await createUser(email, password, fullName, nickName);
+  const signup = async (email, password, nickName) => {
+    await createUser(email, password, nickName);
   };
 
   const login = async (email, password) => {
     await sigInWithMail(email, password);
   };
 
-  const customize = async (userId, nickname, fullname) => {
-    await updateUser(userId, nickname, fullname)
+  const customize = async (userId, nickname) => {
+    await updateUser(userId, nickname)
     setUserStatus({
       ...userStatus,
       nickName: nickname,
-      fullName: fullname
     })
   }
 
@@ -58,7 +56,6 @@ export function AuthProvider({ children }) {
           email: currentUser.email,
           role: userRole.rol,
           nickName: userRole.nickname,
-          fullName: userRole.fullname
         });
       }
       setLoading(false);

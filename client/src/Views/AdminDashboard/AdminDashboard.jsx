@@ -9,6 +9,7 @@ import { Route } from "react-router-dom";
 import BookForm from "../../components/BookForm/BookForm";
 import { BookCreate } from "../../components/Admin/BookCreate/BookCreate";
 import OrderList from "../../components/Admin/OrdersRoutes/OrderList.jsx";
+import OrderShow from "../../components/Admin/OrdersRoutes/OrderShow";
 
 export const AdminDashboard = () => {
   return (
@@ -37,7 +38,7 @@ export const AdminDashboard = () => {
       <Resource
         name="orders"
         list={OrderList}
-        show={ShowGuesser}
+        show={OrderShow}
         basePath="/admin/orders"
         options={{ label: "Orders" }}
       />

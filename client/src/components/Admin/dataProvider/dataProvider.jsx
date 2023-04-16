@@ -2,11 +2,11 @@ import {
   getAllTheBooks,
   modifyBook,
   getBookById,
-  postBook
+  postBook,
 } from "../../../firebase/firestore/books";
-import { getAllTheUsers, modifyUser, modifyUserRole } from "../../../firebase/firestore/users";
-import { getOrders, getOrdersByUser } from "../../../firebase/firestore/orders";
-import { getUserById } from "../../../firebase/firestore/users";
+import { getAllTheUsers, modifyUser, modifyUserRole, getUserById } from "../../../firebase/firestore/users";
+import { getOrders, getOrdersById, getOrdersByUser } from "../../../firebase/firestore/orders";
+
 
 const dataProvider = {
   getList: async (resource, params) => {
@@ -14,7 +14,7 @@ const dataProvider = {
 
     switch (resource) {
       case "books":
-          const { title, genre, author } = params.filter || {}; // extrae los valores del filtro si se proporcionan
+        const { title, genre, author } = params.filter || {}; // extrae los valores del filtro si se proporcionan
         const books = await getAllTheBooks();
         data = books.map((el) => {
           return {
@@ -28,50 +28,57 @@ const dataProvider = {
           };
         });
         // Filtra los libros según los valores del filtro
-        if (title)  // eslint-disable-next-line
+        if (title)
+          // eslint-disable-next-line
           data = data.filter((book) => {
-            if (book.title.toLowerCase().includes(title.toLowerCase())) 
-              return true;
-          })
-        if(author)  // eslint-disable-next-line
-          data = data.filter((book) => {
-            if (book.authors.map((a) => a.author.toLowerCase()).some(item => item.includes(author.toLowerCase())))
+            if (book.title.toLowerCase().includes(title.toLowerCase()))
               return true;
           });
-        if(genre) // eslint-disable-next-line
+        if (author)
+          // eslint-disable-next-line
           data = data.filter((book) => {
-            if (book.genres.map((g) => g.genre.toLowerCase()).some(item => item.includes(genre.toLowerCase()))) 
-              return true
-          })
+            if (
+              book.authors
+                .map((a) => a.author.toLowerCase())
+                .some((item) => item.includes(author.toLowerCase()))
+            )
+              return true;
+          });
+        if (genre)
+          // eslint-disable-next-line
+          data = data.filter((book) => {
+            if (
+              book.genres
+                .map((g) => g.genre.toLowerCase())
+                .some((item) => item.includes(genre.toLowerCase()))
+            )
+              return true;
+          });
         break;
-    
+
       case "users":
         data = await getAllTheUsers();
         break;
-        
+
       case "orders":
         const orders = await getOrders();
 
-        orders.forEach((user) => {
-          data.push(user.orders.map((order) => {
-            return {
-              id: order.idOrder,
-              date: order.date,
-              userId: user.id,
-              items: order.items.map((book) => {
-                return {
-                  id: book.id,
-                  title: book.title,
-                  quantity: book.quantity,
-                  price: book.price
-                }
-              }),
-            }
-          })
-            )
-        })
-        data = data.flat();
-
+        data = orders.map((order) => {
+          return {
+            id:order.id,
+            date: new Date(order.date),
+            userId: order.userId,
+            status: order.status,
+            items: order.items.map((book) => {
+              return {
+                bookId: book.id,
+                title: book.title,
+                quantity: book.quantity,
+                price: book.price,
+              };
+            }),
+          };
+        });
         break;
       default:
         break;
@@ -85,43 +92,67 @@ const dataProvider = {
   getOne: async (resource, params) => {
     let data = {};
     const { id } = params;
-    // console.log(params);
 
     try {
-
       switch (resource) {
         case "books":
           data = await getBookById(id);
           break;
-      
+
+        case "users":
+          data = await getBookById(id)
+          break
+
         case "orders":
-          data = await getOrdersByUser(id)
-          
+          data = await getOrdersById(id);
+          data = {...data, items: data.items.map((book) => {
+            return {
+              bookId: book.id,
+              title: book.title,
+              quantity: book.quantity,
+              price: book.price,
+            };
+          })};
+
           break;
         default:
           break;
       }
 
-
-      
-      console.log(data);
       return { data };
     } catch (error) {
       console.log("Error en el servidor");
     }
   },
   getMany: async (resource, params) => {
-    let data = []
+    const { ids } = params;
+    let data = [];
+    let promises;
+
+    try{
+
+    switch (resource) {
+      case "books":
+        promises = ids.map(async (id) => await getBookById(id));
+        data = await Promise.all(promises);
+        
+        break;
+
+      case "users":
+        promises = ids.map(async (id) => await getUserById(id));
+        data = await Promise.all(promises);
+        break
     
-    if(resource === "users")
-    {
-      const {ids} = params;
-      const promises = ids.map(async id => await getUserById(id))
-      data = await Promise.all(promises)
+      default:
+        break;
     }
 
-    return {data}
+  }catch(error){
+    console.log(error)
+  }
 
+
+    return { data };
   },
   update: async (resource, params) => {
     if (resource === "books") {

@@ -6,5 +6,6 @@ export default function ProtectedRoutes({ children }) {
   const { userStatus } = useAuth();
 
   if (!userStatus.logged) return <Navigate to="/login" />;
+  if (!userStatus.nickName) return <Navigate to="/profile"/>
   else return <>{children}</>;
 }
