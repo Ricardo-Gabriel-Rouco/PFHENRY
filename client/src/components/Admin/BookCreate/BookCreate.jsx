@@ -1,4 +1,4 @@
-import { Create, SimpleForm, TextInput, ArrayInput, SimpleFormIterator, FileInput, ImageInput, ImageField, ReferenceInput, SelectInput, ChipField, ArrayField, Button } from 'react-admin';
+import { Create, SimpleForm, TextInput, ArrayInput, SimpleFormIterator, FileInput, ImageInput, ImageField, ReferenceInput, SelectInput, ChipField, ArrayField, Button, NumberField, NumberInput } from 'react-admin';
 import { postBook } from '../../../firebase/firestore/books';
 import { useState,useEffect } from 'react';
 import { getGenres } from '../../../firebase/firestore/genres';
@@ -20,6 +20,11 @@ import styles from "./BookForm.module.css";
 
 export const BookCreate = (props) => {
 
+  const [imageType,setImageType] = useState('file');
+  const [imageUrl,setImageUrl] = useState(null)
+  const [genres,setGenres]= useState([])
+  const [bookData,setBookData]=useState({})
+  const [errors,setErrors] = useState({});
 
   const createBook = async (bookData) => {
 
@@ -32,11 +37,6 @@ export const BookCreate = (props) => {
     }
 
   };
-    const [imageType,setImageType] = useState('file');
-    const [imageUrl,setImageUrl] = useState(null)
-    const [genres,setGenres]= useState([])
-    const [bookData,setBookData]=useState({})
-    const [errors,setErrors] = useState({});
 
     const handleInputChange = (e) =>{
       setBookData({
@@ -114,26 +114,26 @@ export const BookCreate = (props) => {
       }
     }
 
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      try {
-        const res = await postBook({ ...bookData, authors: [bookData.authors] });
-        console.log(res);
-      } catch (error) {
-        let toHighlight = {};
-        for (const key in errors) {
-          console.log(key);
-          if (bookData[key] === undefined) toHighlight[key] = "";
-        }
-        setBookData({ ...bookData, ...toHighlight });
+    // const handleSubmit = async (e) => {
+    //   e.preventDefault();
+    //   try {
+    //     const res = await postBook({ ...bookData, authors: [bookData.authors] });
+    //     console.log(res);
+    //   } catch (error) {
+    //     let toHighlight = {};
+    //     for (const key in errors) {
+    //       console.log(key);
+    //       if (bookData[key] === undefined) toHighlight[key] = "";
+    //     }
+    //     setBookData({ ...bookData, ...toHighlight });
   
-        window.alert(error);
-      }
-    };
+    //     window.alert(error);
+    //   }
+    // };
 
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width:'75%',alignSelf:'center' , margin:'25rem'}}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width:'75%',alignSelf:'center' , margin:'15rem'}}>
       <Create {...props} style={{alignSelf:'center', display:'flex'}}>
         <SimpleForm onSubmit={createBook}>
 
@@ -166,12 +166,13 @@ export const BookCreate = (props) => {
             <br></br>
             <TextInput multiline label='Descritpion' source=' description'  style={{width:'50rem'}} />
             <br></br>
-            <TextInput 
+            <NumberInput 
             label='Price $' 
             source='price'
             onChange={handleInputChange}
             defaultValue= {bookData.price}  
-            style={{margin:'0 2rem '}}/>
+            style={{margin:'0 2rem '}}
+            options={{style:'currency',currency:'USD'}}/>
             {errors.price ? (<p className={styles.formError}><ErrorIcon/>{errors.price && errors.price}</p>):null}
             <br></br>
             <TextInput 
@@ -191,6 +192,7 @@ export const BookCreate = (props) => {
             {errors.editorial ? (<p className={styles.formError}><ErrorIcon/>{errors.editorial && errors.editorial}</p>):null}
             <InputLabel htmlFor="genres">Genres:</InputLabel>
               <select
+                name='genres'
                 multiple={true}
                 value={bookData.genres}
                 onChange={handleOptions}
