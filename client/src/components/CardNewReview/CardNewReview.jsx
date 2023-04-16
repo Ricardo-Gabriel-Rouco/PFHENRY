@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { TextField, Rating, Button, Grid } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { useAuth } from "../../context/authContext";
+import { getBookById } from "../../firebase/firestore/books";
 
-const CardNewReview = ({ id, handleNewReview}) => {
+const CardNewReview = ({ id, handleNewReview, setBookDetail}) => {
   const {userStatus} = useAuth() 
   const initialState = {
     id: id,
@@ -22,8 +23,8 @@ const CardNewReview = ({ id, handleNewReview}) => {
   const [input, setInput] = useState(initialState);
   useEffect(() => {
     const newError = {comment: '', rating: ''}
-    if(!input.comment) newError.comment= 'El comentario no puede estar vacio'
-    if(parseInt(input.rating) <= 0) newError.rating= 'Debe calificar con al menos media estrella'
+    if(!input.comment) newError.comment= 'Comment must not be empty'
+    if(parseInt(input.rating) <= 0) newError.rating= 'Stars cannot be Zero'
     setErrors(newError)
   }, [input])
   
@@ -33,11 +34,14 @@ const CardNewReview = ({ id, handleNewReview}) => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    if(!errors.comment && !errors.rating){
-      handleNewReview(input);
-      setInput(initialState);
-    } else {
-
+    try {
+      if(!errors.comment && !errors.rating){
+        await handleNewReview(input);
+        const result = await getBookById(id)
+        setBookDetail(result)
+      }
+    } catch (error) {
+      console.log(error)
     }
   };
 

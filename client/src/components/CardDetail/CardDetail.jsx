@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getBookById } from "../../firebase/firestore/books";
-import { useDispatch } from "react-redux";
 import {
   Grid,
   Box,
@@ -28,7 +27,6 @@ const CardDetail = ({ id }) => {
 
   const paramId = useParams().id;
   if (!id) id = paramId;
-  const dispatch = useDispatch();
   const [bookDetail, setBookDetail] = useState({});
 
   useEffect(() => {
@@ -40,13 +38,13 @@ const CardDetail = ({ id }) => {
       .catch((error) => {
         console.log(error);
       });
-  }, [dispatch, id]);
+  }, [id]);
 
   const handleNewReview = async (input) => {
     await updateBookReviews(input);
-    dispatch(getBookById(id))
+    getBookById(id)
       .then((response) => {
-        setBookDetail(response.payload);
+        setBookDetail(response);
       })
       .catch((error) => {
         console.log(error);
@@ -207,6 +205,7 @@ const CardDetail = ({ id }) => {
                       nickname={userStatus.nickname}
                       handleNewReview={handleNewReview}
                       uid={userStatus.userId}
+                      setBookDetail={setBookDetail}
                     />
                   </List>
                 </Paper>
