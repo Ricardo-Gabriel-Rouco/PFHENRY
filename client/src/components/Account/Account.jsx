@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/authContext";
 import { getOrdersByUser } from "../../firebase/firestore/orders";
-import { Grid, GridContainer, Paper, Typography, CardMedia, TableCell, TableRow, TableHead, Table, TableContainer } from '@mui/material';
+import { Grid, Paper, Typography, CardMedia, TableCell, TableRow, TableHead, Table, TableContainer } from '@mui/material';
 
 
 
@@ -22,9 +22,19 @@ function Account() {
     return (
         <TableContainer component={Paper}>
             <Table sx={{ width: '100%', alignContent: 'center', boxShadow: '1px 1px 3px rgba(0, 0, 0, 0.3)' }} aria-label="orders table">
+
                 {orders.map((order) => (<>
                     <TableHead>
-                        <TableCell align="left">{new Date(order.date).toLocaleDateString([], { day: 'numeric', month: 'long', year: 'numeric' })}</TableCell>
+                        <TableCell align="left" >
+                            <Typography fontSize={'15px'} fontWeight='bold'>
+                                {new Date(order.date).toLocaleDateString([], { day: 'numeric', month: 'long', year: 'numeric' })}
+                            </Typography>
+                        </TableCell>
+                        <TableCell align="right">
+                            <Typography fontSize={'13px'} fontWeight='bold'>
+                                Total: ${order.items.reduce((acc, curr) => acc + curr.price * curr.quantity, 0)}
+                            </Typography>
+                        </TableCell>
                     </TableHead>
                     <TableRow key={order.id}>
                         <TableCell colSpan={3}>
@@ -32,7 +42,6 @@ function Account() {
                             <Grid container spacing={2}>
                                 {order.items.map((book) => (
                                     <Grid item xs={12} sm={6} md={4} key={book.id}>
-
                                         <Paper sx={{ display: 'flex', alignItems: 'center', padding: 2 }}>
                                             <CardMedia
                                                 component="img"
@@ -56,7 +65,6 @@ function Account() {
 
                                 ))}
                             </Grid>
-
                         </TableCell>
                     </TableRow></>
                 ))}
