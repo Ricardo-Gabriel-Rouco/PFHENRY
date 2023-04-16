@@ -5,7 +5,6 @@ import style from "./Landing.module.css";
 import { Button, Box, Grid, Typography } from "@mui/material";
 import background from "../../Assets/fondoResponsive.jpg";
 
-
 const Landing = () => {
   function scrollToAbout() {
     const about = document.getElementById("about");
@@ -33,8 +32,18 @@ const Landing = () => {
           // alignItems={'center'}
           sx={{ width: "100%", height: "100vh" }}
         >
-          <Grid item marginTop={'5rem'}>
-            <Typography sx={{fontSize: '7vw', color: 'primary.main', fontFamily: 'Celtic MD'}}>
+          <Grid item marginTop={"5rem"}>
+            <Typography
+              sx={{
+                fontSize: "7vw",
+                color: "primary.main",
+                fontFamily: "Celtic MD",
+                backdropFilter: "blur(1.5px)",
+                backgroundColor: "rgba(220, 220, 220, 0.4)",
+                padding: "1rem",
+                borderRadius: "1rem",
+              }}
+            >
               Book's <br /> Kingdom
             </Typography>
 
