@@ -1,0 +1,17 @@
+.swiper-button-prev,
+.swiper-button-next {
+  color: #523f00;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  color: #ffbc2dde;
+  cursor: pointer;
+}
+
+.swiper-pagination-bullet-active {
+  border: 1px solid;
+  border-color: #523f00;
+  background-color: #ffbc2dde;
+} 
+
