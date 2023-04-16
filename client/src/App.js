@@ -72,8 +72,8 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="*" element={<Error />} />
-              <Route path="/modify" element={<ProtectedRoutes><EditUser/></ProtectedRoutes>}/>
               <Route path="/account" element={<Account />} />
+              <Route path="/profile" element={<EditUser/>}/>
               <Route path="/purchases" element={<MyPurchases/>}/>
               <Route path="/payStatus" element={<PayStatus />}/>
             </Routes>

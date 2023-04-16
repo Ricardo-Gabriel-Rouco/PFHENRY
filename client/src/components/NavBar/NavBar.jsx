@@ -199,52 +199,42 @@ const NavBar = ({ passTheme, mode }) => {
                   <AccountCircle />
                 </IconButton>
 
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "right",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={Boolean(anchorEl)}
-                  onClose={handleClose}
-                  color="inherit"
-                >
-                  {userStatus.logged ? (
-                    <>
-
-                      <MenuItem onClick={handleClose}>
-                        <Link to={"/modify"}>Profile</Link>
-                      </MenuItem>
-                       <MenuItem onClick={handleClose}><Link to={'/account'}>My Books</Link></MenuItem>
-                      <MenuItem
-                        onClick={() => {
-                          handleClose();
-                          handleLogOut();
-                        }}
-                      >
-                        Log Out
-                      </MenuItem>
-                    </>
-                  ) : (
-                    <MenuItem onClick={handleClose}>
-                      <Link to={"/login"}>Log In</Link>
-                    </MenuItem>
-                  )}
-                </Menu>
-              </Grid>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+                color="inherit"
+              >
+                {userStatus.logged ? (
+                  <>
+                    <MenuItem onClick={handleClose}><Link to={'/profile'}>Profile</Link></MenuItem>
+                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                    <MenuItem onClick={()=>{handleClose();handleLogOut()}}>Log Out</MenuItem>
+                  </>
+                ) : (
+                  <MenuItem onClick={handleClose}>
+                    <Link style={{ color: "#ffc400" }} to={"/login"}>Log In</Link>
+                  </MenuItem>
+                )}
+              </Menu>
+            </Grid>
             </Grid>
           </Toolbar>
-        </AppBar>
-        {/* <Toolbar/> */}
-        {/* Este componente es solo para evitar que la NavBar fija pise elementos en la pagina*/}
-      </Box>
-
+        </Box>
+      </AppBar>
+      <Toolbar/>  {/* Este componente es solo para evitar que la NavBar fija pise elementos en la pagina*/}
+    </Box>
+                
     )
   );
 };
