@@ -1,5 +1,5 @@
 .container {
-  background-color: #F9B52E;
+  
   height: 100%;
 
 }
@@ -21,7 +21,7 @@
 
 .cardsContainer {
   display: grid;
-  background-color: #F9B52E;
+ 
   grid-template-rows: repeat(2, 1fr);
   grid-template-columns: repeat(4, 1fr);
 
@@ -59,7 +59,7 @@
   line-height: 16px;
   font-style: normal;
   margin-top: 25px;
-  color: whiblackte;
+  
 }
 
 .card h2 {
@@ -73,13 +73,13 @@
 .gitHub {
   width: 30px;
   height: 30px;
-  color: white;
+  
 }
 
 .linkedin {
   width: 30px;
   height: 30px;
-  color: white;
+  
 }
 
 .linkedin:hover {
@@ -99,7 +99,7 @@ a:visited {
 .flecha {
   animation: arrow 1s ease-in-out infinite;
   font-size: 40px;
-  color: WHITE;
+  
   cursor: pointer;
   margin-bottom: 75px;
 }

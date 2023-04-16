@@ -62,7 +62,7 @@ const CardContainer = () => {
         <Cards>
 
           <Carrousel />
-          <Grid container spacing={1} justifyContent="center" bgcolor="#f9b52ea8">
+          <Grid container spacing={1} justifyContent="center" >
             {currentBook
               .map((c, index) => (
                 <Grid item xs={12} sm={6} md={4} lg={3} key={c.id}>

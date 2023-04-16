@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getBookById } from "../../firebase/firestore/books";
-import { useDispatch } from "react-redux";
 import {
   Grid,
   Box,
@@ -12,24 +11,22 @@ import {
   List,
   ListSubheader,
   Collapse,
-  Button
+  Button,
 } from "@mui/material";
 import CardsReview from "../CardsReview/CardsReview";
 import CardNewReview from "../CardNewReview/CardNewReview";
 import loading from "../../Assets/Loading.gif";
-import { updateBookReviews } from "../../firebase/firestore/books";
-
-let nickname = "Claudio"; //Traer el "nickname" del usuario que esta loogeado
-
+import { updateBookReviews, modifyBook } from "../../firebase/firestore/books";
+import { useAuth } from "../../context/authContext";
 
 const CardDetail = ({ id }) => {
   const [details, setMoreDetails] = useState(false);
   const [description, setDescription] = useState(false);
 
+  const { userStatus } = useAuth();
+
   const paramId = useParams().id;
-  if (!id)
-    id = paramId
-  const dispatch = useDispatch();
+  if (!id) id = paramId;
   const [bookDetail, setBookDetail] = useState({});
 
   useEffect(() => {
@@ -41,22 +38,19 @@ const CardDetail = ({ id }) => {
       .catch((error) => {
         console.log(error);
       });
-  }, [dispatch, id]);
+  }, [id]);
 
   const handleNewReview = async (input) => {
-    try {
-      const res = await updateBookReviews(input);
-      console.log(res);
-      dispatch(getBookById(id))
-        .then((response) => {
-          setBookDetail(response.payload);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } catch (error) {
-      console.log(error);
-    }
+    await updateBookReviews(input);
+    await modifyBook(id, {rating: !bookDetail.rating ? input.rating : (parseInt(input.rating) + parseInt(bookDetail.rating)) / 2 })
+    getBookById(id)
+      .then((response) => {
+        setBookDetail(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    
   };
 
   return bookDetail.id ? (
@@ -69,7 +63,6 @@ const CardDetail = ({ id }) => {
       sx={{ padding: 2 }}
     >
       <Grid item xs={12} md={6} lg={4}>
-
         <Card
           sx={{
             position: "absolute",
@@ -77,7 +70,7 @@ const CardDetail = ({ id }) => {
             left: "50%",
             transform: "translate(-50%, -50%)",
             p: 4,
-            bgcolor: "primary",
+            bgcolor: "primary.dark",
             width: 800,
             maxWidth: "50vw",
             maxHeight: "71vh",
@@ -88,7 +81,6 @@ const CardDetail = ({ id }) => {
         >
           <Box
             sx={{
-
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -130,59 +122,66 @@ const CardDetail = ({ id }) => {
               gutterBottom
               sx={{ fontWeight: "bold", marginBottom: "15px" }}
             >
-              <Collapse in={details} collapsedHeight={'500px'}>
-                {bookDetail?.year} - {bookDetail?.editorial} - {bookDetail?.authors}
+              <Collapse in={details} collapsedHeight={"500px"}>
+                {bookDetail?.year} - {bookDetail?.editorial} -{" "}
+                {bookDetail?.authors}
               </Collapse>
             </Typography>
             <Button onClick={() => setMoreDetails(!details)}>
-              {details ? 'View less' : 'View Details'}
+              {details ? "View less" : "View Details"}
             </Button>
-            {bookDetail && bookDetail.description && ( <> 
+            {bookDetail && bookDetail.description && (
+              <>
                 <Typography
                   variant="body1"
                   align="justify"
                   gutterBottom
                   sx={{ marginBottom: "15px", width: "90%" }}
                 >
-                  <Collapse in={description} collapsedHeight={'500px'}>
+                  <Collapse in={description} collapsedHeight={"500px"}>
                     {bookDetail.description}
                   </Collapse>
                 </Typography>
                 <Button onClick={() => setDescription(!description)}>
-                  {description ? 'View less' : 'View Description'}
+                  {description ? "View less" : "View Description"}
                 </Button>
-                </>
+              </>
             )}
 
             {/* new change "Show reviews" */}
             {bookDetail.reviews ? (
-              bookDetail.reviews.find((obj) => obj.user === nickname) ? (
+              bookDetail.reviews.find(
+                (obj) => obj.user === userStatus.nickName
+              ) ? (
                 ""
               ) : (
                 <>
-                  <Paper
-                    elevation={4}
-                    sx={{
-                      maxHeight: 200,
-                      overflow: "auto",
-                      margin: "auto",
-                      width: "90%",
-                    }}
-                  >
-                    <List
+                  {userStatus.logged ? (
+                    <Paper
+                      elevation={4}
                       sx={{
-                        width: "95%",
+                        maxHeight: 200,
+                        overflow: "auto",
                         margin: "auto",
+                        width: "90%",
                       }}
                     >
-                      <CardNewReview
-                        key={bookDetail.id}
-                        id={bookDetail.id}
-                        nickname={nickname}
-                        handleNewReview={handleNewReview}
-                      />
-                    </List>
-                  </Paper>
+                      <List
+                        sx={{
+                          width: "95%",
+                          margin: "auto",
+                        }}
+                      >
+                        <CardNewReview
+                          key={bookDetail.id}
+                          id={bookDetail.id}
+                          nickname={userStatus.nickname}
+                          handleNewReview={handleNewReview}
+                          uid={userStatus.userId}
+                        />
+                      </List>
+                    </Paper>
+                  ) : null}
                 </>
               )
             ) : (
@@ -205,9 +204,10 @@ const CardDetail = ({ id }) => {
                     <CardNewReview
                       key={bookDetail.id}
                       id={bookDetail.id}
-                      nickname={nickname}
+                      nickname={userStatus.nickname}
                       handleNewReview={handleNewReview}
-
+                      uid={userStatus.userId}
+                      setBookDetail={setBookDetail}
                     />
                   </List>
                 </Paper>
@@ -230,7 +230,10 @@ const CardDetail = ({ id }) => {
                       margin: "auto",
                     }}
                     subheader={
-                      <ListSubheader color="primary" sx={{ display: "flex" }}>
+                      <ListSubheader
+                        color="primary.dark"
+                        sx={{ display: "flex" }}
+                      >
                         Comments
                       </ListSubheader>
                     }
