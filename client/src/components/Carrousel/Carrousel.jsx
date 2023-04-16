@@ -5,8 +5,7 @@ import 'swiper/css/pagination';
 import SwiperCore, { Navigation, Pagination } from "swiper/core";
 import { CardMedia, Grid, Typography, styled } from "@mui/material";
 import { useSelector } from "react-redux";
-import { useState } from "react";
-import CardDetail from '../CardDetail/CardDetail'
+import {Link} from 'react-router-dom'
 import './Carrousel.css'
 
 
@@ -14,11 +13,9 @@ SwiperCore.use([Navigation, Pagination]);
 
 const Carrousel = () => {
     const displayableBooks = useSelector((state) => state.books.displayableBooks);
-    const [selectedBookId, setSelectedBookId] = useState(null);
 
-    const handleBookClick = (bookId) => {
-        setSelectedBookId(bookId);
-    }
+
+
     const CarouselContainer = styled('div')({
         backgroundColor: "#f9b52ea8",
         margin: 'auto',
@@ -34,7 +31,7 @@ const Carrousel = () => {
         zIndex: 0
     });
 
-    
+
 
 
 
@@ -46,7 +43,7 @@ const Carrousel = () => {
             <Swiper
                 slidesPerView={4}
                 slidesPerGroup={4}
-                spaceBetween={100}
+                spaceBetween={200}
                 navigation
                 pagination={{ clickable: true }}
                 breakpoints={{
@@ -80,14 +77,14 @@ const Carrousel = () => {
                             {console.log(book.id)}
                             <Grid container justifyContent="center" style={{ height: '100%' }}>
                                 <Grid item>
-                                    <BookCardMedia
-                                        component="img"
-                                        height="300"
-                                        image={book.image}
-                                        alt={book.title}
-                                        sx={{ cursor: 'pointer' }}
-                                        onClick={() => handleBookClick(book.id)} />
-                                    {selectedBookId === book.id && <CardDetail id={book.id} />}
+                                    <Link to={`/home/${book.id}`}>
+                                        <BookCardMedia
+                                            component="img"
+                                            height="300"
+                                            image={book.image}
+                                            alt={book.title}
+                                            sx={{ cursor: 'pointer' }} />
+                                    </Link>
                                     <Grid container justifyContent="space-between" alignItems="center">
                                         <Typography align="left" variant="h7" sx={{ textAlign: 'left' }}>
                                             $<s>{book.price}</s>{" "}
