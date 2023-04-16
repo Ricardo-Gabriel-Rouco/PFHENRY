@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TextField, Rating, Button, Grid } from "@mui/material";
+import { TextField, Rating, Button, Grid, Typography } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { useAuth } from "../../context/authContext";
 import { getBookById } from "../../firebase/firestore/books";
@@ -39,6 +39,8 @@ const CardNewReview = ({ id, handleNewReview, setBookDetail}) => {
         await handleNewReview(input);
         const result = await getBookById(id)
         setBookDetail(result)
+      } else {
+        alert(errors.comment || errors.rating)
       }
     } catch (error) {
       console.log(error)
