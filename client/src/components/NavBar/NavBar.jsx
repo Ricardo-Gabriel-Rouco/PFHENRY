@@ -9,9 +9,9 @@ import { useAuth } from "../../context/authContext";
 import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
 import ShoppingCart from "@mui/icons-material/ShoppingCart";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import Home from "@mui/icons-material/Home";
-import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
+import { AppBar, Box, IconButton, Toolbar, Grid } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 // import LoginIcon from '@mui/icons-material/Login'
@@ -39,8 +39,8 @@ const NavBar = ({ passTheme, mode }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
-  const favorites = useSelector(state => state.favorite.favorites);
-  const cart = useSelector(state => state.cart);
+  const favorites = useSelector((state) => state.favorite.favorites);
+  const cart = useSelector((state) => state.cart);
   const displayableBooks = useSelector((state) => state.books.displayableBooks);
 
   const handleMenu = (event) => {
@@ -66,111 +66,128 @@ const NavBar = ({ passTheme, mode }) => {
 
   //Estableciendo modos de Theme para el py
 
-
   useEffect(() => {
-    dispatch(importBooks())
-  },[dispatch])
+    dispatch(importBooks());
+  }, [dispatch]);
 
   return (
     location.pathname !== "/" &&
     location.pathname.slice(0, 6) !== "/admin" && (
-      <Box sx={{ flexGrow: 1, bgcolor: "secondary", p: 1 }}>
-        <AppBar position="fixed" color="primary">
-          <Box>
-            <Toolbar>
-              <IconButton
-                size="large"
-                edge="start"
-                aria-label="home"
-                color="inherit"
-                sx={{ mr: 2 }}
-                onClick={goHome}
-              >
-                <Home />
-              </IconButton>
-
+      <Box sx={{ bgcolor: "secondary", p: 1, marginTop: "auto 0px" }}>
+        <AppBar position="sticky" color="primary">
+          <Toolbar>
+            <Grid container>
+              <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
+                <IconButton
+                  size="large"
+                  edge="start"
+                  aria-label="home"
+                  color="inherit"
+                  sx={{ mr: 2 }}
+                  onClick={goHome}
+                >
+                  <Home />
+                </IconButton>
+              </Grid>
               {location.pathname !== "/create" ? (
-                <Box
-                  sx={{
-                    width: "45rem",
-                    marginInline: "40px",
-                  }}
-                >
-                  <SearchBar />
-                </Box>
+                <Grid item xs="auto">
+                  <Box
+                    sx={{
+                      width: "475px",
+                      padding: "0px",
+                    }}
+                  >
+                    <SearchBar />
+                  </Box>
+                </Grid>
               ) : null}
-
               {userStatus.role === "ADMIN" ? (
-                <IconButton
-                  size="large"
-                  edge="start"
-                  aria-label="bottom"
-                  sx={{ mr: 2 }}
-                  color="inherit"
-                >
-                  <Link style={{ color: "#ffc400" }} to="/create">
-                    <AddCircleOutlineIcon />
-                  </Link>
-                </IconButton>
+                <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
+                  <IconButton
+                    size="large"
+                    edge="start"
+                    aria-label="admin"
+                    sx={{ mr: 2 }}
+                    color="inherit"
+                    onClick={() => passTheme(dark)}
+                  >
+                    <Link to="/ADMIN">
+                      <AdminPanelSettingsIcon />
+                    </Link>
+                  </IconButton>
+                </Grid>
               ) : null}
-
               {mode === light ? (
-                <IconButton
-                  size="large"
-                  edge="start"
-                  aria-label="home"
-                  color="inherit"
-                  sx={{ mr: 2 }}
-                  onClick={() => passTheme(dark)}
-                >
-                  <ModeNightIcon />
-                </IconButton>
+                <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
+                  <IconButton
+                    size="large"
+                    edge="start"
+                    aria-label="home"
+                    color="inherit"
+                    sx={{ mr: 2 }}
+                    onClick={() => passTheme(dark)}
+                  >
+                    <ModeNightIcon />
+                  </IconButton>
+                </Grid>
               ) : (
-                <IconButton
-                  size="large"
-                  edge="start"
-                  aria-label="home"
-                  color="inherit"
-                  sx={{ mr: 2 }}
-                  onClick={() => passTheme(light)}
-                >
-                  <LightModeIcon />
-                </IconButton>
+                <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
+                  <IconButton
+                    size="large"
+                    edge="start"
+                    aria-label="home"
+                    color="inherit"
+                    sx={{ mr: 2 }}
+                    onClick={() => passTheme(light)}
+                  >
+                    <LightModeIcon />
+                  </IconButton>
+                </Grid>
               )}
 
-            <IconButton
-              size="large"
-              edge="start"
-              aria-label="buttons"
-              sx={{ mr: 2 }}
-              color="inherit"
-              onClick={() => dispatch(toogleFav())}
-            >
-
-              <Badge badgeContent={favorites && displayableBooks.filter(book => favorites.favorites.includes(book.id)).length}>
-                <BookmarkOutlinedIcon  />
-              </Badge>
-            </IconButton>
-
-            <IconButton
-              size="large"
-              edge="start"
-              aria-label="buttons"
-              sx={{ mr: 2 }}
-              color="inherit"
-              onClick={() => dispatch(toogleCart())}
-            >
-
-              <Badge badgeContent={availableItems(displayableBooks,cart).length}>
-                <ShoppingCart />
-              </Badge>
-            </IconButton>
-
-
-              {/* {userStatus.logged ? ( */}
-              <div>
+              <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
                 <IconButton
                   size="large"
+                  edge="start"
+                  aria-label="buttons"
+                  sx={{ mr: 2 }}
+                  color="inherit"
+                  onClick={() => dispatch(toogleFav())}
+                >
+                  <Badge
+                    badgeContent={
+                      favorites &&
+                      displayableBooks.filter((book) =>
+                        favorites.favorites.includes(book.id)
+                      ).length
+                    }
+                  >
+                    <BookmarkOutlinedIcon />
+                  </Badge>
+                </IconButton>
+              </Grid>
+              <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
+                <IconButton
+                  size="large"
+                  edge="start"
+                  aria-label="buttons"
+                  sx={{ mr: 2 }}
+                  color="inherit"
+                  onClick={() => dispatch(toogleCart())}
+                >
+                  <Badge
+                    badgeContent={availableItems(displayableBooks, cart).length}
+                  >
+                    <ShoppingCart />
+                  </Badge>
+                </IconButton>
+              </Grid>
+              {/* {userStatus.logged ? ( */}
+              <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
+                <IconButton
+                  size="large"
+                  edge="start"
+                  sx={{ mr: 2 }}
                   aria-label="account of current user"
                   aria-controls="menu-appbar"
                   aria-haspopup="true"
@@ -180,41 +197,50 @@ const NavBar = ({ passTheme, mode }) => {
                   <AccountCircle />
                 </IconButton>
 
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-                color="inherit"
-              >
-                {userStatus.logged ? (
-                  <>
-                    <MenuItem onClick={handleClose}><Link to={'/modify'}>Profile</Link></MenuItem>
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
-                    <MenuItem onClick={()=>{handleClose();handleLogOut()}}>Log Out</MenuItem>
-                  </>
-                ) : (
-                  <MenuItem onClick={handleClose}>
-                    <Link style={{ color: "#ffc400" }} to={"/login"}>Log In</Link>
-                  </MenuItem>
-                )}
-              </Menu>
-            </div>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
+                  color="inherit"
+                >
+                  {userStatus.logged ? (
+                    <>
+                      <MenuItem onClick={handleClose}>
+                        <Link to={"/modify"}>Profile</Link>
+                      </MenuItem>
+                      <MenuItem onClick={handleClose}>My account</MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          handleClose();
+                          handleLogOut();
+                        }}
+                      >
+                        Log Out
+                      </MenuItem>
+                    </>
+                  ) : (
+                    <MenuItem onClick={handleClose}>
+                      <Link to={"/login"}>Log In</Link>
+                    </MenuItem>
+                  )}
+                </Menu>
+              </Grid>
+            </Grid>
           </Toolbar>
-        </Box>
-      </AppBar >
-      <Toolbar/>  {/* Este componente es solo para evitar que la NavBar fija pise elementos en la pagina*/}
-    </Box >
-                
+        </AppBar>
+        {/* <Toolbar/> */}
+        {/* Este componente es solo para evitar que la NavBar fija pise elementos en la pagina*/}
+      </Box>
     )
   );
 };

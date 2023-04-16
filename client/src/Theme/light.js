@@ -5,13 +5,11 @@ const light = createTheme({
     mode: "light",
     primary: {
       main: "#ffc400",
-      light: "#fbce6d",
-      dark: "#daa306",
-      contrastText: "#2b1c1a",
+      contrastText: "#fff9c4",
     },
     secondary: {
       main: "#e4704c",
-      contrastText: "#ffffff",
+      contrastText: "#FFF8E1",
     },
     warning: {
       main: "#fd7373",

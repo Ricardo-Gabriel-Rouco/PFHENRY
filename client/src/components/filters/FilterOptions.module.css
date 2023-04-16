@@ -1,30 +1,29 @@
 .mainDiv {
   background-color: none;
-  padding: 0.3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 10px 0 20px 0;
 }
 
 .divFiltersContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  width: 60%;
+  width: 70%;
 }
 
 .filters {
-  background-color: #3e2723;
-  /* border-color: #fff9c4; */
+  background-color: #f5bd02;
   border: 2px;
   gap: 1rem;
   padding: 0.5rem;
-  color: #fff9c4;
+  color: #FFF8E1;
   text-align: center;
   font-size: 1rem;
   cursor: pointer;
-  border-radius: 20px 0 0 0;
+  border-radius: 20px;
 }
 .filters:focus {
   border: none;
