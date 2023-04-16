@@ -62,10 +62,15 @@ const CardContainer = () => {
         <Cards>
 
           <Carrousel />
-          <Grid container spacing={1} justifyContent="center" bgcolor="#f9b52ea8">
+          <Grid container justifyContent="center" 
+            style={{ 
+              margin:"40px 0", 
+              gap: "40px",
+              // minHeight: "100vh", 
+            }}>
             {currentBook
               .map((c, index) => (
-                <Grid item xs={12} sm={6} md={4} lg={3} key={c.id}>
+                <Grid item xs="auto">
                   {c.display ?
                     <div key={index}>
                       <Card
