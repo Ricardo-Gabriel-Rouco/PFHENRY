@@ -25,7 +25,7 @@ const OrderList = (props) => (
             (total, current) => total + current.price * current.quantity, 0)
         }
       />
-      <ShowButton/>
+      <ShowButton label="View Details"/>
     </Datagrid>
   </List>
 );
