@@ -172,7 +172,7 @@ const Cart = () => {
             {"Total Price: $ " +
               availableItems(displayableBooks, cart)
                 .reduce(
-                  (totalPrice, book) => totalPrice + book.quantity * book.unit_price,
+                  (totalPrice, book) => totalPrice + book.quantity * book.unit_price *(100-(book.discount?book.discount:0))/100,
                   0
                 )
                 .toFixed(2)}

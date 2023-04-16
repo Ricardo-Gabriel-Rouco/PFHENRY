@@ -53,7 +53,7 @@ export async function postOrder(order) {
     const orderRef = doc(collectionRef, order.idOrder);
 
     const newOrder ={
-        date: new Date(),
+        date: new Date().toISOString(),
         userId: order.user,
         items:order.items,
         status: order.status,
