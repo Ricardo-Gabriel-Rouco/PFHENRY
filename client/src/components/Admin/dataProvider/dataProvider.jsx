@@ -4,7 +4,7 @@ import {
   getBookById,
   postBook,
 } from "../../../firebase/firestore/books";
-import { getOrders, getOrdersByUser } from "../../../firebase/firestore/orders";
+import { getOrders, getOrdersById, getOrdersByUser } from "../../../firebase/firestore/orders";
 import { getAllTheUsers, getUserById } from "../../../firebase/firestore/users";
 
 const dataProvider = {
@@ -70,40 +70,14 @@ const dataProvider = {
             status: order.status,
             items: order.items.map((book) => {
               return {
-                id: book.id,
+                bookId: book.id,
                 title: book.title,
                 quantity: book.quantity,
                 price: book.price,
               };
             }),
           };
-
-
-          // date: new Date(),
-          // userId: order.user,
-          // items:order.items,
-          // status: order.status,
-          //   data.push(user.orders.map((order) => {
-          //     return {
-          //       id: order.idOrder,
-          //       date: order.date,
-          //       userId: user.id,
-          //       items: order.items.map((book) => {
-          //         return {
-          //           id: book.id,
-          //           title: book.title,
-          //           quantity: book.quantity,
-          //           price: book.price
-          //         }
-          //       }),
-          //     }
-          //   })
-          //     )
         });
-        console.log(data)
-
-        // data = data.flat();
-
         break;
       default:
         break;
@@ -117,7 +91,7 @@ const dataProvider = {
   getOne: async (resource, params) => {
     let data = {};
     const { id } = params;
-    // console.log(params);
+    console.log(params);
 
     try {
       switch (resource) {
@@ -125,15 +99,26 @@ const dataProvider = {
           data = await getBookById(id);
           break;
 
+        case "users":
+          data = await getBookById(id)
+          break
+
         case "orders":
-          data = await getOrdersByUser(id);
+          data = await getOrdersById(id);
+          data = {...data, items: data.items.map((book) => {
+            return {
+              bookId: book.id,
+              title: book.title,
+              quantity: book.quantity,
+              price: book.price,
+            };
+          })};
 
           break;
         default:
           break;
       }
 
-      console.log(data);
       return { data };
     } catch (error) {
       console.log("Error en el servidor");
