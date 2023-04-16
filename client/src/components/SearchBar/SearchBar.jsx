@@ -53,24 +53,29 @@ const SearchBar = ({ placeholder }) => {
   return (
     <>
       <Paper
+        
         sx={{
           display: "flex",
-          alignSelf: "center",
-          width: "80%",
+          // alignSelf: "center",
+          width: "100%",
           borderColor: "primary",
           borderRadius: "10px",
           boxShadow: "-0.2px 0.4px 0.4px 0.95px rgba(255, 253, 231, 0.9)",
-          bgcolor: "secondary",
+          padding: "0px",
+          height: "45px",
+          // bgcolor:"default",
         }}
-        margin="dense"
+        // margin="dense"
+        
       >
         <Autocomplete
           freeSolo
           // id="free-solo-2-demo"
           disableClearable
           blurOnSelect
+          size="small"
           options={books.map((el) => el.title)}
-          sx={{ flex: 1, width: "100%", borderWidth: "0" }}
+          sx={{  width: "100%", border: "0", padding: "0px" }}
           filterOptions={filterOptions}
           value={searchValue}
           onInput={handlerInputChange}
@@ -78,22 +83,26 @@ const SearchBar = ({ placeholder }) => {
           onKeyDown={handlerKeyDown}
           renderInput={(params) => (
             <TextField
+              size="small"
+              variant="standard"
+              color="primary"
               {...params}
-              sx={{ ml: 1, flex: 1, marginLeft: "0", marginRight: "1px" }}
+              sx={{ ml: 1, flex: 1, marginLeft: "0", marginRight: "5px", width: "95%","& fieldset": { border: "none" } }}
               label="Search book"
-              InputLabelProps={{ focused: true }}
+              InputLabelProps={{ focused: true, style : {color : "#ffc400"} }}
               // margin="dense"
               InputProps={{
                 ...params.InputProps,
                 type: "search",
                 endAdornment: true,
+                disableUnderline: true,
               }}
             />
           )}
         />
         <IconButton
           type="button"
-          sx={{ p: "px" }}
+          sx={{ p: "px", padding: "0px" }}
           aria-label="search"
           onClick={handlerSearchClick}
         >

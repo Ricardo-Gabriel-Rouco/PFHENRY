@@ -8,12 +8,13 @@ import {
   TextField,
 } from "react-admin";
 
+
 const OrderList = (props) => (
   <List {...props}>
     <Datagrid bulkActionButtons={false}>
       <DateField source="date" showTime />
       <TextField source="id" label="Order ID" />
-      <ReferenceField source="userId" reference="users" label="User Nickname">
+      <ReferenceField source="userId" reference="users" label="User Nickname" link={false}>
         <FunctionField render={record=>record.nickname}/> 
       </ReferenceField>
       <FunctionField label="items" render={(record) => record.items.length} />

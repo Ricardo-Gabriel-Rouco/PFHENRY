@@ -12,6 +12,7 @@ import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import NavBar from "./components/NavBar/NavBar";
 import Cart from "./components/Cart/Cart";
+import Account from './components/Account/Account'
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { AdminDashboard } from "./Views/AdminDashboard/AdminDashboard";
@@ -71,7 +72,8 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="*" element={<Error />} />
-              <Route path="/profile" element={<EditUser/>}/>
+              <Route path="/profile" element={<ProtectedRoutes><EditUser/></ProtectedRoutes>}/>
+              <Route path="/account" element={<Account />} />
               <Route path="/purchases" element={<MyPurchases/>}/>
               <Route path="/payStatus" element={<PayStatus />}/>
             </Routes>

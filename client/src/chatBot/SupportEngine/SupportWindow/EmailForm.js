@@ -84,7 +84,7 @@ const EmailForm = props => {
                     ...{ 
                         zIndex: loading ? '10' : '-1',
                         opacity: loading ? '1' : '0',
-                        fontSize: '82px',
+                        fontSize: '16px',
                         top: 'calc(50% - 41px)', 
                         left: 'calc(50% - 41px)',  
                     }

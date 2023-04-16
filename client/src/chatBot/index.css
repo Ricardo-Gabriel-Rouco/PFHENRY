@@ -1,36 +1,36 @@
-* {
-  /* font-family: Avenir !important; */
-  /* color: black */
-}
-
 .ce-my-message-bubble {
   background-color:#ffc400 !important;
+  font-weight: 400;
+  font-size: 14px;
 }
  
 .ce-chat-title-text {
-  color: #ffc400!important;
+  color: #ffc400;
 }
 
 .ce-chat-suƒbtitle-text {
-  color: #ffc400!important;
-  font-weight: 600;
+  color: #ffc400;
+  font-weight: 400;
+  font-size: 18px;
 }
 
 #ce-send-message-button {
-  position: relative !important;
-  bottom: 2px !important;
-  left: 1px !important;
-  background-color: #ffc400!important;
+  position: relative;
+  bottom: 2px;
+  left: 1px;
+  background-color: #ffc400 !important;
 }
 
 .ce-my-message-timestamp {
-  color: #ffc400!important;
+  color: #ffc400;
 }
 
 .transition-3 {
   transition: all 0.33s ease;
   -webkit-transition: all 0.33s ease;
   -moz-transition: all 0.33s ease;
+  font-weight: 400;
+  font-size: 14px;
 }
 
 .transition-5 {
