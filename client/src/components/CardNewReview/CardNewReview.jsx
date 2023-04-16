@@ -1,24 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TextField, Rating, Button, Grid } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
+import { useAuth } from "../../context/authContext";
+import { getBookById } from "../../firebase/firestore/books";
 
-const CardNewReview = ({ id, nickname, handleNewReview }) => {
+const CardNewReview = ({ id, handleNewReview, setBookDetail}) => {
+  const {userStatus} = useAuth() 
   const initialState = {
     id: id,
-    nickname: nickname,
+    userId: userStatus.userId,
+    nickname: userStatus.nickName,
     comment: "",
     rating: 0,
     display: true,
   };
+
+  const [errors, setErrors] = useState({
+    comment: '',
+    rating: 0
+  })
+  
   const [input, setInput] = useState(initialState);
+  useEffect(() => {
+    const newError = {comment: '', rating: ''}
+    if(!input.comment) newError.comment= 'Comment must not be empty'
+    if(parseInt(input.rating) <= 0) newError.rating= 'Stars cannot be Zero'
+    setErrors(newError)
+  }, [input])
+  
   const handleinputReview = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    handleNewReview(input);
-    setInput(initialState);
+    try {
+      if(!errors.comment && !errors.rating){
+        await handleNewReview(input);
+        const result = await getBookById(id)
+        setBookDetail(result)
+      } else {
+        alert(errors.comment || errors.rating)
+      }
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
@@ -47,11 +73,10 @@ const CardNewReview = ({ id, nickname, handleNewReview }) => {
           maxRows={2}
           name="comment"
           value={input.comment}
-          label={nickname}
+          label={initialState.nickname}
           variant="standard"
           color="primary"
           onChange={handleinputReview}
-          required
         />
       </Grid>
       <Grid
