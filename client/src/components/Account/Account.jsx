@@ -21,11 +21,11 @@ function Account() {
 
     return (
         <TableContainer component={Paper}>
-            <Table sx={{ width: '100%', alignContent: 'center', boxShadow: '1px 1px 3px rgba(0, 0, 0, 0.3)' }} aria-label="orders table">
+            <Table sx={{ width: '100%', alignContent: 'center', boxShadow: '1px 1px 3px rgba(0, 0, 0, 0.3)'}} aria-label="orders table">
 
                 {orders.map((order) => (<>
                     <TableHead>
-                        <TableCell align="left" >
+                        <TableCell align="left">
                             <Typography fontSize={'15px'} fontWeight='bold'>
                                 {new Date(order.date).toLocaleDateString([], { day: 'numeric', month: 'long', year: 'numeric' })}
                             </Typography>
@@ -36,13 +36,13 @@ function Account() {
                             </Typography>
                         </TableCell>
                     </TableHead>
-                    <TableRow key={order.id}>
+                    <TableRow sx={{color:"InfoBackground"}} hover={true} key={order.id}>
                         <TableCell colSpan={3}>
 
                             <Grid container spacing={2}>
                                 {order.items.map((book) => (
                                     <Grid item xs={12} sm={6} md={4} key={book.id}>
-                                        <Paper sx={{ display: 'flex', alignItems: 'center', padding: 2 }}>
+                                        <Paper sx={{ display: 'flex', alignItems: 'center', padding: 2, '&:hover': { bgcolor: 'InfoBackground'}}}>
                                             <CardMedia
                                                 component="img"
                                                 border='1px solid'
