@@ -30,6 +30,7 @@ import light from "../../Theme/light";
 import dark from "../../Theme/dark";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import ModeNightIcon from "@mui/icons-material/ModeNight";
+import ChatIcon from '@mui/icons-material/Chat';
 import { availableItems } from "../Cart/Cart";
 
 const NavBar = ({ passTheme, mode }) => {
@@ -113,6 +114,21 @@ const NavBar = ({ passTheme, mode }) => {
                   >
                     <Link to="/ADMIN">
                       <AdminPanelSettingsIcon />
+                    </Link>
+                  </IconButton>
+                </Grid>
+              ) : null}
+              {userStatus.role === "ADMIN" ? (
+                <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
+                  <IconButton
+                    size="large"
+                    edge="start"
+                    aria-label="admin"
+                    sx={{ mr: 2 }}
+                    color="inherit"
+                  >
+                    <Link to="/support">
+                      <ChatIcon />
                     </Link>
                   </IconButton>
                 </Grid>
