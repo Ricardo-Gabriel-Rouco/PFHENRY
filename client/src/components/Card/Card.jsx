@@ -22,7 +22,16 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { addProduct } from "../../redux/rootReducer/cartSlice";
 import CardDetail from "../CardDetail/CardDetail";
 
-const Card = ({ image, id, title, authors, price, editorial, display, discount }) => {
+const Card = ({
+  image,
+  id,
+  title,
+  authors,
+  price,
+  editorial,
+  display,
+  discount,
+}) => {
   const favorite = useSelector((state) => state.favorite.favorites);
   const dispatch = useDispatch();
 
@@ -59,15 +68,17 @@ const Card = ({ image, id, title, authors, price, editorial, display, discount }
         display,
       })
     );
-    dispatch(addProduct({
-      image,
-      id,
-      title,
-      authors,
-      price,
-      editorial,
-      display
-    }));
+    dispatch(
+      addProduct({
+        image,
+        id,
+        title,
+        authors,
+        price,
+        editorial,
+        display,
+      })
+    );
   };
 
   //CUADRO DE DIALOGO
@@ -111,7 +122,6 @@ const Card = ({ image, id, title, authors, price, editorial, display, discount }
         xl={6}
         sx={{ display: "flex", justifyContent: "center" }}
       >
-
         {isFav ? (
           <Button
             color="primary"
@@ -162,11 +172,12 @@ const Card = ({ image, id, title, authors, price, editorial, display, discount }
             height: "14rem",
             objectFit: "cover",
             marginTop: "0px",
+            mr: 1.5,
           }}
           image={image}
           alt={title}
         />
-        <CardContent sx={{ padding: "5px" }}>
+        <CardContent sx={{ padding: 1, mr: 1 }}>
           <Typography
             sx={{ fontSize: "1rem", fontWeight: "bold" }}
             gutterBottom
@@ -176,13 +187,12 @@ const Card = ({ image, id, title, authors, price, editorial, display, discount }
           <Typography variant="body2">
             {discount ? (
               <>
-                <s>{price}</s>{" "}
-                <span>
-                  {(price * (100 - discount) / 100).toFixed(2)}
-                </span>
+                <s>${price}</s>{" "}
+                <span>${((price * (100 - discount)) / 100).toFixed(2)}</span>
               </>
             ) : (
-              price
+              <>${price}</>
+              // price
             )}
           </Typography>
         </CardContent>
