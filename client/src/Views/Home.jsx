@@ -1,4 +1,5 @@
 import CardContainer from "../components/CardContainer/CardContainer";
+import Carrousel from '../components/Carrousel/Carrousel';
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { importBooks } from "../redux/actions/booksActions";
@@ -13,7 +14,8 @@ const Home = ({ cartOpen }) => {
 
   return (
     <>
-      <CardContainer cartOpen={cartOpen} />
+      <Carrousel />
+    {/*   <CardContainer cartOpen={cartOpen} /> */}
     </>
   );
 };
