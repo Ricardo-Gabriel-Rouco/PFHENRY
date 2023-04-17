@@ -42,6 +42,8 @@ const Carrousel = () => {
         ),
     ];
 
+    console.log(favoriteAuthors)
+
     const purchasedBooks = [
         ...new Set(orders.flatMap((authors) => authors.items.flatMap((a) => a.id))),
     ];
@@ -159,7 +161,7 @@ const Carrousel = () => {
         </CarouselContainer>
 
       {/* Carrousel PREFERENCIAS AUTHORS */}
-        {userStatus.logged ? (
+        {userStatus.logged  && favoriteAuthors.length? (
             <CarouselContainer>
             <Typography align="left" variant="h6" marginLeft={"15px"}>
                 {`You may be interested in these authors`}
@@ -243,7 +245,7 @@ const Carrousel = () => {
                 ))}
             </Swiper>
             </CarouselContainer>
-        ) : null}
+        ) : null }
 
         {/*             CARROUSEL LIBROS */}
 
