@@ -3,7 +3,7 @@ import { MyLayout } from "../../components/Admin/Layout/Layout";
 import { Dashboard } from "../../components/Admin/Dashboard/Dashboard";
 import { BookList } from "../../components/Admin/BooksRoutes/Booklist";
 import { Userlist } from "../../components/Admin/Userlist/Userlist";
-import dataProvider from "../../components/Admin/DataProvider/dataProvider";
+import dataProvider from "../../components/Admin/dataProvider/dataProvider";
 import CardDetail from "../../components/CardDetail/CardDetail";
 import { Route } from "react-router-dom";
 import BookForm from "../../components/BookForm/BookForm";
