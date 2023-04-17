@@ -30,6 +30,7 @@ import light from "../../Theme/light";
 import dark from "../../Theme/dark";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import ModeNightIcon from "@mui/icons-material/ModeNight";
+import ChatIcon from '@mui/icons-material/Chat';
 import { availableItems } from "../Cart/Cart";
 
 const NavBar = ({ passTheme, mode }) => {
@@ -67,15 +68,14 @@ const NavBar = ({ passTheme, mode }) => {
   //Estableciendo modos de Theme para el py
 
   useEffect(() => {
-    dispatch(importBooks())
-  }, [dispatch])
-
+    dispatch(importBooks());
+  }, [dispatch]);
 
   return (
     location.pathname !== "/" &&
     location.pathname.slice(0, 6) !== "/admin" && (
       <Box sx={{ bgcolor: "secondary", p: 1, marginTop: "auto 0px" }}>
-        <AppBar position="sticky" color="primary">
+        <AppBar position="fixed" color="primary">
           <Toolbar>
             <Grid container>
               <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
@@ -90,18 +90,18 @@ const NavBar = ({ passTheme, mode }) => {
                   <Home />
                 </IconButton>
               </Grid>
-              {location.pathname !== "/create" ? (
-                <Grid item xs="auto">
-                  <Box
-                    sx={{
-                      width: "475px",
-                      padding: "0px",
-                    }}
-                  >
-                    <SearchBar />
-                  </Box>
-                </Grid>
-              ) : null}
+
+              <Grid item xs="auto">
+                <Box
+                  sx={{
+                    width: "475px",
+                    padding: "0px",
+                  }}
+                >
+                  <SearchBar />
+                </Box>
+              </Grid>
+
               {userStatus.role === "ADMIN" ? (
                 <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
                   <IconButton
@@ -114,6 +114,21 @@ const NavBar = ({ passTheme, mode }) => {
                   >
                     <Link to="/ADMIN">
                       <AdminPanelSettingsIcon />
+                    </Link>
+                  </IconButton>
+                </Grid>
+              ) : null}
+              {userStatus.role === "ADMIN" ? (
+                <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
+                  <IconButton
+                    size="large"
+                    edge="start"
+                    aria-label="admin"
+                    sx={{ mr: 2 }}
+                    color="inherit"
+                  >
+                    <Link to="/support">
+                      <ChatIcon />
                     </Link>
                   </IconButton>
                 </Grid>
@@ -217,11 +232,12 @@ const NavBar = ({ passTheme, mode }) => {
                 >
                   {userStatus.logged ? (
                     <>
-
                       <MenuItem onClick={handleClose}>
-                        <Link to={"/modify"}>Profile</Link>
+                        <Link to={"/profile"}>Profile</Link>
                       </MenuItem>
-                       <MenuItem onClick={handleClose}><Link to={'/account'}>My Books</Link></MenuItem>
+                      <MenuItem onClick={handleClose}>
+                        <Link to={"/account"}>My Books</Link>
+                      </MenuItem>
                       <MenuItem
                         onClick={() => {
                           handleClose();
@@ -241,10 +257,9 @@ const NavBar = ({ passTheme, mode }) => {
             </Grid>
           </Toolbar>
         </AppBar>
-        {/* <Toolbar/> */}
+        <Toolbar />
         {/* Este componente es solo para evitar que la NavBar fija pise elementos en la pagina*/}
       </Box>
-
     )
   );
 };

@@ -1,8 +1,11 @@
 import { createTheme } from "@mui/material";
+
 //paleta
 const light = createTheme({
   palette: {
     mode: "light",
+    typography: {
+      fontFamily:'Celtic MD'},
     primary: {
       main: "#ffc400",
       contrastText: "#fff9c4",

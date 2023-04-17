@@ -9,6 +9,7 @@ import imgMauri from "../../Assets/WhatsApp Image 2023-02-23 at 11.58.54.jpeg";
 import s from "./AboutUs.module.css";
 import { AiFillLinkedin, AiFillGithub } from "react-icons/ai";
 import { FaChevronUp } from "react-icons/fa";
+import {Grid, CardMedia, Card} from '@mui/material'
 
 function AboutUs() {
   function scrollToLanding() {
