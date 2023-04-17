@@ -60,8 +60,6 @@ const CardContainer = () => {
         </div>
       ) : filteredBooks.length ? (
         <Cards>
-
-          <Carrousel />
           <Grid container justifyContent="center" 
             style={{ 
               margin:"40px 0", 

@@ -12,6 +12,7 @@ import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import NavBar from "./components/NavBar/NavBar";
 import Cart from "./components/Cart/Cart";
+import CardContainer from "./components/CardContainer/CardContainer";
 import Account from './components/Account/Account'
 import { useSelector } from "react-redux";
 import { useState } from "react";
@@ -68,6 +69,7 @@ function App() {
                   </AdminRoutes>
                 }
               />
+              <Route exact path="/books" element={<CardContainer />} />
               <Route path="/home/:id" element={<CardDetail />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />

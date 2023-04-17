@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getBookById } from "../../firebase/firestore/books";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Grid,
   Box,
@@ -24,9 +24,18 @@ let nickname = "Claudio"; //Traer el "nickname" del usuario que esta loogeado
 const CardDetail = ({ id }) => {
   const [details, setMoreDetails] = useState(false);
   const [description, setDescription] = useState(false);
+  const bookId = useSelector(state => state.books.bookId)
+
 
   const paramId = useParams().id;
-  if (!id) id = paramId;
+  if (!id) {
+    if (paramId)
+      id = paramId
+    else {
+      id = bookId
+    }
+  }
+
   const dispatch = useDispatch();
   const [bookDetail, setBookDetail] = useState({});
 
