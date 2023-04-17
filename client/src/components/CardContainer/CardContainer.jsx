@@ -50,7 +50,7 @@ const CardContainer = () => {
   }, [filteredBooks]);
   return (
 
-    <div className={style.container}>
+    <div>
       {filteredBooks.length ? (<FilterOptions setCurrentPage={setCurrentPage} />) : null}
       {filteredBooks === "not found" ? (
         <div className={style.notFound}>
