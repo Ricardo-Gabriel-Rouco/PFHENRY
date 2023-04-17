@@ -164,7 +164,14 @@ const Carrousel = () => {
         {userStatus.logged  && favoriteAuthors.length? (
             <CarouselContainer>
             <Typography align="left" variant="h6" marginLeft={"15px"}>
-                {`You may be interested in these authors`}
+            {displayableBooks
+                .filter((books) => {
+                    const authors = books.authors;
+                    return authors.some((author) =>
+                    favoriteAuthors.includes(author)
+                    );
+                })
+                .filter((book) => !purchasedBooks.includes(book.id)).length > 1 ? `You may be interested in these authors` : 'You may be interested in this author'}
             </Typography>
             <Swiper
                 slidesPerView={4}
