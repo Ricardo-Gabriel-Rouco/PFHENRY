@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getBookById } from "../../firebase/firestore/books";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import {
   Grid,
@@ -38,8 +38,6 @@ const CardDetail = ({ id }) => {
       id = bookId
     }
   }
-
-  const dispatch = useDispatch();
 
   const [bookDetail, setBookDetail] = useState({});
 
