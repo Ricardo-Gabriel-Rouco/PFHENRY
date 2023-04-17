@@ -21,6 +21,7 @@ import SupportAdmin from "./chatBot/SupportAdmin";
 import EditUser from './components/EditUser/EditUser';
 import AdminRoutes from './components/AdminRoutes/AdminRoutes';
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
+import AboutUs from './components/AboutUs/AboutUs'
 import PayStatus from "./components/PayStatus/PayStatus";
 import axios from 'axios';
 import { CssBaseline, ThemeProvider } from "@mui/material";
@@ -77,8 +78,11 @@ function App() {
               <Route path="*" element={<Error />} />
               <Route path="/profile" element={<ProtectedRoutes><EditUser/></ProtectedRoutes>}/>
               <Route path="/account" element={<Account />} />
+              <Route path="/profile" element={<EditUser/>}/>
               <Route path="/purchases" element={<MyPurchases/>}/>
               <Route path="/payStatus" element={<PayStatus />}/>
+              <Route path="/about" element={<AboutUs/>}/>
+
             </Routes>
             <ModalDetail/>
           </AuthProvider>

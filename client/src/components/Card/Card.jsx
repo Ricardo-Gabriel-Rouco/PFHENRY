@@ -116,6 +116,11 @@ const Card = ({
         xl={6}
         sx={{ display: "flex", justifyContent: "center" }}
       >
+        {/* <Button
+          variant="contained"
+          size="small"
+          onClick={() => handleAdd(id)}
+        > */}
         <Button variant="contained" size="small" onClick={() => handleAdd(id)}>
           <ShoppingCartIcon />
         </Button>
