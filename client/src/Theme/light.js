@@ -7,7 +7,7 @@ const light = createTheme({
     typography: {
       fontFamily:'Celtic MD'},
     fontSizes: {
-      title: '26px',
+      title: '5vw',
       secondTitle: '20px',
       thirdTitle: '14px'
     },
