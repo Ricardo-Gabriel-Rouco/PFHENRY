@@ -97,7 +97,7 @@ const NavBar = ({ passTheme, mode }) => {
                 </Box>
               </Grid>
 
-              {userStatus.role === "ADMIN" ? (
+              {userStatus.role.includes("ADMIN") ? (
                 <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
                   <IconButton
                     size="large"
@@ -111,7 +111,7 @@ const NavBar = ({ passTheme, mode }) => {
                   </IconButton>
                 </Grid>
               ) : null}
-              {userStatus.role === "ADMIN" ? (
+              {userStatus.role.includes("ADMIN") ? (
                 <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
                   <IconButton
                     size="large"

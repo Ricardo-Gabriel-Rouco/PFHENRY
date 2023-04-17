@@ -46,8 +46,8 @@ const DisplaySelect = () =>{
         onChange={selectHandleChange} 
         value={selectedValue}>
             <MenuItem value='USER'>User</MenuItem>
-            <MenuItem value='ADMIN'>Admin</MenuItem>
-            <MenuItem value='SUPERADMIN'>Super Admin</MenuItem>
+            <MenuItem value='ADMIN'>Employee</MenuItem>
+            <MenuItem value='SUPERADMIN'>Admin</MenuItem>
 
         </Select>
     )
