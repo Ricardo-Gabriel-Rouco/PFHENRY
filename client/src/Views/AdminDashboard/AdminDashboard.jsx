@@ -3,10 +3,11 @@ import { MyLayout } from "../../components/Admin/Layout/Layout";
 import { Dashboard } from "../../components/Admin/Dashboard/Dashboard";
 import { BookList } from "../../components/Admin/BooksRoutes/Booklist";
 import { Userlist } from "../../components/Admin/Userlist/Userlist";
-import dataProvider from "../../components/Admin/dataProvider/dataProvider";
+import dataProvider from "../../components/Admin/DataProvider/dataProvider";
 import CardDetail from "../../components/CardDetail/CardDetail";
 import { Route } from "react-router-dom";
 import BookForm from "../../components/BookForm/BookForm";
+import { BookCreate } from "../../components/Admin/BookCreate/BookCreate";
 import OrderList from "../../components/Admin/OrdersRoutes/OrderList.jsx";
 import OrderShow from "../../components/Admin/OrdersRoutes/OrderShow";
 
@@ -22,7 +23,7 @@ export const AdminDashboard = () => {
         edit={EditGuesser}
         basePath="/admin/books"
         show={ShowGuesser}
-        create={BookForm}
+        create={BookCreate}
         options={{ label: "Books" }}
       >
         <Route path="/:id" element={<EditGuesser/>}/>
@@ -30,7 +31,7 @@ export const AdminDashboard = () => {
       </Resource>
       <Resource
         name="users"
-        list={ListGuesser}
+        list={Userlist}
         basePath="/admin/users"
         options={{ label: "Users" }}
       />
