@@ -99,6 +99,7 @@ export async function postBook(book) {
     const newBook = {
       ...book,
       display: true,
+      authors:[book.authors],
     }
       const collectionRef = collection(db, 'books')
       const docRef = doc(collectionRef, book.isbn)

@@ -33,7 +33,7 @@ const SearchBar = ({ placeholder }) => {
 
     dispatch(searchBook(value));
     setSearchValue("");
-    navigate("/home");
+    navigate("/books");
   };
   //ENTER BUTTON
   const handlerKeyDown = (e) => {
