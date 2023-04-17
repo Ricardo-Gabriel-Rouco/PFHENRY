@@ -5,7 +5,8 @@ const light = createTheme({
   palette: {
     mode: "light",
     typography: {
-      fontFamily:'Celtic MD'},
+      fontFamily: "Celtic MD",
+    },
     primary: {
       main: "#ffc400",
       contrastText: "#fff9c4",
@@ -18,7 +19,7 @@ const light = createTheme({
       main: "#fd7373",
     },
     info: {
-      main: "#857E61",
+      main: "#857E61 ",
     },
     divider: "rgba(76,42,30,0.68)",
     text: {
