@@ -162,6 +162,8 @@ export const {
   orderBy,
   reset,
   clearSearchResults,
+  openModal,
+  closeModal
 } = booksSlice.actions;
 
 export default booksSlice.reducer;

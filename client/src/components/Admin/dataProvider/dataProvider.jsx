@@ -5,7 +5,7 @@ import {
   postBook,
 } from "../../../firebase/firestore/books";
 import { getAllTheUsers, modifyUser, modifyUserRole, getUserById } from "../../../firebase/firestore/users";
-import { getOrders, getOrdersById, getOrdersByUser } from "../../../firebase/firestore/orders";
+import { getOrders, getOrdersById } from "../../../firebase/firestore/orders";
 
 
 const dataProvider = {
