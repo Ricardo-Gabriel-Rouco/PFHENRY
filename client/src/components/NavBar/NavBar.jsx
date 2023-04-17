@@ -230,7 +230,6 @@ const NavBar = ({ passTheme, mode }) => {
             </Grid>
             </Grid>
           </Toolbar>
-        </Box>
       </AppBar>
       <Toolbar/>  {/* Este componente es solo para evitar que la NavBar fija pise elementos en la pagina*/}
     </Box>

@@ -6,6 +6,11 @@ const light = createTheme({
     mode: "light",
     typography: {
       fontFamily:'Celtic MD'},
+    fontSizes: {
+      title: '26px',
+      secondTitle: '20px',
+      thirdTitle: '14px'
+    },
     primary: {
       main: "#ffc400",
       contrastText: "#fff9c4",
