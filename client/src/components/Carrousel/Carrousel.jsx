@@ -10,6 +10,8 @@ import { useAuth } from "../../context/authContext";
 import './Carrousel.css'
 import { useState, useEffect } from "react";
 import { getOrdersByUser } from "../../firebase/firestore/orders";
+import loading from '../../Assets/Loading.gif'
+/* import SupportEngine from '../../chatBot/SupportEngine/index' TENEMOS QUE DEFINIR DONDE CARANCHO PONEMOS EL CHAT*/
 
 
 SwiperCore.use([Navigation, Pagination]);
@@ -28,6 +30,11 @@ const Carrousel = () => {
         }
         fetchOrders();
     }, [userStatus.userId]);
+
+
+    function handleShowAllBooks() {
+        window.scrollTo(0, 0);
+    }
 
 
     const favoriteAuthors = [...new Set(orders.flatMap(authors => authors.items.flatMap(
@@ -55,7 +62,9 @@ const Carrousel = () => {
     });
 
     return (
-        <>
+        <> 
+        {!displayableBooks.length && <img src={loading} alt="loading" />}
+            {/*         CARROUSEL OFERTAS */}
             <CarouselContainer>
                 <Typography align="left" variant="h6" marginLeft={'15px'}>
                     {'Ofertas'}
@@ -103,10 +112,10 @@ const Carrousel = () => {
                                                 height="300"
                                                 image={book.image}
                                                 alt={book.title}
-                                                sx={{ cursor: 'pointer' }} />
+                                                sx={{ cursor: 'pointer', zIndex: '0'  }}  />
                                         </Link>
                                         <Grid container justifyContent="space-between" alignItems="center">
-                                            <Typography align="left" variant="h7" sx={{ textAlign: 'left' }}>
+                                            <Typography align="left" variant="h7" sx={{ textAlign: 'left', zIndex: '0'  }}>
                                                 $<s>{book.price}</s>{" "}
                                             </Typography>
                                             <Typography align="left" variant="h7" fontWeight={'bold'} sx={{ textAlign: 'left' }}>
@@ -126,7 +135,8 @@ const Carrousel = () => {
             </CarouselContainer >
 
 
-
+            {/* Carrousel PREFERENCIAS AUTHORS */}
+            {userStatus.logged? 
             <CarouselContainer>
                 <Typography align="left" variant="h6" marginLeft={'15px'}>
                     {`You may be interested in these authors`}
@@ -175,7 +185,7 @@ const Carrousel = () => {
                                             height="300"
                                             image={book.image}
                                             alt={book.title}
-                                            sx={{ cursor: 'pointer' }} />
+                                            sx={{ cursor: 'pointer'}} />
                                     </Link>
                                     <Grid container justifyContent="center" alignItems="center">
                                         <Typography variant="h7" fontWeight={'bold'} sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -187,10 +197,77 @@ const Carrousel = () => {
                         </SwiperSlide>
                     )}
                 </Swiper>
-            </CarouselContainer >
-            <Link to='/books'>
-                <Button>All Books</Button>
-            </Link>
+            </CarouselContainer >: null}
+
+
+            {/*             CARROUSEL LIBROS */}
+
+            <CarouselContainer>
+                <Grid container justifyContent="space-between" alignItems="center">
+                    <Grid item xs={6} textAlign="left">
+                        <Typography variant="h6" marginLeft={2}>All Books</Typography>
+                    </Grid>
+                    <Grid item xs={6} textAlign="right">
+                        <Link to='/books'>
+                            <Button onClick={{ handleShowAllBooks }}>Show All Books</Button>
+                        </Link>
+                    </Grid>
+                </Grid>
+                <Swiper
+                    slidesPerView={4}
+                    slidesPerGroup={4}
+                    spaceBetween={200}
+                    navigation
+                    pagination={{ clickable: true }}
+                    breakpoints={{
+                        400: {
+
+                            slidesPerView: 1,
+                            slidesPerGroup: 1,
+                            spaceBetween: 0,
+
+                        },
+                        640: {
+                            slidesPerView: 2,
+                            slidesPerGroup: 2,
+                            spaceBetween: 20,
+                        },
+                        768: {
+                            slidesPerView: 3,
+                            slidesPerGroup: 3,
+                            spaceBetween: 30,
+                        },
+                        1024: {
+                            slidesPerView: 4,
+                            slidesPerGroup: 4,
+                            spaceBetween: 10,
+                        },
+                    }}
+                >
+                    {displayableBooks.slice(0, 16).map((book) => (
+                        <SwiperSlide key={book.id}>
+                            <Grid container justifyContent="center" style={{ height: '100%' }}>
+                                <Grid item>
+                                    <Link to={`/home/${book.id}`}>
+                                        <BookCardMedia
+                                            component="img"
+                                            height="300"
+                                            image={book.image}
+                                            alt={book.title}
+                                            sx={{ cursor: 'pointer'}} />
+                                    </Link>
+                                    <Grid container justifyContent="center" alignItems="center">
+                                        <Typography variant="h7" fontWeight={'bold'} sx={{ display: 'flex', justifyContent: 'center' }}>
+                                            {book.discount ? '$' + (book.price * (100 - book.discount) / 100).toFixed(2) : '$' + book.price}
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </CarouselContainer>
+
         </>
     );
 };
