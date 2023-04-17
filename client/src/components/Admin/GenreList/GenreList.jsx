@@ -29,7 +29,7 @@ const finalChoices = genresList.map(genre=>({
       <AutocompleteArrayInput
       defaultValue={defaultValue}
       label='Genres'
-      source='genre'
+      source='genres'
       choices={finalChoices}
       optionText='name'
       optionValue='name'
