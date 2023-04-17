@@ -1,5 +1,5 @@
 import imgJoaco from "../../Assets/WhatsApp Image 2023-02-23 at 11.58.54.jpeg";
-import imgGabi from "../../Assets/WhatsApp Image 2023-02-23 at 11.58.54.jpeg";
+import imgGabi from "../../Assets/gabrielRouco.jpg";
 import imgJuli from "../../Assets/WhatsApp Image 2023-02-23 at 11.58.54.jpeg";
 import imgAlfredo from "../../Assets/WhatsApp Image 2023-02-23 at 11.58.54.jpeg";
 import imgManu from "../../Assets/WhatsApp Image 2023-02-23 at 11.58.54.jpeg";
@@ -92,10 +92,12 @@ function AboutUs() {
               image={imgGabi}
               sx={{
                 borderRadius: "50%",
+                bgcolor: "lightgrey",
                 width: 249,
                 height: 260,
                 mx: "auto",
                 marginTop: "10px",
+                objectFit: "contain"
               }}
             />
             <Typography fontSize={"fontSize.thirdTitle"} marginTop={"15px"}>
@@ -110,7 +112,7 @@ function AboutUs() {
               <AiFillGithub className={s.gitHub} icon={AiFillGithub} />{" "}
             </a>
 
-            <a href="https://www.linkedin.com/in/joaquin-santiago-oliveira">
+            <a href="https://www.linkedin.com/in/ricardo-gabriel-rouco">
               {" "}
               <AiFillLinkedin
                 className={s.linkedin}
