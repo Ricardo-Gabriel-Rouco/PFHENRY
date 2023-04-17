@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useState } from 'react';
 import { Datagrid, FunctionField, List, TextField, useRecordContext } from 'react-admin';
 import { modifyUser, modifyUserRole } from '../../../firebase/firestore/users';
@@ -58,7 +57,7 @@ export const Userlist = (props) => (
     <List {...props} pagination={false}>
         <Datagrid bulkActionButtons={false}>
             <FunctionField 
-            label='Display'
+            label='Enabled'
             render={()=><DisplayCheckbox/>}
             />
 
