@@ -24,6 +24,7 @@ const Carrousel = () => {
 
   const [orders, setOrders] = useState([]);
 
+
     useEffect(() => {
         async function fetchOrders() {
         const data = await getOrdersByUser(userStatus.userId);
@@ -42,11 +43,10 @@ const Carrousel = () => {
         ),
     ];
 
+
     const purchasedBooks = [
         ...new Set(orders.flatMap((authors) => authors.items.flatMap((a) => a.id))),
     ];
-
-    console.log(purchasedBooks);
 
     const CarouselContainer = styled("div")({
         margin: "auto",
@@ -165,10 +165,17 @@ const Carrousel = () => {
         </CarouselContainer>
 
       {/* Carrousel PREFERENCIAS AUTHORS */}
-        {userStatus.logged ? (
+        {userStatus.logged  && favoriteAuthors.length? (
             <CarouselContainer>
             <Typography align="left" variant="h6" marginLeft={"15px"}>
-                {`You may be interested in these authors`}
+            {displayableBooks
+                .filter((books) => {
+                    const authors = books.authors;
+                    return authors.some((author) =>
+                    favoriteAuthors.includes(author)
+                    );
+                })
+                .filter((book) => !purchasedBooks.includes(book.id)).length > 1 ? `You may be interested in these authors` : 'You may be interested in this author'}
             </Typography>
             <Swiper
                 slidesPerView={4}
@@ -249,7 +256,7 @@ const Carrousel = () => {
                 ))}
             </Swiper>
             </CarouselContainer>
-        ) : null}
+        ) : null }
 
         {/*             CARROUSEL LIBROS */}
 
