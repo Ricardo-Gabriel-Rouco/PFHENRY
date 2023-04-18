@@ -1,7 +1,5 @@
 import { getDocs, query, collection, where, doc, getDoc, updateDoc, setDoc, arrayUnion } from "firebase/firestore"
 import { db } from '../firebase-config';
-import Swal from 'sweetalert2'
-
 const regexTitle = /^[a-zA-Z0-9\s]+$/
 const regexAuthor = /^[a-zA-Z\s]+(\.[a-zA-Z\s]+)*$/;
 const regexNumber = /^[0-9]+$/
@@ -146,15 +144,7 @@ export async function updateBookReviews({id, nickname, comment, rating, display,
         display,
       })
     })
-    Swal.fire({
-      title: 'Well done',
-      text: 'You have registered your Review!',
-      icon: 'success',
-      timer: 1000,
-      showConfirmButton: false,
-      position: 'top-end',
-  })
-
+  
   } catch (error) {
     console.log(error)
   }
