@@ -22,7 +22,7 @@ const Carrousel = () => {
     const { userStatus } = useAuth();
     const dispatch = useDispatch();
 
-    const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState([]);
 
     useEffect(() => {
         async function fetchOrders() {
@@ -32,9 +32,9 @@ const Carrousel = () => {
     fetchOrders();
     }, [userStatus.userId]);
 
-    function handleShowAllBooks() {
-        window.scrollTo(0, 0);
-    }
+  function handleShowAllBooks() {
+    window.scrollTo(0, 0);
+  }
 
     const favoriteAuthors = [
         ...new Set(
@@ -117,6 +117,19 @@ const Carrousel = () => {
                         onClick={() => dispatch(openModal(book.id))}
                         />
 
+                  <Typography
+                      align="center"
+                      variant="subtitle"
+                      sx={{
+                        fontSize: 18,
+                        textAlign: "right",
+                        fontWeight: "bold",
+                        color: "red",
+                      }}
+                    >
+                      %{book.discount} {" OFF"}
+                    </Typography>
+
                         <Grid
                         container
                         justifyContent="space-between"
@@ -143,13 +156,6 @@ const Carrousel = () => {
                             </span>
                         </Typography>
                         </Grid>
-                        <Typography
-                        align="right"
-                        variant="h7"
-                        sx={{ textAlign: "right", color: "brown" }}
-                        >
-                        %{book.discount} {" off"}
-                        </Typography>
                     </Grid>
                     </Grid>
                 </SwiperSlide>
@@ -247,86 +253,93 @@ const Carrousel = () => {
 
         {/*             CARROUSEL LIBROS */}
 
-        <CarouselContainer>
-            <Grid container justifyContent="space-between" alignItems="center">
-            <Grid item xs={6} textAlign="left">
-                <Typography variant="h6" marginLeft={2}>
-                All Books
-                </Typography>
-            </Grid>
-            <Grid item xs={6} textAlign="right">
-                <Link to="/books">
-                <Button onClick={{ handleShowAllBooks }}>Show All Books</Button>
-                </Link>
-            </Grid>
-            </Grid>
-            <Swiper
-            slidesPerView={4}
-            slidesPerGroup={4}
-            spaceBetween={200}
-            navigation
-            pagination={{ clickable: true }}
-            breakpoints={{
-                400: {
-                slidesPerView: 1,
-                slidesPerGroup: 1,
-                spaceBetween: 0,
-                },
-                640: {
-                slidesPerView: 2,
-                slidesPerGroup: 2,
-                spaceBetween: 20,
-                },
-                768: {
-                slidesPerView: 3,
-                slidesPerGroup: 3,
-                spaceBetween: 30,
-                },
-                1024: {
-                slidesPerView: 4,
-                slidesPerGroup: 4,
-                spaceBetween: 10,
-                },
-            }}
-            >
-            {displayableBooks.slice(0, 16).map((book) => (
-                <SwiperSlide key={book.id}>
-                <Grid
-                    container
-                    justifyContent="center"
-                    style={{ height: "100%" }}
-                >
-                    <Grid item>
-                        <BookCardMedia
-                        component="img"
-                        height="300"
-                        image={book.image}
-                        alt={book.title}
-                        sx={{ cursor: "pointer" }}
-                        onClick={() => dispatch(openModal(book.id))}
-                        />
-                    <Grid container justifyContent="center" alignItems="center">
-                        <Typography
-                        variant="h7"
-                        fontWeight={"bold"}
-                        sx={{ display: "flex", justifyContent: "center" }}
-                        >
-                        {book.discount
-                            ? "$" +
-                            ((book.price * (100 - book.discount)) / 100).toFixed(
-                                2
-                            )
-                            : "$" + book.price}
-                        </Typography>
-                    </Grid>
-                    </Grid>
+      <CarouselContainer>
+        <Grid container justifyContent="space-between" alignItems="center">
+          <Grid item xs={6} textAlign="left">
+            <Typography variant="h6" marginLeft={2}>
+              All Books
+            </Typography>
+          </Grid>
+          <Grid item xs={6} textAlign="right">
+            <Link to="/books">
+              <Button
+                variant="contained"
+                color="info"
+                size="small"
+                sx={{ m: 1 }}
+                onClick={{ handleShowAllBooks }}
+              >
+                Show All Books
+              </Button>
+            </Link>
+          </Grid>
+        </Grid>
+        <Swiper
+          slidesPerView={4}
+          slidesPerGroup={4}
+          spaceBetween={200}
+          navigation
+          pagination={{ clickable: true }}
+          breakpoints={{
+            400: {
+              slidesPerView: 1,
+              slidesPerGroup: 1,
+              spaceBetween: 0,
+            },
+            640: {
+              slidesPerView: 2,
+              slidesPerGroup: 2,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 3,
+              slidesPerGroup: 3,
+              spaceBetween: 30,
+            },
+            1024: {
+              slidesPerView: 4,
+              slidesPerGroup: 4,
+              spaceBetween: 10,
+            },
+          }}
+        >
+          {displayableBooks.slice(0, 16).map((book) => (
+            <SwiperSlide key={book.id}>
+              <Grid
+                container
+                justifyContent="center"
+                style={{ height: "100%" }}
+              >
+                <Grid item>
+                    <BookCardMedia
+                      component="img"
+                      height="300"
+                      image={book.image}
+                      alt={book.title}
+                      sx={{ cursor: "pointer" }}
+                    />
+                  <Grid container justifyContent="center" alignItems="center">
+                    <Typography
+                      variant="h7"
+                      fontWeight={"bold"}
+                      sx={{ display: "flex", justifyContent: "center" }}
+                    >
+                      {book.discount
+                        ? "$" +
+                          ((book.price * (100 - book.discount)) / 100).toFixed(
+                            2
+                          )
+                        : "$" + book.price}
+                    </Typography>
+                  </Grid>
                 </Grid>
-                </SwiperSlide>
-            ))}
-            </Swiper>
-        </CarouselContainer>
+              </Grid>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </CarouselContainer>
     </>
-    );
+  );
 };
 
 export default Carrousel;

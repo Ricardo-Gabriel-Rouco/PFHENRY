@@ -23,9 +23,9 @@ const light = createTheme({
       main: "#fd7373",
     },
     info: {
-      main: "#857E61",
+      main: "#857E61 ",
     },
-    divider: "rgba(76,42,30,0.68)",
+    divider: " rgba(76,42,30,0.68)",
     text: {
       primary: "#522806",
       secondary: "#3e2723",

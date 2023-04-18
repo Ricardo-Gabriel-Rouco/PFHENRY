@@ -17,7 +17,7 @@ const BookCardMedia = styled(CardMedia)({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: "50%"
+    marginBottom: "15"
 });
 
 const responsive = {

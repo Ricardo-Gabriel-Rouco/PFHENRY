@@ -36,7 +36,7 @@ export const BookCreate = (props) => {
     fetchGenres();
   }, []);
 
-  const createBook = async (bookData) => {
+  const createBook = async () => {
 
     try{
       const newBookData = {...bookData, genre:bookData.genre}

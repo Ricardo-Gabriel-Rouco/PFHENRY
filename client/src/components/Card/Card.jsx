@@ -143,11 +143,12 @@ const Card = ({
             height: "14rem",
             objectFit: "cover",
             marginTop: "0px",
+            mr: 1.5,
           }}
           image={image}
           alt={title}
         />
-        <CardContent sx={{ padding: "5px" }}>
+        <CardContent sx={{ padding: 1, mr: 1 }}>
           <Typography
             sx={{ fontSize: "1rem", fontWeight: "bold" }}
             gutterBottom
@@ -157,11 +158,12 @@ const Card = ({
           <Typography variant="body2">
             {discount ? (
               <>
-                <s>{price}</s>{" "}
-                <span>{((price * (100 - discount)) / 100).toFixed(2)}</span>
+                <s>${price}</s>{" "}
+                <span>${((price * (100 - discount)) / 100).toFixed(2)}</span>
               </>
             ) : (
-              price
+              <>${price}</>
+              // price
             )}
           </Typography>
         </CardContent>
