@@ -25,7 +25,7 @@ export const BookCreate = (props) => {
   const [imageType,setImageType] = useState('file');
   const [imageUrl,setImageUrl] = useState(null)
   const [genres,setGenres]= useState([])
-  const [bookData,setBookData]=useState({genre:''})
+  const [bookData,setBookData]=useState({})
   const [errors,setErrors] = useState({});
 
   
@@ -40,7 +40,7 @@ export const BookCreate = (props) => {
   const createBook = async (bookData) => {
 
     try{
-      const newBookData = {...bookData, genre:bookData.genre}
+      const newBookData = {...bookData, genres:bookData.genres}
       const response = await postBook(newBookData)
       console.log(response)
       navigate('/admin');
@@ -181,7 +181,7 @@ export const BookCreate = (props) => {
             style={{margin:'0 2rem '}} />
             {errors.editorial ? (<p className={styles.formError}><ErrorIcon/>{errors.editorial && errors.editorial}</p>):null}
             {/* <InputLabel htmlFor="genres">Genres:</InputLabel> */}
-            <GenreList errors={errors} defaultValue={bookData.genre}/>
+            <GenreList errors={errors} defaultValue={bookData.genres}/>
 
               {/* {errors.genres ? (
                 <p className={styles.formError}>
