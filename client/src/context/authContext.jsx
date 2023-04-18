@@ -58,6 +58,7 @@ export function AuthProvider({ children }) {
           role: userRole.rol,
           nickName: userRole.nickname,
           display: userRole.display
+          
         });
       }
       setLoading(false);
