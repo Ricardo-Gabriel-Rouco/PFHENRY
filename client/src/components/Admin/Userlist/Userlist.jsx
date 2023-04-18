@@ -54,7 +54,7 @@ const DisplaySelect = () =>{
 }
 
 export const Userlist = (props) => (
-    <List {...props} pagination={false}>
+    <List {...props} pagination={false} actions={false}>
         <Datagrid bulkActionButtons={false}>
             <FunctionField 
             label='Enabled'
