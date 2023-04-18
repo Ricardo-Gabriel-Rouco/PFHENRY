@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Input } from "@mui/material";
 import { useAuth } from "../../context/authContext";
 
 function Register() {
@@ -8,24 +8,41 @@ function Register() {
     email: "",
     password: "",
     nickName: "",
+    adress: "",
+    profilePicture: "",
   });
   const [errors, setErrors] = useState({
     email: "",
     password: "",
     nickName: "",
+    adress: "",
+    profilePicture: "",
   });
   const navigate = useNavigate();
 
   const { signup, loginWithGoogle } = useAuth();
 
   function handleInputChange(e) {
-    setUserData({ ...userData, [e.target.name]: e.target.value });
+    switch (e.target.name) {
+      case "imageFile":
+        const reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onloadend = () => {
+          console.log(typeof reader.result);
+          setUserData({ ...userData, profilePicture: reader.result });
+        };
+        break;
+
+      default:
+        setUserData({ ...userData, [e.target.name]: e.target.value });
+        break;
+    }
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await signup(userData.email, userData.password, userData.nickName);
+      await signup(userData.email, userData.password, userData.nickName, userData.adress, userData.profilePicture);
       navigate("/home");
     } catch (error) {
       if (error.code === "auth/weak-password")
@@ -58,7 +75,7 @@ function Register() {
         margin: "2rem",
       }}
       onSubmit={handleSubmit}
-      >
+    >
       <TextField
         type="text"
         label="Nombre de usuario"
@@ -87,6 +104,22 @@ function Register() {
         style={{ margin: "1rem" }}
       />
       {errors.password && <p>{errors.password}</p>}
+      <TextField
+        type="text"
+        label="adress"
+        name="adress"
+        value={userData.adress}
+        onChange={handleInputChange}
+        style={{ margin: "1rem" }}
+      />
+      {errors.adress && <p>{errors.adress}</p>}
+      <Input
+        type="file"
+        accept="image/*"
+        name="imageFile"
+        placeholder="Select an image for profile picture"
+        onChange={handleInputChange}
+      />
       <Button
         type="submit"
         variant="contained"

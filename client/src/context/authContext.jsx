@@ -26,12 +26,14 @@ export function AuthProvider({ children }) {
     email: "",
     role: "",
     nickName: "",
-    display: ""
+    display: "",
+    adress: "",
+    profilePicture: ""
   });
   const [loading, setLoading] = useState(true);
 
-  const signup = async (email, password, nickName) => {
-    await createUser(email, password, nickName);
+  const signup = async (email, password, nickName, adress, profilePicture) => {
+    await createUser(email, password, nickName, adress, profilePicture);
   };
 
   const login = async (email, password) => {
@@ -57,8 +59,9 @@ export function AuthProvider({ children }) {
           email: currentUser.email,
           role: userRole.rol,
           nickName: userRole.nickname,
-          display: userRole.display
-          
+          display: userRole.display,
+          adress: userRole.adress ? userRole.adress : null,
+          profilePicture: userRole.profilePicture ? userRole.profilePicture : null
         });
       }
       setLoading(false);
