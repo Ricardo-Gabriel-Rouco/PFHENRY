@@ -271,7 +271,7 @@ const Carrousel = () => {
             <Link to="/books">
               <Button
                 variant="contained"
-                color="info"
+                color="primary"
                 size="small"
                 sx={{ m: 1 }}
                 onClick={{ handleShowAllBooks }}
