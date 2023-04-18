@@ -12,6 +12,7 @@ import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import NavBar from "./components/NavBar/NavBar";
 import Cart from "./components/Cart/Cart";
+import CardContainer from "./components/CardContainer/CardContainer";
 import Account from './components/Account/Account'
 import { useSelector } from "react-redux";
 import { useState } from "react";
@@ -20,11 +21,13 @@ import SupportAdmin from "./chatBot/SupportAdmin";
 import EditUser from './components/EditUser/EditUser';
 import AdminRoutes from './components/AdminRoutes/AdminRoutes';
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
+import AboutUs from './components/AboutUs/AboutUs'
 import PayStatus from "./components/PayStatus/PayStatus";
 import axios from 'axios';
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import light from "./Theme/light";
 import MyPurchases from "./components/MyPurchases/MyPurchases";
+import ModalDetail from "./components/ModalDetail/ModalDetail";
 axios.defaults.baseURL = 'https://shaky-friend-production.up.railway.app/';
 
 function App() {
@@ -68,15 +71,20 @@ function App() {
                   </AdminRoutes>
                 }
               />
+              <Route exact path="/books" element={<CardContainer />} />
               <Route path="/home/:id" element={<CardDetail />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="*" element={<Error />} />
               <Route path="/profile" element={<ProtectedRoutes><EditUser/></ProtectedRoutes>}/>
               <Route path="/account" element={<Account />} />
+              <Route path="/profile" element={<EditUser/>}/>
               <Route path="/purchases" element={<MyPurchases/>}/>
               <Route path="/payStatus" element={<PayStatus />}/>
+              <Route path="/about" element={<AboutUs/>}/>
+
             </Routes>
+            <ModalDetail/>
           </AuthProvider>
         </BrowserRouter>
       </ThemeProvider>

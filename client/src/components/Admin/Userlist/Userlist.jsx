@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useState } from 'react';
 import { Datagrid, FunctionField, List, TextField, useRecordContext } from 'react-admin';
 import { modifyUser, modifyUserRole } from '../../../firebase/firestore/users';
@@ -47,18 +46,18 @@ const DisplaySelect = () =>{
         onChange={selectHandleChange} 
         value={selectedValue}>
             <MenuItem value='USER'>User</MenuItem>
-            <MenuItem value='ADMIN'>Admin</MenuItem>
-            <MenuItem value='SUPERADMIN'>Super Admin</MenuItem>
+            <MenuItem value='ADMIN'>Employee</MenuItem>
+            <MenuItem value='SUPERADMIN'>Admin</MenuItem>
 
         </Select>
     )
 }
 
 export const Userlist = (props) => (
-    <List {...props} pagination={false}>
+    <List {...props} pagination={false} actions={false}>
         <Datagrid bulkActionButtons={false}>
             <FunctionField 
-            label='Display'
+            label='Enabled'
             render={()=><DisplayCheckbox/>}
             />
 

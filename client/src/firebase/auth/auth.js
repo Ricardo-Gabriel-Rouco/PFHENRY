@@ -11,6 +11,7 @@ export async function createUser(email, password, nickName, fullName) {
             email:res.user.email,
             nickname: nickName,
             fullname: fullName,
+            favorites: [],
             rol: "USER",
             display: true,
         }

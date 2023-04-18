@@ -30,8 +30,10 @@ import light from "../../Theme/light";
 import dark from "../../Theme/dark";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import ModeNightIcon from "@mui/icons-material/ModeNight";
-import ChatIcon from '@mui/icons-material/Chat';
+import ChatIcon from "@mui/icons-material/Chat";
 import { availableItems } from "../Cart/Cart";
+import { styled } from "@mui/material/styles";
+import logo from "../../Assets/homeBrand.png";
 
 const NavBar = ({ passTheme, mode }) => {
   const { userStatus } = useAuth();
@@ -60,22 +62,35 @@ const NavBar = ({ passTheme, mode }) => {
     dispatch(removeAllFavorites());
   };
 
-  const goHome = () => {
-    if (location.pathname === "/home") dispatch(reset());
-    else navigate("/home");
-  };
-
   //Estableciendo modos de Theme para el py
 
   useEffect(() => {
     dispatch(importBooks());
   }, [dispatch]);
 
+  const Img = styled("img")({
+    width: 400,
+    height: "100%",
+    objectFit: "cover",
+    objectPosition: "center",
+  });
+
   return (
     location.pathname !== "/" &&
     location.pathname.slice(0, 6) !== "/admin" && (
-      <Box sx={{ bgcolor: "secondary", p: 1, marginTop: "auto 0px" }}>
-        <AppBar position="fixed" color="primary">
+      <Box sx={{ bgcolor: "secondary", p: 1 }}>
+        <Img
+          src={logo}
+          alt="Book's Kingdom"
+          sx={{
+            alignContent: "flex-start",
+            maxWidth: 400,
+            height: "auto",
+            width: "100%",
+            maxHeight: 51,
+          }}
+        />
+        <AppBar position="relative" color="primary" sx={{ mt: 1 }}>
           <Toolbar>
             <Grid container>
               <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
@@ -85,7 +100,7 @@ const NavBar = ({ passTheme, mode }) => {
                   aria-label="home"
                   color="inherit"
                   sx={{ mr: 2 }}
-                  onClick={goHome}
+                  onClick={() => navigate("/home")}
                 >
                   <Home />
                 </IconButton>
@@ -94,7 +109,7 @@ const NavBar = ({ passTheme, mode }) => {
               <Grid item xs="auto">
                 <Box
                   sx={{
-                    width: "475px",
+                    width: 500,
                     padding: "0px",
                   }}
                 >
@@ -102,7 +117,7 @@ const NavBar = ({ passTheme, mode }) => {
                 </Box>
               </Grid>
 
-              {userStatus.role === "ADMIN" ? (
+              {userStatus.role.includes("ADMIN") ? (
                 <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
                   <IconButton
                     size="large"
@@ -110,15 +125,13 @@ const NavBar = ({ passTheme, mode }) => {
                     aria-label="admin"
                     sx={{ mr: 2 }}
                     color="inherit"
-                    onClick={() => passTheme(dark)}
+                    onClick={() => navigate("/admin")}
                   >
-                    <Link to="/ADMIN">
-                      <AdminPanelSettingsIcon />
-                    </Link>
+                    <AdminPanelSettingsIcon />
                   </IconButton>
                 </Grid>
               ) : null}
-              {userStatus.role === "ADMIN" ? (
+              {userStatus.role.includes("ADMIN") ? (
                 <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
                   <IconButton
                     size="large"
@@ -126,10 +139,9 @@ const NavBar = ({ passTheme, mode }) => {
                     aria-label="admin"
                     sx={{ mr: 2 }}
                     color="inherit"
+                    onClick={() => navigate("/support")}
                   >
-                    <Link to="/support">
-                      <ChatIcon />
-                    </Link>
+                    <ChatIcon />
                   </IconButton>
                 </Grid>
               ) : null}
@@ -232,11 +244,21 @@ const NavBar = ({ passTheme, mode }) => {
                 >
                   {userStatus.logged ? (
                     <>
-                      <MenuItem onClick={handleClose}>
-                        <Link to={"/profile"}>Profile</Link>
+                      <MenuItem
+                        onClick={() => {
+                          navigate("/profile");
+                          handleClose();
+                        }}
+                      >
+                        Profile
                       </MenuItem>
-                      <MenuItem onClick={handleClose}>
-                        <Link to={"/account"}>My Books</Link>
+                      <MenuItem
+                        onClick={() => {
+                          navigate("/account");
+                          handleClose();
+                        }}
+                      >
+                        My Books
                       </MenuItem>
                       <MenuItem
                         onClick={() => {
@@ -248,8 +270,13 @@ const NavBar = ({ passTheme, mode }) => {
                       </MenuItem>
                     </>
                   ) : (
-                    <MenuItem onClick={handleClose}>
-                      <Link to={"/login"}>Log In</Link>
+                    <MenuItem
+                      onClick={() => {
+                        navigate("/login");
+                        handleClose();
+                      }}
+                    >
+                      Log In
                     </MenuItem>
                   )}
                 </Menu>
@@ -257,7 +284,7 @@ const NavBar = ({ passTheme, mode }) => {
             </Grid>
           </Toolbar>
         </AppBar>
-        <Toolbar />
+        {/* <Toolbar /> */}
         {/* Este componente es solo para evitar que la NavBar fija pise elementos en la pagina*/}
       </Box>
     )

@@ -33,7 +33,7 @@ const SearchBar = ({ placeholder }) => {
 
     dispatch(searchBook(value));
     setSearchValue("");
-    navigate("/home");
+    navigate("/books");
   };
   //ENTER BUTTON
   const handlerKeyDown = (e) => {
@@ -53,20 +53,15 @@ const SearchBar = ({ placeholder }) => {
   return (
     <>
       <Paper
-        
         sx={{
           display: "flex",
-          // alignSelf: "center",
           width: "100%",
           borderColor: "primary",
           borderRadius: "10px",
           boxShadow: "-0.2px 0.4px 0.4px 0.95px rgba(255, 253, 231, 0.9)",
           padding: "0px",
-          height: "45px",
-          // bgcolor:"default",
+          height: "54px",
         }}
-        // margin="dense"
-        
       >
         <Autocomplete
           freeSolo
@@ -75,7 +70,7 @@ const SearchBar = ({ placeholder }) => {
           blurOnSelect
           size="small"
           options={books.map((el) => el.title)}
-          sx={{  width: "100%", border: "0", padding: "0px" }}
+          sx={{ width: "100%", border: "0", padding: "0px" }}
           filterOptions={filterOptions}
           value={searchValue}
           onInput={handlerInputChange}
@@ -87,9 +82,16 @@ const SearchBar = ({ placeholder }) => {
               variant="standard"
               color="primary"
               {...params}
-              sx={{ ml: 1, flex: 1, marginLeft: "0", marginRight: "5px", width: "95%","& fieldset": { border: "none" } }}
+              sx={{
+                ml: 1,
+                flex: 1,
+                marginLeft: "0",
+                marginRight: "5px",
+                width: "95%",
+                "& fieldset": { border: "none" },
+              }}
               label="Search book"
-              InputLabelProps={{ focused: true, style : {color : "#ffc400"} }}
+              InputLabelProps={{ focused: true, style: { color: "#ffc400" } }}
               // margin="dense"
               InputProps={{
                 ...params.InputProps,

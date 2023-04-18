@@ -1,4 +1,4 @@
-import { AutocompleteArrayInput, ChipsArrayInput, SimpleForm } from "react-admin"
+import { AutocompleteArrayInput } from "react-admin"
 import { getGenres } from "../../../firebase/firestore/genres"
 import { useEffect, useState } from "react"
 import styles from "./BookForm.module.css";
