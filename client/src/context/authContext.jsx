@@ -26,6 +26,7 @@ export function AuthProvider({ children }) {
     email: "",
     role: "",
     nickName: "",
+    display: ""
   });
   const [loading, setLoading] = useState(true);
 
@@ -56,6 +57,7 @@ export function AuthProvider({ children }) {
           email: currentUser.email,
           role: userRole.rol,
           nickName: userRole.nickname,
+          display: userRole.display
         });
       }
       setLoading(false);
@@ -66,10 +68,21 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     if (userStatus.logged) {
       navigate("/home");
+    } 
+    if(userStatus.display === false){
+      alert('usuario baneado')
+      logout()
     }
      // eslint-disable-next-line
   }, []);
 
+  useEffect(() => {
+    if (userStatus.display === false) {
+      alert('usuario baneado');
+      logout();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userStatus.display]);
 
   const logout = async () => {
     await logOut();
