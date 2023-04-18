@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa";
-// import About from "../About";
+import AboutUs from "../../components/AboutUs/AboutUs";
 import style from "./Landing.module.css";
 import { Button, Box, Grid, Typography } from "@mui/material";
 import background from "../../Assets/fondoResponsive.jpg";
@@ -14,7 +14,7 @@ const Landing = () => {
   }
 
   return (
-    <>
+    <Box sx={{ overflowX: "hidden"}}>
       <Box
         id="landing"
         sx={{
@@ -71,8 +71,8 @@ const Landing = () => {
         </Grid>
       </Box>
 
-      {/* <About /> */}
-    </>
+      <AboutUs />
+    </Box>
   );
 };
 

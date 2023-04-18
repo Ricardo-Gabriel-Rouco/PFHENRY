@@ -1,8 +1,7 @@
-import { Create, SimpleForm, TextInput, ArrayInput, SimpleFormIterator, FileInput, ImageInput, ImageField, ReferenceInput, SelectInput, ChipField, ArrayField, Button, NumberField, NumberInput } from 'react-admin';
+import { Create, SimpleForm, TextInput, ImageInput, ImageField, SelectInput, NumberInput } from 'react-admin';
 import { postBook } from '../../../firebase/firestore/books';
 import { useState,useEffect } from 'react';
 import { getGenres } from '../../../firebase/firestore/genres';
-import { InputLabel } from '@mui/material';
 import validation from './validation';
 import ErrorIcon from "@mui/icons-material/Error";
 import styles from "./BookForm.module.css";
@@ -37,7 +36,7 @@ export const BookCreate = (props) => {
     fetchGenres();
   }, []);
 
-  const createBook = async (bookData) => {
+  const createBook = async () => {
 
     try{
       const newBookData = {...bookData, genre:bookData.genre}

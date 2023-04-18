@@ -5,7 +5,11 @@ const light = createTheme({
   palette: {
     mode: "light",
     typography: {
-      fontFamily: "Celtic MD",
+      fontFamily:'Celtic MD'},
+    fontSizes: {
+      title: '5vw',
+      secondTitle: '20px',
+      thirdTitle: '14px'
     },
     primary: {
       main: "#ffc400",

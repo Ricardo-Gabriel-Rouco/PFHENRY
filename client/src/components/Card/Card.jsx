@@ -10,17 +10,13 @@ import {
   Button,
   Typography,
   CardMedia,
-  Dialog,
-  DialogContent,
-  DialogActions,
   Grid,
 } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { addProduct } from "../../redux/rootReducer/cartSlice";
-import CardDetail from "../CardDetail/CardDetail";
+import { openModal } from "../../redux/rootReducer/bookSlice";
 
 const Card = ({
   image,
@@ -57,42 +53,12 @@ const Card = ({
   };
 
   const handleAdd = (id) => {
-    dispatch(
-      addProduct({
-        image,
-        id,
-        title,
-        authors,
-        price,
-        editorial,
-        display,
-      })
-    );
-    dispatch(
-      addProduct({
-        image,
-        id,
-        title,
-        authors,
-        price,
-        editorial,
-        display,
-      })
-    );
+    dispatch(addProduct({id}));
   };
-
-  //CUADRO DE DIALOGO
-  const [open, setOpen] = useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  
 
   return (
+    <>
     <Grid
       container
       spacing={2}
@@ -150,6 +116,11 @@ const Card = ({
         xl={6}
         sx={{ display: "flex", justifyContent: "center" }}
       >
+        {/* <Button
+          variant="contained"
+          size="small"
+          onClick={() => handleAdd(id)}
+        > */}
         <Button variant="contained" size="small" onClick={() => handleAdd(id)}>
           <ShoppingCartIcon />
         </Button>
@@ -197,130 +168,13 @@ const Card = ({
           </Typography>
         </CardContent>
         <CardActions>
-          <Button variant="contained" onClick={handleClickOpen}>
+          <Button variant="contained" onClick={()=>dispatch(openModal(id))}>
             Details
           </Button>
-          <Dialog
-            open={open}
-            onClose={handleClose}
-            PaperProps={{
-              sx: {
-                width: "100%",
-                height: "100%",
-                overflow: "hidden",
-                bgcolor: "primary.light",
-                color: "primary",
-              },
-            }}
-          >
-            <DialogContent>
-              <CardDetail id={id} />
-            </DialogContent>
-            <DialogActions>
-              <Grid
-                container
-                spacing={3}
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  width: "100%",
-                  margin: "auto",
-                }}
-              >
-                <Grid
-                  item
-                  xs={12}
-                  sm={6}
-                  md={6}
-                  lg={6}
-                  xl={6}
-                  sx={{ display: "flex", justifyContent: "center" }}
-                >
-                  {isFav ? (
-                    <Button
-                      variant="contained"
-                      sx={{
-                        color: "primary.contrastText",
-
-                        transition: "color 0.5s",
-                        "&:hover": {
-                          color: "secondary.contrastText",
-                        },
-                      }}
-                      endIcon={<BookmarkOutlinedIcon />}
-                      onClick={() => handleFavorite()}
-                    >
-                      Add
-                    </Button>
-                  ) : (
-                    <Button
-                      variant="contained"
-                      sx={{
-                        color: "primary.contrastText",
-
-                        transition: "color 0.5s",
-                        "&:hover": {
-                          color: "secondary.contrastText",
-                        },
-                      }}
-                      endIcon={<BookmarkBorderOutlinedIcon />}
-                      onClick={() => handleFavorite()}
-                    >
-                      Add
-                    </Button>
-                  )}
-                </Grid>
-                <Grid
-                  item
-                  xs={12}
-                  sm={6}
-                  md={6}
-                  lg={6}
-                  xl={6}
-                  sx={{ display: "flex", justifyContent: "center" }}
-                >
-                  <Button
-                    variant="contained"
-                    sx={{
-                      color: "primary.contrastText",
-
-                      transition: "color 0.5s",
-                      "&:hover": {
-                        color: "secondary.contrastText",
-                      },
-                    }}
-                    endIcon={<ShoppingCartIcon />}
-                    onClick={() => handleAdd(id)}
-                  >
-                    Add
-                  </Button>
-                </Grid>
-              </Grid>
-
-              <Button
-                variant="contained"
-                endIcon={<ExitToAppIcon />}
-                onClick={handleClose}
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  position: "absolute",
-                  zIndex: 2,
-                  top: "20px",
-                  right: "20px",
-                  color: "primary.contrastText",
-
-                  transition: "color 0.5s",
-                  "&:hover": {
-                    color: "secondary.contrastText",
-                  },
-                }}
-              ></Button>
-            </DialogActions>
-          </Dialog>
         </CardActions>
       </Grid>
     </Grid>
+          </>
   );
 };
 

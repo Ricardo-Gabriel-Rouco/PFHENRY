@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getBookById } from "../../firebase/firestore/books";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import {
   Grid,
@@ -37,19 +37,18 @@ const CardDetail = ({ id }) => {
     }
   }
 
-  const dispatch = useDispatch();
-
   const [bookDetail, setBookDetail] = useState({});
 
   useEffect(() => {
-    getBookById(id)
-      .then((response) => {
-        // setBookDetail(MyBook); //reemplazar en modo PRODUCCION
-        setBookDetail(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (id)
+      getBookById(id)
+        .then((response) => {
+          // setBookDetail(MyBook); //reemplazar en modo PRODUCCION
+          setBookDetail(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
   }, [id]);
 
   const handleNewReview = async (input) => {

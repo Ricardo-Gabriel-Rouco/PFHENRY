@@ -62,11 +62,6 @@ const NavBar = ({ passTheme, mode }) => {
     dispatch(removeAllFavorites());
   };
 
-  const goHome = () => {
-    if (location.pathname === "/home") dispatch(reset());
-    else navigate("/home");
-  };
-
   //Estableciendo modos de Theme para el py
 
   useEffect(() => {
@@ -105,7 +100,7 @@ const NavBar = ({ passTheme, mode }) => {
                   aria-label="home"
                   color="inherit"
                   sx={{ mr: 2 }}
-                  onClick={goHome}
+                  onClick={() => navigate("/home")}
                 >
                   <Home />
                 </IconButton>
@@ -122,7 +117,7 @@ const NavBar = ({ passTheme, mode }) => {
                 </Box>
               </Grid>
 
-              {userStatus.role === "ADMIN" ? (
+              {userStatus.role.includes("ADMIN") ? (
                 <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
                   <IconButton
                     size="large"
@@ -130,15 +125,13 @@ const NavBar = ({ passTheme, mode }) => {
                     aria-label="admin"
                     sx={{ mr: 2 }}
                     color="inherit"
-                    onClick={() => passTheme(dark)}
+                    onClick={() => navigate("/admin")}
                   >
-                    <Link to="/ADMIN">
-                      <AdminPanelSettingsIcon color="secondary"/>
-                    </Link>
+                    <AdminPanelSettingsIcon />
                   </IconButton>
                 </Grid>
               ) : null}
-              {userStatus.role === "ADMIN" ? (
+              {userStatus.role.includes("ADMIN") ? (
                 <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
                   <IconButton
                     size="large"
@@ -146,10 +139,9 @@ const NavBar = ({ passTheme, mode }) => {
                     aria-label="admin"
                     sx={{ mr: 2 }}
                     color="inherit"
+                    onClick={() => navigate("/support")}
                   >
-                    <Link to="/support">
-                      <ChatIcon color="secondary"/>
-                    </Link>
+                    <ChatIcon />
                   </IconButton>
                 </Grid>
               ) : null}
@@ -252,11 +244,21 @@ const NavBar = ({ passTheme, mode }) => {
                 >
                   {userStatus.logged ? (
                     <>
-                      <MenuItem onClick={handleClose}>
-                        <Link to={"/profile"}>Profile</Link>
+                      <MenuItem
+                        onClick={() => {
+                          navigate("/profile");
+                          handleClose();
+                        }}
+                      >
+                        Profile
                       </MenuItem>
-                      <MenuItem onClick={handleClose}>
-                        <Link to={"/account"}>My Books</Link>
+                      <MenuItem
+                        onClick={() => {
+                          navigate("/account");
+                          handleClose();
+                        }}
+                      >
+                        My Books
                       </MenuItem>
                       <MenuItem
                         onClick={() => {
@@ -268,8 +270,13 @@ const NavBar = ({ passTheme, mode }) => {
                       </MenuItem>
                     </>
                   ) : (
-                    <MenuItem onClick={handleClose}>
-                      <Link to={"/login"}>Log In</Link>
+                    <MenuItem
+                      onClick={() => {
+                        navigate("/login");
+                        handleClose();
+                      }}
+                    >
+                      Log In
                     </MenuItem>
                   )}
                 </Menu>
