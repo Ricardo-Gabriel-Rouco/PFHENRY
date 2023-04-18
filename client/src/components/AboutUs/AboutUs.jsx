@@ -31,10 +31,10 @@ function AboutUs() {
       </Typography>
       <Grid
         container
-        spacing={3}
+        spacing={1}
         alignItems="center"
         justifyContent="center"
-        sx={{ padding: 2, marginLeft: "auto" }}
+        sx={{ padding: '2em', marginLeft: "auto" }}
       >
         {/* joaco */}
         <Grid item xs={12} md={6} lg={4}>
@@ -154,7 +154,7 @@ function AboutUs() {
               <AiFillGithub className={s.gitHub} icon={AiFillGithub} />{" "}
             </a>
 
-            <a href="https://www.linkedin.com/in/joaquin-santiago-oliveira">
+            <a href="https://www.linkedin.com/in/julian-giampetruzzi">
               {" "}
               <AiFillLinkedin
                 className={s.linkedin}
@@ -238,7 +238,7 @@ function AboutUs() {
               <AiFillGithub className={s.gitHub} icon={AiFillGithub} />{" "}
             </a>
 
-            <a href="https://www.linkedin.com/in/joaquin-santiago-oliveira">
+            <a href="https://www.linkedin.com/in/alfredo-c-gonzalez-noriega-095b40119/">
               {" "}
               <AiFillLinkedin
                 className={s.linkedin}
