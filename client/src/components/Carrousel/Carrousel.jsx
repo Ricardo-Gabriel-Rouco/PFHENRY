@@ -22,6 +22,8 @@ const Carrousel = () => {
     const { userStatus } = useAuth();
     const dispatch = useDispatch();
 
+console.log(displayableBooks)
+
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
