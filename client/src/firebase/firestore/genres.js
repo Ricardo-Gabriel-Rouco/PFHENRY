@@ -3,7 +3,7 @@ import { db } from '../firebase-config'
 
 export async function getGenres() {
 
-  const q = query(collection(db, "genres"), where('display', '==', true))
+  const q = query(collection(db, "genres"))
   const querySnapshot = await getDocs(q);
   let data = [];
   querySnapshot.forEach((doc) => {
