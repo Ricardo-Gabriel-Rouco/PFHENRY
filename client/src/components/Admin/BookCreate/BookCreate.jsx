@@ -13,8 +13,7 @@ import { getGenres } from "../../../firebase/firestore/genres";
 import validation from "./validation";
 import ErrorIcon from "@mui/icons-material/Error";
 
-import { Tooltip, Box } from "@mui/material";
-import styles from "./BookForm.module.css";
+import { Tooltip, Box } from "@mui/material";import styles from "./BookForm.module.css";
 import { GenreList } from "../GenreList/GenreList";
 import { useNavigate } from "react-router-dom";
 
@@ -67,32 +66,7 @@ export const BookCreate = (props) => {
     setErrors(validation(bookData));
   }, [bookData]);
 
-  // const handleOptions = (e) => {
-  //   let selectedValues = [];
-
-  //   if (bookData.genres)
-  //   { selectedValues = [...bookData.genres];}
-
-  //   const options = e.target.options;
-  //   for (let i = 0; i < options.length; i++) {
-  //     if (options[i].selected) {
-  //       selectedValues.push(options[i].value);
-  //     }
-  //   }
-  //   setBookData({
-  //     ...bookData,
-  //     genres:[...selectedValues]
-  //   });
-  // };
-
-  // const handleRemove = (value) => {
-  //   const newGenres = bookData.genres.filter((genre) => genre !== value);
-  //   setBookData({
-  //     ...bookData,
-  //     genres: newGenres,
-  //   });
-  // };
-
+  
   const handleImageType = (e) => {
     setImageType(e.target.value);
     setImageUrl(null);
@@ -123,7 +97,7 @@ export const BookCreate = (props) => {
               label="Image URL"
               fullWidth
               onChange={handleUrlChange}
-            />
+              />
           </Tooltip>
           {imageUrl && (
             <img src={imageUrl} alt="Preview" style={{ maxHeight: "200px" }} />
@@ -134,16 +108,17 @@ export const BookCreate = (props) => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-        width: "75%",
-        alignSelf: "center",
-        margin: "15rem",
-      }}
+    <Box
+      // style={{
+      //   display: "flex",
+      //   justifyContent: "center",
+      //   alignItems: "center",
+      //   height: "100vh",
+      //   width: "75%",
+      //   alignSelf: "center",
+      //   marginTop: "6rem",
+      //   marginLeft: "1rem"
+      // }}
     >
       <Create {...props} style={{ alignSelf: "center", display: "flex" }}>
         <SimpleForm onSubmit={createBook}>
@@ -219,7 +194,7 @@ export const BookCreate = (props) => {
                 label="Description"
                 source="description"
                 style={{ width: "50rem" }}
-              />
+                />
             </Tooltip>
             <br></br>
             <Tooltip title="Type the price" placement="right" arrow>
@@ -262,7 +237,7 @@ export const BookCreate = (props) => {
                 onChange={handleInputChange}
                 defaultValue={bookData.editorial}
                 style={{ margin: "0 2rem " }}
-              />
+                />
             </Tooltip>
             {errors.editorial ? (
               <p className={styles.formError}>
@@ -275,13 +250,13 @@ export const BookCreate = (props) => {
 
             {/* {errors.genres ? (
                 <p className={styles.formError}>
-                  <ErrorIcon />
+                <ErrorIcon />
                   {errors.genres && errors.genres}
-                </p>
-              ) : null}  */}
+                  </p>
+                ) : null}  */}
 
             <br></br>
-            <Tooltip title="Insert the ISBN, usually the barcode located in the back" placement="right" arrow>
+            <Tooltip title="Insert the ISBN, usually the barcode located in the back" placement="bottom" arrow>
             <TextInput
               label="ISBN"
               source="isbn"
@@ -299,6 +274,32 @@ export const BookCreate = (props) => {
           </div>
         </SimpleForm>
       </Create>
-    </div>
+    </Box>
   );
 };
+
+// const handleOptions = (e) => {
+//   let selectedValues = [];
+
+//   if (bookData.genres)
+//   { selectedValues = [...bookData.genres];}
+
+//   const options = e.target.options;
+//   for (let i = 0; i < options.length; i++) {
+//     if (options[i].selected) {
+//       selectedValues.push(options[i].value);
+//     }
+//   }
+//   setBookData({
+//     ...bookData,
+//     genres:[...selectedValues]
+//   });
+// };
+
+// const handleRemove = (value) => {
+//   const newGenres = bookData.genres.filter((genre) => genre !== value);
+//   setBookData({
+//     ...bookData,
+//     genres: newGenres,
+//   });
+// };
