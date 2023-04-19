@@ -1,6 +1,6 @@
 import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
-import { Button, TextField, Typography, Snackbar, IconButton } from "@mui/material";
+import { Button, TextField, Typography, Snackbar, IconButton, CardMedia, Input } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import { useAuth } from "../../context/authContext";
 import { validate } from './validation'
@@ -10,24 +10,37 @@ function EditUser() {
   const [open, setOpen] = useState(false)
   const [userData, setUserData] = useState({
     nickName: "",
-    userId: userStatus.userId
+    userId: userStatus.userId,
+    profile: userStatus.profilePicture,
+    adress: userStatus.adress
   });
   const [errors, setErrors] = useState({
     nickName: "",
   });
   // const navigate = useNavigate();
 
-
   function handleInputChange(e) {
-    setUserData({ ...userData, [e.target.name]: e.target.value });
-    setErrors(validate(userData.nickName))
+    switch (e.target.name) {
+      case "imageFile":
+        const reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onloadend = () => {
+          setUserData({ ...userData, profilePicture: reader.result });
+        };
+        break;
+
+      default:
+        setUserData({ ...userData, [e.target.name]: e.target.value });
+        setErrors(validate(userData.nickName))
+        break;
+    }
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
     if(errors) throw new Error('No se puede cambiar el nombre de usuario')
     try {
-      await customize(userStatus.userId,userData.nickName || userStatus.nickName);
+      await customize(userStatus.userId,userData.nickName || userStatus.nickName, userData.profile || userStatus.profilePicture, userData.adress || userStatus.adress );
       setOpen(true)
       // navigate("/home");
     } catch (error) {
@@ -70,6 +83,34 @@ const action = (
         style={{ margin: "1rem" }}
       />
       {/* {errors.nickName && <p>{errors.nickName}</p>} */}
+
+      <TextField
+        type="text"
+        label="Adress"
+        name="adress"
+        value={userData.adress}
+        onChange={handleInputChange}
+        style={{ margin: "1rem" }}
+      />
+
+      {userStatus.profilePicture? <CardMedia
+      component="img"
+      height="300"
+          sx={{
+            width: "10rem",
+            height: "14rem",
+            objectFit: "cover",
+            marginTop: "0px",
+          }}
+      image={userStatus.profilePicture}/> : null}
+      <Input
+        type="file"
+        accept="image/*"
+        name="imageFile"
+        placeholder="Select an image for profile picture"
+        onChange={handleInputChange}
+      />
+
       <Button
         type="submit"
         variant="contained"

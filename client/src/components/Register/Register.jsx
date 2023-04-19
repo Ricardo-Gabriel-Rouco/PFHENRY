@@ -8,27 +8,44 @@ function Register() {
     email: "",
     password: "",
     nickName: "",
-    fullName: "",
-    rol: "USER"
+    adress: "",
+    profilePicture: "",
+
   });
   const [errors, setErrors] = useState({
     email: "",
     password: "",
     nickName: "",
+    adress: "",
+    profilePicture: "",
   });
   const navigate = useNavigate();
 
   const { signup, loginWithGoogle } = useAuth();
 
   function handleInputChange(e) {
-    setUserData({ ...userData, [e.target.name]: e.target.value });
+    switch (e.target.name) {
+      case "imageFile":
+        const reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onloadend = () => {
+          setUserData({ ...userData, profilePicture: reader.result });
+        };
+        break;
+
+      default:
+        setUserData({ ...userData, [e.target.name]: e.target.value });
+        break;
+    }
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await signup(userData.email, userData.password, userData.nickName);
+
+      await signup(userData.email, userData.password, userData.nickName, userData.adress, userData.profilePicture);
       <Alert severity="success"> You have register successfully!</Alert>
+
       navigate("/home");
     } catch (error) {
       if (error.code === "auth/weak-password")
@@ -56,26 +73,26 @@ function Register() {
   };
 
   return (
+
     <Box sx={{ marginTop: "50px", display: "flex", justifyContent: "center" }}>
       <Paper elevation={10} style={{ borderRadius: '10px', padding: "1rem", maxWidth: "500px", backgroundColor: 'inherit' }}>
         <form
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            margin: "1rem",
-
-          }}
-          onSubmit={handleSubmit}
-        >
-          <TextField
-            type="text"
-            label="Nombre de usuario"
-            name="nickName"
-            value={userData.nickName}
-            onChange={handleInputChange}
-            style={{ margin: "0.5rem", width: '15rem' }}
-          />
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        margin: "2rem",
+      }}
+      onSubmit={handleSubmit}
+    >
+      <TextField
+        type="text"
+        label="Nombre de usuario"
+        name="nickName"
+        value={userData.nickName}
+        onChange={handleInputChange}
+        style={{ margin: "1rem" }}
+      />
           {errors.nickName && (
             <Typography variant="caption" color="red">
               <p>{errors.nickName}</p>
@@ -101,6 +118,22 @@ function Register() {
             style={{ margin: "0.5rem", width: '15rem' }}
           />
           {errors.password && <Typography variant="caption" color="red"> <p>{errors.password}</p></Typography>}
+           <TextField
+        type="text"
+        label="adress"
+        name="adress"
+        value={userData.adress}
+        onChange={handleInputChange}
+        style={{ margin: "1rem" }}
+      />
+      {errors.adress &&  <Typography variant="caption" color="red"><p>{errors.adress}</p></Typography>}}
+      <Input
+        type="file"
+        accept="image/*"
+        name="imageFile"
+        placeholder="Select an image for profile picture"
+        onChange={handleInputChange}
+      />
           <Button
             type="submit"
             variant="contained"
