@@ -14,7 +14,7 @@
   bottom: 0;
   width: 0;
   height: 0;
-  border-left: 0.625em solid #fff9c4;
+  border-left: 0.625em solid transparent;
   border-top: 0.625em solid transparent;
   border-bottom: 0.625em solid transparent;
 }
@@ -29,7 +29,6 @@
   border-top: 0.625em solid transparent;
   border-bottom: 0.625em solid transparent;
 }
-
 .discount{
   display: flex;
   justify-content: center;

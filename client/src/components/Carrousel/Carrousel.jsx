@@ -18,6 +18,7 @@ import loading from "../../Assets/Loading.gif";
 import { useDispatch } from "react-redux";
 import { openModal } from "../../redux/rootReducer/bookSlice";
 import SupportEngine from '../../chatBot/SupportEngine/index'
+import { DiscountLabel } from "../DiscountLabel/DiscountLabel";
 
 
 
@@ -272,6 +273,7 @@ const Carrousel = () => {
                     <Grid item >
                       <BookCardMedia
                         component="img"
+                        height="300"
                         image={book.image}
                         alt={book.title}
                         sx={{ cursor: "pointer", marginTop: '20px' }}
@@ -283,12 +285,17 @@ const Carrousel = () => {
                         variant="subtitle"
                         sx={{
                           fontSize: 18,
+                          backgroundColor: 'inherit',
                           textAlign: "right",
                           fontWeight: "bold",
-                          color: "red",
+                          color: "black",
+                          position: 'fixed',
+                          right: "8rem",
+                          top: "0.1rem"
+
                         }}
                       >
-                        %{book.discount} {" OFF"}
+                        <DiscountLabel discount={`%${book.discount} OFF`} />
                       </Typography>
 
                       <Grid
