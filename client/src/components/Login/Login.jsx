@@ -12,9 +12,6 @@ const Login = () => {
   const favLS = useSelector((state) => state.favorite.favorites.favorites);
   const cartLS = useSelector((sate) => sate.cart);
 
-  // console.log(cartLS);
-  // console.log(cartLS.cart);
-  // console.log(cartLS.cart.cart);
 
   const { login, loginWithGoogle, resetPassword, userStatus } = useAuth();
   const navigate = useNavigate();
@@ -45,11 +42,11 @@ const Login = () => {
       if (!userData.password) throw "emptyPass";
 
       await login(userData.email, userData.password);
+
       const favDB = await getFavorites(userStatus.userId);
 
       if (favDB && favLS) {
         const combinedFavorites = [...favDB, ...favLS];
-
 
 
         const uniqueFavorites = combinedFavorites.filter((obj, index, self) => {
@@ -85,7 +82,6 @@ const Login = () => {
 
       navigate(-1);
     } catch (error) {
-      // console.log(error);
       if (error.code === "auth/user-not-found") setErrors("User not found");
       else if (error.code === "auth/invalid-email") setErrors("Invalid email");
       else if (error === "emptyEmail") setErrors("Must insert email");
