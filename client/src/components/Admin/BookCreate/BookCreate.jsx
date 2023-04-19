@@ -3,7 +3,6 @@ import {
   SimpleForm,
   TextInput,
   ImageInput,
-  ImageField,
   SelectInput,
   NumberInput,
 } from "react-admin";
@@ -15,16 +14,16 @@ import ErrorIcon from "@mui/icons-material/Error";
 import styles from "./BookForm.module.css";
 import { GenreList } from "../GenreList/GenreList";
 import { useNavigate } from "react-router-dom";
+import { Input, InputLabel, Button } from "@mui/material";
+import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 
 export const BookCreate = (props) => {
   const navigate = useNavigate();
-  const [imageType, setImageType] = useState("file");
-  const [imageUrl, setImageUrl] = useState(null);
+  const [imageType, setImageType] = useState("");
   const [genres, setGenres] = useState([]);
+  const [allGenres, setAllGenres] = useState([]);
   const [bookData, setBookData] = useState({});
   const [errors, setErrors] = useState({});
-
-  
 
   const createBook = async () => {
     try {
@@ -37,6 +36,14 @@ export const BookCreate = (props) => {
     }
   };
 
+  useEffect(() => {
+    const fetchGenres = async () => {
+      const allGenres = await getGenres();
+      setAllGenres(allGenres);
+    };
+    fetchGenres();
+  }, []);
+
   const handleInputChange = (e) => {
     setBookData({
       ...bookData,
@@ -46,12 +53,12 @@ export const BookCreate = (props) => {
 
   useEffect(() => {
     setErrors(validation(bookData));
+    console.log(bookData.image);
   }, [bookData]);
-
 
   const handleImageType = (e) => {
     setImageType(e.target.value);
-    setImageUrl(null);
+    setBookData({ ...bookData, image: undefined });
   };
 
   const imageTypeOptions = [
@@ -59,30 +66,78 @@ export const BookCreate = (props) => {
     { id: "url", name: "URL" },
   ];
 
-  const handleUrlChange = (e) => {
-    setImageUrl(e.target.value);
+  const handleImageChange = (image) => {
+    console.log(typeof image);
+    const reader = new FileReader();
+    reader.readAsDataURL(image);
+    reader.onload = (event) => {
+      setBookData({ ...bookData, image: event.target.result });
+    };
+    return { src: image };
+  };
+
+  const MyImg = () => {
+    return (
+      <div style={{ position: "relative" }}>
+        <img
+          src={bookData.image}
+          alt="uploaded_Image"
+          // onError={() => {
+          //   if (imageType === "file") setBookData({ ...bookData, image: null });
+          //   else setErrors({...errors, image:"Invalid Link"})
+          // }}
+          style={{
+            maxHeight: "15em",
+            marginLeft: "auto",
+            marginRight: "auto",
+            position: "relative",
+          }}
+        />
+        <Button
+          onClick={() => setBookData({ ...bookData, image: null })}
+          sx={{ position: "absolute", top: "0%", right: "0%" }}
+        >
+          <CancelRoundedIcon />
+        </Button>
+      </div>
+    );
   };
 
   const ImageInputField = () => {
     if (imageType === "file") {
       return (
-        <ImageInput source="image" label="Image" accept="image/*">
-          <ImageField source="src" title="title" />
-        </ImageInput>
-      );
-    } else {
-      return (
-        <div>
-          <TextInput
+        <>
+          <ImageInput
             source="image"
-            label="Image URL"
-            fullWidth
-            onChange={handleUrlChange}
-          />
-          {imageUrl && (
-            <img src={imageUrl} alt="Preview" style={{ maxHeight: "200px" }} />
-          )}
-        </div>
+            label="Image"
+            accept="image/*"
+            onChange={handleImageChange}
+          ></ImageInput>
+
+          {bookData.image ? <MyImg /> : null}
+        </>
+      );
+    } else if (imageType === "url") {
+      return (
+        <>
+          <>
+          <TextInput
+              label="Image URL"
+              source="image"
+              onChange={handleInputChange}
+              name="image"
+              
+            />
+            {/* <InputLabel htmlFor="imageLink">Url Imagen:</InputLabel>
+            <Input
+              type="text"
+              name="image"
+              value={bookData.image}
+              onChange={handleInputChange}
+            /> */}
+          </>
+          {bookData.image ? <MyImg /> : null}
+        </>
       );
     }
   };
@@ -138,7 +193,7 @@ export const BookCreate = (props) => {
               optionText="name"
               onChange={handleImageType}
               choices={imageTypeOptions}
-              source="image-type"
+              source="Image Type"
               style={{ alignSelf: "center", display: "flex" }}
             />
             <ImageInputField style={{ alignSelf: "center", display: "flex" }} />
@@ -210,7 +265,12 @@ export const BookCreate = (props) => {
               </p>
             ) : null}
             {/* <InputLabel htmlFor="genres">Genres:</InputLabel> */}
-            <GenreList errors={errors} genres={genres}  setGenres={setGenres}/>
+            <GenreList
+              errors={errors}
+              allGenres={allGenres}
+              genres={genres}
+              setGenres={setGenres}
+            />
 
             <br></br>
           </div>

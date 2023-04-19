@@ -4,23 +4,13 @@ import { useEffect, useState } from "react";
 import styles from "./BookForm.module.css";
 import ErrorIcon from "@mui/icons-material/Error";
 
-export const GenreList = ({ errors, genres, setGenres }) => {
+export const GenreList = ({ errors, allGenres, genres, setGenres }) => {
   const [customInput, setCustomInput] = useState("");
   const [genresList, setGenresList] = useState([]);
 
   useEffect(() => {
-    const fetchGenres = async () => {
-      const allGenres = await getGenres();
-      setGenresList(allGenres);
-    };
-    fetchGenres();
-  }, []);
-
-  useEffect(() => {
-    console.log(genres);
-  }, [genres]);
-
-  const handleInputChange = (ev) => {};
+    setGenresList(allGenres);
+  }, [allGenres]);
 
   return (
     <div>
@@ -36,11 +26,6 @@ export const GenreList = ({ errors, genres, setGenres }) => {
           setGenresList(Array.from(new Set([...genresList, newValue])));
           return newValue;
         }}
-        onInputChange={(ev) => {
-          console.log(ev.target.value)
-          setCustomInput(ev.target.value);
-        }}
-        selectedChoices={genres}
       />
 
       {errors.genres ? (
