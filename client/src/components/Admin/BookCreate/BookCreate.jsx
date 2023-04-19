@@ -1,15 +1,23 @@
-import { Create, SimpleForm, TextInput, ImageInput, ImageField, SelectInput, NumberInput } from 'react-admin';
-import { postBook } from '../../../firebase/firestore/books';
-import { useState,useEffect } from 'react';
-import { getGenres } from '../../../firebase/firestore/genres';
-import validation from './validation';
+import {
+  Create,
+  SimpleForm,
+  TextInput,
+  ImageInput,
+  ImageField,
+  SelectInput,
+  NumberInput,
+} from "react-admin";
+import { postBook } from "../../../firebase/firestore/books";
+import { useState, useEffect } from "react";
+import { getGenres } from "../../../firebase/firestore/genres";
+import validation from "./validation";
 import ErrorIcon from "@mui/icons-material/Error";
-import styles from "./BookForm.module.css";
-import { GenreList } from '../GenreList/GenreList';
-import { useNavigate } from 'react-router-dom';
+
+import { Tooltip, Box } from "@mui/material";import styles from "./BookForm.module.css";
+import { GenreList } from "../GenreList/GenreList";
+import { useNavigate } from "react-router-dom";
 
 // import { makeStyles } from '@material-ui/core/styles'
-
 
 // const useStyles = makeStyles({
 //   centeredForm:{
@@ -21,15 +29,14 @@ import { useNavigate } from 'react-router-dom';
 // })
 
 export const BookCreate = (props) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const [imageType,setImageType] = useState('file');
-  const [imageUrl,setImageUrl] = useState(null)
-  const [genres,setGenres]= useState([])
-  const [bookData,setBookData]=useState({})
-  const [errors,setErrors] = useState({});
+  const [imageType, setImageType] = useState("file");
+  const [imageUrl, setImageUrl] = useState(null);
+  const [genres, setGenres] = useState([]);
+  const [bookData, setBookData] = useState({});
+  const [errors, setErrors] = useState({});
 
-  
   useEffect(() => {
     async function fetchGenres() {
       const allGenres = await getGenres();
@@ -39,178 +46,260 @@ export const BookCreate = (props) => {
   }, []);
 
   const createBook = async (bookData) => {
-
-    try{
-      const newBookData = {...bookData, genres:bookData.genres}
-      const response = await postBook(newBookData)
-      console.log(response)
-      navigate('/admin');
-
-    }catch(error){
-      console.log(error)
+    try {
+      const newBookData = { ...bookData, genres: bookData.genres };
+      const response = await postBook(newBookData);
+      navigate("/admin");
+    } catch (error) {
+      console.log(error);
     }
-
   };
 
-    const handleInputChange = (e) =>{
-      setBookData({
-        ...bookData,
-        [e.target.name]:e.target.value
-      })
-    }
+  const handleInputChange = (e) => {
+    setBookData({
+      ...bookData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-    useEffect(()=>{
-      setErrors(validation(bookData))
-    },[bookData])
+  useEffect(() => {
+    setErrors(validation(bookData));
+  }, [bookData]);
 
-
-
-    // const handleOptions = (e) => {
-    //   let selectedValues = [];
   
-    //   if (bookData.genres)
-    //   { selectedValues = [...bookData.genres];}
-  
-    //   const options = e.target.options;
-    //   for (let i = 0; i < options.length; i++) {
-    //     if (options[i].selected) {
-    //       selectedValues.push(options[i].value);
-    //     }
-    //   }
-    //   setBookData({
-    //     ...bookData,
-    //     genres:[...selectedValues]
-    //   });
-    // };
-  
-    // const handleRemove = (value) => {
-    //   const newGenres = bookData.genres.filter((genre) => genre !== value);
-    //   setBookData({
-    //     ...bookData,
-    //     genres: newGenres,
-    //   });
-    // };
+  const handleImageType = (e) => {
+    setImageType(e.target.value);
+    setImageUrl(null);
+  };
 
+  const imageTypeOptions = [
+    { id: "file", name: "File" },
+    { id: "url", name: "URL" },
+  ];
 
-    const handleImageType = (e) => {
-      setImageType(e.target.value);
-      setImageUrl(null)
+  const handleUrlChange = (e) => {
+    setImageUrl(e.target.value);
+  };
+
+  const ImageInputField = () => {
+    if (imageType === "file") {
+      return (
+        <ImageInput source="image" label="Image" accept="image/*">
+          <ImageField source="src" title="title" />
+        </ImageInput>
+      );
+    } else {
+      return (
+        <div>
+          <Tooltip title="Paste a Link" placement="right" arrow>
+            <TextInput
+              source="image"
+              label="Image URL"
+              fullWidth
+              onChange={handleUrlChange}
+              />
+          </Tooltip>
+          {imageUrl && (
+            <img src={imageUrl} alt="Preview" style={{ maxHeight: "200px" }} />
+          )}
+        </div>
+      );
     }
-
-    const imageTypeOptions = [{id:'file',name:'File'},{id:'url',name:'URL'}]
-
-    const handleUrlChange = (e) => {
-      setImageUrl(e.target.value)
-    }
-
-    const ImageInputField = () =>{
-      if(imageType === 'file'){
-        return (
-          <ImageInput source='image' label='Image' accept='image/*'>
-            <ImageField source='src' title='title'/>
-          </ImageInput>
-        )
-      }else{
-        return (
-          <div>
-            <TextInput source='image' label='Image URL' fullWidth onChange={handleUrlChange}/>
-            {imageUrl &&(
-              <img src={imageUrl} alt='Preview' style={{maxHeight:'200px'}} />
-            )}
-          </div>
-        )
-      }
-    }
-
+  };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width:'75%',alignSelf:'center' , margin:'15rem'}}>
-      <Create {...props} style={{alignSelf:'center', display:'flex'}}>
+    <Box
+      // style={{
+      //   display: "flex",
+      //   justifyContent: "center",
+      //   alignItems: "center",
+      //   height: "100vh",
+      //   width: "75%",
+      //   alignSelf: "center",
+      //   marginTop: "6rem",
+      //   marginLeft: "1rem"
+      // }}
+    >
+      <Create {...props} style={{ alignSelf: "center", display: "flex" }}>
         <SimpleForm onSubmit={createBook}>
-
-          <div style={{alignSelf:'center', display:'flex',flexDirection:'column'}}>
-            
-              <SelectInput optionText='name' onChange={handleImageType} choices={imageTypeOptions} source='image-type' style={{alignSelf:'center', display:'flex'}} />
-            <ImageInputField style={{alignSelf:'center', display:'flex'}}/>
+          <div
+            style={{
+              alignSelf: "center",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <Box display="flex" justifyContent="center">
+              <Tooltip
+                title="Select if the type of image comes from a file or an url"
+                placement="right"
+                arrow
+              >
+                <SelectInput
+                  optionText="name"
+                  onChange={handleImageType}
+                  choices={imageTypeOptions}
+                  source="image-type"
+                  style={{ alignSelf: "center", display: "flex" }}
+                />
+                {/* <InfoIcon /> */}
+              </Tooltip>
+            </Box>
+            <ImageInputField style={{ alignSelf: "center", display: "flex" }} />
           </div>
-            <div>
-            <TextInput 
-            defaultValue={bookData.title} 
-            onChange={handleInputChange} 
-            label='Title' 
-            source='title' 
-            style={{margin:'0 ', fontSize:'2rem', fontWeight: 'bold'}} />
-            { errors.title ? (<p className={styles.formError}>
-              <ErrorIcon/>
-              {errors.title && errors.title}</p>) : null}
-              <br></br>
-              <TextInput 
-            label='Author' 
-            source='authors'
-            defaultValue={bookData.authors}  
-            style={{margin:'0 2rem '}} 
-            onChange={handleInputChange} />
-            {errors.authors ? (<p className={styles.formError}>
-              <ErrorIcon/>
-              {errors.authors && errors.authors}
-            </p>):null}
+          <div>
+            <Tooltip
+              title="Insert the title of the book"
+              placement="right"
+              arrow
+            >
+              <TextInput
+                defaultValue={bookData.title}
+                onChange={handleInputChange}
+                label="Title"
+                source="title"
+                style={{ margin: "0 ", fontSize: "2rem", fontWeight: "bold" }}
+              />
+            </Tooltip>
+            {errors.title ? (
+              <p className={styles.formError}>
+                <ErrorIcon />
+                {errors.title && errors.title}
+              </p>
+            ) : null}
             <br></br>
-            <TextInput multiline label='Description' source='description'  style={{width:'50rem'}} />
+            <Tooltip
+              title="Insert the author of the book"
+              placement="right"
+              arrow
+            >
+              <TextInput
+                label="Author"
+                source="authors"
+                defaultValue={bookData.authors}
+                style={{ margin: "0 2rem " }}
+                onChange={handleInputChange}
+              />
+            </Tooltip>
+            {errors.authors ? (
+              <p className={styles.formError}>
+                <ErrorIcon />
+                {errors.authors && errors.authors}
+              </p>
+            ) : null}
             <br></br>
-            <NumberInput 
-            label='Price $' 
-            source='price'
-            onChange={handleInputChange}
-            defaultValue= {bookData.price}  
-            style={{margin:'0 2rem '}}
-            options={{style:'currency',currency:'USD'}}/>
-            {errors.price ? (<p className={styles.formError}><ErrorIcon/>{errors.price && errors.price}</p>):null}
+            <Tooltip title="Write a book review." placement="bottom" arrow>
+              <TextInput
+                multiline
+                label="Description"
+                source="description"
+                style={{ width: "50rem" }}
+                />
+            </Tooltip>
             <br></br>
-            <TextInput 
-            label='Year'
-            source='year'
-            onChange={handleInputChange}
-            defaultValue ={bookData.year} 
-            style={{margin:'0 2rem '}}  />
-            {errors.year ? (<p className={styles.formError}><ErrorIcon/>{errors.year && errors.year}</p>):null}
+            <Tooltip title="Type the price" placement="right" arrow>
+              <NumberInput
+                label="Price $"
+                source="price"
+                onChange={handleInputChange}
+                defaultValue={bookData.price}
+                style={{ margin: "0 2rem " }}
+                options={{ style: "currency", currency: "USD" }}
+              />
+            </Tooltip>
+            {errors.price ? (
+              <p className={styles.formError}>
+                <ErrorIcon />
+                {errors.price && errors.price}
+              </p>
+            ) : null}
             <br></br>
-            <TextInput 
-            label='Editorial' 
-            source='editorial'
-            onChange={handleInputChange}
-            defaultValue={bookData.editorial}
-            style={{margin:'0 2rem '}} />
-            {errors.editorial ? (<p className={styles.formError}><ErrorIcon/>{errors.editorial && errors.editorial}</p>):null}
+            <Tooltip title="Insert the year of edition" placement="right" arrow>
+              <TextInput
+                label="Year"
+                source="year"
+                onChange={handleInputChange}
+                defaultValue={bookData.year}
+                style={{ margin: "0 2rem " }}
+              />
+            </Tooltip>
+            {errors.year ? (
+              <p className={styles.formError}>
+                <ErrorIcon />
+                {errors.year && errors.year}
+              </p>
+            ) : null}
+            <br></br>
+            <Tooltip title="Write the publisher's name" placement="right" arrow>
+              <TextInput
+                label="Editorial"
+                source="editorial"
+                onChange={handleInputChange}
+                defaultValue={bookData.editorial}
+                style={{ margin: "0 2rem " }}
+                />
+            </Tooltip>
+            {errors.editorial ? (
+              <p className={styles.formError}>
+                <ErrorIcon />
+                {errors.editorial && errors.editorial}
+              </p>
+            ) : null}
             {/* <InputLabel htmlFor="genres">Genres:</InputLabel> */}
-            <GenreList errors={errors} defaultValue={bookData.genres}/>
+              <GenreList errors={errors} defaultValue={bookData.genres} />
 
-              {/* {errors.genres ? (
+            {/* {errors.genres ? (
                 <p className={styles.formError}>
-                  <ErrorIcon />
+                <ErrorIcon />
                   {errors.genres && errors.genres}
-                </p>
-              ) : null}  */}
+                  </p>
+                ) : null}  */}
 
-              <br></br>
-            <TextInput label='ISBN' source='isbn' onChange={handleInputChange} name='isbn' defaultValue={bookData.isbn}/>
+            <br></br>
+            <Tooltip title="Insert the ISBN, usually the barcode located in the back" placement="bottom" arrow>
+            <TextInput
+              label="ISBN"
+              source="isbn"
+              onChange={handleInputChange}
+              name="isbn"
+              defaultValue={bookData.isbn}
+            />
+            </Tooltip>
             {errors.isbn ? (
               <p className={styles.formError}>
-                <ErrorIcon/>
-                {errors.isbn && errors.isbn}</p>
-              
-            ):null}
-            </div>
-
+                <ErrorIcon />
+                {errors.isbn && errors.isbn}
+              </p>
+            ) : null}
+          </div>
         </SimpleForm>
       </Create>
-    </div>
+    </Box>
   );
-}
+};
 
+// const handleOptions = (e) => {
+//   let selectedValues = [];
 
+//   if (bookData.genres)
+//   { selectedValues = [...bookData.genres];}
 
+//   const options = e.target.options;
+//   for (let i = 0; i < options.length; i++) {
+//     if (options[i].selected) {
+//       selectedValues.push(options[i].value);
+//     }
+//   }
+//   setBookData({
+//     ...bookData,
+//     genres:[...selectedValues]
+//   });
+// };
 
-
-
-
-
+// const handleRemove = (value) => {
+//   const newGenres = bookData.genres.filter((genre) => genre !== value);
+//   setBookData({
+//     ...bookData,
+//     genres: newGenres,
+//   });
+// };
