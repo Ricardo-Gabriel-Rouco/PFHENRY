@@ -1,7 +1,9 @@
 .swiper-button-prev,
 .swiper-button-next {
-  color: #523f00;
+  color: grey
 }
+
+
 
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
@@ -9,9 +11,25 @@
   cursor: pointer;
 }
 
-.swiper-pagination-bullet-active {
+/* .swiper-pagination-bullet-active {
   border: 1px solid;
   border-color: #523f00;
-  background-color: #ffbc2dde;
-} 
+  background- color: #ffbc2dde;
+}*/
 
+.swiper {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.swiper-slide {
+  width: 80%;
+}
+
+.swiper-slide:nth-child(2n) {
+  width: 60%;
+}
+
+.swiper-slide:nth-child(3n) {
+  width: 40%;
+}

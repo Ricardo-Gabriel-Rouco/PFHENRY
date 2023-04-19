@@ -166,7 +166,7 @@ const Login = () => {
     navigate("/home")
   ) : (
     <Box sx={{ marginTop: "50px", display: "flex", justifyContent: "center" }}>
-      <Paper elevation={10} style={{ borderRadius: '10px', padding: "1rem", maxWidth: "500px", backgroundColor: 'inherit' }}>
+      <Paper elevation={10} style={{height: '15px', backgroundColor: 'inherit' }}>
         <form
           onSubmit={handleSubmit}
           style={{
