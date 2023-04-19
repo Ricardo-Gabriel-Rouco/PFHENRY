@@ -15,7 +15,6 @@ export async function registerWithGoogle(){
       nickname: res.user.displayName,
       profilePicture: res.user.photoURL
     }
-    console.log(res.user)
     const collectionRef = collection(db, 'users')
     const userRef = doc(collectionRef, res.user.uid)
     await setDoc(userRef, newUser)

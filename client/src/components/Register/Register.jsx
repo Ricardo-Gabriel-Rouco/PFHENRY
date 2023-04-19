@@ -28,7 +28,6 @@ function Register() {
         const reader = new FileReader();
         reader.readAsDataURL(e.target.files[0]);
         reader.onloadend = () => {
-          console.log(typeof reader.result);
           setUserData({ ...userData, profilePicture: reader.result });
         };
         break;

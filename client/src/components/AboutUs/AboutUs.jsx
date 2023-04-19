@@ -1,10 +1,10 @@
-import imgJoaco from "../../Assets/WhatsApp Image 2023-02-23 at 11.58.54.jpeg";
+import imgJoaco from "../../Assets/joaco.jpeg";
 import imgGabi from "../../Assets/gabrielRouco.jpg";
-import imgJuli from "../../Assets/WhatsApp Image 2023-02-23 at 11.58.54.jpeg";
-import imgAlfredo from "../../Assets/WhatsApp Image 2023-02-23 at 11.58.54.jpeg";
-import imgManu from "../../Assets/WhatsApp Image 2023-02-23 at 11.58.54.jpeg";
-import imgClau from "../../Assets/WhatsApp Image 2023-02-23 at 11.58.54.jpeg";
-import imgMauri from "../../Assets/WhatsApp Image 2023-02-23 at 11.58.54.jpeg";
+import imgJuli from "../../Assets/juli.jpeg";
+import imgAlfredo from "../../Assets/joaco.jpeg";
+import imgManu from "../../Assets/joaco.jpeg";
+import imgClau from "../../Assets/joaco.jpeg";
+import imgMauri from "../../Assets/joaco.jpeg";
 import s from "./AboutUs.module.css";
 import { AiFillLinkedin, AiFillGithub } from "react-icons/ai";
 import { FaChevronUp } from "react-icons/fa";
