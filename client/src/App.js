@@ -111,8 +111,8 @@ function App() {
               <Route path="/about" element={<AboutUs/>}/>
 
             </Routes>
- 
-            <Footer />
+
+            {/* <Footer /> */}
             <ModalDetail/>
           </AuthProvider>
         </BrowserRouter>

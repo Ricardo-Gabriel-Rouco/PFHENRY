@@ -1,6 +1,6 @@
 import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
-import { Box, Button, TextField, Typography, Snackbar, IconButton, CardMedia, Input } from "@mui/material";
+import { Box, Button, TextField, Typography, Snackbar, IconButton, CardMedia, Input, Paper } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import { useAuth } from "../../context/authContext";
 import { validate } from './validation'
@@ -61,9 +61,8 @@ const action = (
 );
 
   return (
-    
-    <Box sx={{height: '40.4rem'}}>
-
+    <Box sx={{ marginTop: "50px", display: "flex", justifyContent: "center" }}>
+    <Paper elevation={10} style={{ borderRadius: '10px', padding: "1rem", maxWidth: "500px", backgroundColor: 'inherit' }}>
     <form
       style={{
         display: "flex",
@@ -74,12 +73,11 @@ const action = (
       }}
       onSubmit={handleSubmit}
       >
-      <Typography>Email de usuario {userStatus.email}</Typography>
-      <br />
-      <Typography>Nombre de ususario actual: {userStatus.nickName}</Typography>
+      <Typography fontWeight={'bold'}> {userStatus.email}</Typography>  
+      <Typography fontWeight={'bold'}> {userStatus.nickName}</Typography>
       <TextField
         type="text"
-        label="Nombre de usuario"
+        label="Username"
         name="nickName"
         value={userData.nickName}
         onChange={handleInputChange}
@@ -89,7 +87,7 @@ const action = (
 
       <TextField
         type="text"
-        label="Adress"
+        label="Address"
         name="adress"
         value={userData.adress}
         onChange={handleInputChange}
@@ -120,7 +118,7 @@ const action = (
         color="primary"
         style={{ margin: "2rem" }}
         >
-        Modificar
+        MODIFY
       </Button>
     </form>
     <Snackbar
@@ -129,7 +127,9 @@ const action = (
         message="Se cambiaron los datos con exito"
         action={action}
         />
+  </Paper>
   </Box>
+
   );
 }
 
