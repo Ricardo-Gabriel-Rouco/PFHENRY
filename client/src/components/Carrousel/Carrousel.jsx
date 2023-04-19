@@ -51,7 +51,7 @@ const Carrousel = () => {
     const CarouselContainer = styled("div")({
         margin: "auto",
         maxWidth: "100vw",
-        zIndex: 0,
+
     });
     const BookCardMedia = styled(CardMedia)({
         border: "1px",
@@ -59,7 +59,7 @@ const Carrousel = () => {
         width: "10rem",
         height: "14rem",
         objectFit: "cover",
-        zIndex: 0,
+
     });
 
     return (
@@ -138,7 +138,7 @@ const Carrousel = () => {
                         <Typography
                             align="left"
                             variant="h7"
-                            sx={{ textAlign: "left", zIndex: "0" }}
+                            sx={{ textAlign: "left"}}
                         >
                             $<s>{book.price}</s>{" "}
                         </Typography>
@@ -271,7 +271,7 @@ const Carrousel = () => {
             <Link to="/books">
               <Button
                 variant="contained"
-                color="info"
+                color="primary"
                 size="small"
                 sx={{ m: 1 }}
                 onClick={{ handleShowAllBooks }}
@@ -324,6 +324,7 @@ const Carrousel = () => {
                       image={book.image}
                       alt={book.title}
                       sx={{ cursor: "pointer" }}
+                      onClick={() => dispatch(openModal(book.id))}
                     />
                   <Grid container justifyContent="center" alignItems="center">
                     <Typography

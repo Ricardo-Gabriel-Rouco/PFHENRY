@@ -18,7 +18,6 @@ import Menu from "@mui/material/Menu";
 import { useDispatch, useSelector } from "react-redux";
 // import { logUserOut } from "../../redux/rootReducer/userSlice";
 import { Badge } from "@mui/material";
-import { reset } from "../../redux/rootReducer/bookSlice";
 import { toogleCart } from "../../redux/rootReducer/toogleSlice";
 import { toogleFav } from "../../redux/rootReducer/toogleFavSlice";
 import { postCart } from "../../firebase/firestore/cart";
@@ -45,6 +44,8 @@ const NavBar = ({ passTheme, mode }) => {
   const favorites = useSelector((state) => state.favorite.favorites);
   const cart = useSelector((state) => state.cart);
   const displayableBooks = useSelector((state) => state.books.displayableBooks);
+
+  const showTheme = mode.palette.mode
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -145,7 +146,7 @@ const NavBar = ({ passTheme, mode }) => {
                   </IconButton>
                 </Grid>
               ) : null}
-              {mode === light ? (
+              {showTheme === "light" ? (
                 <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
                   <IconButton
                     size="large"
