@@ -209,264 +209,282 @@ const Carrousel = () => {
       </CarouselContainer>
 
       <Box>
-      {/*         CARROUSEL OFERTAS */}
-      <CarouselContainer sx={{ width: '70%', minWidth: '15rem' }}>
-        <Typography align="left" fontWeight={'bold'} variant="h6" marginTop={"1rem"} marginLeft={'2.5rem'}>
-          {"SALES"}
-        </Typography>
-        <Swiper
-          loop={true}
-          slidesPerView={5}
-          navigation
-          breakpoints={{
-            250: {
+        {/*         CARROUSEL OFERTAS */}
+        <CarouselContainer sx={{ width: '70%', minWidth: '15rem' }}>
+          <Typography align="left" fontWeight={'bold'} variant="h6" marginTop={"1rem"} marginLeft={'2.5rem'}>
+            {"SALES"}
+          </Typography>
+          <Swiper
+            loop={true}
+            slidesPerView={5}
+            navigation
+            breakpoints={{
+              250: {
 
-              slidesPerView: 1,
-              spaceBetween: 0
-            },
+                slidesPerView: 1,
+                spaceBetween: 0
+              },
 
-            750: {
-              slidesPerView: 2,
-              spaceBetween: 0
-            },
-            800: {
-              slidesPerView: 2,
+              750: {
+                slidesPerView: 2,
+                spaceBetween: 0
+              },
+              800: {
+                slidesPerView: 2,
 
-            },
-            1000: {
-              slidesPerView: 3,
+              },
+              1050: {
+                slidesPerView: 3,
 
-            },
+              },
 
-            1200: {
+              1370: {
 
-              slidesPerView: 4,
-            },
+                slidesPerView: 4,
+              },
 
-            1600: {
-              slidesPerView: 5,
+              1700: {
+                slidesPerView: 5,
 
-            },
-          }}
-          modules={[Pagination]}
-          className="mySwiper"
-        >
-          {displayableBooks.map((book) =>
-            book.display && book.discount ? (
-              <SwiperSlide key={book.id} >
-                <Grid
-                  display='flex'
-                  justifyContent="center"
-                  sm={true}
-                  md={true}
-                  lg={true}
+              },
+            }}
+            modules={[Pagination]}
+            className="mySwiper"
+          >
+            {displayableBooks.map((book) =>
+              book.display && book.discount ? (
+                <SwiperSlide key={book.id} >
+                  <Grid
+                    display='flex'
+                    justifyContent="center"
+                    sm={true}
+                    md={true}
+                    lg={true}
 
-                >
-                  <Paper elevation={5} sx={{
-                    boxShadow: "0px 0px 10px black",
-                    transition: "bgcolor 1s, color 0.5s",
-                    "&:hover": {
-                      bgcolor: "primary.light",
+                  >
+                    <Paper elevation={5} sx={{
+                      boxShadow: "0px 0px 10px black",
+                      transition: "bgcolor 1s, color 0.5s",
+                      "&:hover": {
+                        bgcolor: "primary.light",
 
-                    },
-                  }} style={{ margin: '1rem', display: 'flex', justifyContent: 'center', borderRadius: '10px', minWidth: '15rem', backgroundColor: 'primary' }}>
-                    <Grid item >
-                      <BookCardMedia
-                        component="img"
-                        height="300"
-                        image={book.image}
-                        alt={book.title}
-                        sx={{ cursor: "pointer", marginTop: '20px' }}
-                        onClick={() => dispatch(openModal(book.id))}
-                      />
+                      },
+                    }} style={{ margin: '1rem', display: 'flex', justifyContent: 'center', borderRadius: '10px', minWidth: '15rem', backgroundColor: 'primary' }}>
+                      <Grid item >
+                        <BookCardMedia
+                          component="img"
+                          height="300"
+                          image={book.image}
+                          alt={book.title}
+                          sx={{ cursor: "pointer", marginTop: '20px' }}
+                          onClick={() => dispatch(openModal(book.id))}
+                        />
 
-                      <Typography
-                        align="center"
-                        variant="subtitle"
-                        sx={{
-                          fontSize: 18,
-                          backgroundColor: 'inherit',
-                          textAlign: "right",
-                          fontWeight: "bold",
-                          color: "black",
-                          position: 'fixed',
-                          right: "8rem",
-                          top: "0.1rem"
-
-                        }}
-                      >
-                        <DiscountLabel discount={`%${book.discount} OFF`} />
-                      </Typography>
-
-                      <Grid
-                        container
-                        justifyContent="space-between"
-                        alignItems="center"
-                        sx={{ marginBottom: '1rem' }}
-                      >
                         <Typography
-                          align="left"
-                          variant="h7"
-                          sx={{ textAlign: "left" }}
+                          align="center"
+                          variant="subtitle"
+                          sx={{
+                            fontSize: 18,
+                            backgroundColor: 'inherit',
+                            textAlign: "right",
+                            fontWeight: "bold",
+                            color: "black",
+                            position: 'fixed',
+                            right: "8rem",
+                            top: "0.1rem"
+
+                          }}
                         >
-                          $<s>{book.price}</s>{" "}
+                          <DiscountLabel discount={`%${book.discount} OFF`} />
                         </Typography>
-                        <Typography
-                          align="left"
-                          variant="h7"
-                          fontWeight={"bold"}
-                          sx={{ textAlign: "left" }}
+
+                        <Grid
+                          container
+                          justifyContent="space-between"
+                          alignItems="center"
+                          sx={{ marginBottom: '1rem' }}
                         >
-                          <span>
-                            $
-                            {((book.price * (100 - book.discount)) / 100).toFixed(
-                              2
-                            )}
-                          </span>
-                        </Typography>
-                      </Grid>
-                    </Grid>
-                  </Paper>
-                </Grid>
-              </SwiperSlide>
-            ) : null
-          )}
-        </Swiper>
-      </CarouselContainer>
-
-      {/* Carrousel PREFERENCIAS AUTHORS */}
-      {
-        userStatus.logged && favoriteAuthors.length ? (
-          <CarouselContainer sx={{ width: '70%', minWidth: '15rem' }}>
-            <Typography align="left" variant="h6" marginLeft={"2.5rem"}>
-              {displayableBooks
-                .filter((books) => {
-                  const authors = books.authors;
-                  return authors.some((author) =>
-                    favoriteAuthors.includes(author)
-                  );
-                })
-                .filter((book) => !purchasedBooks.includes(book.id)).length > 1 ? `You may be interested in these authors` : 'You may be interested in this author'}
-            </Typography>
-            <Swiper
-              slidesPerView={5}
-              navigation
-              breakpoints={{
-                250: {
-
-                  slidesPerView: 1,
-                  spaceBetween: 0
-                },
-
-                750: {
-                  slidesPerView: 2,
-                  spaceBetween: 0
-                },
-                800: {
-                  slidesPerView: 2,
-
-                },
-                1100: {
-                  slidesPerView: 3,
-
-                },
-
-                1600: {
-                  slidesPerView: 4,
-
-                },
-              }}
-              modules={[Pagination]}
-              className="mySwiper"
-            >
-              {displayableBooks
-                .filter((books) => {
-                  const authors = books.authors;
-                  return authors.some((author) =>
-                    favoriteAuthors.includes(author)
-                  );
-                })
-                .filter((book) => !purchasedBooks.includes(book.id))
-                .map((book, index) => (
-                  <SwiperSlide key={index}>
-                    <Grid
-                      display='flex'
-                      justifyContent="center"
-                      sm={true}
-                      md={true}
-                      lg={true}
-
-                    >
-                      <Paper elevation={5} sx={{
-                        boxShadow: "0px 0px 10px black",
-                        transition: "bgcolor 1s, color 0.5s",
-                        "&:hover": {
-                          bgcolor: "primary.light",
-
-                        },
-                      }} style={{ margin: '1rem', display: 'flex', justifyContent: 'center', borderRadius: '10px', minWidth: '15rem', backgroundColor: 'primary' }}>
-                        <Grid item>
-                          <BookCardMedia
-                            component="img"
-                            image={book.image}
-                            alt={book.title}
-                            sx={{ cursor: "pointer", marginTop: '20px' }}
-                            onClick={() => dispatch(openModal(book.id))}
-                          />
-
-                          <Grid
-                            container
-                            justifyContent="center"
-                            alignItems="center"
+                          <Typography
+                            align="left"
+                            variant="h7"
+                            sx={{ textAlign: "left" }}
                           >
-                            <Typography
-                              variant="h7"
-                              fontWeight={"bold"}
-                              sx={{ display: "flex", justifyContent: "center" }}
-                            >
-                              {book.discount
-                                ? "$" +
-                                (
-                                  (book.price * (100 - book.discount)) /
-                                  100
-                                ).toFixed(2)
-                                : "$" + book.price}
-                            </Typography>
-                          </Grid>
+                            $<s>{book.price}</s>{" "}
+                          </Typography>
+                          <Typography
+                            align="left"
+                            variant="h7"
+                            fontWeight={"bold"}
+                            sx={{ textAlign: "left" }}
+                          >
+                            <span>
+                              $
+                              {((book.price * (100 - book.discount)) / 100).toFixed(
+                                2
+                              )}
+                            </span>
+                          </Typography>
                         </Grid>
-                      </Paper>
-                    </Grid>
-                  </SwiperSlide>
-                ))}
-            </Swiper>
-          </CarouselContainer>
-        ) : null
-        }</Box> 
-  
+                      </Grid>
+                    </Paper>
+                  </Grid>
+                </SwiperSlide>
+              ) : null
+            )}
+          </Swiper>
+        </CarouselContainer>
+
+        {/* Carrousel PREFERENCIAS AUTHORS */}
+        {
+          userStatus.logged && favoriteAuthors.length ? (
+            <CarouselContainer sx={{ width: '70%', minWidth: '15rem' }}>
+              <Typography align="left" variant="h6" marginLeft={"2.5rem"}>
+                {displayableBooks
+                  .filter((books) => {
+                    const authors = books.authors;
+                    return authors.some((author) =>
+                      favoriteAuthors.includes(author)
+                    );
+                  })
+                  .filter((book) => !purchasedBooks.includes(book.id)).length > 1 ? `You may be interested in these authors` : 'You may be interested in this author'}
+              </Typography>
+              <Swiper
+                slidesPerView={5}
+                navigation
+                breakpoints={{
+                  250: {
+
+                    slidesPerView: 1,
+                    spaceBetween: 0
+                  },
+
+                  750: {
+                    slidesPerView: 2,
+                    spaceBetween: 0
+                  },
+                  800: {
+                    slidesPerView: 2,
+
+                  },
+                  1100: {
+                    slidesPerView: 3,
+
+                  },
+
+                  1600: {
+                    slidesPerView: 4,
+
+                  },
+                }}
+                modules={[Pagination]}
+                className="mySwiper"
+              >
+                {displayableBooks
+                  .filter((books) => {
+                    const authors = books.authors;
+                    return authors.some((author) =>
+                      favoriteAuthors.includes(author)
+                    );
+                  })
+                  .filter((book) => !purchasedBooks.includes(book.id))
+                  .map((book, index) => (
+                    <SwiperSlide key={index}>
+                      <Grid
+                        display='flex'
+                        justifyContent="center"
+                        sm={true}
+                        md={true}
+                        lg={true}
+
+                      >
+                        <Paper elevation={5} sx={{
+                          boxShadow: "0px 0px 10px black",
+                          transition: "bgcolor 1s, color 0.5s",
+                          "&:hover": {
+                            bgcolor: "primary.light",
+
+                          },
+                        }} style={{ margin: '1rem', display: 'flex', justifyContent: 'center', borderRadius: '10px', minWidth: '15rem', backgroundColor: 'primary' }}>
+                          <Grid item>
+                            <BookCardMedia
+                              component="img"
+                              image={book.image}
+                              alt={book.title}
+                              sx={{ cursor: "pointer", marginTop: '20px' }}
+                              onClick={() => dispatch(openModal(book.id))}
+                            />
+                            {book.discount? 
+                            <Typography
+                              align="center"
+                              variant="subtitle"
+                              sx={{
+                                fontSize: 18,
+                                backgroundColor: 'inherit',
+                                textAlign: "right",
+                                fontWeight: "bold",
+                                color: "black",
+                                position: 'fixed',
+                                right: "10rem",
+                                top: "0.1rem"
+
+                              }}
+                            >
+                              <DiscountLabel discount={`%${book.discount} OFF`} />
+                            </Typography>: null}
+                            <Grid
+                              container
+                              justifyContent="center"
+                              alignItems="center"
+                            >
+
+                              <Typography
+                                variant="h7"
+                                fontWeight={"bold"}
+                                sx={{ display: "flex", justifyContent: "center" }}
+                              >
+                                {book.discount
+                                  ? "$" +
+                                  (
+                                    (book.price * (100 - book.discount)) /
+                                    100
+                                  ).toFixed(2)
+                                  : "$" + book.price}
+                              </Typography>
+                            </Grid>
+                          </Grid>
+                        </Paper>
+                      </Grid>
+                    </SwiperSlide>
+                  ))}
+              </Swiper>
+            </CarouselContainer>
+          ) : null
+        }</Box>
+
       {/*             CARROUSEL LIBROS */}
 
-     {/*  <CarouselContainer> */}
-        <Grid container justifyContent="center" alignItems="center">
-         {/*  <Grid item xs={6} textAlign="left">
+      {/*  <CarouselContainer> */}
+      <Grid container justifyContent="center" alignItems="center">
+        {/*  <Grid item xs={6} textAlign="left">
             <Typography variant="h6" marginLeft={2}>
               All Books
             </Typography>
           </Grid> */}
-          <Grid item xs={6} textAlign="center">
-            <Link to="/books">
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                sx={{ m: 1 }}
-                onClick={{ handleShowAllBooks }}
-              >
-                Show All Books
-              </Button>
-            </Link>
-          </Grid>
+        <Grid item xs={6} textAlign="center">
+          <Link to="/books">
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              sx={{ m: 1 }}
+              onClick={{ handleShowAllBooks }}
+            >
+              Show All Books
+            </Button>
+          </Link>
         </Grid>
-        {/* <Swiper
+      </Grid>
+      {/* <Swiper
           slidesPerView={4}
           slidesPerGroup={4}
           spaceBetween={200}
@@ -531,7 +549,7 @@ const Carrousel = () => {
           ))}
         </Swiper>
       </CarouselContainer> */}
-      <SupportEngine /> 
+      <SupportEngine />
     </>
   );
 };

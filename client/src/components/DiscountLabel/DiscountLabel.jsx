@@ -8,3 +8,6 @@ export const DiscountLabel = ({discount}) => {
     </div>
   )
 }
+
+
+export default DiscountLabel;
