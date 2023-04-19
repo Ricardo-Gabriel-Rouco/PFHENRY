@@ -28,6 +28,7 @@ import { createTheme, CssBaseline, ThemeProvider, Alert } from "@mui/material";
 import light from "./Theme/light";
 import MyPurchases from "./components/MyPurchases/MyPurchases";
 import ModalDetail from "./components/ModalDetail/ModalDetail";
+import Footer from './components/Footer/Footer'
 
 axios.defaults.baseURL = 'https://shaky-friend-production.up.railway.app/';
 
@@ -109,6 +110,7 @@ function App() {
               <Route path="/about" element={<AboutUs/>}/>
 
             </Routes>
+            <Footer />
             <ModalDetail/>
           </AuthProvider>
         </BrowserRouter>

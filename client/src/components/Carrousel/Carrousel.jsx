@@ -1,10 +1,12 @@
 import { Swiper, SwiperSlide } from "swiper/react";
+
 import "swiper/css";
+import "swiper/css/pagination";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-import SwiperCore, { Autoplay, Navigation, Pagination, FreeMode, Thumbs } from "swiper/core";
-import { CardMedia, Grid, Typography, styled, Button, Box, Paper } from "@mui/material";
+import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper/core";
+import { CardMedia, Grid, Typography, styled, Button, Paper, Box } from "@mui/material";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
@@ -17,13 +19,14 @@ import { useDispatch } from "react-redux";
 import { openModal } from "../../redux/rootReducer/bookSlice";
 
 
+
+
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
 const Carrousel = () => {
   const displayableBooks = useSelector((state) => state.books.displayableBooks);
   const { userStatus } = useAuth();
   const dispatch = useDispatch();
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [orders, setOrders] = useState([]);
 
 
@@ -55,6 +58,9 @@ const Carrousel = () => {
 
   });
   const BookCardMedia = styled(CardMedia)({
+    display: 'flex',
+    justifyContent: 'center',
+    justifyItems: 'center',
     border: "1px",
     borderRadius: "5px",
     width: "12rem",
@@ -62,6 +68,7 @@ const Carrousel = () => {
     objectFit: "cover",
 
   });
+
 
   return (
     <>
@@ -121,46 +128,85 @@ const Carrousel = () => {
 
 
       {/*             CARROUSEL BILLBOARD GRANDE */}
-
-      <CarouselContainer sx={{ marginTop: '1rem', width: '75%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <CarouselContainer sx={{ width: '90%', marginTop: '3rem' }}>
         <Swiper
-          rewind={true}
-          navigation={true}
-          modules={[Navigation]}
-          className="mySwiper"
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            "& .swiper-slide": {
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }
+          slidesPerView={5}
+          pagination={
+            true
+          }
+          modules={[Pagination]}
+          breakpoints={{
+            250: {
+
+              slidesPerView: 1,
+              spaceBetween: 0
+            },
+
+            750: {
+              slidesPerView: 1,
+              spaceBetween: 0
+            },
+            800: {
+              slidesPerView: 1,
+
+            },
+            1100: {
+              slidesPerView: 1,
+
+            },
+
+            1600: {
+              slidesPerView: 1,
+
+            },
           }}
+          className="mySwiper12345"
         >
 
           <SwiperSlide>
-            <BookCardMedia
-              component="img"
-              image={"https://firebasestorage.googleapis.com/v0/b/pf-henry-2d98b.appspot.com/o/Imagenes%20carousel%20billboard%2FLOTR_The_Rings_of_Power_logo.jpg?alt=media&token=9ab3cd87-10bc-4255-95a2-6735c705394e"}
-              alt={'No photo'}
-              sx={{ cursor: "pointer", marginTop: '20px', width: "75rem", height: '25rem' }}
-            />
+            <Box style={{ display: 'flex', justifyContent: 'center', borderRadius: '10px', width: "100%", backgroundColor: 'primary', }}>
+              <BookCardMedia
+                component="img"
+                image={"https://firebasestorage.googleapis.com/v0/b/pf-henry-2d98b.appspot.com/o/Imagenes%20carousel%20billboard%2Fpicsart_10-25-11.55.37.webp?alt=media&token=e8045534-04bd-434a-a1df-6d307f0ba270"}
+                alt={'Foto'}
+                sx={{ width: '90%', height: '20rem' }}
+              />
+            </Box>
           </SwiperSlide>
           <SwiperSlide>
-            <img src="https://firebasestorage.googleapis.com/v0/b/pf-henry-2d98b.appspot.com/o/Imagenes%20carousel%20billboard%2FCecilia%20Ahern.jpeg?alt=media&token=3374070e-0577-40a0-b1cb-68fc98b22b9a" />
+            <Box style={{ display: 'flex', justifyContent: 'center', borderRadius: '10px', width: "100%", backgroundColor: 'primary', }}>
+              <BookCardMedia
+                component="img"
+                image={"https://firebasestorage.googleapis.com/v0/b/pf-henry-2d98b.appspot.com/o/Imagenes%20carousel%20billboard%2Fgame-of-thrones-books-1-1658259294.png?alt=media&token=a4b9e345-a0aa-4459-b430-22b8411c92d5"}
+                alt={'Foto'}
+                sx={{ width: '90%', height: '20rem' }}
+              />
+            </Box>
           </SwiperSlide>
           <SwiperSlide>
-            <img src="https://firebasestorage.googleapis.com/v0/b/pf-henry-2d98b.appspot.com/o/Imagenes%20carousel%20billboard%2Fgame-of-thrones-books-1-1658259294.png?alt=media&token=a4b9e345-a0aa-4459-b430-22b8411c92d5" />
+            <Box style={{ display: 'flex', justifyContent: 'center', borderRadius: '10px', width: "100%", backgroundColor: 'primary', }}>
+              <BookCardMedia
+                component="img"
+                image={"https://firebasestorage.googleapis.com/v0/b/pf-henry-2d98b.appspot.com/o/Imagenes%20carousel%20billboard%2FLOTR_The_Rings_of_Power_logo.jpg?alt=media&token=9ab3cd87-10bc-4255-95a2-6735c705394e"}
+                alt={'Foto'}
+                sx={{ width: '90%', height: '20rem' }}
+              />
+            </Box>
           </SwiperSlide>
           <SwiperSlide>
-            <img src="https://firebasestorage.googleapis.com/v0/b/pf-henry-2d98b.appspot.com/o/Imagenes%20carousel%20billboard%2Fpicsart_10-25-11.55.37.webp?alt=media&token=e8045534-04bd-434a-a1df-6d307f0ba270" />
+            <Box style={{ display: 'flex', justifyContent: 'center', borderRadius: '10px', width: "100%", backgroundColor: 'primary', }}>
+              <BookCardMedia
+                component="img"
+                image={"https://firebasestorage.googleapis.com/v0/b/pf-henry-2d98b.appspot.com/o/Imagenes%20carousel%20billboard%2FCecilia%20Ahern.jpeg?alt=media&token=3374070e-0577-40a0-b1cb-68fc98b22b9a"}
+                alt={'Foto'}
+                sx={{ width: '90%', height: '20rem' }}
+              />
+            </Box>
           </SwiperSlide>
         </Swiper>
       </CarouselContainer>
 
-
+      <Box>
       {/*         CARROUSEL OFERTAS */}
       <CarouselContainer sx={{ width: '70%', minWidth: '15rem' }}>
         <Typography align="left" fontWeight={'bold'} variant="h6" marginTop={"1rem"} marginLeft={'2.5rem'}>
@@ -178,20 +224,25 @@ const Carrousel = () => {
             },
 
             750: {
-              slidesPerView: 1,
+              slidesPerView: 2,
               spaceBetween: 0
             },
             800: {
               slidesPerView: 2,
 
             },
-            1100: {
+            1000: {
               slidesPerView: 3,
 
             },
 
-            1600: {
+            1200: {
+
               slidesPerView: 4,
+            },
+
+            1600: {
+              slidesPerView: 5,
 
             },
           }}
@@ -278,8 +329,8 @@ const Carrousel = () => {
       {/* Carrousel PREFERENCIAS AUTHORS */}
       {
         userStatus.logged && favoriteAuthors.length ? (
-          <CarouselContainer sx={{ margin: '1rem' }}>
-            <Typography align="left" variant="h6" marginLeft={"15px"}>
+          <CarouselContainer sx={{ width: '70%', minWidth: '15rem' }}>
+            <Typography align="left" variant="h6" marginLeft={"2.5rem"}>
               {displayableBooks
                 .filter((books) => {
                   const authors = books.authors;
@@ -290,33 +341,35 @@ const Carrousel = () => {
                 .filter((book) => !purchasedBooks.includes(book.id)).length > 1 ? `You may be interested in these authors` : 'You may be interested in this author'}
             </Typography>
             <Swiper
-              slidesPerView={4}
-              slidesPerGroup={4}
-              spaceBetween={200}
+              slidesPerView={5}
               navigation
-              pagination={{ clickable: true }}
               breakpoints={{
-                400: {
+                250: {
+
                   slidesPerView: 1,
-                  slidesPerGroup: 1,
-                  spaceBetween: 0,
+                  spaceBetween: 0
                 },
-                640: {
+
+                750: {
                   slidesPerView: 2,
-                  slidesPerGroup: 2,
-                  spaceBetween: 20,
+                  spaceBetween: 0
                 },
-                768: {
+                800: {
+                  slidesPerView: 2,
+
+                },
+                1100: {
                   slidesPerView: 3,
-                  slidesPerGroup: 3,
-                  spaceBetween: 30,
+
                 },
-                1024: {
+
+                1600: {
                   slidesPerView: 4,
-                  slidesPerGroup: 4,
-                  spaceBetween: 10,
+
                 },
               }}
+              modules={[Pagination]}
+              className="mySwiper"
             >
               {displayableBooks
                 .filter((books) => {
@@ -326,66 +379,77 @@ const Carrousel = () => {
                   );
                 })
                 .filter((book) => !purchasedBooks.includes(book.id))
-                .map((book) => (
-                  <SwiperSlide key={book.id}>
+                .map((book, index) => (
+                  <SwiperSlide key={index}>
                     <Grid
-                      container
+                      display='flex'
                       justifyContent="center"
-                      style={{ height: "100%" }}
-                    >
-                      <Grid item>
-                        <BookCardMedia
-                          component="img"
-                          height="300"
-                          image={book.image}
-                          alt={book.title}
-                          sx={{ cursor: "pointer" }}
-                          onClick={() => dispatch(openModal(book.id))}
-                        />
+                      sm={true}
+                      md={true}
+                      lg={true}
 
-                        <Grid
-                          container
-                          justifyContent="center"
-                          alignItems="center"
-                        >
-                          <Typography
-                            variant="h7"
-                            fontWeight={"bold"}
-                            sx={{ display: "flex", justifyContent: "center" }}
+                    >
+                      <Paper elevation={5} sx={{
+                        boxShadow: "0px 0px 10px black",
+                        transition: "bgcolor 1s, color 0.5s",
+                        "&:hover": {
+                          bgcolor: "primary.light",
+
+                        },
+                      }} style={{ margin: '1rem', display: 'flex', justifyContent: 'center', borderRadius: '10px', minWidth: '15rem', backgroundColor: 'primary' }}>
+                        <Grid item>
+                          <BookCardMedia
+                            component="img"
+                            image={book.image}
+                            alt={book.title}
+                            sx={{ cursor: "pointer", marginTop: '20px' }}
+                            onClick={() => dispatch(openModal(book.id))}
+                          />
+
+                          <Grid
+                            container
+                            justifyContent="center"
+                            alignItems="center"
                           >
-                            {book.discount
-                              ? "$" +
-                              (
-                                (book.price * (100 - book.discount)) /
-                                100
-                              ).toFixed(2)
-                              : "$" + book.price}
-                          </Typography>
+                            <Typography
+                              variant="h7"
+                              fontWeight={"bold"}
+                              sx={{ display: "flex", justifyContent: "center" }}
+                            >
+                              {book.discount
+                                ? "$" +
+                                (
+                                  (book.price * (100 - book.discount)) /
+                                  100
+                                ).toFixed(2)
+                                : "$" + book.price}
+                            </Typography>
+                          </Grid>
                         </Grid>
-                      </Grid>
+                      </Paper>
                     </Grid>
                   </SwiperSlide>
                 ))}
             </Swiper>
           </CarouselContainer>
         ) : null
-      }
-
+        }</Box> 
+  
       {/*             CARROUSEL LIBROS */}
 
-      <CarouselContainer>
-        <Grid container justifyContent="space-between" alignItems="center">
-          <Grid item xs={6} textAlign="left">
+     {/*  <CarouselContainer> */}
+        <Grid container justifyContent="center" alignItems="center">
+         {/*  <Grid item xs={6} textAlign="left">
             <Typography variant="h6" marginLeft={2}>
               All Books
             </Typography>
-          </Grid>
-          <Grid item xs={6} textAlign="right">
+          </Grid> */}
+          <Grid item xs={6} textAlign="center">
             <Link to="/books">
               <Button
                 variant="contained"
                 color="primary"
-                size="small"
+                size="large"
                 sx={{ m: 1 }}
                 onClick={{ handleShowAllBooks }}
               >
@@ -394,7 +458,7 @@ const Carrousel = () => {
             </Link>
           </Grid>
         </Grid>
-        <Swiper
+        {/* <Swiper
           slidesPerView={4}
           slidesPerGroup={4}
           spaceBetween={200}
@@ -423,7 +487,7 @@ const Carrousel = () => {
             },
           }}
         >
-          {displayableBooks.slice(0, 16).map((book) => (
+          {displayableBooks.slice(0, 30).map((book) => (
             <SwiperSlide key={book.id}>
               <Grid
                 container
@@ -458,7 +522,7 @@ const Carrousel = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-      </CarouselContainer>
+      </CarouselContainer> */}
     </>
   );
 };

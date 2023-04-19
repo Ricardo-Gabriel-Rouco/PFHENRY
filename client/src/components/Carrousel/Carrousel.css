@@ -4,21 +4,21 @@
 }
 
 
-
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
   color: #ffbc2dde;
   cursor: pointer;
 }
 
-/* .swiper-pagination-bullet-active {
+.swiper-pagination-bullet-active {
   border: 1px solid;
   border-color: #523f00;
-  background- color: #ffbc2dde;
-}*/
+  background-color: #ffbc2dde;
+  font-size: 50rem;
+  bottom: 10px
+}
 
 .swiper {
-  background-color: primary;
   margin-left: auto;
   margin-right: auto;
 }
