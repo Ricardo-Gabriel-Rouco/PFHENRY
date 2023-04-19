@@ -16,9 +16,9 @@ useEffect(()=>{
   fetchGenres()
 },[])
   
-const finalChoices = genresList.map(genre=>({
-  id:genre.id,
-  name:genre.name}))
+const finalChoices = genresList.map(genres=>({
+  // id:genres.id,
+  name:genres.name}))
 
 
   

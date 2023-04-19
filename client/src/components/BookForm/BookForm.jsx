@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./BookForm.module.css";
 import { getGenres } from "../../firebase/firestore/genres";
 import validation from "./validation";
-import { Input, InputLabel, Button, Box, Container } from "@mui/material";
+import { Input, InputLabel, Button, Box, Container, Snackbar } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import ErrorIcon from "@mui/icons-material/Error";
 import { postBook } from "../../firebase/firestore/books";
@@ -20,6 +20,9 @@ function BookForm() {
 
   const [genres, setGenres] = useState([]);
 
+  const [alertMessage, setAlertMessage] = useState('');
+  const [alertOpen, setAlertOpen] = useState(false);
+  
   useEffect(() => {
     setErrors(validation(bookData));
   }, [bookData]);
@@ -99,7 +102,8 @@ function BookForm() {
       }
       setBookData({ ...bookData, ...toHighlight });
 
-      window.alert(error);
+      setAlertMessage(error.toString());
+      setAlertOpen(true);
     }
   };
 
@@ -198,7 +202,7 @@ function BookForm() {
                 bookData.genres.map(
                   (genre) =>
                     bookData.genres.indexOf(genre) ===
-                      bookData.genres.lastIndexOf(genre) && (
+                    bookData.genres.lastIndexOf(genre) && (
                       <div key={genre}>
                         {genre}
                         <button onClick={() => handleRemove(genre, "genres")}>
@@ -300,6 +304,7 @@ function BookForm() {
                 <SaveIcon /> Save
               </Button>
             </div>
+            <Snackbar open={alertOpen} autoHideDuration={6000} onClose={() => setAlertOpen(false)} message={alertMessage} />
           </form>
         </Box>
       </Container>

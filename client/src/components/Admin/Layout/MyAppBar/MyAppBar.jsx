@@ -1,7 +1,10 @@
-import { AppBar, TitlePortal } from "react-admin";
+import { AppBar, TitlePortal, defaultTheme, ToggleThemeButton } from "react-admin";
 import { Box, IconButton } from "@mui/material";
 import Home from "@mui/icons-material/Home";
 import { useNavigate } from "react-router-dom";
+
+import dark from "../../../../Theme/dark"
+import light from "../../../../Theme/light"
 
 export const MyAppBar = () => {
 
@@ -26,6 +29,7 @@ export const MyAppBar = () => {
       <Box flex="1" />
       <TitlePortal />
       <Box flex="1" />
+      <ToggleThemeButton lightTheme={light} darkTheme={dark} />
     </AppBar>
   );
 };

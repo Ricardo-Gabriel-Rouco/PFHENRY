@@ -14,6 +14,7 @@ import {
   ListSubheader,
   Collapse,
   Button,
+  Rating,
 } from "@mui/material";
 import CardsReview from "../CardsReview/CardsReview";
 import CardNewReview from "../CardNewReview/CardNewReview";
@@ -80,17 +81,21 @@ const CardDetail = ({ id }) => {
         <Card
           sx={{
             position: "absolute",
-            top: "50%",
+            top: "60%",
             left: "50%",
             transform: "translate(-50%, -50%)",
             p: 4,
-            bgcolor: "primary.dark",
+            bgcolor: "success.light",
             width: 800,
             maxWidth: "50vw",
             maxHeight: "71vh",
-            overflowY: "auto",
+            // overflow: "auto",
+            overflow: 'scroll',
+            '::-webkit-scrollbar': {
+              display: 'none'
+            },
             marginLeft: "4px",
-            marginTop: "5px",
+            marginTop: "2px",
           }}
         >
           <Box
@@ -120,21 +125,32 @@ const CardDetail = ({ id }) => {
             <Typography
               variant="body1"
               gutterBottom
-              sx={{ fontWeight: "bold", marginBottom: "15px" }}
+              sx={{ fontWeight: "bold", marginBottom: "10px" }}
             >
               {`Price: $${bookDetail?.price}`}
             </Typography>
             <Typography
               variant="body1"
               gutterBottom
-              sx={{ fontWeight: "bold", marginBottom: "15px" }}
+              sx={{ fontWeight: "bold", marginBottom: "10px" }}
             >
-              {`Rating: ${bookDetail?.rating}`}
+              <Rating
+                name="read-only"
+                value={bookDetail?.rating}
+                size="large"
+                precision={0.5}
+                readOnly
+                sx={{
+                  "& .MuiRating-iconFilled": {
+                    color: "primary.contrastText",
+                  },
+                }}
+              />
             </Typography>
             <Typography
               variant="body1"
               gutterBottom
-              sx={{ fontWeight: "bold", marginBottom: "15px" }}
+              sx={{ fontWeight: "bold", marginBottom: "10px" }}
             >
               <Collapse in={details} collapsedHeight={"500px"}>
                 {bookDetail?.year} - {bookDetail?.editorial} -{" "}

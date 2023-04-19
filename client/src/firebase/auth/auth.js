@@ -5,8 +5,8 @@ import { collection, setDoc, doc, getDoc, getDocs ,query, where } from "firebase
 import { auth, db } from "../firebase-config";
 
 
-
 export async function createUser(email, password, nickName, adress, profilePicture) {
+
     try {
         const res = await createUserWithEmailAndPassword(auth, email, password);
         const profile = await uploadImage(profilePicture, res.user.uid)

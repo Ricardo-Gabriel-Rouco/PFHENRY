@@ -46,15 +46,15 @@ const DisplaySelect = () =>{
         onChange={selectHandleChange} 
         value={selectedValue}>
             <MenuItem value='USER'>User</MenuItem>
-            <MenuItem value='ADMIN'>Admin</MenuItem>
-            <MenuItem value='SUPERADMIN'>Super Admin</MenuItem>
+            <MenuItem value='ADMIN'>Employee</MenuItem>
+            <MenuItem value='SUPERADMIN'>Admin</MenuItem>
 
         </Select>
     )
 }
 
 export const Userlist = (props) => (
-    <List {...props} pagination={false}>
+    <List {...props} pagination={false} actions={false}>
         <Datagrid bulkActionButtons={false}>
             <FunctionField 
             label='Enabled'

@@ -18,7 +18,6 @@ import Menu from "@mui/material/Menu";
 import { useDispatch, useSelector } from "react-redux";
 // import { logUserOut } from "../../redux/rootReducer/userSlice";
 import { Badge } from "@mui/material";
-import { reset } from "../../redux/rootReducer/bookSlice";
 import { toogleCart } from "../../redux/rootReducer/toogleSlice";
 import { toogleFav } from "../../redux/rootReducer/toogleFavSlice";
 import { postCart } from "../../firebase/firestore/cart";
@@ -32,6 +31,8 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import ModeNightIcon from "@mui/icons-material/ModeNight";
 import ChatIcon from "@mui/icons-material/Chat";
 import { availableItems } from "../Cart/Cart";
+import { styled } from "@mui/material/styles";
+import logo from "../../Assets/homeBrand.png";
 
 const NavBar = ({ passTheme, mode }) => {
   const { userStatus } = useAuth();
@@ -43,6 +44,8 @@ const NavBar = ({ passTheme, mode }) => {
   const favorites = useSelector((state) => state.favorite.favorites);
   const cart = useSelector((state) => state.cart);
   const displayableBooks = useSelector((state) => state.books.displayableBooks);
+
+  const showTheme = mode.palette.mode
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -66,11 +69,29 @@ const NavBar = ({ passTheme, mode }) => {
     dispatch(importBooks());
   }, [dispatch]);
 
+  const Img = styled("img")({
+    width: 400,
+    height: "100%",
+    objectFit: "cover",
+    objectPosition: "center",
+  });
+
   return (
     location.pathname !== "/" &&
     location.pathname.slice(0, 6) !== "/admin" && (
-      <Box sx={{ bgcolor: "secondary", p: 1, marginTop: "auto 0px" }}>
-        <AppBar position="fixed" color="primary">
+      <Box sx={{ bgcolor: "secondary", p: 1 }}>
+        <Img
+          src={logo}
+          alt="Book's Kingdom"
+          sx={{
+            alignContent: "flex-start",
+            maxWidth: 400,
+            height: "auto",
+            width: "100%",
+            maxHeight: 51,
+          }}
+        />
+        <AppBar position="relative" color="primary" sx={{ mt: 1 }}>
           <Toolbar>
             <Grid container>
               <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
@@ -89,7 +110,7 @@ const NavBar = ({ passTheme, mode }) => {
               <Grid item xs="auto">
                 <Box
                   sx={{
-                    width: "475px",
+                    width: 500,
                     padding: "0px",
                   }}
                 >
@@ -97,7 +118,7 @@ const NavBar = ({ passTheme, mode }) => {
                 </Box>
               </Grid>
 
-              {userStatus.role === "ADMIN" ? (
+              {userStatus.role.includes("ADMIN") ? (
                 <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
                   <IconButton
                     size="large"
@@ -111,7 +132,7 @@ const NavBar = ({ passTheme, mode }) => {
                   </IconButton>
                 </Grid>
               ) : null}
-              {userStatus.role === "ADMIN" ? (
+              {userStatus.role.includes("ADMIN") ? (
                 <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
                   <IconButton
                     size="large"
@@ -125,7 +146,7 @@ const NavBar = ({ passTheme, mode }) => {
                   </IconButton>
                 </Grid>
               ) : null}
-              {mode === light ? (
+              {showTheme === "light" ? (
                 <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
                   <IconButton
                     size="large"
@@ -264,7 +285,7 @@ const NavBar = ({ passTheme, mode }) => {
             </Grid>
           </Toolbar>
         </AppBar>
-        <Toolbar />
+        {/* <Toolbar /> */}
         {/* Este componente es solo para evitar que la NavBar fija pise elementos en la pagina*/}
       </Box>
     )

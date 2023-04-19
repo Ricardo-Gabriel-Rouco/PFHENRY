@@ -7,6 +7,7 @@ import ErrorIcon from "@mui/icons-material/Error";
 import styles from "./BookForm.module.css";
 import { GenreList } from '../GenreList/GenreList';
 import { useNavigate } from 'react-router-dom';
+
 // import { makeStyles } from '@material-ui/core/styles'
 
 
@@ -21,10 +22,11 @@ import { useNavigate } from 'react-router-dom';
 
 export const BookCreate = (props) => {
   const navigate = useNavigate()
+
   const [imageType,setImageType] = useState('file');
   const [imageUrl,setImageUrl] = useState(null)
   const [genres,setGenres]= useState([])
-  const [bookData,setBookData]=useState({genre:''})
+  const [bookData,setBookData]=useState({})
   const [errors,setErrors] = useState({});
 
   
@@ -39,7 +41,7 @@ export const BookCreate = (props) => {
   const createBook = async (bookData) => {
 
     try{
-      const newBookData = {...bookData, genre:bookData.genre}
+      const newBookData = {...bookData, genres:bookData.genres}
       const response = await postBook(newBookData)
       console.log(response)
       navigate('/admin');
@@ -63,31 +65,31 @@ export const BookCreate = (props) => {
 
 
 
-    const handleOptions = (e) => {
-      let selectedValues = [];
+    // const handleOptions = (e) => {
+    //   let selectedValues = [];
   
-      if (bookData.genres)
-      { selectedValues = [...bookData.genres];}
+    //   if (bookData.genres)
+    //   { selectedValues = [...bookData.genres];}
   
-      const options = e.target.options;
-      for (let i = 0; i < options.length; i++) {
-        if (options[i].selected) {
-          selectedValues.push(options[i].value);
-        }
-      }
-      setBookData({
-        ...bookData,
-        genres:[...selectedValues]
-      });
-    };
+    //   const options = e.target.options;
+    //   for (let i = 0; i < options.length; i++) {
+    //     if (options[i].selected) {
+    //       selectedValues.push(options[i].value);
+    //     }
+    //   }
+    //   setBookData({
+    //     ...bookData,
+    //     genres:[...selectedValues]
+    //   });
+    // };
   
-    const handleRemove = (value) => {
-      const newGenres = bookData.genres.filter((genre) => genre !== value);
-      setBookData({
-        ...bookData,
-        genres: newGenres,
-      });
-    };
+    // const handleRemove = (value) => {
+    //   const newGenres = bookData.genres.filter((genre) => genre !== value);
+    //   setBookData({
+    //     ...bookData,
+    //     genres: newGenres,
+    //   });
+    // };
 
 
     const handleImageType = (e) => {
@@ -180,7 +182,7 @@ export const BookCreate = (props) => {
             style={{margin:'0 2rem '}} />
             {errors.editorial ? (<p className={styles.formError}><ErrorIcon/>{errors.editorial && errors.editorial}</p>):null}
             {/* <InputLabel htmlFor="genres">Genres:</InputLabel> */}
-            <GenreList errors={errors} defaultValue={bookData.genre}/>
+            <GenreList errors={errors} defaultValue={bookData.genres}/>
 
               {/* {errors.genres ? (
                 <p className={styles.formError}>

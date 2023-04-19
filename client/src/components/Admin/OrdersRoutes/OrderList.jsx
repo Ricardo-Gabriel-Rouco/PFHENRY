@@ -10,7 +10,7 @@ import {
 
 
 const OrderList = (props) => (
-  <List {...props}>
+  <List {...props} actions={false} pagination={false}>
     <Datagrid bulkActionButtons={false}>
       <DateField source="date" showTime />
       <TextField source="id" label="Order ID" />

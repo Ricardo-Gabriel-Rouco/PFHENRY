@@ -23,7 +23,7 @@ function Account() {
         <TableContainer component={Paper}>
             <Table sx={{ width: '100%', alignContent: 'center', boxShadow: '1px 1px 3px rgba(0, 0, 0, 0.3)'}} aria-label="orders table">
 
-                {orders.map((order) => (<>
+                {orders? orders.map((order) => (<>
                     <TableHead>
                         <TableCell align="left">
                             <Typography fontSize={'15px'} fontWeight='bold'>
@@ -67,7 +67,7 @@ function Account() {
                             </Grid>
                         </TableCell>
                     </TableRow></>
-                ))}
+                )): 'You have no books purchased'}
             </Table>
         </TableContainer>
     );
