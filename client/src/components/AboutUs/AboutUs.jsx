@@ -1,10 +1,10 @@
 import imgJoaco from "../../Assets/joaco.jpeg";
 import imgGabi from "../../Assets/gabrielRouco.jpg";
 import imgJuli from "../../Assets/juli.jpeg";
-import imgAlfredo from "../../Assets/joaco.jpeg";
-import imgManu from "../../Assets/joaco.jpeg";
-import imgClau from "../../Assets/joaco.jpeg";
-import imgMauri from "../../Assets/joaco.jpeg";
+import imgAlfredo from "../../Assets/alfre.jpeg";
+import imgManu from "../../Assets/manu.jpeg";
+import imgClau from "../../Assets/claudio.jpeg";
+import imgMauri from "../../Assets/mauri.jpeg";
 
 import s from "./AboutUs.module.css";
 import { AiFillLinkedin, AiFillGithub } from "react-icons/ai";
