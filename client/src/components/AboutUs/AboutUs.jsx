@@ -1,10 +1,10 @@
-import imgJoaco from "../../Assets/WhatsApp Image 2023-02-23 at 11.58.54.jpeg";
+import imgJoaco from "../../Assets/joaco.jpeg";
 import imgGabi from "../../Assets/gabrielRouco.jpg";
-import imgJuli from "../../Assets/WhatsApp Image 2023-02-23 at 11.58.54.jpeg";
-import imgAlfredo from "../../Assets/WhatsApp Image 2023-02-23 at 11.58.54.jpeg";
-import imgManu from "../../Assets/WhatsApp Image 2023-02-23 at 11.58.54.jpeg";
-import imgClau from "../../Assets/WhatsApp Image 2023-02-23 at 11.58.54.jpeg";
-import imgMauri from "../../Assets/WhatsApp Image 2023-02-23 at 11.58.54.jpeg";
+import imgJuli from "../../Assets/juli.jpeg";
+import imgAlfredo from "../../Assets/alfre.jpeg";
+import imgManu from "../../Assets/manu.jpeg";
+import imgClau from "../../Assets/claudio.jpeg";
+import imgMauri from "../../Assets/mauri.jpeg";
 import s from "./AboutUs.module.css";
 import { AiFillLinkedin, AiFillGithub } from "react-icons/ai";
 import { FaChevronUp } from "react-icons/fa";
@@ -182,6 +182,8 @@ function AboutUs() {
                 height: 260,
                 mx: "auto",
                 marginTop: "10px",
+                objectFit: "contain",
+                bgcolor: "lightgrey"
               }}
             />
             <Typography fontSize={"fontSize.thirdTitle"} marginTop={"15px"}>
@@ -196,7 +198,7 @@ function AboutUs() {
               <AiFillGithub className={s.gitHub} icon={AiFillGithub} />{" "}
             </a>
 
-            <a href="https://www.linkedin.com/in/joaquin-santiago-oliveira">
+            <a href="https://www.linkedin.com/in/mmitacc/">
               {" "}
               <AiFillLinkedin
                 className={s.linkedin}
@@ -238,7 +240,7 @@ function AboutUs() {
               <AiFillGithub className={s.gitHub} icon={AiFillGithub} />{" "}
             </a>
 
-            <a href="https://www.linkedin.com/in/joaquin-santiago-oliveira">
+            <a href="https://www.linkedin.com/in/alfredo-c-gonzalez-noriega-095b40119/">
               {" "}
               <AiFillLinkedin
                 className={s.linkedin}
@@ -281,7 +283,7 @@ function AboutUs() {
               <AiFillGithub className={s.gitHub} icon={AiFillGithub} />{" "}
             </a>
 
-            <a href="https://www.linkedin.com/in/joaquin-santiago-oliveira">
+            <a href="https://www.linkedin.com/in/mauricio-salerno">
               {" "}
               <AiFillLinkedin
                 className={s.linkedin}
@@ -324,7 +326,7 @@ function AboutUs() {
               <AiFillGithub className={s.gitHub} icon={AiFillGithub} />{" "}
             </a>
 
-            <a href="https://www.linkedin.com/in/joaquin-santiago-oliveira">
+            <a href="https://www.linkedin.com/in/claudio-peralta-2a6777253/">
               {" "}
               <AiFillLinkedin
                 className={s.linkedin}
