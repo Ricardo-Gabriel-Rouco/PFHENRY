@@ -17,6 +17,7 @@ import loading from "../../Assets/Loading.gif";
 /* import SupportEngine from '../../chatBot/SupportEngine/index' TENEMOS QUE DEFINIR DONDE CARANCHO PONEMOS EL CHAT*/
 import { useDispatch } from "react-redux";
 import { openModal } from "../../redux/rootReducer/bookSlice";
+import SupportEngine from '../../chatBot/SupportEngine/index'
 
 
 
@@ -523,6 +524,7 @@ const Carrousel = () => {
           ))}
         </Swiper>
       </CarouselContainer> */}
+      <SupportEngine /> 
     </>
   );
 };
