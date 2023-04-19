@@ -1,6 +1,6 @@
 import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
-import { Button, TextField, Typography, Snackbar, IconButton, CardMedia, Input } from "@mui/material";
+import { Box, Button, TextField, Typography, Snackbar, IconButton, CardMedia, Input } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import { useAuth } from "../../context/authContext";
 import { validate } from './validation'
@@ -61,12 +61,15 @@ const action = (
 );
 
   return (
-    <>
+    
+    <Box sx={{height: '40.4rem'}}>
+
     <form
       style={{
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        minHeight: "100%",
         margin: "2rem",
       }}
       onSubmit={handleSubmit}
@@ -81,7 +84,7 @@ const action = (
         value={userData.nickName}
         onChange={handleInputChange}
         style={{ margin: "1rem" }}
-      />
+        />
       {/* {errors.nickName && <p>{errors.nickName}</p>} */}
 
       <TextField
@@ -91,17 +94,17 @@ const action = (
         value={userData.adress}
         onChange={handleInputChange}
         style={{ margin: "1rem" }}
-      />
+        />
 
       {userStatus.profilePicture? <CardMedia
       component="img"
       height="300"
-          sx={{
-            width: "10rem",
-            height: "14rem",
-            objectFit: "cover",
-            marginTop: "0px",
-          }}
+      sx={{
+        width: "10rem",
+        height: "14rem",
+        objectFit: "cover",
+        marginTop: "0px",
+      }}
       image={userStatus.profilePicture}/> : null}
       <Input
         type="file"
@@ -109,14 +112,14 @@ const action = (
         name="imageFile"
         placeholder="Select an image for profile picture"
         onChange={handleInputChange}
-      />
+        />
 
       <Button
         type="submit"
         variant="contained"
         color="primary"
         style={{ margin: "2rem" }}
-      >
+        >
         Modificar
       </Button>
     </form>
@@ -125,8 +128,8 @@ const action = (
         autoHideDuration={5000}
         message="Se cambiaron los datos con exito"
         action={action}
-      />
-    </>
+        />
+  </Box>
   );
 }
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, TextField, Alert, Paper, Box, Typography } from "@mui/material";
+import { Button, TextField, Alert, Paper, Box, Typography, Input } from "@mui/material";
 import { useAuth } from "../../context/authContext";
 
 function Register() {
@@ -77,22 +77,22 @@ function Register() {
     <Box sx={{ marginTop: "50px", display: "flex", justifyContent: "center" }}>
       <Paper elevation={10} style={{ borderRadius: '10px', padding: "1rem", maxWidth: "500px", backgroundColor: 'inherit' }}>
         <form
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        margin: "2rem",
-      }}
-      onSubmit={handleSubmit}
-    >
-      <TextField
-        type="text"
-        label="Nombre de usuario"
-        name="nickName"
-        value={userData.nickName}
-        onChange={handleInputChange}
-        style={{ margin: "1rem" }}
-      />
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            margin: "2rem",
+          }}
+          onSubmit={handleSubmit}
+        >
+          <TextField
+            type="text"
+            label="Nombre de usuario"
+            name="nickName"
+            value={userData.nickName}
+            onChange={handleInputChange}
+            style={{ margin: "1rem" }}
+          />
           {errors.nickName && (
             <Typography variant="caption" color="red">
               <p>{errors.nickName}</p>
@@ -118,22 +118,22 @@ function Register() {
             style={{ margin: "0.5rem", width: '15rem' }}
           />
           {errors.password && <Typography variant="caption" color="red"> <p>{errors.password}</p></Typography>}
-           <TextField
-        type="text"
-        label="adress"
-        name="adress"
-        value={userData.adress}
-        onChange={handleInputChange}
-        style={{ margin: "1rem" }}
-      />
-      {errors.adress &&  <Typography variant="caption" color="red"><p>{errors.adress}</p></Typography>}}
-      <Input
-        type="file"
-        accept="image/*"
-        name="imageFile"
-        placeholder="Select an image for profile picture"
-        onChange={handleInputChange}
-      />
+          <TextField
+            type="text"
+            label="adress"
+            name="adress"
+            value={userData.adress}
+            onChange={handleInputChange}
+            style={{ margin: "1rem" }}
+          />
+          {errors.adress && <Typography variant="caption" color="red"><p>{errors.adress}</p></Typography>}
+          <Input
+            type="file"
+            accept="image/*"
+            name="imageFile"
+            placeholder="Select an image for profile picture"
+            onChange={handleInputChange}
+          />
           <Button
             type="submit"
             variant="contained"
