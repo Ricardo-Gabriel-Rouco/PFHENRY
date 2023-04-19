@@ -17,7 +17,7 @@ useEffect(()=>{
 },[])
   
 const finalChoices = genresList.map(genres=>({
-  id:genres.id,
+  // id:genres.id,
   name:genres.name}))
 
 
