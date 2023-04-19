@@ -12,6 +12,7 @@ import {
   ListSubheader,
   Collapse,
   Button,
+  Rating,
 } from "@mui/material";
 import CardsReview from "../CardsReview/CardsReview";
 import CardNewReview from "../CardNewReview/CardNewReview";
@@ -42,7 +43,11 @@ const CardDetail = ({ id }) => {
 
   const handleNewReview = async (input) => {
     await updateBookReviews(input);
-    await modifyBook(id, {rating: !bookDetail.rating ? input.rating : (parseInt(input.rating) + parseInt(bookDetail.rating)) / 2 })
+    await modifyBook(id, {
+      rating: !bookDetail.rating
+        ? input.rating
+        : (parseInt(input.rating) + parseInt(bookDetail.rating)) / 2,
+    });
     getBookById(id)
       .then((response) => {
         setBookDetail(response);
@@ -50,7 +55,6 @@ const CardDetail = ({ id }) => {
       .catch((error) => {
         console.log(error);
       });
-    
   };
 
   return bookDetail.id ? (
@@ -115,7 +119,18 @@ const CardDetail = ({ id }) => {
               gutterBottom
               sx={{ fontWeight: "bold", marginBottom: "15px" }}
             >
-              {`Rating: ${bookDetail?.rating}`}
+              <Rating
+                name="read-only"
+                value={bookDetail?.rating}
+                size="large"
+                precision={0.5}
+                readOnly
+                sx={{
+                  "& .MuiRating-iconFilled": {
+                    color: "primary.contrastText",
+                  },
+                }}
+              />
             </Typography>
             <Typography
               variant="body1"
