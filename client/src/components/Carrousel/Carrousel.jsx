@@ -14,6 +14,7 @@ import loading from "../../Assets/Loading.gif";
 /* import SupportEngine from '../../chatBot/SupportEngine/index' TENEMOS QUE DEFINIR DONDE CARANCHO PONEMOS EL CHAT*/
 import { useDispatch } from "react-redux";
 import { openModal } from "../../redux/rootReducer/bookSlice";
+import { DiscountLabel } from "../DiscountLabel/DiscountLabel";
 
 SwiperCore.use([Navigation, Pagination]);
 
@@ -67,6 +68,7 @@ const Carrousel = () => {
         {!displayableBooks.length && <img src={loading} alt="loading" />}
         {/*         CARROUSEL OFERTAS */}
         <CarouselContainer>
+
             <Typography align="left" variant="h6" marginLeft={"15px"}>
             {"Sales"}
             </Typography>
@@ -124,10 +126,14 @@ const Carrousel = () => {
                         fontSize: 18,
                         textAlign: "right",
                         fontWeight: "bold",
-                        color: "red",
+                        color: "black",
+                        position:"fixed",
+                        top:"-0.5rem",
+                        right:"11rem"
                       }}
                     >
-                      %{book.discount} {" OFF"}
+                      <DiscountLabel discount={`-${book.discount}%OFF`}/>
+                      {/* %{book.discount} {" OFF"} */}
                     </Typography>
 
                         <Grid

@@ -7,6 +7,7 @@ import ErrorIcon from "@mui/icons-material/Error";
 import styles from "./BookForm.module.css";
 import { GenreList } from '../GenreList/GenreList';
 import { useNavigate } from 'react-router-dom';
+
 // import { makeStyles } from '@material-ui/core/styles'
 
 
@@ -21,6 +22,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const BookCreate = (props) => {
   const navigate = useNavigate()
+
   const [imageType,setImageType] = useState('file');
   const [imageUrl,setImageUrl] = useState(null)
   const [genres,setGenres]= useState([])
@@ -36,7 +38,7 @@ export const BookCreate = (props) => {
     fetchGenres();
   }, []);
 
-  const createBook = async () => {
+  const createBook = async (bookData) => {
 
     try{
       const newBookData = {...bookData, genres:bookData.genres}

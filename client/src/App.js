@@ -28,6 +28,7 @@ import { createTheme, CssBaseline, ThemeProvider, Alert } from "@mui/material";
 import light from "./Theme/light";
 import MyPurchases from "./components/MyPurchases/MyPurchases";
 import ModalDetail from "./components/ModalDetail/ModalDetail";
+import { DiscountLabel } from "./components/DiscountLabel/DiscountLabel";
 
 axios.defaults.baseURL = 'https://shaky-friend-production.up.railway.app/';
 
