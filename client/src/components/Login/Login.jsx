@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Button, TextField, Typography } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { Button, TextField, Typography, Box, Paper, Dialog, DialogActions, DialogContent, DialogTitle, Alert } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { getFavorites } from "../../firebase/firestore/favorites";
 import { getCart } from "../../firebase/firestore/cart";
@@ -25,6 +25,9 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const [errors, setErrors] = useState("");
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [alertSeverity, setAlertSeverity] = useState("success");
+  const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
     if (userStatus.logged) {
@@ -44,19 +47,15 @@ const Login = () => {
       await login(userData.email, userData.password);
       const favDB = await getFavorites(userStatus.userId);
 
-      console.log(favDB);
-      console.log(favLS);
-
       if (favDB && favLS) {
         const combinedFavorites = [...favDB, ...favLS];
 
-        console.log(combinedFavorites);
+
 
         const uniqueFavorites = combinedFavorites.filter((obj, index, self) => {
           return index === self.findIndex((o) => o === obj);
         });
 
-        console.log(uniqueFavorites);
 
         dispatch(addFavoritesDB(uniqueFavorites));
       }
@@ -147,77 +146,118 @@ const Login = () => {
   }
 
   const handleResetPassword = async () => {
-    if (!userData.email)
-      return setErrors({ ...userData, email: "insert an email" });
+    if (!userData.email) return setErrors({ ...userData, email: "insert an email" });
+    setDialogOpen(true);
+  };
+
+  const handleConfirmReset = async () => {
     try {
       await resetPassword(userData.email);
-      alert("we've sent you an email to reset your password");
+      setAlertSeverity("success");
+      setAlertMessage("We've sent you an email to reset your password");
+      setDialogOpen(false);
     } catch (error) {
-      alert(error.message);
+      setAlertSeverity("error");
+      setAlertMessage(error.message);
     }
   };
 
   return userStatus.logged ? (
     navigate("/home")
   ) : (
-    <form
-      onSubmit={handleSubmit}
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        margin: "1rem",
-        marginTop: "70px",
-      }}
-    >
-      <TextField
-        type="text"
-        name="email"
-        value={userData.email}
-        label="Email"
-        onChange={handleInputChange}
-        style={{ margin: "0.5rem" }}
-      />
+    <Box sx={{ marginTop: "50px", display: "flex", justifyContent: "center" }}>
+      <Paper elevation={10} style={{ borderRadius: '10px', padding: "1rem", maxWidth: "500px", backgroundColor: 'inherit' }}>
+        <form
+          onSubmit={handleSubmit}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            margin: "1rem",
+            marginTop: "40px",
+          }}
+        >
+          <TextField
+            type="text"
+            name="email"
+            value={userData.email}
+            label="Email"
+            onChange={handleInputChange}
+            style={{ margin: "0.5rem", width: '15rem' }}
 
-      <TextField
-        type="password"
-        name="password"
-        value={userData.password}
-        label="Password"
-        onChange={handleInputChange}
-        style={{ margin: "0.5rem" }}
-      />
+          />
 
-      {errors && (
-        <Typography sx={{ fontSize: "0.5em", color: "error" }} gutterBottom>
-          {errors}
-        </Typography>
+          <TextField
+            type="password"
+            name="password"
+            value={userData.password}
+            label="Password"
+            onChange={handleInputChange}
+            style={{ margin: "0.5rem", width: '15rem' }}
+          />
+
+          {errors && (
+            <Typography sx={{ fontSize: "0.5em", color: "error" }} gutterBottom>
+              {errors}
+            </Typography>
+          )}
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            style={{ marginTop: "0.5rem" }}
+          >
+            Login
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => {
+              registerGoogle();
+            }}
+            style={{ margin: '1.5rem' }}
+          >
+            Login with Google
+          </Button>
+          <Typography
+            variant="body1"
+            style={{ margin: "1rem", textDecoration: "underline", cursor: "pointer" }}
+            onClick={() => navigate("/register")}
+          >
+            Register
+          </Typography>
+          <Typography
+            variant="body1"
+            style={{ margin: "1rem", textDecoration: "underline", cursor: "pointer" }}
+            onClick={handleResetPassword}
+          >
+            Reset Password
+          </Typography>
+          <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
+        <DialogTitle>Reset Password</DialogTitle>
+        <DialogContent>
+          <Alert severity="error">Are you sure you want to reset your password?</Alert>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setDialogOpen(false)} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleConfirmReset} color="primary">
+            Reset
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Alert message */}
+      {alertMessage && (
+        <Alert severity={alertSeverity} onClose={() => setAlertMessage("")}>
+          {alertMessage}
+        </Alert>
       )}
-      <Button
-        type="submit"
-        variant="contained"
-        color="primary"
-        style={{ margin: "0.5rem" }}
-      >
-        Login
-      </Button>
-      <Button
-        variant="contained"
-        color="secondary"
-        onClick={() => {
-          registerGoogle();
-        }}
-        style={{ margin: "3rem" }}
-      >
-        Login with Google
-      </Button>
-      <Link style={{ margin: "1rem" }} to={"/register"}>
-        No tienes Cuenta? crea una
-      </Link>
-      <Link style={{ margin: "1rem" }} onClick={handleResetPassword}>
-        Forgot password?
-      </Link>
-    </form>
+        </form>
+      </Paper>
+    </Box>
+
   );
 };
 
