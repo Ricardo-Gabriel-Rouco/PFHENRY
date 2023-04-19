@@ -29,7 +29,7 @@ import light from "./Theme/light";
 import MyPurchases from "./components/MyPurchases/MyPurchases";
 import ModalDetail from "./components/ModalDetail/ModalDetail";
 import Footer from './components/Footer/Footer';
-import SupportEngine from './chatBot/SupportEngine/index'
+import { DiscountLabel } from "./components/DiscountLabel/DiscountLabel";
 
 axios.defaults.baseURL = 'https://shaky-friend-production.up.railway.app/';
 
@@ -111,7 +111,7 @@ function App() {
               <Route path="/about" element={<AboutUs/>}/>
 
             </Routes>
-            
+ 
             <Footer />
             <ModalDetail/>
           </AuthProvider>
