@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Button, Grid, Typography, CardMedia } from "@mui/material";
 import background from "../../Assets/fondoTenue.jpg";
 import { FaChevronDown } from "react-icons/fa";
+import About from "../About";
 import style from "./Landing.module.css";
 
 const Landing = () => {
@@ -57,7 +58,7 @@ const Landing = () => {
           Book's Kingdom
         </Typography>
       </Grid>
-      <Grid item xs="12" sx={{ margin: "auto" }}>
+      <Grid item xs="12" sx={{ margin: "2rem auto" }}>
         <CardMedia
           component="img"
           src={require(`../../Assets/imgLanding/image${selectImage}.jpg`)}
@@ -207,6 +208,7 @@ const Landing = () => {
           className={style.flecha}
         />
       </Grid>
+      <About />
     </Grid>
   );
 };

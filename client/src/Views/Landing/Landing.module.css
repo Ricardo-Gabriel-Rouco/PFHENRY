@@ -2,13 +2,12 @@
   animation: arrow 1s ease-in-out infinite;
   font-size: 40px;
   color: white;
-  z-index: 1;
   cursor: pointer;
   margin: 0px auto 5px auto;
 }
 
 .flecha:hover {
-  color: #DE8319;
+  color: #de8319;
 }
 @keyframes arrow {
   0% {
@@ -18,5 +17,3 @@
     transform: translate(0px, 10px);
   }
 }
-
-
