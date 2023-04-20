@@ -56,6 +56,7 @@ function AboutUs() {
                 width: "300px",
                 height: "400px",
                 bgcolor: "background.default",
+                marginRight: {xs:'30rem', sm:'15rem'}
               }}
             >
               <CardMedia
