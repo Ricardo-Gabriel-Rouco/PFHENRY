@@ -44,16 +44,9 @@ export async function deleteGenre(id) {
   }
 }
 
-export async function postGenre(name) {
-  // validaciones, muchas validaciones
-
-  // fin validaciones
+export async function postGenre(name,id) {
   try {
-    const newGenre = doc(db, 'genres')
-    await addDoc(newGenre, {
-      name: name,
-      display: true
-    })
+    await setDoc(doc(db, "genres", id.toString()), {name});
   } catch (error) {
     console.log(error)
   }
