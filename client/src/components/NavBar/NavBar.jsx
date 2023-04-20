@@ -112,7 +112,7 @@ const NavBar = ({ passTheme, mode }) => {
                       display: 'flex',
                       width: '60%',
                       padding: "0px",
-                      minWidth: '400px',
+                      minWidth: '200px',
                       
                     }}
                   >
