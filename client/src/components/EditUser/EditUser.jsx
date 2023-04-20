@@ -22,11 +22,12 @@ function EditUser() {
   function handleInputChange(e) {
     switch (e.target.name) {
       case "imageFile":
+        setUserData({...userData, profile: e.target.files[0]})
         const reader = new FileReader();
         reader.readAsDataURL(e.target.files[0]);
-        reader.onloadend = () => {
-          setUserData({ ...userData, profile: reader.result });
-        };
+        // reader.onloadend = () => {
+        //   setUserData({ ...userData, profile: reader.result });
+        // };
         break;
 
       default:

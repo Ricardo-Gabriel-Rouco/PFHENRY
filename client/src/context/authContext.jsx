@@ -41,14 +41,7 @@ export function AuthProvider({ children }) {
   };
 
   const customize = async (userId, nickname, profile, adress) => {
-    console.log(userId, nickname, profile, adress)
     await updateUser(userId, nickname, profile, adress)
-    setUserStatus({
-      ...userStatus,
-      nickName: nickname,
-      profilePicture: profile,
-      adress
-    })
   }
 
   useEffect(() => {
@@ -64,7 +57,7 @@ export function AuthProvider({ children }) {
           nickName: userRole.nickname,
           display: userRole.display,
           adress: userRole.adress ? userRole.adress : null,
-          profilePicture: userRole.profilePicture ? userRole.profilePicture : null
+          profilePicture: userRole.profile ? userRole.profile : null
         });
       }
       setLoading(false);
