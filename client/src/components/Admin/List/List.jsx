@@ -15,14 +15,13 @@ export const List = ({ fullList, selected, setSelected, prop }) => {
 
   useEffect(() => {
     setOptions(fullList);
-    console.log(prop);
   }, [fullList]);
 
-  // useEffect(() => {
-  //   if (selected && selected.length)
-  //     if (parseInt(selected[selected.length - 1].id) > fullList.length - 1)
-  //       setOptions([...options, selected[selected.length - 1]]);
-  // }, [selected]);
+  useEffect(() => {
+    if (selected && selected.length && fullList.length)
+      if (parseInt(selected[selected.length - 1].id) > fullList.length - 1)
+        setOptions([...options, selected[selected.length - 1]]);
+  }, [selected]);
 
   return (
     <div>

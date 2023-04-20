@@ -16,7 +16,7 @@ import { List } from "../List/List";
 import { useNavigate } from "react-router-dom";
 import { Button, Input, InputLabel, TextField } from "@mui/material";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
-import { getAuthors } from "../../../firebase/firestore/authors";
+import { getAuthors, postAuthor } from "../../../firebase/firestore/authors";
 import { uploadImage } from "../../../firebase/storage";
 
 export const BookCreate = (props) => {
@@ -26,21 +26,71 @@ export const BookCreate = (props) => {
   const [authors, setAuthors] = useState(undefined);
   const [allGenres, setAllGenres] = useState([]);
   const [allAuthors, setAllAuthors] = useState([]);
-  const [bookData, setBookData] = useState({});
+  const [bookData, setBookData] = useState({description:""});
   const [errors, setErrors] = useState({});
   const [urlImage, setUrlImage] = useState("");
   const [imageToRender, setImageToRender] = useState("");
 
-  const createBook = async (ev) => {
+  const createBook = async (e) => {
     try {
-      // const newBookData = { ...bookData, genres };
-      const response = await modifyBook("000", { name: "test" });
-      console.log(response);
-      // navigate("/admin/books");
+      let error = false;
+      Object.values(errors).forEach((el) => {
+        if (el.length) {
+          error = true;
+        }
+      });
+      Object.values(bookData).forEach((el) => {
+        if (el === undefined) {
+          error = true;
+        }
+      });
+      if (error) throw "Missing data";
+
+      const imageUrl = await uploadImage(bookData.image, imageType, bookData.isbn);
+      const newBook = {
+        ...bookData,
+        authors: bookData.authors.map((el) => el.name).flat(),
+        genres: bookData.genres.map((el) => el.name).flat(),
+        image: imageUrl,
+      }
+
+      console.log(newBook)
+      const res = await postBook(newBook);
+
+      //agrego nuevos autores y generos
+      const newAuthors = bookData.authors.filter((author) => {
+        if (!allAuthors.find((el) => el.name === author.name)) return true;
+      });
+      const authorsPromises = newAuthors.map(el=>postAuthor(el.name,el.id))
+      authorsPromises.length && await Promise.all(authorsPromises)
+
+
+      const newGenres = bookData.genres.filter((genre) => {
+        if (!allGenres.find((el) => el.name === genre)) return true;
+      });
+      const genresPromises = newGenres.map(el=>postAuthor(el.name,el.id))
+      genresPromises.length && await Promise.all(genresPromises)
+
+      navigate("/admin/books");
     } catch (error) {
-      console.log(error);
+      let toHighlight = {};
+      for (const key in errors) {
+        if (bookData[key] === undefined) toHighlight[key] = "";
+      }
+      setBookData({ ...bookData, ...toHighlight });
+
+      window.alert(error);
     }
   };
+  // async (ev) => {
+  //   try {
+  //     // const newBookData = { ...bookData, genres };
+  //     const response = await modifyBook("000", { name: "test" });
+  //     console.log(response);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   useEffect(() => {
     const fetchGenres = async () => {
@@ -89,7 +139,6 @@ export const BookCreate = (props) => {
 
   const handleImageChange = async (file) => {
     setBookData({ ...bookData, image: file });
-    await uploadImage(file, imageType, "0000");
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = (event) => {

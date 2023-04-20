@@ -5,14 +5,14 @@ import { collection, doc, getDocs, query, updateDoc, where } from "firebase/fire
 
 ////// Crear input para subir imagen a storage
 
-export const getURL = (id) => {
-    getDownloadURL(ref(storage, `${id}.jpg`))
-        .then((url) => {
-            return(url)
-        })
-        .catch((error) => {
-            throw new Error(error)
-    });
+export const getURL = async (id) => {
+    try {
+        const url = await getDownloadURL(ref(storage, `${id}.jpg`))
+        return url
+    } catch (error) {
+        throw new Error(error)
+    }
+    
 } 
 
 export const uploadImage = async (image, type, id) => {
@@ -21,21 +21,22 @@ export const uploadImage = async (image, type, id) => {
     try {
         if(type === "file"){
             const snapshot = await uploadBytes(imagesRef, image)
-            console.log(snapshot)
+            console.log("File uploaded successfully");
+
         }
     
         else if(type === "url"){
             // Fetch the file from the URL
             const res = await (axios.get(image,{responseType:'arraybuffer'}))
-            console.log(res)
+            // console.log(res)
             // Convert file to blob
             const blob = new Blob([res.data], {type: res.headers['content-type']});
             // Upload file to Storage
             await uploadBytes(imagesRef, blob)
             console.log("File uploaded successfully");
         }
-
-        return getURL(id)
+        const url = await getURL(id)
+        return url
         
     } catch (error) {
         console.log(error)

@@ -30,7 +30,7 @@ export default function validate(bookData, imageType) {
   if (bookData.title !== undefined) {
     if (!bookData.title) errors.title = "Title must be specified";
     else if (bookData.title.length > 100)
-      errors.title = "Title must be at most 50 characters";
+      errors.title = "Title must be at most 100 characters";
     else if (!regexTitle.test(bookData.title))
       errors.title = "Only numbers, letters or spaces are allowed";
   }
