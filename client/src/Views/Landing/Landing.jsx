@@ -51,13 +51,14 @@ const Landing = () => {
             bgcolor: "rgba(200, 200, 200, 0.4)",
             padding: "1rem",
             borderRadius: "1rem",
-            marginTop: "1rem",
+
+            zIndex: 10,
           }}
         >
           Book's Kingdom
         </Typography>
       </Grid>
-      <Grid item xs="12" sx={{ margin: "auto" }}>
+      <Grid item xs="12" sx={{ marginTop: "8rem" }}>
         <CardMedia
           component="img"
           src={require(`../../Assets/imgLanding/image${selectImage}.jpg`)}
@@ -72,6 +73,7 @@ const Landing = () => {
             minWidth: 400,
             width: "50%",
             margin: "auto",
+            zIndex: 0
           }}
         />
       </Grid>
