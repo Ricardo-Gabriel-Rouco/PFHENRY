@@ -78,24 +78,28 @@ const CardDetail = ({ id }) => {
       sx={{ padding: 2 }}
     >
       <Grid item xs={12} md={6} lg={4}>
-        <Card
+      <Card
           sx={{
             position: "absolute",
-            top: "60%",
+            top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            p: 4,
+            borderBottom:22 ,
+            borderColor:"primary.light",
+            boxShadow:"none",
+            pt: 3,
             bgcolor: "success.light",
-            width: 800,
-            maxWidth: "50vw",
-            maxHeight: "71vh",
+            width: 860,
+            height:"98%",
+            maxWidth: "95%",
+            maxHeight: "95%",
             // overflow: "auto",
             overflow: 'scroll',
             '::-webkit-scrollbar': {
               display: 'none'
             },
-            marginLeft: "4px",
-            marginTop: "2px",
+            // marginLeft: "4px",
+            // marginTop: "2px",
           }}
         >
           <Box
@@ -112,7 +116,11 @@ const CardDetail = ({ id }) => {
               component="img"
               image={bookDetail?.image}
               alt={bookDetail?.title}
-              sx={{ height: 150, width: 100 }}
+              sx={{ 
+                height: 300, 
+                width: 250,
+                objectFit:"contain"
+              }}
             />
             <Typography
               variant="h5"
@@ -147,7 +155,7 @@ const CardDetail = ({ id }) => {
                 }}
               />
             </Typography>
-            <Typography
+            {/* <Typography
               variant="body1"
               gutterBottom
               sx={{ fontWeight: "bold", marginBottom: "10px" }}
@@ -159,7 +167,7 @@ const CardDetail = ({ id }) => {
             </Typography>
             <Button onClick={() => setMoreDetails(!details)}>
               {details ? "View less" : "View Details"}
-            </Button>
+            </Button> */}
             {bookDetail && bookDetail.description && (
               <>
                 <Typography
@@ -248,7 +256,8 @@ const CardDetail = ({ id }) => {
                 <Paper
                   elevation={4}
                   sx={{
-                    maxHeight: 200,
+                    height:300,
+                    maxHeight: "60%",
                     overflow: "auto",
                     margin: "8px auto",
                     width: "90%",

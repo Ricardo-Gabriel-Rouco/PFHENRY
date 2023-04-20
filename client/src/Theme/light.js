@@ -12,8 +12,8 @@ const light = createTheme({
       thirdTitle: '14px'
     },
     primary: {
-      main: "#ffc400",
-      contrastText: "#fff9c4",
+      main: "#a74949",
+      contrastText: "#e5e5e6",
     },
     secondary: {
       main: "#e4704c",
@@ -36,8 +36,8 @@ const light = createTheme({
       main: "#C79E3F",
     },
     background: {
-      default: "#fff9c4",
-      paper: "#fffde7",
+      default: "#d1d1d1",
+      paper: "#e5e5e6",
     },
     error: {
       main: "#31231E",

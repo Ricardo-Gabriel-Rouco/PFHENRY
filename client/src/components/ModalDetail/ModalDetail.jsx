@@ -51,6 +51,7 @@ const ModalDetail = () => {
             overflow: "hidden",
             bgcolor: "primary.light",
             color: "primary",
+            maxWidth:"55vw"
             },
         }}
         >
