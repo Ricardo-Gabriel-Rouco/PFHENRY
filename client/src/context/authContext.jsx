@@ -40,11 +40,14 @@ export function AuthProvider({ children }) {
     await sigInWithMail(email, password);
   };
 
-  const customize = async (userId, nickname) => {
-    await updateUser(userId, nickname)
+  const customize = async (userId, nickname, profile, adress) => {
+    console.log(userId, nickname, profile, adress)
+    await updateUser(userId, nickname, profile, adress)
     setUserStatus({
       ...userStatus,
       nickName: nickname,
+      profilePicture: profile,
+      adress
     })
   }
 

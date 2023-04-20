@@ -4,8 +4,8 @@ import { db } from "../firebase-config";
 
 export async function updateUser(userId, nickname, profile, adress){
     const userRef = doc(db, 'users', userId)
+    const imageProfile = await uploadImage(profile, userId)
     try {
-        const imageProfile = await uploadImage(profile, userId)
         const updateObj = {}
         if (nickname) updateObj.nickname = nickname
         if (profile) updateObj.profile = imageProfile
