@@ -174,7 +174,7 @@ const CardDetail = ({ id }) => {
                   variant="body1"
                   align="justify"
                   gutterBottom
-                  sx={{ marginBottom: "15px", width: "90%" }}
+                  sx={{ marginBottom: "15px", width: "90%", color:"success.main" }}
                 >
                   <Collapse in={description} collapsedHeight={"500px"}>
                     {bookDetail.description}
