@@ -15,7 +15,7 @@
 }
 
 .filters {
-  background-color: #f5bd02;
+  background-color: #a74949;
   border: 2px;
   gap: 1rem;
   padding: 0.5rem;
@@ -28,11 +28,11 @@
 .filters:focus {
   border: none;
   outline: none;
-  background-color: #ffd600;
+  background-color: #a74949;
 }
 
 .filters:hover {
-  background-color: #806c67;
+  background-color: #c98383;
 }
 
 .divContainer {

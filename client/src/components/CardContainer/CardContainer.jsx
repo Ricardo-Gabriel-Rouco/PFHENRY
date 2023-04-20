@@ -50,7 +50,7 @@ const CardContainer = () => {
   }, [filteredBooks]);
   return (
 
-    <div>
+    <div >
       {filteredBooks.length ? (<FilterOptions setCurrentPage={setCurrentPage} />) : null}
       {filteredBooks === "not found" ? (
         <div className={style.notFound}>
@@ -61,8 +61,10 @@ const CardContainer = () => {
         <Cards>
           <Grid container justifyContent="center" 
             style={{ 
-              margin:"40px 0", 
+              padding:"10px 0", 
               gap: "40px",
+              // backgroundColor: "#d1d1d1",
+              boxShadow:"none"
               // minHeight: "100vh", 
             }}>
             {currentBook

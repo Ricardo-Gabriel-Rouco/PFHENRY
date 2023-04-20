@@ -33,7 +33,7 @@ const light = createTheme({
       shiny: "#ffffff",
     },
     success: {
-      main: "#C79E3F",
+      main: "#d1d1d1",
     },
     background: {
       default: "#d1d1d1",

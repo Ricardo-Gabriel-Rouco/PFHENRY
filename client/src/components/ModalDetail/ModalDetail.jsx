@@ -49,7 +49,7 @@ const ModalDetail = () => {
             width: "100%",
             height: "100%",
             overflow: "hidden",
-            bgcolor: "primary.light",
+            bgcolor: "success.light",
             color: "primary",
             maxWidth:"55vw"
             },
