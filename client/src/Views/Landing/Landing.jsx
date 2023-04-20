@@ -1,7 +1,17 @@
 import { useEffect, useState } from "react";
 import { Button, Grid, Typography, CardMedia } from "@mui/material";
 import background from "../../Assets/fondoTenue.jpg";
+import { FaChevronDown } from "react-icons/fa";
+import style from "./Landing.module.css";
+
 const Landing = () => {
+  function scrollToAbout() {
+    const about = document.getElementById("about");
+    if (about) {
+      about.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
   const allImage = 5; //define el numero de "image" a renderizar
   const [selectImage, SetSelectImage] = useState(0);
   const [loaded, SetLoaded] = useState(false); //controlando el "loaded" de carga de imagen
@@ -170,7 +180,12 @@ const Landing = () => {
           />
         </Grid>
       </Grid>
-      <Grid item xs="12">
+      <Grid
+        item
+        xs="12"
+        justifyContent="center"
+        sx={{ display: "grid", alignItems: "stretch", alignContent: "center" }}
+      >
         <Button
           variant="contained"
           href="home"
@@ -187,6 +202,10 @@ const Landing = () => {
         >
           Enter to Kingdom
         </Button>
+        <FaChevronDown
+          onClick={(e) => scrollToAbout()}
+          className={style.flecha}
+        />
       </Grid>
     </Grid>
   );
