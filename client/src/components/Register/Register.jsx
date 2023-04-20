@@ -9,7 +9,7 @@ function Register() {
     password: "",
     nickName: "",
     adress: "",
-    profilePicture: "",
+    profile: "",
 
   });
   const [errors, setErrors] = useState({
@@ -17,7 +17,7 @@ function Register() {
     password: "",
     nickName: "",
     adress: "",
-    profilePicture: "",
+    profile: "",
   });
   const navigate = useNavigate();
 
@@ -26,11 +26,12 @@ function Register() {
   function handleInputChange(e) {
     switch (e.target.name) {
       case "imageFile":
+        setUserData({...userData, profile: e.target.files[0]})
         const reader = new FileReader();
         reader.readAsDataURL(e.target.files[0]);
-        reader.onloadend = () => {
-          setUserData({ ...userData, profilePicture: reader.result });
-        };
+        // reader.onloadend = () => {
+        //   setUserData({ ...userData, profilePicture: reader.result });
+        // };
         break;
 
       default:
@@ -43,7 +44,7 @@ function Register() {
     e.preventDefault();
     try {
 
-      await signup(userData.email, userData.password, userData.nickName, userData.adress, userData.profilePicture);
+      await signup(userData.email, userData.password, userData.nickName, userData.adress, userData.profile);
       <Alert severity="success"> You have register successfully!</Alert>
 
       navigate("/home");

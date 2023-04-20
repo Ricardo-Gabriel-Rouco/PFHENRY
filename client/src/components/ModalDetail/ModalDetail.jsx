@@ -1,7 +1,7 @@
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import CloseIcon from "@mui/icons-material/Close";
 import CardDetail from "../CardDetail/CardDetail.jsx";
 import { closeModal } from "../../redux/rootReducer/bookSlice.js";
 import { addProduct } from "../../redux/rootReducer/cartSlice";
@@ -51,6 +51,7 @@ const ModalDetail = () => {
             overflow: "hidden",
             bgcolor: "primary.light",
             color: "primary",
+            maxWidth:"55vw"
             },
         }}
         >
@@ -137,10 +138,9 @@ const ModalDetail = () => {
                 </Button>
             </Grid>
             </Grid>
-
             <Button
             variant="contained"
-            endIcon={<ExitToAppIcon />}
+            endIcon={<CloseIcon />}
             onClick={() => dispatch(closeModal())}
             sx={{
                 display: "flex",
