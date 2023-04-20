@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Button, TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { Button, TextField, Alert, Paper, Box, Typography, Input } from "@mui/material";
 import { useAuth } from "../../context/authContext";
 
 function Register() {
@@ -8,24 +8,44 @@ function Register() {
     email: "",
     password: "",
     nickName: "",
+    adress: "",
+    profilePicture: "",
+
   });
   const [errors, setErrors] = useState({
     email: "",
     password: "",
     nickName: "",
+    adress: "",
+    profilePicture: "",
   });
   const navigate = useNavigate();
 
   const { signup, loginWithGoogle } = useAuth();
 
   function handleInputChange(e) {
-    setUserData({ ...userData, [e.target.name]: e.target.value });
+    switch (e.target.name) {
+      case "imageFile":
+        const reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onloadend = () => {
+          setUserData({ ...userData, profilePicture: reader.result });
+        };
+        break;
+
+      default:
+        setUserData({ ...userData, [e.target.name]: e.target.value });
+        break;
+    }
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await signup(userData.email, userData.password, userData.nickName);
+
+      await signup(userData.email, userData.password, userData.nickName, userData.adress, userData.profilePicture);
+      <Alert severity="success"> You have register successfully!</Alert>
+
       navigate("/home");
     } catch (error) {
       if (error.code === "auth/weak-password")
@@ -45,66 +65,102 @@ function Register() {
       await loginWithGoogle();
       navigate("/home");
     } catch (error) {
-      alert("Error al iniciar sesion: ", error);
+      return (
+        <Alert severity="error">
+          Sign in Error: {error.message}
+        </Alert>)
     }
   };
 
   return (
-    <form
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        margin: "2rem",
-      }}
-      onSubmit={handleSubmit}
-      >
-      <TextField
-        type="text"
-        label="Nombre de usuario"
-        name="nickName"
-        value={userData.nickName}
-        onChange={handleInputChange}
-        style={{ margin: "1rem" }}
-      />
-      {errors.nickName && <p>{errors.nickName}</p>}
 
-      <TextField
-        type="email"
-        label="Correo electrónico"
-        name="email"
-        value={userData.email}
-        onChange={handleInputChange}
-        style={{ margin: "1rem" }}
-      />
-      {errors.email && <p>{errors.email}</p>}
-      <TextField
-        type="password"
-        label="Contraseña"
-        name="password"
-        value={userData.password}
-        onChange={handleInputChange}
-        style={{ margin: "1rem" }}
-      />
-      {errors.password && <p>{errors.password}</p>}
-      <Button
-        type="submit"
-        variant="contained"
-        color="info"
-        style={{ margin: "2rem" }}
-      >
-        Registrarse
-      </Button>
-      <Button
-        variant="contained"
-        color="success"
-        onClick={handleGoogleSignIn}
-        style={{ margin: "2rem" }}
-      >
-        Registrarse con Google
-      </Button>
-      <Link to="/login">¿Ya tienes una cuenta? Inicia sesión aquí.</Link>
-    </form>
+    <Box sx={{ marginTop: "50px", display: "flex", justifyContent: "center" }}>
+      <Paper elevation={10} style={{ borderRadius: '10px', padding: "1rem", maxWidth: "500px", backgroundColor: 'inherit' }}>
+        <form
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            margin: "2rem",
+          }}
+          onSubmit={handleSubmit}
+        >
+          <TextField
+            type="text"
+            label="Nombre de usuario"
+            name="nickName"
+            value={userData.nickName}
+            onChange={handleInputChange}
+            style={{ margin: "1rem" }}
+          />
+          {errors.nickName && (
+            <Typography variant="caption" color="red">
+              <p>{errors.nickName}</p>
+            </Typography>
+          )}
+
+          <TextField
+            type="email"
+            label="Correo electrónico"
+            name="email"
+            value={userData.email}
+            onChange={handleInputChange}
+            style={{ margin: "0.5rem", width: '15rem' }}
+          />
+          {errors.email && <Typography variant="caption" color="red"><p>{errors.email}</p></Typography>}
+
+          <TextField
+            type="password"
+            label="Contraseña"
+            name="password"
+            value={userData.password}
+            onChange={handleInputChange}
+            style={{ margin: "0.5rem", width: '15rem' }}
+          />
+          {errors.password && <Typography variant="caption" color="red"> <p>{errors.password}</p></Typography>}
+          <TextField
+            type="text"
+            label="adress"
+            name="adress"
+            value={userData.adress}
+            onChange={handleInputChange}
+            style={{ margin: "1rem" }}
+          />
+          {errors.adress && <Typography variant="caption" color="red"><p>{errors.adress}</p></Typography>}
+          <Input
+            type="file"
+            accept="image/*"
+            name="imageFile"
+            placeholder="Select an image for profile picture"
+            onChange={handleInputChange}
+          />
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            style={{ margin: "1.5rem" }}
+          >
+            Register
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={handleGoogleSignIn}
+            style={{ margin: "1rem" }}
+          >
+            Register with Google
+          </Button>
+          <Typography
+            variant="body1"
+            style={{ margin: "1rem", textDecoration: "underline", cursor: "pointer" }}
+            onClick={() => navigate("/login")}
+          >
+            Sign in
+          </Typography>
+        </form>
+      </Paper>
+    </Box>
+
   );
 }
 

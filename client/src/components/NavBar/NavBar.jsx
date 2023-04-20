@@ -18,7 +18,6 @@ import Menu from "@mui/material/Menu";
 import { useDispatch, useSelector } from "react-redux";
 // import { logUserOut } from "../../redux/rootReducer/userSlice";
 import { Badge } from "@mui/material";
-import { reset } from "../../redux/rootReducer/bookSlice";
 import { toogleCart } from "../../redux/rootReducer/toogleSlice";
 import { toogleFav } from "../../redux/rootReducer/toogleFavSlice";
 import { postCart } from "../../firebase/firestore/cart";
@@ -30,8 +29,10 @@ import light from "../../Theme/light";
 import dark from "../../Theme/dark";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import ModeNightIcon from "@mui/icons-material/ModeNight";
-import ChatIcon from '@mui/icons-material/Chat';
+import ChatIcon from "@mui/icons-material/Chat";
 import { availableItems } from "../Cart/Cart";
+import { styled } from "@mui/material/styles";
+import logo from "../../Assets/homeBrand.png";
 
 const NavBar = ({ passTheme, mode }) => {
   const { userStatus } = useAuth();
@@ -43,6 +44,8 @@ const NavBar = ({ passTheme, mode }) => {
   const favorites = useSelector((state) => state.favorite.favorites);
   const cart = useSelector((state) => state.cart);
   const displayableBooks = useSelector((state) => state.books.displayableBooks);
+
+  const showTheme = mode.palette.mode
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -60,206 +63,246 @@ const NavBar = ({ passTheme, mode }) => {
     dispatch(removeAllFavorites());
   };
 
-  const goHome = () => {
-    if (location.pathname === "/home") dispatch(reset());
-    else navigate("/home");
-  };
-
   //Estableciendo modos de Theme para el py
 
   useEffect(() => {
     dispatch(importBooks());
   }, [dispatch]);
 
+  const Img = styled("img")({
+    width: 400,
+    height: "100%",
+    objectFit: "cover",
+    objectPosition: "center",
+  });
+
   return (
     location.pathname !== "/" &&
     location.pathname.slice(0, 6) !== "/admin" && (
-      <Box sx={{ bgcolor: "secondary", p: 1, marginTop: "auto 0px" }}>
-        <AppBar position="fixed" color="primary">
-          <Toolbar>
-            <Grid container>
-              <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
+      <Box sx={{ bgcolor: "secondary", p: 1 }}>
+        <Img
+          src={logo}
+          alt="Book's Kingdom"
+          sx={{
+            alignContent: "flex-start",
+            maxWidth: 400,
+            height: "auto",
+            width: "100%",
+            maxHeight: 51,
+          }}
+        />
+        <Grid container>
+          <Grid item xs={12}>
+            <AppBar position="relative" color="primary" sx={{ mt: 1, }}>
+              <Toolbar sx={{ flexWrap: 'wrap', display: 'flex', justifyContent: 'center', alignContent: 'center', alignItems: 'center', justifyItems: 'center' }}>
                 <IconButton
                   size="large"
                   edge="start"
                   aria-label="home"
                   color="inherit"
                   sx={{ mr: 2 }}
-                  onClick={goHome}
+                  onClick={() => navigate("/home")}
                 >
                   <Home />
                 </IconButton>
-              </Grid>
 
-              <Grid item xs="auto">
-                <Box
-                  sx={{
-                    width: "475px",
-                    padding: "0px",
-                  }}
-                >
-                  <SearchBar />
-                </Box>
-              </Grid>
-
-              {userStatus.role === "ADMIN" ? (
-                <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
-                  <IconButton
-                    size="large"
-                    edge="start"
-                    aria-label="admin"
-                    sx={{ mr: 2 }}
-                    color="inherit"
-                    onClick={() => passTheme(dark)}
+                <Grid item xs={12} sm={true} md={true} lg={true} xl={true} sx={{ flexWrap: 'wrap', display: 'flex', justifyContent: 'center',}}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      width: '60%',
+                      padding: "0px",
+                      minWidth: '400px',
+                      
+                    }}
                   >
-                    <Link to="/ADMIN">
-                      <AdminPanelSettingsIcon />
-                    </Link>
-                  </IconButton>
+                    <SearchBar />
+                  </Box>
                 </Grid>
-              ) : null}
-              {userStatus.role === "ADMIN" ? (
-                <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
-                  <IconButton
-                    size="large"
-                    edge="start"
-                    aria-label="admin"
-                    sx={{ mr: 2 }}
-                    color="inherit"
-                  >
-                    <Link to="/support">
-                      <ChatIcon />
-                    </Link>
-                  </IconButton>
-                </Grid>
-              ) : null}
-              {mode === light ? (
-                <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
-                  <IconButton
-                    size="large"
-                    edge="start"
-                    aria-label="home"
-                    color="inherit"
-                    sx={{ mr: 2 }}
-                    onClick={() => passTheme(dark)}
-                  >
-                    <ModeNightIcon />
-                  </IconButton>
-                </Grid>
-              ) : (
-                <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
-                  <IconButton
-                    size="large"
-                    edge="start"
-                    aria-label="home"
-                    color="inherit"
-                    sx={{ mr: 2 }}
-                    onClick={() => passTheme(light)}
-                  >
-                    <LightModeIcon />
-                  </IconButton>
-                </Grid>
-              )}
+                <Box sx={{ flexWrap: 'wrap', display: 'flex'}}>
+                  <Grid item xs={true}>
 
-              <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
-                <IconButton
-                  size="large"
-                  edge="start"
-                  aria-label="buttons"
-                  sx={{ mr: 2 }}
-                  color="inherit"
-                  onClick={() => dispatch(toogleFav())}
-                >
-                  <Badge
-                    badgeContent={
-                      favorites &&
-                      displayableBooks.filter((book) =>
-                        favorites.favorites.includes(book.id)
-                      ).length
-                    }
-                  >
-                    <BookmarkOutlinedIcon />
-                  </Badge>
-                </IconButton>
-              </Grid>
-              <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
-                <IconButton
-                  size="large"
-                  edge="start"
-                  aria-label="buttons"
-                  sx={{ mr: 2 }}
-                  color="inherit"
-                  onClick={() => dispatch(toogleCart())}
-                >
-                  <Badge
-                    badgeContent={availableItems(displayableBooks, cart).length}
-                  >
-                    <ShoppingCart />
-                  </Badge>
-                </IconButton>
-              </Grid>
+                    {userStatus.role.includes("ADMIN") ? (
 
-              {/* {userStatus.logged ? ( */}
-              <Grid item xs={12} sm={true} md={true} lg={true} xl={true}>
-                <IconButton
-                  size="large"
-                  edge="start"
-                  sx={{ mr: 2 }}
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  color="inherit"
-                  onClick={handleMenu}
-                >
-                  <AccountCircle />
-                </IconButton>
-
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "right",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={Boolean(anchorEl)}
-                  onClose={handleClose}
-                  color="inherit"
-                >
-                  {userStatus.logged ? (
-                    <>
-                      <MenuItem onClick={handleClose}>
-                        <Link to={"/profile"}>Profile</Link>
-                      </MenuItem>
-                      <MenuItem onClick={handleClose}>
-                        <Link to={"/account"}>My Books</Link>
-                      </MenuItem>
-                      <MenuItem
-                        onClick={() => {
-                          handleClose();
-                          handleLogOut();
-                        }}
+                      <IconButton
+                        size="large"
+                        edge="start"
+                        aria-label="admin"
+                        sx={{ mr: 2 }}
+                        color="inherit"
+                        onClick={() => navigate("/admin")}
                       >
-                        Log Out
-                      </MenuItem>
-                    </>
-                  ) : (
-                    <MenuItem onClick={handleClose}>
-                      <Link to={"/login"}>Log In</Link>
-                    </MenuItem>
-                  )}
-                </Menu>
-              </Grid>
-            </Grid>
-          </Toolbar>
-        </AppBar>
-        <Toolbar />
+                        <AdminPanelSettingsIcon />
+                      </IconButton>
+
+
+                    ) : null}
+                  </Grid>
+                  <Grid item xs={true}>
+                    {userStatus.role.includes("ADMIN") ? (
+
+                      <IconButton
+                        size="large"
+                        edge="start"
+                        aria-label="admin"
+                        sx={{ mr: 2 }}
+                        color="inherit"
+                        onClick={() => navigate("/support")}
+                      >
+                        <ChatIcon />
+                      </IconButton>
+
+                    ) : null}
+                  </Grid>
+                  <Grid item xs={true}>
+                    {showTheme === "light" ? (
+
+                      <IconButton
+                        size="large"
+                        edge="start"
+                        aria-label="home"
+                        color="inherit"
+                        sx={{ mr: 2 }}
+                        onClick={() => passTheme(dark)}
+                      >
+                        <ModeNightIcon />
+                      </IconButton>
+
+                    ) : (
+
+                      <IconButton
+                        size="large"
+                        edge="start"
+                        aria-label="home"
+                        color="inherit"
+                        sx={{ mr: 2 }}
+                        onClick={() => passTheme(light)}
+                      >
+                        <LightModeIcon />
+                      </IconButton>
+
+                    )}
+                  </Grid>
+                  <Grid item xs={true}>
+
+                    <IconButton
+                      size="large"
+                      edge="start"
+                      aria-label="buttons"
+                      sx={{ mr: 2 }}
+                      color="inherit"
+                      onClick={() => dispatch(toogleFav())}
+                    >
+                      <Badge
+                        badgeContent={
+                          favorites &&
+                          displayableBooks.filter((book) =>
+                            favorites.favorites.includes(book.id)
+                          ).length
+                        }
+                      >
+                        <BookmarkOutlinedIcon />
+                      </Badge>
+                    </IconButton>
+                  </Grid>
+                  <Grid item xs={true}>
+
+                    <IconButton
+                      size="large"
+                      edge="start"
+                      aria-label="buttons"
+                      sx={{ mr: 2 }}
+                      color="inherit"
+                      onClick={() => dispatch(toogleCart())}
+                    >
+                      <Badge
+                        badgeContent={availableItems(displayableBooks, cart).length}
+                      >
+                        <ShoppingCart />
+                      </Badge>
+                    </IconButton>
+                  </Grid>
+
+                  {/* {userStatus.logged ? ( */}
+                  <Grid item xs={true}>
+                    <IconButton
+                      size="large"
+                      edge="start"
+                      sx={{ mr: 2 }}
+                      aria-label="account of current user"
+                      aria-controls="menu-appbar"
+                      aria-haspopup="true"
+                      color="inherit"
+                      onClick={handleMenu}
+                    >
+                      <AccountCircle />
+                    </IconButton>
+
+                  </Grid>
+                  <Grid item xs={true}>
+                    <Menu
+                      id="menu-appbar"
+                      anchorEl={anchorEl}
+                      anchorOrigin={{
+                        vertical: "bottom",
+                        horizontal: "right",
+                      }}
+                      keepMounted
+                      transformOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                      }}
+                      open={Boolean(anchorEl)}
+                      onClose={handleClose}
+                      color="inherit"
+                    >
+                      {userStatus.logged ? (
+                        <>
+                          <MenuItem
+                            onClick={() => {
+                              navigate("/profile");
+                              handleClose();
+                            }}
+                          >
+                            Profile
+                          </MenuItem>
+                          <MenuItem
+                            onClick={() => {
+                              navigate("/account");
+                              handleClose();
+                            }}
+                          >
+                            My Books
+                          </MenuItem>
+                          <MenuItem
+                            onClick={() => {
+                              handleClose();
+                              handleLogOut();
+                            }}
+                          >
+                            Log Out
+                          </MenuItem>
+                        </>
+                      ) : (
+                        <MenuItem
+                          onClick={() => {
+                            navigate("/login");
+                            handleClose();
+                          }}
+                        >
+                          Log In
+                        </MenuItem>
+                      )}
+                    </Menu>
+                  </Grid>
+                </Box>
+              </Toolbar>
+            </AppBar>
+          </Grid>
+        </Grid>
+        {/* <Toolbar /> */}
         {/* Este componente es solo para evitar que la NavBar fija pise elementos en la pagina*/}
-      </Box>
+      </Box >
     )
   );
 };

@@ -1,4 +1,4 @@
-import { getDocs, query, collection, getDoc, doc } from "firebase/firestore"
+import { getDocs, query, collection, getDoc, doc,updateDoc } from "firebase/firestore"
 import { db } from '../firebase-config';
 
 export async function getAllTheUsers() {
@@ -16,6 +16,33 @@ export async function getAllTheUsers() {
   })
   return data
 }
+
+export async function modifyUser(id, display,rol) {
+  try {
+    const userRef = doc(db, 'users', `${id}`)
+    await updateDoc(userRef, {
+      display:display ,
+      // rol:rol
+
+    })
+    console.log(`User with ID ${id} has been modified with the following data: `,{display, rol})
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export async function modifyUserRole(id,rol){
+  try{
+    const userRef = doc(db,'users',`${id}`);
+    await updateDoc(userRef,{
+      rol:rol
+    })
+
+  }catch(error){
+    console.log(error)
+  }
+}
+
 
 export async function getUserById (id) {
   try {

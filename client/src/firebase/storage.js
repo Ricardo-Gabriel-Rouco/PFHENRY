@@ -17,7 +17,6 @@ export const getURL = (id) => {
 
 export const uploadImage = async ({file,link}, id) => {
     const imagesRef = ref(storage, `${id}.jpg`);
-    
 
     try {
         if(file){

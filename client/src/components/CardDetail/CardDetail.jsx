@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getBookById } from "../../firebase/firestore/books";
+import { useSelector } from "react-redux";
+
 import {
   Grid,
   Box,
@@ -12,6 +14,7 @@ import {
   ListSubheader,
   Collapse,
   Button,
+  Rating,
 } from "@mui/material";
 import CardsReview from "../CardsReview/CardsReview";
 import CardNewReview from "../CardNewReview/CardNewReview";
@@ -22,27 +25,40 @@ import { useAuth } from "../../context/authContext";
 const CardDetail = ({ id }) => {
   const [details, setMoreDetails] = useState(false);
   const [description, setDescription] = useState(false);
+  const bookId = useSelector((state) => state.books.bookId);
 
   const { userStatus } = useAuth();
 
   const paramId = useParams().id;
-  if (!id) id = paramId;
+
+  if (!id) {
+    if (paramId) id = paramId;
+    else {
+      id = bookId;
+    }
+  }
+
   const [bookDetail, setBookDetail] = useState({});
 
   useEffect(() => {
-    getBookById(id)
-      .then((response) => {
-        // setBookDetail(MyBook); //reemplazar en modo PRODUCCION
-        setBookDetail(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (id)
+      getBookById(id)
+        .then((response) => {
+          // setBookDetail(MyBook); //reemplazar en modo PRODUCCION
+          setBookDetail(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
   }, [id]);
 
   const handleNewReview = async (input) => {
     await updateBookReviews(input);
-    await modifyBook(id, {rating: !bookDetail.rating ? input.rating : (parseInt(input.rating) + parseInt(bookDetail.rating)) / 2 })
+    await modifyBook(id, {
+      rating: !bookDetail.rating
+        ? input.rating
+        : (parseInt(input.rating) + parseInt(bookDetail.rating)) / 2,
+    });
     getBookById(id)
       .then((response) => {
         setBookDetail(response);
@@ -50,7 +66,6 @@ const CardDetail = ({ id }) => {
       .catch((error) => {
         console.log(error);
       });
-    
   };
 
   return bookDetail.id ? (
@@ -66,17 +81,21 @@ const CardDetail = ({ id }) => {
         <Card
           sx={{
             position: "absolute",
-            top: "50%",
+            top: "60%",
             left: "50%",
             transform: "translate(-50%, -50%)",
             p: 4,
-            bgcolor: "primary.dark",
+            bgcolor: "success.light",
             width: 800,
             maxWidth: "50vw",
             maxHeight: "71vh",
-            overflowY: "auto",
+            // overflow: "auto",
+            overflow: 'scroll',
+            '::-webkit-scrollbar': {
+              display: 'none'
+            },
             marginLeft: "4px",
-            marginTop: "5px",
+            marginTop: "2px",
           }}
         >
           <Box
@@ -106,21 +125,32 @@ const CardDetail = ({ id }) => {
             <Typography
               variant="body1"
               gutterBottom
-              sx={{ fontWeight: "bold", marginBottom: "15px" }}
+              sx={{ fontWeight: "bold", marginBottom: "10px" }}
             >
               {`Price: $${bookDetail?.price}`}
             </Typography>
             <Typography
               variant="body1"
               gutterBottom
-              sx={{ fontWeight: "bold", marginBottom: "15px" }}
+              sx={{ fontWeight: "bold", marginBottom: "10px" }}
             >
-              {`Rating: ${bookDetail?.rating}`}
+              <Rating
+                name="read-only"
+                value={bookDetail?.rating}
+                size="large"
+                precision={0.5}
+                readOnly
+                sx={{
+                  "& .MuiRating-iconFilled": {
+                    color: "primary.contrastText",
+                  },
+                }}
+              />
             </Typography>
             <Typography
               variant="body1"
               gutterBottom
-              sx={{ fontWeight: "bold", marginBottom: "15px" }}
+              sx={{ fontWeight: "bold", marginBottom: "10px" }}
             >
               <Collapse in={details} collapsedHeight={"500px"}>
                 {bookDetail?.year} - {bookDetail?.editorial} -{" "}

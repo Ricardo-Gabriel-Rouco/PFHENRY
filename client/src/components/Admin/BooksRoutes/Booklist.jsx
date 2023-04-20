@@ -16,6 +16,8 @@ import {
 import BookListFilter from "./BooklistFilter";
 import { modifyBook } from "../../../firebase/firestore/books";
 import Checkbox from '@mui/material/Checkbox';
+import { openModal } from "../../../redux/rootReducer/bookSlice";
+import { useDispatch } from "react-redux";
 
 
 const DisplayCheckbox = () => {
@@ -30,17 +32,25 @@ const DisplayCheckbox = () => {
     setChecked(event.target.checked);
     modifyBook(record.id, {display: !checked})
   }
+
+
   
 
   return (
     <Checkbox
       checked={checked}
       onChange={handleChange}
-      inputProps={{ 'aria-label': 'controlled' }}
     />
   )
 }
 
+const MyShowButton = () => {
+  const record = useRecordContext();
+  const dispatch = useDispatch()
+
+  return <ShowButton to={false} onClick={()=>dispatch(openModal(record.id))} />
+
+}
 
 export const BookList = (props) => {
   
@@ -76,7 +86,7 @@ export const BookList = (props) => {
         source="price"
         options={{ style: "currency", currency: "USD" }}
       />
-      <ShowButton />
+      <MyShowButton/>
       <EditButton />
     </Datagrid>
   </List>

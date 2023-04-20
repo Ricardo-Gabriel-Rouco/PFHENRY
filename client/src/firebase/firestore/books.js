@@ -1,6 +1,5 @@
 import { getDocs, query, collection, where, doc, getDoc, updateDoc, setDoc, arrayUnion } from "firebase/firestore"
 import { db } from '../firebase-config';
-
 const regexTitle = /^[a-zA-Z0-9\s]+$/
 const regexAuthor = /^[a-zA-Z\s]+(\.[a-zA-Z\s]+)*$/;
 const regexNumber = /^[0-9]+$/
@@ -99,10 +98,10 @@ export async function postBook(book) {
     const newBook = {
       ...book,
       display: true,
+      authors:[book.authors],
     }
       const collectionRef = collection(db, 'books')
       const docRef = doc(collectionRef, book.isbn)
-      console.log(newBook)
       await setDoc(docRef, newBook)
       return {
         date:newBook
@@ -144,7 +143,7 @@ export async function updateBookReviews({id, nickname, comment, rating, display,
         display,
       })
     })
-    return alert("Comment register!")
+  
   } catch (error) {
     console.log(error)
   }

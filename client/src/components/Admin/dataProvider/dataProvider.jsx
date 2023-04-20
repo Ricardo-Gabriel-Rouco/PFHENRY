@@ -4,8 +4,9 @@ import {
   getBookById,
   postBook,
 } from "../../../firebase/firestore/books";
-import { getOrders, getOrdersById, getOrdersByUser } from "../../../firebase/firestore/orders";
-import { getAllTheUsers, getUserById } from "../../../firebase/firestore/users";
+import { getAllTheUsers, modifyUser, modifyUserRole, getUserById } from "../../../firebase/firestore/users";
+import { getOrders, getOrdersById } from "../../../firebase/firestore/orders";
+
 
 const dataProvider = {
   getList: async (resource, params) => {
@@ -171,20 +172,41 @@ const dataProvider = {
         `Book with ID ${id} has been modified with the following data: `,
         data
       );
-      return { data: { id: id, ...data } };
-    }
-  },
-  create: async (resource, params) => {
-    if (resource === "books") {
-      try {
-        const response = await postBook(params.data);
-        return {
-          data: response,
-        };
-      } catch (error) {
-        return {
-          error: error.message || "Something went wrong",
-        };
+      return { data: { id: id, ...data } }
+    } 
+    else if (resource === 'users'){
+      const {id,data} = params;
+      if(data.display !== undefined && data.rol !== undefined){
+        await modifyUser(id,data.display);
+        await modifyUserRole(id,data.rol)
+        console.log(`User with ID ${id} has been modified`)
+        return {data:{id:id, ...data}}
+      }
+      else if(data.display !== undefined){
+        await modifyUser(id,data.display)
+        console.log(`User display with ID ${id} has been modified`)
+        return {data:{id:id,...data}}
+      }else if(data.rol !== undefined){
+        await modifyUserRole(id,data.rol);
+        console.log(`User role with ID ${id} has been modified`)
+        return{data:{id:id,...data}}
+      }
+      // await modifyUser(id,data.display,data.rol)
+      // console.log(`User with ID ${id} has been modified`)
+      // return{data:{id:id,...data}}
+    }},
+  create: async (resource,params) =>{
+    if(resource === 'books'){
+      try{
+        const response = await postBook(params.data)
+        return{
+          data:response,
+        }
+      
+      }catch(error){
+        return{
+          error:error.message || "Something went wrong"
+        }
       }
     }
   },

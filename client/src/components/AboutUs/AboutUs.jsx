@@ -1,15 +1,21 @@
-import imgJoaco from "../../Assets/WhatsApp Image 2023-02-23 at 11.58.54.jpeg";
-import imgGabi from "../../Assets/WhatsApp Image 2023-02-23 at 11.58.54.jpeg";
-import imgJuli from "../../Assets/WhatsApp Image 2023-02-23 at 11.58.54.jpeg";
-import imgAlfredo from "../../Assets/WhatsApp Image 2023-02-23 at 11.58.54.jpeg";
-import imgDiego from "../../Assets/WhatsApp Image 2023-02-23 at 11.58.54.jpeg";
-import imgManu from "../../Assets/WhatsApp Image 2023-02-23 at 11.58.54.jpeg";
-import imgClau from "../../Assets/WhatsApp Image 2023-02-23 at 11.58.54.jpeg";
-import imgMauri from "../../Assets/WhatsApp Image 2023-02-23 at 11.58.54.jpeg";
+import imgJoaco from "../../Assets/joaco.jpeg";
+import imgGabi from "../../Assets/gabrielRouco.jpg";
+import imgJuli from "../../Assets/juli.jpeg";
+import imgAlfredo from "../../Assets/alfre.jpeg";
+import imgManu from "../../Assets/manu.jpeg";
+import imgClau from "../../Assets/claudio.jpeg";
+import imgMauri from "../../Assets/mauri.jpeg";
+
 import s from "./AboutUs.module.css";
 import { AiFillLinkedin, AiFillGithub } from "react-icons/ai";
 import { FaChevronUp } from "react-icons/fa";
-import {Grid, CardMedia, Card} from '@mui/material'
+import {
+  Box,
+  Grid,
+  CardMedia,
+  Card,
+  Typography,
+} from "@mui/material";
 
 function AboutUs() {
   function scrollToLanding() {
@@ -19,21 +25,44 @@ function AboutUs() {
     }
   }
   return (
-    <>
-      <section id="about" className={s.container}>
-        <div className={s.titulo}>
-          <FaChevronUp onClick={(e) => scrollToLanding(e)} className={s.flecha} />
-          KB TEAM - EL ORDEN DPS LO CAMBIAMOS, FUI AGREGANDO! -joaco-
-        </div>
-        <div className={s.cardsContainer}>
-          {/* joaco */}
-
-          <div className={s.card}>
-            <div className={s.divImg}>
-              <img className={s.img} src={imgJoaco} alt="img" />
-            </div>
-            <h3 className={s.apodo}>JOACO</h3>
-            <h2 className={s.nombreCompleto}>Joaquín Santiago Oliveira</h2>
+    <Box sx={{ maxHeight: "100%", maxWidth: "100%" }} id='about'>
+      <FaChevronUp onClick={(e) => scrollToLanding(e)} className={s.flecha} />
+      <Typography variant="h1" fontSize={"fontSize.title"}>
+        DREAM TEAM
+      </Typography>
+      <Grid
+        container
+        spacing={1}
+        alignItems="center"
+        justifyContent="center"
+        sx={{ padding: '2em', marginLeft: "auto" }}
+      >
+        {/* joaco */}
+        <Grid item xs={12} md={6} lg={4}>
+          <Card
+            sx={{
+              width: "300px",
+              height: "400px",
+              bgcolor: "background.default",
+            }}
+          >
+            <CardMedia
+              component="img"
+              image={imgJoaco}
+              sx={{
+                borderRadius: "50%",
+                width: 249,
+                height: 260,
+                mx: "auto",
+                marginTop: "10px",
+              }}
+            />
+            <Typography fontSize={"fontSize.thirdTitle"} marginTop={"15px"}>
+              JOACO
+            </Typography>
+            <Typography fontSize={"fontSize.secondTitle"}>
+              Joaquín Santiago Oliveira
+            </Typography>
 
             <a href="https://github.com/fr0st1987">
               {" "}
@@ -42,140 +71,273 @@ function AboutUs() {
 
             <a href="https://www.linkedin.com/in/joaquin-santiago-oliveira">
               {" "}
-              <AiFillLinkedin className={s.linkedin} icon={AiFillLinkedin} />{" "}
+              <AiFillLinkedin
+                className={s.linkedin}
+                icon={AiFillLinkedin}
+              />{" "}
             </a>
-          </div>
-          {/* Gabi */}
-          <div className={s.card}>
-            <div className={s.divImg}>
-              <img className={s.img} src={imgGabi} alt="img" />
-            </div>
-            <h3 className={s.apodo}>GABI</h3>
-            <h2 className={s.nombreCompleto}>Gabriel Rouco</h2>
+          </Card>
+        </Grid>
+
+        {/* Gabi */}
+        <Grid item xs={12} md={6} lg={4}>
+          <Card
+            sx={{
+              width: "300px",
+              height: "400px",
+              bgcolor: "background.default",
+            }}
+          >
+            <CardMedia
+              component="img"
+              image={imgGabi}
+              sx={{
+                borderRadius: "50%",
+                bgcolor: "lightgrey",
+                width: 249,
+                height: 260,
+                mx: "auto",
+                marginTop: "10px",
+                objectFit: "contain"
+              }}
+            />
+            <Typography fontSize={"fontSize.thirdTitle"} marginTop={"15px"}>
+              GABI
+            </Typography>
+            <Typography fontSize={"fontSize.secondTitle"}>
+              Gabriel Rouco
+            </Typography>
 
             <a href="https://github.com/Ricardo-Gabriel-Rouco">
               {" "}
               <AiFillGithub className={s.gitHub} icon={AiFillGithub} />{" "}
             </a>
 
-            <a href="www.linkedin.com/in/ricardo-gabriel-rouco">
+            <a href="https://www.linkedin.com/in/ricardo-gabriel-rouco">
               {" "}
-              <AiFillLinkedin className={s.linkedin} icon={AiFillLinkedin} />{" "}
+              <AiFillLinkedin
+                className={s.linkedin}
+                icon={AiFillLinkedin}
+              />{" "}
             </a>
-          </div>
+          </Card>
+        </Grid>
 
-          {/* Juli */}
-          <div className={s.card}>
-            <div className={s.divImg}>
-              <img className={s.img} src={imgJuli} alt="img" />
-            </div>
-            <h3 className={s.apodo}>JULI</h3>
-            <h2 className={s.nombreCompleto}>Julián Giampetri</h2>
+        {/* Juli */}
+        <Grid item xs={12} md={6} lg={4}>
+          <Card
+            sx={{
+              width: "300px",
+              height: "400px",
+              bgcolor: "background.default",
+            }}
+          >
+            <CardMedia
+              component="img"
+              image={imgJuli}
+              sx={{
+                borderRadius: "50%",
+                width: 249,
+                height: 260,
+                mx: "auto",
+                marginTop: "10px",
+              }}
+            />
+            <Typography fontSize={"fontSize.thirdTitle"} marginTop={"15px"}>
+              JULI
+            </Typography>
+            <Typography fontSize={"fontSize.secondTitle"}>
+              Julian Giampetruzi
+            </Typography>
 
             <a href="https://github.com/jgiampe">
               {" "}
               <AiFillGithub className={s.gitHub} icon={AiFillGithub} />{" "}
             </a>
 
-            <a href="https://www.linkedin.com/in/joaquin-santiago-oliveira">
+            <a href="https://www.linkedin.com/in/julian-giampetruzzi">
               {" "}
-              <AiFillLinkedin className={s.linkedin} icon={AiFillLinkedin} />{" "}
+              <AiFillLinkedin
+                className={s.linkedin}
+                icon={AiFillLinkedin}
+              />{" "}
             </a>
-          </div>
-          {/* Manu */}
-          <div className={s.card}>
-            <div className={s.divImg}>
-              <img className={s.img} src={imgManu} alt="img" />
-            </div>
-            <h3 className={s.apodo}>MANU</h3>
-            <h2 className={s.nombreCompleto}>Manuel Mitacc</h2>
+          </Card>
+        </Grid>
+
+        {/* Manu */}
+        <Grid item xs={12} md={6} lg={4}>
+          <Card
+            sx={{
+              width: "300px",
+              height: "400px",
+              bgcolor: "background.default",
+            }}
+          >
+            <CardMedia
+              component="img"
+              image={imgManu}
+              sx={{
+                borderRadius: "50%",
+                width: 249,
+                height: 260,
+                mx: "auto",
+                marginTop: "10px",
+                objectFit: "contain",
+                bgcolor: "lightgrey"
+              }}
+            />
+            <Typography fontSize={"fontSize.thirdTitle"} marginTop={"15px"}>
+              MANU
+            </Typography>
+            <Typography fontSize={"fontSize.secondTitle"}>
+              Manuel Mittac
+            </Typography>
 
             <a href="https://github.com/mmitacc">
               {" "}
               <AiFillGithub className={s.gitHub} icon={AiFillGithub} />{" "}
             </a>
 
-            <a href="https://www.linkedin.com/in/joaquin-santiago-oliveira">
+            <a href="https://www.linkedin.com/in/mmitacc/">
               {" "}
-              <AiFillLinkedin className={s.linkedin} icon={AiFillLinkedin} />{" "}
+              <AiFillLinkedin
+                className={s.linkedin}
+                icon={AiFillLinkedin}
+              />{" "}
             </a>
-          </div>
+          </Card>
+        </Grid>
 
-          {/* Alfre */}
-          <div className={s.card}>
-            <div className={s.divImg}>
-              <img className={s.img} src={imgAlfredo} alt="img" />
-            </div>
-            <h3 className={s.apodo}>Alfi (mane</h3>
-            <h2 className={s.nombreCompleto}>Alfredo APELLIDO AQUI</h2>
+        {/* Alfre */}
+        <Grid item xs={12} md={6} lg={4}>
+          <Card
+            sx={{
+              width: "300px",
+              height: "400px",
+              bgcolor: "background.default",
+            }}
+          >
+            <CardMedia
+              component="img"
+              image={imgAlfredo}
+              sx={{
+                borderRadius: "50%",
+                width: 249,
+                height: 260,
+                mx: "auto",
+                marginTop: "10px",
+              }}
+            />
+            <Typography fontSize={"fontSize.thirdTitle"} marginTop={"15px"}>
+              ALFRE
+            </Typography>
+            <Typography fontSize={"fontSize.secondTitle"}>
+              Alfredo Gonzalez
+            </Typography>
 
-            <a href="https://github.com/alfredocgn">
-              {" "}
-              <AiFillGithub className={s.gitHub} icon={AiFillGithub} />{" "}
-            </a>
-
-            <a href="https://www.linkedin.com/in/joaquin-santiago-oliveira">
-              {" "}
-              <AiFillLinkedin className={s.linkedin} icon={AiFillLinkedin} />{" "}
-            </a>
-          </div>
-          {/* Die */}
-          <div className={s.card}>
-            <div className={s.divImg}>
-              <img className={s.img} src={imgDiego} alt="img" />
-            </div>
-            <h3 className={s.apodo}>Die</h3>
-            <h2 className={s.nombreCompleto}>Diego APELLIDO AQUI</h2>
-
-            <a href="https://github.com/diegohp141">
-              {" "}
-              <AiFillGithub className={s.gitHub} icon={AiFillGithub} />{" "}
-            </a>
-
-            <a href="https://www.linkedin.com/in/joaquin-santiago-oliveira">
-              {" "}
-              <AiFillLinkedin className={s.linkedin} icon={AiFillLinkedin} />{" "}
-            </a>
-          </div>
-          {/* Mauri */}
-          <div className={s.card}>
-            <div className={s.divImg}>
-              <img className={s.img} src={imgMauri} alt="img" />
-            </div>
-            <h3 className={s.apodo}>Mauri</h3>
-            <h2 className={s.nombreCompleto}>Mauricio Salerno</h2>
-
-            <a href="https://github.com/mlsalerno">
+            <a href="https://github.com/Alfredocgn">
               {" "}
               <AiFillGithub className={s.gitHub} icon={AiFillGithub} />{" "}
             </a>
 
-            <a href="https://www.linkedin.com/in/mauricio-salerno-b06640221/">
+            <a href="https://www.linkedin.com/in/alfredo-c-gonzalez-noriega-095b40119/">
               {" "}
-              <AiFillLinkedin className={s.linkedin} icon={AiFillLinkedin} />{" "}
+              <AiFillLinkedin
+                className={s.linkedin}
+                icon={AiFillLinkedin}
+              />{" "}
             </a>
-          </div>
-          {/* Clau */}
-          <div className={s.card}>
-            <div className={s.divImg}>
-              <img className={s.img} src={imgClau} alt="img" />
-            </div>
-            <h3 className={s.apodo}>Cla</h3>
-            <h2 className={s.nombreCompleto}>Claudio Peralta</h2>
+          </Card>
+        </Grid>
 
-            <a href="https://github.com/claperalta">
+        {/* Mauri */}
+        <Grid item xs={12} md={6} lg={4}>
+          <Card
+            sx={{
+              width: "300px",
+              height: "400px",
+              bgcolor: "background.default",
+            }}
+          >
+            <CardMedia
+              component="img"
+              image={imgMauri}
+              sx={{
+                borderRadius: "50%",
+                width: 249,
+                height: 260,
+                mx: "auto",
+                marginTop: "10px",
+              }}
+            />
+
+            <Typography fontSize={"fontSize.thirdTitle"} marginTop={"15px"}>
+              MAURI
+            </Typography>
+            <Typography fontSize={"fontSize.secondTitle"}>
+              Mauricio Salerno
+            </Typography>
+
+            <a href="https://github.com/MLSalerno">
               {" "}
               <AiFillGithub className={s.gitHub} icon={AiFillGithub} />{" "}
             </a>
 
-            <a href="https://www.linkedin.com/in/joaquin-santiago-oliveira">
+            <a href="https://www.linkedin.com/in/mauricio-salerno">
               {" "}
-              <AiFillLinkedin className={s.linkedin} icon={AiFillLinkedin} />{" "}
+              <AiFillLinkedin
+                className={s.linkedin}
+                icon={AiFillLinkedin}
+              />{" "}
             </a>
-          </div>
-        </div>
-      </section>
-    </>
+          </Card>
+        </Grid>
+
+        {/* Clau */}
+        <Grid item xs={12} md={6} lg={4}>
+          <Card
+            sx={{
+              width: "300px",
+              height: "400px",
+              bgcolor: "background.default",
+            }}
+          >
+            <CardMedia
+              component="img"
+              image={imgClau}
+              sx={{
+                borderRadius: "50%",
+                width: 249,
+                height: 260,
+                mx: "auto",
+                marginTop: "10px",
+              }}
+            />
+
+            <Typography fontSize={"fontSize.thirdTitle"} marginTop={"15px"}>
+              CLA
+            </Typography>
+            <Typography fontSize={"fontSize.secondTitle"}>
+              Claudio Peralta
+            </Typography>
+
+            <a href="https://github.com/ClaPeralta">
+              {" "}
+              <AiFillGithub className={s.gitHub} icon={AiFillGithub} />{" "}
+            </a>
+
+            <a href="https://www.linkedin.com/in/claudio-peralta-2a6777253/">
+              {" "}
+              <AiFillLinkedin
+                className={s.linkedin}
+                icon={AiFillLinkedin}
+              />{" "}
+            </a>
+          </Card>
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
 
