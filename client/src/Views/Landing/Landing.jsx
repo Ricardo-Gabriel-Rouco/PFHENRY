@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Grid, Typography, CardMedia } from "@mui/material";
-
+import background from "../../Assets/fondoTenue.jpg";
 const Landing = () => {
   const allImage = 5; //define el numero de "image" a renderizar
   const [selectImage, SetSelectImage] = useState(0);
@@ -20,9 +20,13 @@ const Landing = () => {
       container
       justifyContent="center"
       sx={{
-        minWidth: 300,
+        backgroundImage: `url(${background})`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        minWidth: 400,
         width: "100%",
         height: "100vh",
+        margin: "auto",
       }}
     >
       <Grid item xs="12" position="absolute">
@@ -55,14 +59,26 @@ const Landing = () => {
             opacity: loaded ? 1 : 0,
             borderRadius: "30px",
             border: "solid black 0.1rem",
-            minWidth: 500,
+            minWidth: 400,
             width: "50%",
             margin: "auto",
           }}
         />
       </Grid>
-      <Grid container position="relative">
-        <Grid item xs="auto" sx={{ bgcolor: "#000000" }}>
+      <Grid
+        container
+        gridTemplateColumns="repeat(5, 1fr)"
+        margin={0}
+        height="fit-content"
+        alignItems="flex.start"
+        justifyContent="center"
+        xs="12"
+      >
+        <Grid
+          item
+          bgcolor="#663B2A"
+          style={{ maxWidth: "min-content", height: "auto" }}
+        >
           <CardMedia
             component="img"
             src={require(`../../Assets/imgLanding/image0.jpg`)}
@@ -70,16 +86,18 @@ const Landing = () => {
             {...(loaded && selectImage === 0 ? { timeout: 2000 } : {})}
             style={{
               transition: loaded && selectImage === 0 ? "1000ms" : undefined,
-              opacity: loaded && selectImage === 0 ? 1 : 0.3,
+              opacity: loaded && selectImage === 0 ? 1 : 0.2,
               border: "solid black 0.1rem",
-              minWidth: 100,
-              width: "10%",
-              margin: "auto",
+              minWidth: 80,
+              width: "20%",
             }}
           />
         </Grid>
-
-        <Grid item xs="auto" sx={{ bgcolor: "#000000" }}>
+        <Grid
+          item
+          bgcolor="#663B2A"
+          style={{ maxWidth: "min-content", height: "auto" }}
+        >
           <CardMedia
             component="img"
             src={require(`../../Assets/imgLanding/image1.jpg`)}
@@ -87,15 +105,18 @@ const Landing = () => {
             {...(loaded && selectImage === 1 ? { timeout: 2000 } : {})}
             style={{
               transition: loaded && selectImage === 1 ? "1000ms" : undefined,
-              opacity: loaded && selectImage === 1 ? 1 : 0.3,
+              opacity: loaded && selectImage === 1 ? 1 : 0.2,
               border: "solid black 0.1rem",
-              minWidth: 100,
-              width: "10%",
-              margin: "auto",
+              minWidth: 80,
+              width: "20%",
             }}
           />
         </Grid>
-        <Grid item xs="auto" sx={{ bgcolor: "#000000" }}>
+        <Grid
+          item
+          bgcolor="#663B2A"
+          style={{ maxWidth: "min-content", height: "auto" }}
+        >
           <CardMedia
             component="img"
             src={require(`../../Assets/imgLanding/image2.jpg`)}
@@ -103,15 +124,18 @@ const Landing = () => {
             {...(loaded && selectImage === 2 ? { timeout: 2000 } : {})}
             style={{
               transition: loaded && selectImage === 2 ? "1000ms" : undefined,
-              opacity: loaded && selectImage === 2 ? 1 : 0.3,
+              opacity: loaded && selectImage === 2 ? 1 : 0.2,
               border: "solid black 0.1rem",
-              minWidth: 100,
-              width: "10%",
-              margin: "auto",
+              minWidth: 80,
+              width: "20%",
             }}
           />
         </Grid>
-        <Grid item xs="auto" sx={{ bgcolor: "#000000" }}>
+        <Grid
+          item
+          bgcolor="#663B2A"
+          style={{ maxWidth: "min-content", height: "auto" }}
+        >
           <CardMedia
             component="img"
             src={require(`../../Assets/imgLanding/image3.jpg`)}
@@ -119,15 +143,18 @@ const Landing = () => {
             {...(loaded && selectImage === 3 ? { timeout: 2000 } : {})}
             style={{
               transition: loaded && selectImage === 3 ? "1000ms" : undefined,
-              opacity: loaded && selectImage === 3 ? 1 : 0.3,
+              opacity: loaded && selectImage === 3 ? 1 : 0.2,
               border: "solid black 0.1rem",
-              minWidth: 100,
-              width: "10%",
-              margin: "auto",
+              minWidth: 80,
+              width: "20%",
             }}
           />
         </Grid>
-        <Grid item xs="auto" sx={{ bgcolor: "#000000" }}>
+        <Grid
+          item
+          bgcolor="#663B2A"
+          style={{ maxWidth: "min-content", height: "auto" }}
+        >
           <CardMedia
             component="img"
             src={require(`../../Assets/imgLanding/image4.jpg`)}
@@ -135,11 +162,10 @@ const Landing = () => {
             {...(loaded && selectImage === 4 ? { timeout: 2000 } : {})}
             style={{
               transition: loaded && selectImage === 4 ? "1000ms" : undefined,
-              opacity: loaded && selectImage === 4 ? 1 : 0.3,
+              opacity: loaded && selectImage === 4 ? 1 : 0.2,
               border: "solid black 0.1rem",
-              minWidth: 100,
-              width: "10%",
-              margin: "auto",
+              minWidth: 80,
+              width: "20%",
             }}
           />
         </Grid>
@@ -149,6 +175,8 @@ const Landing = () => {
           variant="contained"
           href="home"
           sx={{
+            marginX: "auto",
+            marginY: "0",
             bgcolor: "#DE8319",
             color: "#ffffff",
             ":hover": {
