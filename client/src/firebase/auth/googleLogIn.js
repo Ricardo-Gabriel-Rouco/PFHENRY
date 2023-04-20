@@ -1,15 +1,16 @@
 import {provider, auth, db} from '../firebase-config'
 import { signInWithPopup } from 'firebase/auth'
 import { collection, doc, setDoc } from 'firebase/firestore'
-
+import { getUserById } from "./auth";
 
 
 export async function registerWithGoogle(){
   try {
     const res = await signInWithPopup(auth, provider)
+    const currentUser = await getUserById(res.user.uid)
     const newUser = {
       uid: res.user.uid,
-      rol: "USER",
+      rol: currentUser.rol || "USER",
       email: res.user.email,
       display: true,
       nickname: res.user.displayName,
