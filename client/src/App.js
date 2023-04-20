@@ -64,6 +64,7 @@ function App() {
     loadThemeFromLocalStorage();
   }, []);
 
+
   return (
     <div className="App">
       <ThemeProvider theme={mode}>
