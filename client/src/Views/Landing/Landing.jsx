@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Button, Grid, Typography, CardMedia } from "@mui/material";
+import AboutUs from "../../components/AboutUs/AboutUs";
+import { Button, Grid, Typography, CardMedia, Box } from "@mui/material";
 import background from "../../Assets/fondoTenue.jpg";
 import { FaChevronDown } from "react-icons/fa";
 import style from "./Landing.module.css";
@@ -26,6 +27,8 @@ const Landing = () => {
   });
 
   return (
+    <>
+      <Box id="landing"> 
     <Grid
       container
       justifyContent="center"
@@ -38,23 +41,21 @@ const Landing = () => {
         height: "100vh",
         margin: "auto",
       }}
-    >
+      >
       <Grid item xs="12" position="absolute">
         <Typography
           sx={{
             fontSize: "3vw",
             color: "primary.main",
             textShadow:
-              "2px 2px 4px rgb(0, 0, 0), 0 0 30px rgb(255, 255, 255), 0 0 30px rgb(255, 255, 255), 0 0 30px rgb(255, 255, 255)",
+            "2px 2px 4px rgb(0, 0, 0), 0 0 30px rgb(255, 255, 255), 0 0 30px rgb(255, 255, 255), 0 0 30px rgb(255, 255, 255)",
             fontFamily: "Celtic MD",
             backdropFilter: "blur(1.5px)",
             bgcolor: "rgba(200, 200, 200, 0.4)",
             padding: "1rem",
-            borderRadius: "1rem",
-
-            zIndex: 10,
+            borderRadius: "1rem"
           }}
-        >
+          >
           Book's Kingdom
         </Typography>
       </Grid>
@@ -75,7 +76,7 @@ const Landing = () => {
             margin: "auto",
             zIndex: 0
           }}
-        />
+          />
       </Grid>
       <Grid
         container
@@ -85,12 +86,12 @@ const Landing = () => {
         alignItems="flex.start"
         justifyContent="center"
         xs="12"
-      >
+        >
         <Grid
           item
           bgcolor="#663B2A"
           style={{ maxWidth: "min-content", height: "auto" }}
-        >
+          >
           <CardMedia
             component="img"
             src={require(`../../Assets/imgLanding/image0.jpg`)}
@@ -103,13 +104,13 @@ const Landing = () => {
               minWidth: 80,
               width: "20%",
             }}
-          />
+            />
         </Grid>
         <Grid
           item
           bgcolor="#663B2A"
           style={{ maxWidth: "min-content", height: "auto" }}
-        >
+          >
           <CardMedia
             component="img"
             src={require(`../../Assets/imgLanding/image1.jpg`)}
@@ -122,13 +123,13 @@ const Landing = () => {
               minWidth: 80,
               width: "20%",
             }}
-          />
+            />
         </Grid>
         <Grid
           item
           bgcolor="#663B2A"
           style={{ maxWidth: "min-content", height: "auto" }}
-        >
+          >
           <CardMedia
             component="img"
             src={require(`../../Assets/imgLanding/image2.jpg`)}
@@ -141,13 +142,13 @@ const Landing = () => {
               minWidth: 80,
               width: "20%",
             }}
-          />
+            />
         </Grid>
         <Grid
           item
           bgcolor="#663B2A"
           style={{ maxWidth: "min-content", height: "auto" }}
-        >
+          >
           <CardMedia
             component="img"
             src={require(`../../Assets/imgLanding/image3.jpg`)}
@@ -160,13 +161,13 @@ const Landing = () => {
               minWidth: 80,
               width: "20%",
             }}
-          />
+            />
         </Grid>
         <Grid
           item
           bgcolor="#663B2A"
           style={{ maxWidth: "min-content", height: "auto" }}
-        >
+          >
           <CardMedia
             component="img"
             src={require(`../../Assets/imgLanding/image4.jpg`)}
@@ -179,7 +180,7 @@ const Landing = () => {
               minWidth: 80,
               width: "20%",
             }}
-          />
+            />
         </Grid>
       </Grid>
       <Grid
@@ -187,7 +188,7 @@ const Landing = () => {
         xs="12"
         justifyContent="center"
         sx={{ display: "grid", alignItems: "stretch", alignContent: "center" }}
-      >
+        >
         <Button
           variant="contained"
           href="home"
@@ -201,15 +202,19 @@ const Landing = () => {
               bgcolor: "#ffffff",
             },
           }}
-        >
+          >
           Enter to Kingdom
         </Button>
         <FaChevronDown
           onClick={(e) => scrollToAbout()}
           className={style.flecha}
-        />
+          />
       </Grid>
     </Grid>
+          </Box>
+    
+    <AboutUs />
+    </>
   );
 };
 
