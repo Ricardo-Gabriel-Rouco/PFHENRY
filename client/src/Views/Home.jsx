@@ -1,21 +1,11 @@
-import CardContainer from "../components/CardContainer/CardContainer";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { importBooks } from "../redux/actions/booksActions";
+import Carrousel from "../components/Carrousel/Carrousel";
 
-const Home = ({ cartOpen }) => {
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(importBooks())
-    // eslint-disable-next-line
-  }, []);
-
+const Home = () => {
   return (
     <>
-      <CardContainer cartOpen={cartOpen} />
+      <Carrousel />
     </>
   );
 };
 export default Home;
-

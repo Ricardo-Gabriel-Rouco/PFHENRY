@@ -26,24 +26,25 @@ export function AuthProvider({ children }) {
     email: "",
     role: "",
     nickName: "",
-    fullName: ""
+    display: "",
+    adress: "",
+    profilePicture: ""
   });
   const [loading, setLoading] = useState(true);
 
-  const signup = async (email, password, nickName, fullName) => {
-    await createUser(email, password, fullName, nickName);
+  const signup = async (email, password, nickName, adress, profilePicture) => {
+    await createUser(email, password, nickName, adress, profilePicture);
   };
 
   const login = async (email, password) => {
     await sigInWithMail(email, password);
   };
 
-  const customize = async (userId, nickname, fullname) => {
-    await updateUser(userId, nickname, fullname)
+  const customize = async (userId, nickname) => {
+    await updateUser(userId, nickname)
     setUserStatus({
       ...userStatus,
       nickName: nickname,
-      fullName: fullname
     })
   }
 
@@ -58,7 +59,9 @@ export function AuthProvider({ children }) {
           email: currentUser.email,
           role: userRole.rol,
           nickName: userRole.nickname,
-          fullName: userRole.fullname
+          display: userRole.display,
+          adress: userRole.adress ? userRole.adress : null,
+          profilePicture: userRole.profilePicture ? userRole.profilePicture : null
         });
       }
       setLoading(false);
@@ -69,10 +72,21 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     if (userStatus.logged) {
       navigate("/home");
+    } 
+    if(userStatus.display === false){
+      alert('usuario baneado')
+      logout()
     }
      // eslint-disable-next-line
   }, []);
 
+  useEffect(() => {
+    if (userStatus.display === false) {
+      alert('usuario baneado');
+      logout();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userStatus.display]);
 
   const logout = async () => {
     await logOut();

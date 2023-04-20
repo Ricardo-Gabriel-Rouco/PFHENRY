@@ -8,7 +8,6 @@ import style from "./CardContainer.module.css";
 import { useSelector } from "react-redux";
 import Paginate from "../../components/Paginate/Paginate";
 import { FilterOptions } from "../filters/FilterOptions";
-import Carrousel from "../Carrousel/Carrousel";
 import { Grid } from "@mui/material";
 import Cards from "@mui/material/Card";
 import loading from '../../Assets/Loading.gif'
@@ -51,7 +50,7 @@ const CardContainer = () => {
   }, [filteredBooks]);
   return (
 
-    <div className={style.container}>
+    <div>
       {filteredBooks.length ? (<FilterOptions setCurrentPage={setCurrentPage} />) : null}
       {filteredBooks === "not found" ? (
         <div className={style.notFound}>
@@ -60,12 +59,15 @@ const CardContainer = () => {
         </div>
       ) : filteredBooks.length ? (
         <Cards>
-
-          <Carrousel />
-          <Grid container spacing={1} justifyContent="center" bgcolor="#f9b52ea8">
+          <Grid container justifyContent="center" 
+            style={{ 
+              margin:"40px 0", 
+              gap: "40px",
+              // minHeight: "100vh", 
+            }}>
             {currentBook
               .map((c, index) => (
-                <Grid item xs={12} sm={6} md={4} lg={3} key={c.id}>
+                <Grid item xs="auto">
                   {c.display ?
                     <div key={index}>
                       <Card

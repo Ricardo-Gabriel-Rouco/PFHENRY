@@ -1,23 +1,29 @@
 import { createTheme } from "@mui/material";
+
 //paleta
 const light = createTheme({
   palette: {
     mode: "light",
+    typography: {
+      fontFamily:'Celtic MD'},
+    fontSizes: {
+      title: '5vw',
+      secondTitle: '20px',
+      thirdTitle: '14px'
+    },
     primary: {
       main: "#ffc400",
-      light: "#fbce6d",
-      dark: "#daa306",
-      contrastText: "#2b1c1a",
+      contrastText: "#fff9c4",
     },
     secondary: {
       main: "#e4704c",
-      contrastText: "#ffffff",
+      contrastText: "#FFF8E1",
     },
     warning: {
       main: "#fd7373",
     },
     info: {
-      main: "#857E61",
+      main: "#857E61 ",
     },
     divider: "rgba(76,42,30,0.68)",
     text: {

@@ -8,7 +8,7 @@ import {
   removeAllProducts,
 } from "../../redux/rootReducer/cartSlice";
 import { Stack, Box } from "@mui/material";
-import { Divider, Grid } from "@mui/material";
+import { Divider, Grid, Snackbar, Alert } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { toogleCart } from "../../redux/rootReducer/toogleSlice";
 import { useState, useEffect } from "react";
@@ -40,7 +40,9 @@ const Cart = () => {
   const displayableBooks = useSelector((state) => state.books.displayableBooks);
 
   const [order, setOrder] = useState({});
-
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [error, setError] = useState('');
 
   useEffect(() => {
     setOrder({
@@ -68,14 +70,19 @@ const Cart = () => {
         window.open(response.data, "_self");
 
       } catch (error) {
-        console.error("Error:", error.response.data);
+
+        setError(error)
+        setSnackbarOpen(true)
       }
     } else {
-      dispatch(toogleCart());
-      alert("You must be logged to buy");
-      navigate("/login");
-    }
-  };
+      setSnackbarOpen(true);
+      setSnackbarMessage('You must be logged to buy');
+      setTimeout(() => {
+        dispatch(toogleCart());
+        navigate("/login");
+      }, 1000);
+    };
+  }
 
 
   const handleClose = () => {
@@ -172,7 +179,7 @@ const Cart = () => {
             {"Total Price: $ " +
               availableItems(displayableBooks, cart)
                 .reduce(
-                  (totalPrice, book) => totalPrice + book.quantity * book.unit_price,
+                  (totalPrice, book) => totalPrice + book.quantity * book.unit_price * (100 - (book.discount ? book.discount : 0)) / 100,
                   0
                 )
                 .toFixed(2)}
@@ -223,6 +230,27 @@ const Cart = () => {
             </Button>
           </>
         )}
+        <Snackbar
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+          open={snackbarOpen}
+          autoHideDuration={6000}
+          onClose={() => setSnackbarOpen(false)}
+        >
+          <Stack sx={{ width: '100%' }} spacing={2}>
+            <Alert severity={'error'}>{snackbarMessage}</Alert>
+          </Stack>
+        </Snackbar>
+        {error? 
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+          open={snackbarOpen}
+          autoHideDuration={6000}
+          onClose={handleClose}
+          message={error}
+        />: null}
       </Box>
     </Drawer>
   );

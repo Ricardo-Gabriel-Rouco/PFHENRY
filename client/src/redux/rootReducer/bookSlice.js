@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   allBooks: [],
+  bookId: 0,
   displayableBooks: [],
   booksToFilter: [],
   filtersApplied: {authors:[],genres:[]},
@@ -38,7 +39,13 @@ const booksSlice = createSlice({
       }
     },
     
+    openModal: (state, {payload}) => {
+      state.bookId = payload
+    },
 
+    closeModal: (state, {payload}) => {
+      state.bookId = 0
+    },
 
     clearSearchResults: (state) => {
         state.booksToFilter = state.displayableBooks;
@@ -155,6 +162,8 @@ export const {
   orderBy,
   reset,
   clearSearchResults,
+  openModal,
+  closeModal
 } = booksSlice.actions;
 
 export default booksSlice.reducer;

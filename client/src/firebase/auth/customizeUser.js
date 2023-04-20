@@ -1,12 +1,15 @@
 import { doc, updateDoc } from "firebase/firestore";
+import { uploadImage } from "../storage";
 import { db } from "../firebase-config";
 
-export async function updateUser(userId, nickname, fullname){
+export async function updateUser(userId, nickname, profile, adress){
     const userRef = doc(db, 'users', userId)
     try {
+        const imageProfile = await uploadImage(profile, userId)
         const updateObj = {}
         if (nickname) updateObj.nickname = nickname
-        if (fullname) updateObj.fullname = fullname
+        if (profile) updateObj.profile = imageProfile
+        if (adress) updateObj.adress = adress
         
         await updateDoc(userRef, {...updateObj})
     } catch (error) {

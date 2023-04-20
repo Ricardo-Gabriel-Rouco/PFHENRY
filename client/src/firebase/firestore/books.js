@@ -1,6 +1,5 @@
 import { getDocs, query, collection, where, doc, getDoc, updateDoc, setDoc, arrayUnion } from "firebase/firestore"
 import { db } from '../firebase-config';
-
 const regexTitle = /^[a-zA-Z0-9\s]+$/
 const regexAuthor = /^[a-zA-Z\s]+(\.[a-zA-Z\s]+)*$/;
 const regexNumber = /^[0-9]+$/
@@ -99,10 +98,10 @@ export async function postBook(book) {
     const newBook = {
       ...book,
       display: true,
+      authors:[book.authors],
     }
       const collectionRef = collection(db, 'books')
       const docRef = doc(collectionRef, book.isbn)
-      console.log(newBook)
       await setDoc(docRef, newBook)
       return {
         date:newBook
@@ -130,18 +129,21 @@ export async function modifyBook(isbn, props) {
 }
 
 // Metodo update para Reviews
-export async function updateBookReviews({id, nickname, comment, rating, display}) {
+// Propuesta para mañana: solo guardar el id del ususario(userId) y con eso buscar el nombre del usuario, para asi prevenimos los cambios
+// lo que causaria que eliminemos directamente la propiedad nickname
+export async function updateBookReviews({id, nickname, comment, rating, display, userId}) {
   try {
     const udBookReview = doc(db, 'books', id)
     await updateDoc(udBookReview, {
       reviews:  arrayUnion({
         comment,
         rating,
+        userId,
         user: nickname,
         display,
       })
     })
-    return alert("Comment register!")
+  
   } catch (error) {
     console.log(error)
   }

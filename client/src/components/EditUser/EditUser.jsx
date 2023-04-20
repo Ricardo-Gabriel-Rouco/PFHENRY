@@ -1,32 +1,46 @@
 import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
-import { Button, TextField, Typography, Snackbar, IconButton } from "@mui/material";
+import { Box, Button, TextField, Typography, Snackbar, IconButton, CardMedia, Input, Paper } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import { useAuth } from "../../context/authContext";
+import { validate } from './validation'
 
 function EditUser() {
   const {customize, userStatus} = useAuth()
   const [open, setOpen] = useState(false)
   const [userData, setUserData] = useState({
     nickName: "",
-    fullName: "",
-    userId: userStatus.userId
+    userId: userStatus.userId,
+    profile: userStatus.profilePicture,
+    adress: userStatus.adress
   });
-  // const [errors, setErrors] = useState({
-  //   nickName: "",
-  //   fullName: ""
-  // });
+  const [errors, setErrors] = useState({
+    nickName: "",
+  });
   // const navigate = useNavigate();
 
-
   function handleInputChange(e) {
-    setUserData({ ...userData, [e.target.name]: e.target.value });
+    switch (e.target.name) {
+      case "imageFile":
+        const reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onloadend = () => {
+          setUserData({ ...userData, profilePicture: reader.result });
+        };
+        break;
+
+      default:
+        setUserData({ ...userData, [e.target.name]: e.target.value });
+        setErrors(validate(userData.nickName))
+        break;
+    }
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
+    if(errors) throw new Error('No se puede cambiar el nombre de usuario')
     try {
-      await customize(userStatus.userId,userData.nickName || userStatus.nickName, userData.fullName || userStatus.fullName);
+      await customize(userStatus.userId,userData.nickName || userStatus.nickName, userData.profile || userStatus.profilePicture, userData.adress || userStatus.adress );
       setOpen(true)
       // navigate("/home");
     } catch (error) {
@@ -47,45 +61,64 @@ const action = (
 );
 
   return (
-    <>
+    <Box sx={{ marginTop: "50px", display: "flex", justifyContent: "center" }}>
+    <Paper elevation={10} style={{ borderRadius: '10px', padding: "1rem", maxWidth: "500px", backgroundColor: 'inherit' }}>
     <form
       style={{
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        minHeight: "100%",
         margin: "2rem",
       }}
       onSubmit={handleSubmit}
       >
-      <Typography>Email de usuario {userStatus.email}</Typography>
-      <br />
-      <Typography>Nombre de ususario actual: {userStatus.nickName}</Typography>
+      <Typography fontWeight={'bold'}> {userStatus.email}</Typography>  
+      <Typography fontWeight={'bold'}> {userStatus.nickName}</Typography>
       <TextField
         type="text"
-        label="Nombre de usuario"
+        label="Username"
         name="nickName"
         value={userData.nickName}
         onChange={handleInputChange}
         style={{ margin: "1rem" }}
-      />
+        />
       {/* {errors.nickName && <p>{errors.nickName}</p>} */}
-      <Typography>Nombre Completo actual: {userStatus.fullName}</Typography>
+
       <TextField
         type="text"
-        label="Nombre completo"
-        name="fullName"
-        value={userData.fullName}
+        label="Address"
+        name="adress"
+        value={userData.adress}
         onChange={handleInputChange}
         style={{ margin: "1rem" }}
-      />
-      {/* {errors.fullName && <p>{errors.fullName}</p>} */}
+        />
+
+      {userStatus.profilePicture? <CardMedia
+      component="img"
+      height="300"
+      sx={{
+        width: "10rem",
+        height: "14rem",
+        objectFit: "cover",
+        marginTop: "0px",
+      }}
+      image={userStatus.profilePicture}/> : null}
+      <Input
+        type="file"
+        accept="image/*"
+        name="imageFile"
+        placeholder="Select an image for profile picture"
+        onChange={handleInputChange}
+        />
+
       <Button
         type="submit"
         variant="contained"
         color="primary"
         style={{ margin: "2rem" }}
-      >
-        Modificar
+        >
+        MODIFY
       </Button>
     </form>
     <Snackbar
@@ -93,8 +126,10 @@ const action = (
         autoHideDuration={5000}
         message="Se cambiaron los datos con exito"
         action={action}
-      />
-    </>
+        />
+  </Paper>
+  </Box>
+
   );
 }
 

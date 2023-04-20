@@ -1,41 +1,40 @@
-import { collection, doc, getDoc, setDoc } from "firebase/firestore"
+import { collection, doc, getDoc, getDocs, query, setDoc, where } from "firebase/firestore"
 import { db } from '../firebase-config';
 
-export async function postOrder(order) {
-  try {
-    const collectionRef = collection(db, 'orders');
-    const orderRef = doc(collectionRef, order.user);
-    const orderDoc = await getDoc(orderRef);
+export async function getOrders() {
 
-    let ordersArray = [];
-
-    if (orderDoc.exists()) {
-      const existingData = orderDoc.data();
-      ordersArray = existingData.orders;
+  const q = query(collection(db, "orders"))
+  const querySnapshot = await getDocs(q);
+  let data = [];
+  querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    data.push({
+      ...doc.data(),
+      id: doc.id
     }
-    const orderExists = ordersArray.some(e => e.idOrder === order.idOrder);
-    if (!orderExists) {
-      ordersArray.push({
-        idOrder: order.idOrder,
-        status: order.status,
-        items:order.items,
-        date: new Date().toISOString()
-      });
-    }
-
-    const newOrder = {
-      orders: ordersArray,
-    };
-
-    await setDoc(orderRef, newOrder);
-
-    return "Orden creada";
-  } catch (error) {
-    return error;
-  }
+    )
+  })
+  return data
 }
 
-export async function getOrders (id) {
+export async function getOrdersByUser(userId) {
+
+  const q = query(collection(db, "orders"), where('userId', '==', userId))
+  const querySnapshot = await getDocs(q);
+  let data = [];
+  querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    data.push({
+      ...doc.data(),
+      id: doc.id
+    }
+    )
+  })
+  return data
+}
+
+
+export async function getOrdersById (id) {
   try {
     const docsRef = doc(db, 'orders', id);
     const docSnap = await getDoc(docsRef);
@@ -47,6 +46,28 @@ export async function getOrders (id) {
   } catch (error) {
     console.log(error);}
 }
+
+export async function postOrder(order) {
+  try {
+    const collectionRef = collection(db, 'orders');
+    const orderRef = doc(collectionRef, order.idOrder);
+
+    const newOrder ={
+        date: new Date().toISOString(),
+        userId: order.user,
+        items:order.items,
+        status: order.status,
+      };
+
+    await setDoc(orderRef, newOrder);
+
+    return "Orden creada";
+  } catch (error) {
+    return error;
+  }
+}
+
+
 
   // export async function modifyOrder(status) {
   //   try {
