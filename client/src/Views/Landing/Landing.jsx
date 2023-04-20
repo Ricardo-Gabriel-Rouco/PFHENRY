@@ -28,7 +28,7 @@ const Landing = () => {
 
   return (
     <>
-      <Box id="landing"> 
+      <Box id="landing" sx={{overflowY: 'hidden'}}> 
     <Grid
       container
       justifyContent="center"
@@ -40,6 +40,7 @@ const Landing = () => {
         width: "100%",
         height: "100vh",
         margin: "auto",
+        overflowY: 'hidden'
       }}
       >
       <Grid item xs="12" position="absolute">
