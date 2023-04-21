@@ -6,7 +6,7 @@ import CardDetail from "../CardDetail/CardDetail.jsx";
 import { closeModal } from "../../redux/rootReducer/bookSlice.js";
 import { addProduct } from "../../redux/rootReducer/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
     Button,
     Dialog,
@@ -22,8 +22,14 @@ import {
 const ModalDetail = () => {
     const dispatch = useDispatch();
     const [isFav, setIsFav] = useState(false);
-
+    const favorites = useSelector((state) => state.favorite.favorites.favorites);
     const bookId = useSelector((state) => state.books.bookId);
+
+    useEffect(() => {
+        if (favorites.includes(bookId)) setIsFav(true);
+        else setIsFav(false);
+      }, [favorites,bookId]);
+
 
     const handleFavorite = () => {
         if (isFav) {
