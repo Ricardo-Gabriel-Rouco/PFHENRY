@@ -151,11 +151,11 @@ export const FilterOptions = ({ setCurrentPage }) => {
             </option>
           </select>
 
-          {filters.authors.length || filters.genres.length ? (
+         
             <button onClick={handlerReset} className={style.filters}>
               Reset
             </button>
-          ) : null}
+
         </div>
 
         <div className={style.divContainer}>
