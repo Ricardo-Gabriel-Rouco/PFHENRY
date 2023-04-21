@@ -58,7 +58,7 @@ const Card = ({
   
 
   return (
-    <>
+    
     <Grid
       container
       spacing={2}
@@ -174,7 +174,7 @@ const Card = ({
         </CardActions>
       </Grid>
     </Grid>
-          </>
+        
   );
 };
 

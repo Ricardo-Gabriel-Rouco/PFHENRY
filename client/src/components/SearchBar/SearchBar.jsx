@@ -91,7 +91,7 @@ const SearchBar = ({ placeholder }) => {
                 "& fieldset": { border: "none" },
               }}
               label="Search book"
-              InputLabelProps={{ focused: true, style: { color: "#a74949" } }}
+              InputLabelProps={{ focused: true, style: { color: "primary" } }}
               // margin="dense"
               InputProps={{
                 ...params.InputProps,

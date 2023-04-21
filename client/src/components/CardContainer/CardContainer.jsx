@@ -58,11 +58,10 @@ const CardContainer = () => {
           <img src={notFound} alt="Not Found" />
         </div>
       ) : filteredBooks.length ? (
-        <Cards>
-          <Grid container justifyContent="center" 
+        <Cards bgColor="red">
+          <Grid container justifyContent="center"
             style={{ 
-              margin:"40px 0", 
-              gap: "40px",
+
               backgroundColor: "#d1d1d1"
               // minHeight: "100vh", 
             }}>
