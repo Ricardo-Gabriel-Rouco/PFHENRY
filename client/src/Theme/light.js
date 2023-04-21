@@ -23,7 +23,7 @@ const light = createTheme({
       main: "#fd7373",
     },
     info: {
-      main: "#857E61 ",
+      main: "#a74949",
     },
     divider: "rgba(76,42,30,0.68)",
     text: {
