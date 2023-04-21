@@ -60,9 +60,8 @@ const CardContainer = () => {
       ) : filteredBooks.length ? (
         <Cards bgColor="red">
           <Grid container justifyContent="center"
-            style={{ 
-
-              backgroundColor: "#d1d1d1"
+          backgroundColor='#d1d1d1'
+            style={{
               // minHeight: "100vh", 
             }}>
             {currentBook
