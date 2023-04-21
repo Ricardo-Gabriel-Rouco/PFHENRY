@@ -25,6 +25,7 @@ function BookForm() {
   
   useEffect(() => {
     setErrors(validation(bookData));
+    console.log(bookData.image)
   }, [bookData]);
 
   useEffect(() => {
@@ -49,8 +50,8 @@ function BookForm() {
       case "imageFile":
         const reader = new FileReader();
         reader.readAsDataURL(e.target.files[0]);
+        console.log(typeof (e.target.files[0]))
         reader.onloadend = () => {
-          console.log(typeof reader.result);
           setBookData({ ...bookData, image: reader.result });
         };
         break;

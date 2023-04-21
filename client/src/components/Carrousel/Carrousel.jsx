@@ -368,15 +368,14 @@ const Carrousel = () => {
         {
           userStatus.logged && getOrders.length ? (
             <CarouselContainer sx={{ width: '70%', minWidth: '15rem' }}>
-              <Typography align="left" variant="h6" marginLeft={"2.5rem"}>
-                {getOrders.length > 1 && booksNotPurchased.length > 1 ? `You may be interested in these authors` : 'You may be interested in this author'}
-              </Typography>
+              
+                {booksNotPurchased.length > 1 ? <Typography align="left" variant="h6" marginLeft={"2.5rem"}>You may be interested in these authors</Typography> : <Typography align="center" variant="h6">You may be interested in this author</Typography>}
+
               <Swiper
                 slidesPerView={5}
                 navigation
                 breakpoints={{
                   250: {
-
                     slidesPerView: 1,
                     spaceBetween: 0
                   },
@@ -390,12 +389,16 @@ const Carrousel = () => {
 
                   },
                   1100: {
-                    slidesPerView: 3,
+                    slidesPerView: booksNotPurchased.length < 4 && booksNotPurchased.length < 3 && booksNotPurchased.length < 2 ? 1 :
+                      booksNotPurchased.length < 4 && booksNotPurchased.length < 3 ? 2 :
+                        booksNotPurchased.length < 4 ? 3 : 3
+
 
                   },
-
                   1600: {
-                    slidesPerView: 4,
+                    slidesPerView: booksNotPurchased.length < 4 && booksNotPurchased.length < 3 && booksNotPurchased.length < 2 ? 1 :
+                      booksNotPurchased.length < 4 && booksNotPurchased.length < 3 ? 2 :
+                        booksNotPurchased.length < 4 ? 3 : 4
 
                   },
                 }}
@@ -510,9 +513,7 @@ const Carrousel = () => {
         {
           userStatus.logged && getOrders.length ? (
             <CarouselContainer sx={{ width: '70%', minWidth: '15rem' }}>
-              <Typography align="left" variant="h6" marginLeft={"2.5rem"}>
-                {purchasedGenres.length >= 1 ? `You may be interested in these genres` : `You may be interested in this genre`}
-              </Typography>
+              {purchasedGenres.length >= 1 ? <Typography align="left" variant="h6" marginLeft={"2.5rem"}>You may be interested in these genres</Typography> : <Typography align="center" variant="h6" marginLeft={"2.5rem"}>You may be interested in this genre</Typography>}
               <Swiper
                 slidesPerView={5}
                 navigation
@@ -532,12 +533,16 @@ const Carrousel = () => {
 
                   },
                   1100: {
-                    slidesPerView: 3,
+                    slidesPerView: genresNotPurchased.length < 4 && genresNotPurchased.length < 3 && genresNotPurchased.length < 2 ? 1 :
+                      genresNotPurchased.length < 4 && genresNotPurchased.length < 3 ? 2 :
+                        genresNotPurchased.length < 4 ? 3 : 3
 
                   },
 
                   1600: {
-                    slidesPerView: 4,
+                    slidesPerView: genresNotPurchased.length < 4 && genresNotPurchased.length < 3 && genresNotPurchased.length < 2 ? 1 :
+                      genresNotPurchased.length < 4 && genresNotPurchased.length < 3 ? 2 :
+                        genresNotPurchased.length < 4 ? 3 : 4
 
                   },
                 }}

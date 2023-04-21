@@ -42,7 +42,7 @@ export const AdminDashboard = () => {
         create={BookCreate}
         options={{ label: "Books" }}
       >
-        <Route path="/:id" element={<EditGuesser />} />
+        <Route path="/:id" element={<BookCreate />} />
         <Route path="/:id/show" element={<CardDetail />} />
       </Resource>
       {userStatus.rol === "SUPERADMIN" ? (

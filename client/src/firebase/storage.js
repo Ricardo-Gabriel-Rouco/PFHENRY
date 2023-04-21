@@ -8,27 +8,27 @@ import { collection, doc, getDocs, query, updateDoc, where } from "firebase/fire
 export const getURL = async (id) => {
     try {
         const url = await getDownloadURL(ref(storage, `${id}.jpg`))
-        console.log(url)
         return url
     } catch (error) {
         throw new Error(error)
     }
-
-}
+    
+} 
 
 export const uploadImage = async (image, type, id) => {
     const imagesRef = ref(storage, `${id}.jpg`);
-
+    
     try {
         if(type === "file"){
             const snapshot = await uploadBytes(imagesRef, image)
-            console.log(snapshot)
-        }
+            console.log("File uploaded successfully");
 
+        }
+    
         else if(type === "url"){
             // Fetch the file from the URL
             const res = await (axios.get(image,{responseType:'arraybuffer'}))
-            console.log(res)
+            // console.log(res)
             // Convert file to blob
             const blob = new Blob([res.data], {type: res.headers['content-type']});
             // Upload file to Storage
