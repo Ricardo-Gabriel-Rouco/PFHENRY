@@ -21,7 +21,6 @@
 
 .cardsContainer {
   display: grid;
- 
   grid-template-rows: repeat(2, 1fr);
   grid-template-columns: repeat(4, 1fr);
 
@@ -84,10 +83,10 @@
 }
 
 .linkedin:hover {
-  color:#DE8319;
+  color:  #a74949;
 }
 .gitHub:hover {
-  color:#DE8319;
+  color:  #a74949;
 }
 
 a:link {
@@ -107,7 +106,7 @@ a:visited {
 }
 
 .flecha:hover {
-  color: #DE8319;
+  color:  #a74949;
 }
 @keyframes arrow {
   0% {

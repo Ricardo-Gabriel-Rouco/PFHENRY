@@ -87,6 +87,7 @@ const Carrousel = () => {
 
   const CarouselContainer = styled("div")({
     margin: "auto",
+    zIndex: 0
 
   });
   const BookCardMedia = styled(CardMedia)({
@@ -98,7 +99,7 @@ const Carrousel = () => {
     width: "12rem",
     height: "18rem",
     objectFit: "cover",
-
+    zIndex: 0
   });
 
 
@@ -142,7 +143,7 @@ const Carrousel = () => {
         >
           {displayableBooks.filter(book => book.rating > 1.0).map((book) => (
             <SwiperSlide key={book.id}>
-              <Grid container sx={{ display: 'flex', justifyContent: 'center', borderRadius: '10px', width: "100%", backgroundColor: 'primary' }}>
+              <Grid container sx={{zIndex: 0, display: 'flex', justifyContent: 'center', borderRadius: '10px', width: "100%", backgroundColor: 'primary' }}>
                 <Grid item>
                   <BookCardMedia
                     component="img"
@@ -212,6 +213,7 @@ const Carrousel = () => {
                 image={"https://firebasestorage.googleapis.com/v0/b/pf-henry-2d98b.appspot.com/o/Imagenes%20carousel%20billboard%2Fgame-of-thrones-books-1-1658259294.png?alt=media&token=a4b9e345-a0aa-4459-b430-22b8411c92d5"}
                 alt={'Foto'}
                 sx={{ width: '90%', height: '20rem' }}
+
               />
             </Box>
           </SwiperSlide>
@@ -241,7 +243,7 @@ const Carrousel = () => {
       <Box>
         {/*         CARROUSEL OFERTAS */}
         <CarouselContainer sx={{ width: '70%', minWidth: '15rem' }}>
-          <Typography align="left" fontWeight={'bold'} variant="h6" marginTop={"1rem"} marginLeft={'2.5rem'}>
+          <Typography color="primary" align="left" fontWeight={'bold'} variant="h6" marginTop={"1rem"} marginLeft={'2.5rem'}>
             {"SALES"}
           </Typography>
           <Swiper
@@ -268,12 +270,12 @@ const Carrousel = () => {
 
               },
 
-              1370: {
+              1500: {
 
                 slidesPerView: 4,
               },
 
-              1700: {
+              1750: {
                 slidesPerView: 5,
 
               },
@@ -333,6 +335,7 @@ const Carrousel = () => {
                           justifyContent="space-between"
                           alignItems="center"
                           sx={{ marginBottom: '1rem' }}
+                          zIndex= '0'
                         >
                           <Typography
                             align="left"
@@ -369,7 +372,7 @@ const Carrousel = () => {
           userStatus.logged && getOrders.length ? (
             <CarouselContainer sx={{ width: '70%', minWidth: '15rem' }}>
               
-                {booksNotPurchased.length > 1 ? <Typography align="left" variant="h6" marginLeft={"2.5rem"}>You may be interested in these authors</Typography> : <Typography align="center" variant="h6">You may be interested in this author</Typography>}
+                {booksNotPurchased.length > 1 ? <Typography color="primary" align="left" variant="h6" marginLeft={"2.5rem"}>You may be interested in these authors</Typography> : <Typography align="center" variant="h6">You may be interested in this author</Typography>}
 
               <Swiper
                 slidesPerView={5}
@@ -482,6 +485,7 @@ const Carrousel = () => {
                               justifyContent="center"
                               alignItems="center"
                               sx={{ marginBottom: '1rem' }}
+                              zIndex= '0'
                             >
 
                               <Typography
@@ -513,7 +517,7 @@ const Carrousel = () => {
         {
           userStatus.logged && getOrders.length ? (
             <CarouselContainer sx={{ width: '70%', minWidth: '15rem' }}>
-              {purchasedGenres.length >= 1 ? <Typography align="left" variant="h6" marginLeft={"2.5rem"}>You may be interested in these genres</Typography> : <Typography align="center" variant="h6" marginLeft={"2.5rem"}>You may be interested in this genre</Typography>}
+              {purchasedGenres.length >= 1 ? <Typography color="primary" align="left" variant="h6" marginLeft={"2.5rem"}>You may be interested in these genres</Typography> : <Typography color="primary" align="center" variant="h6" marginLeft={"2.5rem"}>You may be interested in this genre</Typography>}
               <Swiper
                 slidesPerView={5}
                 navigation
@@ -558,6 +562,7 @@ const Carrousel = () => {
                         sm={true}
                         md={true}
                         lg={true}
+                        zIndex= '0'
 
                       >
                         <Paper elevation={5} sx={{
@@ -670,7 +675,7 @@ const Carrousel = () => {
               color="primary"
               size="large"
               sx={{ m: 1 }}
-              onClick={handleShowAllBooks}
+              onClick={ handleShowAllBooks }
             >
               Show All Books
             </Button>

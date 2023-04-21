@@ -44,6 +44,6 @@ export default ChatEngine;
 const styles = {
     chatEngineWindow: {
         width: '100%',  
-        backgroundColor: '#fdd835',
+        backgroundColor: '#a74949'   
     }
 }

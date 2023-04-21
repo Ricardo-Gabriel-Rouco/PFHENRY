@@ -50,7 +50,7 @@ const CardContainer = () => {
   }, [filteredBooks]);
   return (
 
-    <div>
+    <div className={style.bgcolor}>
       {filteredBooks.length ? (<FilterOptions setCurrentPage={setCurrentPage} />) : null}
       {filteredBooks === "not found" ? (
         <div className={style.notFound}>
@@ -58,11 +58,11 @@ const CardContainer = () => {
           <img src={notFound} alt="Not Found" />
         </div>
       ) : filteredBooks.length ? (
-        <Cards>
-          <Grid container justifyContent="center" 
+        <Cards bgColor="red">
+          <Grid container justifyContent="center"
             style={{ 
-              margin:"40px 0", 
-              gap: "40px",
+
+              backgroundColor: "#d1d1d1"
               // minHeight: "100vh", 
             }}>
             {currentBook

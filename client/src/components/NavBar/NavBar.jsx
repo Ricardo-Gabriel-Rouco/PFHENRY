@@ -79,7 +79,7 @@ const NavBar = ({ passTheme, mode }) => {
   return (
     location.pathname !== "/" &&
     location.pathname.slice(0, 6) !== "/admin" && (
-      <Box sx={{ bgcolor: "secondary", p: 1 }}>
+      <Box sx={{ bgcolor: "background.default", p: 1 }}>
         <Img
           src={logo}
           alt="Book's Kingdom"
