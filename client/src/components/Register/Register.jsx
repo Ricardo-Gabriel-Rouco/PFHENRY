@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, TextField, Alert, Paper, Box, Typography, Input } from "@mui/material";
+import { Button, TextField, Paper, Box, Typography, Input } from "@mui/material";
 import { useAuth } from "../../context/authContext";
 
 function Register() {
@@ -48,7 +48,7 @@ function Register() {
       setTimeout(() => {
         alert('You have registered successfully!')
         navigate("/home");
-      }, 2000);
+      }, 500);
     } catch (error) {
       if (error.code === "auth/weak-password")
         setErrors({
@@ -65,10 +65,8 @@ function Register() {
   const handleGoogleSignIn = async () => {
     try {
       await loginWithGoogle();
-      setTimeout(() => {
-        alert('You have registered successfully!')
-        navigate("/home");
-      }, 2000);
+      alert('You have registered successfully!')
+      navigate("/home");
     } catch (error) {
       console.error(error)
     }
@@ -122,7 +120,7 @@ function Register() {
           {errors.password && <Typography variant="caption" color="red"> <p>{errors.password}</p></Typography>}
           <TextField
             type="text"
-            label="adress"
+            label="Address"
             name="adress"
             value={userData.adress}
             onChange={handleInputChange}

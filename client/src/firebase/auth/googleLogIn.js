@@ -7,7 +7,7 @@ import { getUserById } from "./auth";
 export async function registerWithGoogle(){
   try {
     const res = await signInWithPopup(auth, provider)
-    const currentUser = await getUserById(res.user.uid)
+    await getUserById(res.user.uid)
     const newUser = {
       uid: res.user.uid,
       rol: "USER",
@@ -20,6 +20,6 @@ export async function registerWithGoogle(){
     const userRef = doc(collectionRef, res.user.uid)
     await setDoc(userRef, newUser)
   } catch (error) {
-    console.log(error)
+    console.error(error)
   }
 }
