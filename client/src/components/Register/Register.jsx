@@ -45,10 +45,8 @@ function Register() {
     try {
 
       await signup(userData.email, userData.password, userData.nickName, userData.adress, userData.profile);
-      setTimeout(() => {
         alert('You have registered successfully!')
         navigate("/home");
-      }, 500);
     } catch (error) {
       if (error.code === "auth/weak-password")
         setErrors({

@@ -66,6 +66,7 @@ export function AuthProvider({ children }) {
   }, []);
 
   useEffect(() => {
+    console.log(userStatus.logged)
     if (userStatus.logged) {
       navigate("/home");
     }
