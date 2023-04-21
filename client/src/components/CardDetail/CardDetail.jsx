@@ -23,7 +23,6 @@ import { updateBookReviews, modifyBook } from "../../firebase/firestore/books";
 import { useAuth } from "../../context/authContext";
 
 const CardDetail = ({ id }) => {
-  const [details, setMoreDetails] = useState(false);
   const [description, setDescription] = useState(false);
   const bookId = useSelector((state) => state.books.bookId);
 
@@ -160,10 +159,8 @@ const CardDetail = ({ id }) => {
               gutterBottom
               sx={{ fontWeight: "bold", marginBottom: "10px" }}
             >
-              <Collapse in={details} collapsedHeight={"500px"}>
                 {bookDetail?.year} - {bookDetail?.editorial} -{" "}
                 {bookDetail?.authors}
-              </Collapse>
             </Typography>
             <Button onClick={() => setMoreDetails(!details)}>
               {details ? "View less" : "View Details"}

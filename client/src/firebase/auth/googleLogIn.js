@@ -1,7 +1,7 @@
 import {provider, auth, db} from '../firebase-config'
 import { signInWithPopup } from 'firebase/auth'
 import { collection, doc, setDoc } from 'firebase/firestore'
-
+import { getUserById } from "./auth";
 
 
 export async function registerWithGoogle(){
@@ -18,7 +18,8 @@ export async function registerWithGoogle(){
     const collectionRef = collection(db, 'users')
     const userRef = doc(collectionRef, res.user.uid)
     await setDoc(userRef, newUser)
+    // await getUserById(res.user.uid)
   } catch (error) {
-    console.log(error)
+    console.error(error)
   }
 }

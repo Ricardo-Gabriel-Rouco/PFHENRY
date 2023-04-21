@@ -5,42 +5,45 @@ import { collection, doc, getDocs, query, updateDoc, where } from "firebase/fire
 
 ////// Crear input para subir imagen a storage
 
-export const getURL = (id) => {
-    getDownloadURL(ref(storage, `${id}.jpg`))
-        .then((url) => {
-            return(url)
-        })
-        .catch((error) => {
-            throw new Error(error)
-    });
+export const getURL = async (id) => {
+    try {
+        const url = await getDownloadURL(ref(storage, `${id}.jpg`))
+        return url
+    } catch (error) {
+        throw new Error(error)
+    }
+    
 } 
 
-export const uploadImage = async ({file,link}, id) => {
+export const uploadImage = async (image, type, id) => {
     const imagesRef = ref(storage, `${id}.jpg`);
-
+    
     try {
-        if(file){
-            const snapshot = await uploadBytes(imagesRef, file)
-            console.log(snapshot)
+        if(type === "file"){
+            const snapshot = await uploadBytes(imagesRef, image)
+            console.log("File uploaded successfully");
+
         }
     
-        else{
+        else if(type === "url"){
             // Fetch the file from the URL
-            const res = await (axios.get(link,{responseType:'arraybuffer'}).data)
+            const res = await (axios.get(image,{responseType:'arraybuffer'}))
+            // console.log(res)
             // Convert file to blob
-            const blob = new Blob([res], {type: res.headers['content-type']});
+            const blob = new Blob([res.data], {type: res.headers['content-type']});
             // Upload file to Storage
             await uploadBytes(imagesRef, blob)
             console.log("File uploaded successfully");
         }
-        
+        const url = await getURL(id)
+        return url
+
     } catch (error) {
         console.log(error)
-        
+
     }
 
 }
-
 export const updateBookAddLinkPDF = async () => {
     try {
         const q = query(collection(db, "books"), where('display', '==', true))

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, TextField, Alert, Paper, Box, Typography, Input } from "@mui/material";
+import { Button, TextField, Paper, Box, Typography, Input } from "@mui/material";
 import { useAuth } from "../../context/authContext";
 
 function Register() {
@@ -9,7 +9,7 @@ function Register() {
     password: "",
     nickName: "",
     adress: "",
-    profilePicture: "",
+    profile: "",
 
   });
   const [errors, setErrors] = useState({
@@ -17,7 +17,7 @@ function Register() {
     password: "",
     nickName: "",
     adress: "",
-    profilePicture: "",
+    profile: "",
   });
   const navigate = useNavigate();
 
@@ -26,11 +26,12 @@ function Register() {
   function handleInputChange(e) {
     switch (e.target.name) {
       case "imageFile":
+        setUserData({ ...userData, profile: e.target.files[0] })
         const reader = new FileReader();
         reader.readAsDataURL(e.target.files[0]);
-        reader.onloadend = () => {
-          setUserData({ ...userData, profilePicture: reader.result });
-        };
+        // reader.onloadend = () => {
+        //   setUserData({ ...userData, profilePicture: reader.result });
+        // };
         break;
 
       default:
@@ -43,10 +44,9 @@ function Register() {
     e.preventDefault();
     try {
 
-      await signup(userData.email, userData.password, userData.nickName, userData.adress, userData.profilePicture);
-      <Alert severity="success"> You have register successfully!</Alert>
-
-      navigate("/home");
+      await signup(userData.email, userData.password, userData.nickName, userData.adress, userData.profile);
+        alert('You have registered successfully!')
+        navigate("/home");
     } catch (error) {
       if (error.code === "auth/weak-password")
         setErrors({
@@ -63,12 +63,10 @@ function Register() {
   const handleGoogleSignIn = async () => {
     try {
       await loginWithGoogle();
+      alert('You have registered successfully!')
       navigate("/home");
     } catch (error) {
-      return (
-        <Alert severity="error">
-          Sign in Error: {error.message}
-        </Alert>)
+      console.error(error)
     }
   };
 
@@ -120,7 +118,7 @@ function Register() {
           {errors.password && <Typography variant="caption" color="red"> <p>{errors.password}</p></Typography>}
           <TextField
             type="text"
-            label="adress"
+            label="Address"
             name="adress"
             value={userData.adress}
             onChange={handleInputChange}

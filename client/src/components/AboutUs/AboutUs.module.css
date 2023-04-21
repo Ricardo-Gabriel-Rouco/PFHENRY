@@ -21,7 +21,6 @@
 
 .cardsContainer {
   display: grid;
- 
   grid-template-rows: repeat(2, 1fr);
   grid-template-columns: repeat(4, 1fr);
 
@@ -73,20 +72,21 @@
 .gitHub {
   width: 30px;
   height: 30px;
-  
+  color: black;
 }
 
 .linkedin {
+  color: black;
   width: 30px;
   height: 30px;
   
 }
 
 .linkedin:hover {
-  color: #229bf4;
+  color:  #a74949;
 }
 .gitHub:hover {
-  color: #229bf4;
+  color:  #a74949;
 }
 
 a:link {
@@ -99,23 +99,23 @@ a:visited {
 .flecha {
   animation: arrow 1s ease-in-out infinite;
   font-size: 40px;
-  
+  color: white;
+  z-index: 1;
   cursor: pointer;
-  margin-bottom: 75px;
+  margin: 0px auto 5px auto;
 }
 
 .flecha:hover {
-  animation: arrow 1s ease-out infinite !important;
-  color: #229bf4;
+  color:  #a74949;
 }
 @keyframes arrow {
   0% {
-    transform: translate(0px, 50px);
-  }
-  50% {
-    transform: translate(0px, 60px);
+    transform: translate(0px, 0px);
   }
   100% {
-    transform: translate(0px, 50px);
+    transform: translate(0px, 10px);
   }
 }
+
+
+

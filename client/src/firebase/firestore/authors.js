@@ -1,9 +1,9 @@
-import { getDocs, query, collection, where, doc, getDoc, updateDoc, addDoc } from "firebase/firestore"
+import { getDocs, query, collection, where, doc, getDoc, updateDoc, addDoc, setDoc } from "firebase/firestore"
 import {db} from '../firebase-config'
 
 export async function getAuthors () {
 
-  const q = query(collection(db, "authors"), where('display', '==', true))
+  const q = query(collection(db, "authors"))
   const querySnapshot = await getDocs(q);
   let data = [];
   querySnapshot.forEach((doc) => {
@@ -44,17 +44,13 @@ export async function deleteAuthor (id){
   }
 }
 
-export async function postAuthor (name, nationality){
+export async function postAuthor (name, id){
   // validaciones, muchas validaciones
 
   // fin validaciones
   try {
-    const newAuthor = doc(db, 'authors')
-    await addDoc(newAuthor, {
-      name: name,
-      nationality: nationality,
-      display: true
-    })
+    await setDoc(doc(db, "authors", id.toString()), {name});
+  
   } catch (error) {
     console.log(error)
   }

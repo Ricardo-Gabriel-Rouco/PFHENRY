@@ -79,7 +79,7 @@ const NavBar = ({ passTheme, mode }) => {
   return (
     location.pathname !== "/" &&
     location.pathname.slice(0, 6) !== "/admin" && (
-      <Box sx={{ bgcolor: "secondary", p: 1 }}>
+      <Box sx={{ bgcolor: "background.default", p: 1 }}>
         <Img
           src={logo}
           alt="Book's Kingdom"
@@ -112,7 +112,7 @@ const NavBar = ({ passTheme, mode }) => {
                       display: 'flex',
                       width: '60%',
                       padding: "0px",
-                      minWidth: '400px',
+                      minWidth: '200px',
                       
                     }}
                   >
@@ -122,7 +122,7 @@ const NavBar = ({ passTheme, mode }) => {
                 <Box sx={{ flexWrap: 'wrap', display: 'flex'}}>
                   <Grid item xs={true}>
 
-                    {userStatus.role.includes("ADMIN") ? (
+                    {userStatus.rol.includes("ADMIN") ? (
 
                       <IconButton
                         size="large"
@@ -139,7 +139,7 @@ const NavBar = ({ passTheme, mode }) => {
                     ) : null}
                   </Grid>
                   <Grid item xs={true}>
-                    {userStatus.role.includes("ADMIN") ? (
+                    {userStatus.rol.includes("ADMIN") ? (
 
                       <IconButton
                         size="large"

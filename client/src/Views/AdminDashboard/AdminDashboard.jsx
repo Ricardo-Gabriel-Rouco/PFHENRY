@@ -11,7 +11,7 @@ import { BookList } from "../../components/Admin/BooksRoutes/Booklist";
 import { Userlist } from "../../components/Admin/Userlist/Userlist";
 import dataProvider from "../../components/Admin/dataProvider/dataProvider";
 import CardDetail from "../../components/CardDetail/CardDetail";
-import { Route } from "react-router-dom";
+import { Route, useNavigate } from "react-router-dom";
 import { BookCreate } from "../../components/Admin/BookCreate/BookCreate";
 import OrderList from "../../components/Admin/OrdersRoutes/OrderList.jsx";
 import OrderShow from "../../components/Admin/OrdersRoutes/OrderShow";
@@ -19,6 +19,9 @@ import { useAuth } from "../../context/authContext";
 
 export const AdminDashboard = () => {
   const { userStatus } = useAuth();
+  const navigate = useNavigate()
+
+  if( userStatus.logged && userStatus.rol.includes('ADMIN'))
 
   return (
     <Admin
@@ -39,10 +42,10 @@ export const AdminDashboard = () => {
         create={BookCreate}
         options={{ label: "Books" }}
       >
-        <Route path="/:id" element={<EditGuesser />} />
+        <Route path="/:id" element={<BookCreate />} />
         <Route path="/:id/show" element={<CardDetail />} />
       </Resource>
-      {userStatus.role === "SUPERADMIN" ? (
+      {userStatus.rol === "SUPERADMIN" ? (
         <Resource
           name="users"
           list={Userlist}
@@ -59,6 +62,7 @@ export const AdminDashboard = () => {
       />
     </Admin>
   );
+  navigate('/home')
 };
 
 export default AdminDashboard;

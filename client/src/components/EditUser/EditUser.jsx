@@ -22,11 +22,12 @@ function EditUser() {
   function handleInputChange(e) {
     switch (e.target.name) {
       case "imageFile":
+        setUserData({...userData, profile: e.target.files[0]})
         const reader = new FileReader();
         reader.readAsDataURL(e.target.files[0]);
-        reader.onloadend = () => {
-          setUserData({ ...userData, profilePicture: reader.result });
-        };
+        // reader.onloadend = () => {
+        //   setUserData({ ...userData, profile: reader.result });
+        // };
         break;
 
       default:
@@ -37,10 +38,11 @@ function EditUser() {
   }
 
   async function handleSubmit(e) {
+    // console.log(userData.profile)
     e.preventDefault();
-    if(errors) throw new Error('No se puede cambiar el nombre de usuario')
+    if(errors.length) throw new Error('No se puede cambiar el nombre de usuario')
     try {
-      await customize(userStatus.userId,userData.nickName || userStatus.nickName, userData.profile || userStatus.profilePicture, userData.adress || userStatus.adress );
+      await customize(userStatus.userId,userData.nickName , userData.profile , userData.adress );
       setOpen(true)
       // navigate("/home");
     } catch (error) {

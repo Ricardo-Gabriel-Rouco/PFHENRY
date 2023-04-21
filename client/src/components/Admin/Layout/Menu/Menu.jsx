@@ -15,7 +15,7 @@ export const MyMenu = () => {
         primaryText="Books"
         leftIcon={<MenuBookTwoToneIcon />}
       />
-      {userStatus.role === "SUPERADMIN" ?<><Menu.Item
+      {userStatus.rol === "SUPERADMIN" ?<><Menu.Item
         to="/admin/users"
         primaryText="Users"
         leftIcon={<AccountCircleTwoToneIcon />}

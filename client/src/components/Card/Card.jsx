@@ -58,7 +58,7 @@ const Card = ({
   
 
   return (
-    <>
+    
     <Grid
       container
       spacing={2}
@@ -151,12 +151,12 @@ const Card = ({
         />
         <CardContent sx={{ padding: 1, mr: 1 }}>
           <Typography
-            sx={{ fontSize: "1rem", fontWeight: "bold" }}
+            sx={{ fontSize: "1rem", fontWeight: "bold", color: 'black' }}
             gutterBottom
           >
             {title}
           </Typography>
-          <Typography variant="body2">
+          <Typography variant="body2" sx={{color: 'black'}}>
             {discount ? (
               <>
                 <s>${price}</s>{" "}
@@ -175,7 +175,7 @@ const Card = ({
         </CardActions>
       </Grid>
     </Grid>
-          </>
+        
   );
 };
 

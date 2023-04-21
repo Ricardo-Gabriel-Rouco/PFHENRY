@@ -4,10 +4,12 @@
   justify-content: center;
   flex-direction: column;
   width: 100%;
+  background-color: #d1d1d1;
 }
 
 .notFound {
   position: relative;
+  background-color: #d1d1d1;
 }
 
 .notFound h1 {
@@ -20,4 +22,8 @@
 
 .notFound img {
   height: 100%;
+
+}
+.bgcolor {
+  background-color: #d1d1d1;
 }
