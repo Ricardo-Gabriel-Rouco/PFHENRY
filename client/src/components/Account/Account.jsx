@@ -33,7 +33,7 @@ function Account() {
     const userData = favoriteInfo.map((book) => {
         return {
             id: book.id,
-            price: book.price,
+            price: book.unit_price,
             image: book.image,
             title: book.title,
         }

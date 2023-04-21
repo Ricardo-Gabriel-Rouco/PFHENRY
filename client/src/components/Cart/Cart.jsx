@@ -23,6 +23,7 @@ export const availableItems = (displayableBooks, cart) => {
     )
     .map((el) => {
       const { price: unit_price, ...rest } = el
+      console.log(unit_price)
       return {
         quantity: cart.cart.cart.find(book => book.id === el.id).quantity,
         unit_price,

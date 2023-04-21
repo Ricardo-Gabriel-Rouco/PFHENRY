@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { postOrder } from '../../firebase/firestore/orders';
 import { Button } from '@mui/material';
 import { getMailOfUser } from '../../firebase/firestore/users';
+import { availableItems } from '../Cart/Cart';
 
 const PayStatus = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const PayStatus = () => {
   const idUser = params.get('idUser');
   const statusPayment = params.get('status');
   const cart = useSelector((state) => state.cart);
+  const displayableBooks = useSelector((state) => state.books.displayableBooks);
   const [status, setStatus] = useState("");
   const navigate = useNavigate()
 
@@ -23,6 +25,7 @@ const PayStatus = () => {
   }
 
   useEffect(() => {
+    const items = availableItems(displayableBooks,cart)
     async function checkPayStatus() {
       switch (statusPayment) {
         case "approved":
@@ -31,7 +34,7 @@ const PayStatus = () => {
             user: idUser,
             idOrder: payment_id,
             status: statusPayment,
-            items: cart.cart.cart
+            items
           }
           window.history.replaceState({}, document.title, window.location.pathname);
           await postOrder(order)

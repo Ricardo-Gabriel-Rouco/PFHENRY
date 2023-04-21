@@ -22,7 +22,7 @@ const OrderList = (props) => (
         label="Total Price"
         render={(record) =>
           record.items.reduce(
-            (total, current) => total + current.price * current.quantity, 0)
+            (total, current) => total + current.unit_price * current.quantity, 0)
         }
       />
       <ShowButton label="View Details"/>

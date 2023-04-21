@@ -53,7 +53,7 @@ const OrderShow = (props) => {
             </ReferenceField>
             <TextField source="title" />
             <NumberField source="quantity" />
-            <NumberField source="price" />
+            <NumberField source="unit_price" />
           </Datagrid>
         </ArrayField>
         <TextField />
