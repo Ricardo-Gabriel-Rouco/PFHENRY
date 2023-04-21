@@ -71,7 +71,7 @@ export function AuthProvider({ children }) {
       navigate("/home");
     }
      // eslint-disable-next-line
-  }, [userStatus.logged]);
+  }, []);
 
   useEffect(() => {
     if (userStatus.display === false) {

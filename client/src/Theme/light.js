@@ -20,16 +20,16 @@ const light = createTheme({
       contrastText: "#FFF8E1",
     },
     warning: {
-      main: "#fd7373",
+      main: "#000",
     },
     info: {
-      main: "#857E61 ",
+      main: "#a74949",
     },
-    divider: "rgba(76,42,30,0.68)",
+    divider: "#000",
     text: {
-      primary: "#522806",
-      secondary: "#3e2723",
-      hint: "#331e1e",
+      primary: "#000",
+      secondary: "#000",
+      hint: "#000",
       shiny: "#ffffff",
     },
     success: {
