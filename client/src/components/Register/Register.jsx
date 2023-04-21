@@ -120,7 +120,7 @@ function Register() {
           {errors.password && <Typography variant="caption" color="red"> <p>{errors.password}</p></Typography>}
           <TextField
             type="text"
-            label="adress"
+            label="Address"
             name="adress"
             value={userData.adress}
             onChange={handleInputChange}
