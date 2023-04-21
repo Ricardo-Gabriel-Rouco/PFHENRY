@@ -31,7 +31,6 @@ export const uploadImage = async (image, type, id) => {
             // console.log(res)
             // Convert file to blob
             const blob = new Blob([res.data], {type: res.headers['content-type']});
-            const blob = new Blob([res.data], {type: res.headers['content-type']});
             // Upload file to Storage
             await uploadBytes(imagesRef, blob)
             console.log("File uploaded successfully");
