@@ -5,8 +5,8 @@ export const Dashboard = () => {
   return (
     <Card>
       <CardContent>
-        <Typography>Welcome to the admin home page</Typography>
-        <Typography>This is the home page for react admin</Typography>
+        <Typography color="secondary">Welcome to the admin home page</Typography>
+        <Typography color="secondary">This is the home page for react admin</Typography>
       </CardContent>
     </Card>
   );
