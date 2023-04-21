@@ -5,11 +5,11 @@ import { collection, setDoc, doc, getDoc, getDocs ,query, where } from "firebase
 import { auth, db } from "../firebase-config";
 
 
-export async function createUser(email, password, nickName, adress, profilePicture) {
+export async function createUser(email, password, nickName, adress, profile) {
 
     try {
         const res = await createUserWithEmailAndPassword(auth, email, password);
-        const profile = await uploadImage(profilePicture, res.user.uid)
+        const imageProfile = await uploadImage(profile, 'file', res.user.uid)
         const newUser = {
             uid: res.user.uid,
             email:res.user.email,
@@ -17,7 +17,7 @@ export async function createUser(email, password, nickName, adress, profilePictu
             rol: "USER",
             adress: adress,
             display: true,
-            profilePicture: profile
+            profile: imageProfile
         }
         const collectionRef = collection(db, 'users')
         const userRef = doc(collectionRef, res.user.uid)

@@ -21,7 +21,7 @@ export const AdminDashboard = () => {
   const { userStatus } = useAuth();
   const navigate = useNavigate()
 
-  if( userStatus.logged && userStatus.role.includes('ADMIN'))
+  if( userStatus.logged && userStatus.rol.includes('ADMIN'))
 
   return (
     <Admin
@@ -36,7 +36,7 @@ export const AdminDashboard = () => {
       <Resource
         name="books"
         list={BookList}
-        edit={EditGuesser}
+        edit={BookCreate}
         basePath="/admin/books"
         show={ShowGuesser}
         create={BookCreate}
@@ -45,7 +45,7 @@ export const AdminDashboard = () => {
         <Route path="/:id" element={<BookCreate />} />
         <Route path="/:id/show" element={<CardDetail />} />
       </Resource>
-      {userStatus.role === "SUPERADMIN" ? (
+      {userStatus.rol === "SUPERADMIN" ? (
         <Resource
           name="users"
           list={Userlist}

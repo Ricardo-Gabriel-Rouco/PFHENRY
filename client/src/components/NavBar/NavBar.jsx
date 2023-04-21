@@ -122,7 +122,7 @@ const NavBar = ({ passTheme, mode }) => {
                 <Box sx={{ flexWrap: 'wrap', display: 'flex'}}>
                   <Grid item xs={true}>
 
-                    {userStatus.role.includes("ADMIN") ? (
+                    {userStatus.rol.includes("ADMIN") ? (
 
                       <IconButton
                         size="large"
@@ -139,7 +139,7 @@ const NavBar = ({ passTheme, mode }) => {
                     ) : null}
                   </Grid>
                   <Grid item xs={true}>
-                    {userStatus.role.includes("ADMIN") ? (
+                    {userStatus.rol.includes("ADMIN") ? (
 
                       <IconButton
                         size="large"
