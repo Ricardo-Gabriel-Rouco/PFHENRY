@@ -50,7 +50,7 @@ const CardContainer = () => {
   }, [filteredBooks]);
   return (
 
-    <div>
+    <div className={style.bgcolor}>
       {filteredBooks.length ? (<FilterOptions setCurrentPage={setCurrentPage} />) : null}
       {filteredBooks === "not found" ? (
         <div className={style.notFound}>
@@ -63,6 +63,7 @@ const CardContainer = () => {
             style={{ 
               margin:"40px 0", 
               gap: "40px",
+              backgroundColor: "#d1d1d1"
               // minHeight: "100vh", 
             }}>
             {currentBook

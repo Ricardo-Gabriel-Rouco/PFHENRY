@@ -84,10 +84,10 @@
 }
 
 .linkedin:hover {
-  color:#DE8319;
+  color:  #a74949;
 }
 .gitHub:hover {
-  color:#DE8319;
+  color:  #a74949;
 }
 
 a:link {
@@ -107,7 +107,7 @@ a:visited {
 }
 
 .flecha:hover {
-  color: #DE8319;
+  color:  #a74949;
 }
 @keyframes arrow {
   0% {

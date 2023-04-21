@@ -11,7 +11,8 @@ const Avatar = props => {
                 className='transition-3'
                 style={{
                     ...styles.avatarHello,
-                    ...{ opacity: hovered ? '1' : '0' }
+                    ...{ opacity: hovered ? '1' : '0' },
+                    zIndex: 0
                 }}
             >
                 Hey! Need help?
@@ -24,7 +25,8 @@ const Avatar = props => {
                 className='transition-3'
                 style={{
                     ...styles.chatWithMeButton,
-                    ...{ border: hovered ? '1px solid #f9f0ff' : '4px solid #fdd835' }
+                    ...{ border: hovered ? '1px solid #f9f0ff' : '4px solid #a74949'},
+                    zIndex: 0
                 }}
             />
         </div>

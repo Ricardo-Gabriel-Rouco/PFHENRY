@@ -1,15 +1,15 @@
 .ce-my-message-bubble {
-  background-color:#ffc400 !important;
+  background-color:#a74949;
   font-weight: 400;
   font-size: 14px;
 }
  
 .ce-chat-title-text {
-  color: #ffc400;
+  color:#a74949
 }
 
 .ce-chat-suƒbtitle-text {
-  color: #ffc400;
+  color: #a74949;
   font-weight: 400;
   font-size: 18px;
 }
@@ -18,12 +18,11 @@
   position: relative;
   bottom: 2px;
   left: 1px;
-  background-color: #ffc400 !important;
+  background-color: #a74949
 }
 
 .ce-my-message-timestamp {
-  color: #ffc400;
-}
+  color:#a74949}
 
 .transition-3 {
   transition: all 0.33s ease;

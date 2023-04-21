@@ -196,11 +196,11 @@ const Landing = () => {
           sx={{
             marginX: "auto",
             marginY: "0",
-            bgcolor: "#DE8319",
+            bgcolor:  "#a74949",
             color: "#ffffff",
             ":hover": {
-              color: "#DE8319",
-              bgcolor: "#ffffff",
+              color: "#ffffff",
+              bgcolor: "#e4704c"
             },
           }}
           >

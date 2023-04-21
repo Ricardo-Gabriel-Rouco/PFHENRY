@@ -14,6 +14,7 @@ export const styles = {
     // Size
     width: "84px",
     height: "84px",
+    zIndex: "100000"
   },
   avatarHello: {
     // Position
@@ -27,7 +28,7 @@ export const styles = {
     padding: "12px 12px 12px 16px",
     borderRadius: "24px",
     // Color
-    backgroundColor: "#ffc400",
+    backgroundColor: "#a74949",
     color: "black",
     //Font
     fontSize: "16px",
@@ -42,15 +43,15 @@ export const styles = {
     height: "450px",
     maxWidth: "calc(100% - 48px)",
     maxHeight: "calc(100% - 48px)",
-    backgroundColor: "white",
+    backgroundColor: "#e5e5e6",
     // Border
     borderRadius: "12px",
-    border: `2px solid #FFD600`,
+    border: '2px solid #a74949',
     overflow: "hidden",
     // Shadow
     boxShadow: "0px 0px 16px 6px rgba(0, 0, 0, 0.33)",
     //
-    zIndex: 100,
+    zIndex: "100000"
   },
   emailFormWindow: {
     width: "100%",
@@ -64,7 +65,7 @@ export const styles = {
     top: "-45px",
     width: "100%",
     height: "208px",
-    backgroundColor: "#ffc400",
+    backgroundColor: "#a74949",
     transform: "skewY(-12deg)",
   },
   topText: {
@@ -81,13 +82,13 @@ export const styles = {
     outline: "none",
     padding: "12px",
     borderRadius: "12px",
-    border: "2px solid #FFD600",
+    border: "2px solid #a74949"
   },
   bottomText: {
     position: "absolute",
     width: "100%",
     top: "60%",
-    color: "#FFD600",
+    color: "#a74949",
     fontSize: "16px",
     fontWeight: "600",
   },
@@ -96,10 +97,10 @@ export const styles = {
     height: "100%",
     width: "100%",
     textAlign: "center",
-    backgroundColor: "white",
+    backgroundColor: "#a74949"
   },
   loadingIcon: {
-    color: "#fdd8ffc40035",
+    color: "#a74949",
     position: "absolute",
     top: "calc(50% - 51px)",
     left: "calc(50% - 51px)",
@@ -107,7 +108,8 @@ export const styles = {
   },
   chatEngineWindow: {
     width: "100%",
-    backgroundColor: "#ffc400",
+    backgroundColor: "#a74949",
+    zIndex: "100000",
   },
   supportWindowClosed: {
     position: "fixed",
@@ -116,12 +118,13 @@ export const styles = {
     width: "420px",
     height: "530px",
     borderRadius: "12px",
-    border: `2px solid #FFD600`,
+    border: "2px solid #a74949",
     pointerEvents: "none",
     transition: "all 0.5s ease",
     WebkitTransition: "all 0.5s ease",
     MozTransition: "all 0.5s ease",
     opacity: 0,
+    zIndex: "100000",
     visibility: "hidden",
   },
 };
