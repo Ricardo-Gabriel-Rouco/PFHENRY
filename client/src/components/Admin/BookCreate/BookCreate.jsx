@@ -19,7 +19,7 @@ import ErrorIcon from "@mui/icons-material/Error";
 import styles from "./BookForm.module.css";
 import { List } from "../List/List";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button, Typography, Box } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import { getAuthors, postAuthor } from "../../../firebase/firestore/authors";
 import { uploadImage } from "../../../firebase/storage";
@@ -232,13 +232,16 @@ export const BookCreate = (props) => {
 
   return (
     <Box
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        alignSelf: "center",
-
-      }}
+    sx={{margin:"auto"}}
+      // style={{
+      //   display: "flex",
+      //   justifyContent: "center",
+      //   alignItems: "center",
+      //   height: "100vh",
+      //   width: "75%",
+      //   alignSelf: "center",
+      //   margin: "auto",
+      // }}
     >
       <Create {...props} style={{ alignSelf: "center", display: "flex" }}>
         <SimpleForm onSubmit={createBook}

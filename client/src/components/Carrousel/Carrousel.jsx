@@ -160,7 +160,7 @@ const Carrousel = () => {
       </CarouselContainer>
 
 
-      {/*             CARROUSEL BILLBOARD GRANDE */}
+                  {/* CARROUSEL BILLBOARD GRANDE
       <CarouselContainer sx={{ width: '90%', marginTop: '3rem' }}>
         <Swiper
           slidesPerView={5}
@@ -238,7 +238,7 @@ const Carrousel = () => {
             </Box>
           </SwiperSlide>
         </Swiper>
-      </CarouselContainer>
+      </CarouselContainer> */}
 
       <Box>
         {/*         CARROUSEL OFERTAS */}

@@ -61,14 +61,10 @@ const CardContainer = () => {
       ) : filteredBooks.length ? (
         <Cards >
           <Grid container justifyContent="center"
-            id='fuckingBackground'
-            sx={{
-              bgcolor: light.palette.background.paper
-            }}
+          backgroundColor='#d1d1d1'
             style={{
-              padding:"10px 0", 
-              gap: "40px",
-              boxShadow:"none",
+              // minHeight: "100vh", 
+
             }}>
             {currentBook
               .map((c, index) => (
