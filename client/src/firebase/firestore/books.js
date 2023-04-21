@@ -146,8 +146,8 @@ export async function postBook(book) {
       };
       const collectionRef = collection(db, "books");
       const docRef = doc(collectionRef, book.isbn);
-      console.log(newBook);
       await setDoc(docRef, newBook);
+      console.log("Book uploaded successfully")
       return {
         date: newBook,
       };

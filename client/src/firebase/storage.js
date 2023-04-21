@@ -36,6 +36,7 @@ export const uploadImage = async (image, type, id) => {
             console.log("File uploaded successfully");
         }
         const url = await getURL(id)
+        console.log(url)
         return url
         
     } catch (error) {

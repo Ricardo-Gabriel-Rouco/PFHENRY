@@ -2,19 +2,24 @@ import {
   Create,
   SimpleForm,
   TextInput,
+  TextField,
   ImageInput,
   SelectInput,
   NumberInput,
 } from "react-admin";
-import { modifyBook, postBook } from "../../../firebase/firestore/books";
+import {
+  getBookById,
+  modifyBook,
+  postBook,
+} from "../../../firebase/firestore/books";
 import { useState, useEffect } from "react";
-import { getGenres } from "../../../firebase/firestore/genres";
+import { getGenres, postGenre } from "../../../firebase/firestore/genres";
 import validation from "./validation";
 import ErrorIcon from "@mui/icons-material/Error";
 import styles from "./BookForm.module.css";
 import { List } from "../List/List";
-import { useNavigate } from "react-router-dom";
-import { Button, Input, InputLabel, TextField } from "@mui/material";
+import { useNavigate, useParams } from "react-router-dom";
+import { Button, Typography } from "@mui/material";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import { getAuthors, postAuthor } from "../../../firebase/firestore/authors";
 import { uploadImage } from "../../../firebase/storage";
@@ -26,10 +31,87 @@ export const BookCreate = (props) => {
   const [authors, setAuthors] = useState(undefined);
   const [allGenres, setAllGenres] = useState([]);
   const [allAuthors, setAllAuthors] = useState([]);
-  const [bookData, setBookData] = useState({description:""});
+  const [bookData, setBookData] = useState({ description: "" });
   const [errors, setErrors] = useState({});
   const [urlImage, setUrlImage] = useState("");
   const [imageToRender, setImageToRender] = useState("");
+  const [focused, setFocused] = useState(false);
+  const [book, setBook] = useState({});
+  const [flag, setFlag] = useState(true);
+
+  const paramId = useParams().id;
+
+  useEffect(() => {
+    try {
+      let genres, authors;
+      const fetchGenres = async () => {
+        const allGenres = await getGenres();
+        genres = allGenres;
+        setAllGenres(allGenres);
+      };
+      fetchGenres();
+
+      const fetchAuthors = async () => {
+        const allAuthors = await getAuthors();
+        authors = allAuthors;
+        setAllAuthors(allAuthors);
+      };
+      fetchAuthors();
+
+      const fetchBook = async () => {
+        let book = await getBookById(paramId);
+        const formattedGenres = genres.filter((el) =>
+          book.genres.includes(el.name)
+        );
+        const formattedAuthors = authors.filter((el) =>
+          book.authors.includes(el.name)
+        );
+        setGenres(formattedGenres);
+        setAuthors(formattedAuthors);
+        book = {
+          ...book,
+          isbn: book.id,
+          genres: formattedGenres,
+          authors: formattedAuthors,
+        };
+        console.log(book);
+        setBookData(book);
+        setBook(book);
+        setFocused(true);
+        setImageType("url");
+      };
+
+      if (paramId) fetchBook();
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (imageType === "url") console.log();
+    if (focused) {
+      console.log(book);
+      setBookData({ ...bookData, image: book?.image });
+    }
+  }, [imageType]);
+
+  useEffect(() => {
+    const newData = {};
+    newData.authors = authors;
+    newData.genres = genres;
+
+    setBookData({ ...bookData, ...newData });
+  }, [authors, genres]);
+
+  useEffect(() => {
+    setErrors(validation(bookData, imageType));
+
+    if (paramId && flag && bookData?.image?.length) {
+      setBookData({ ...bookData, image: book?.image });
+      setImageToRender(book.image);
+      setFlag(false);
+    }
+  }, [bookData]);
 
   const createBook = async (e) => {
     try {
@@ -46,30 +128,35 @@ export const BookCreate = (props) => {
       });
       if (error) throw "Missing data";
 
-      const imageUrl = await uploadImage(bookData.image, imageType, bookData.isbn);
+      const imageUrl = await uploadImage(
+        bookData.image,
+        imageType,
+        bookData.isbn
+      );
       const newBook = {
         ...bookData,
         authors: bookData.authors.map((el) => el.name).flat(),
         genres: bookData.genres.map((el) => el.name).flat(),
         image: imageUrl,
-      }
+      };
 
-      console.log(newBook)
-      const res = await postBook(newBook);
+      await postBook(newBook);
 
-      //agrego nuevos autores y generos
+      //agrego nuevos autores
       const newAuthors = bookData.authors.filter((author) => {
         if (!allAuthors.find((el) => el.name === author.name)) return true;
       });
-      const authorsPromises = newAuthors.map(el=>postAuthor(el.name,el.id))
-      authorsPromises.length && await Promise.all(authorsPromises)
+      const authorsPromises = newAuthors.map((el) =>
+        postAuthor(el.name, el.id)
+      );
+      authorsPromises.length && (await Promise.all(authorsPromises));
 
-
+      //agrego nuevos generos
       const newGenres = bookData.genres.filter((genre) => {
         if (!allGenres.find((el) => el.name === genre)) return true;
       });
-      const genresPromises = newGenres.map(el=>postAuthor(el.name,el.id))
-      genresPromises.length && await Promise.all(genresPromises)
+      const genresPromises = newGenres.map((el) => postGenre(el.name, el.id));
+      genresPromises.length && (await Promise.all(genresPromises));
 
       navigate("/admin/books");
     } catch (error) {
@@ -82,37 +169,6 @@ export const BookCreate = (props) => {
       window.alert(error);
     }
   };
-  // async (ev) => {
-  //   try {
-  //     // const newBookData = { ...bookData, genres };
-  //     const response = await modifyBook("000", { name: "test" });
-  //     console.log(response);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  useEffect(() => {
-    const fetchGenres = async () => {
-      const allGenres = await getGenres();
-      setAllGenres(allGenres);
-    };
-    fetchGenres();
-
-    const fetchAuthors = async () => {
-      const allAuthors = await getAuthors();
-      setAllAuthors(allAuthors);
-    };
-    fetchAuthors();
-  }, []);
-
-  useEffect(() => {
-    const newData = {};
-    newData.authors = authors;
-    newData.genres = genres;
-
-    setBookData({ ...bookData, ...newData });
-  }, [authors, genres]);
 
   const handleInputChange = (e) => {
     setBookData({
@@ -120,10 +176,6 @@ export const BookCreate = (props) => {
       [e.target.name]: e.target.value,
     });
   };
-
-  useEffect(() => {
-    setErrors(validation(bookData, imageType));
-  }, [bookData]);
 
   const handleImageType = (e) => {
     setImageType(e.target.value);
@@ -186,7 +238,7 @@ export const BookCreate = (props) => {
         height: "100vh",
         width: "75%",
         alignSelf: "center",
-        margin: "15rem",
+        margin: "auto",
       }}
     >
       <Create {...props} style={{ alignSelf: "center", display: "flex" }}>
@@ -198,25 +250,39 @@ export const BookCreate = (props) => {
               flexDirection: "column",
             }}
           >
+            {!paramId ? (
+              <>
+                <TextInput
+                  label="ISBN"
+                  source="isbn"
+                  focused={focused}
+                  onChange={handleInputChange}
+                  name="isbn"
+                  format={(e) => bookData?.isbn}
+                />
+                {errors.isbn ? (
+                  <p className={styles.formError}>
+                    <ErrorIcon />
+                    {errors.isbn && errors.isbn}
+                  </p>
+                ) : null}
+              </>
+            ) : (
+              <Typography sx={{ marginBottom: "1em" }}>
+                <TextField
+                  source="myField"
+                  record={{ myField: ` ISBN: ${paramId}` }}
+                  sx={{ fontWeight: "bold", fontSize: "2em" }}
+                />
+              </Typography>
+            )}
             <TextInput
-              label="ISBN"
-              source="isbn"
               onChange={handleInputChange}
-              name="isbn"
-              format={(e) => bookData.isbn}
-            />
-            {errors.isbn ? (
-              <p className={styles.formError}>
-                <ErrorIcon />
-                {errors.isbn && errors.isbn}
-              </p>
-            ) : null}
-            <TextInput
-              onChange={handleInputChange}
+              focused={focused}
               label="Title"
               source="title"
               style={{ margin: "0 ", fontSize: "2rem", fontWeight: "bold" }}
-              format={(e) => bookData.title}
+              format={(e) => bookData?.title}
             />
             {errors.title ? (
               <p className={styles.formError}>
@@ -226,6 +292,7 @@ export const BookCreate = (props) => {
             ) : null}
             <SelectInput
               optionText="name"
+              format={(e) => imageType}
               onChange={handleImageType}
               choices={imageTypeOptions}
               source="Image Type"
@@ -297,20 +364,22 @@ export const BookCreate = (props) => {
             <TextInput
               multiline
               label="Description"
+              focused={focused}
               source="description"
               onChange={handleInputChange}
               style={{ width: "50rem" }}
-              format={(e) => bookData.description}
+              format={(e) => bookData?.description}
             />
             <br></br>
             <NumberInput
               label="Price $"
               source="price"
+              focused={focused}
               onChange={handleInputChange}
-              defaultValue={bookData.price}
+              defaultValue={bookData?.price}
               style={{ margin: "0 2rem " }}
               options={{ style: "currency", currency: "USD" }}
-              format={(e) => bookData.price}
+              format={(e) => bookData?.price}
             />
             {errors.price ? (
               <p className={styles.formError}>
@@ -322,9 +391,10 @@ export const BookCreate = (props) => {
             <TextInput
               label="Year"
               source="year"
+              focused={focused}
               onChange={handleInputChange}
               style={{ margin: "0 2rem " }}
-              format={(e) => bookData.year}
+              format={(e) => bookData?.year}
             />
             {errors.year ? (
               <p className={styles.formError}>
@@ -336,9 +406,10 @@ export const BookCreate = (props) => {
             <TextInput
               label="Editorial"
               source="editorial"
+              focused={focused}
               onChange={handleInputChange}
               style={{ margin: "0 2rem " }}
-              format={(e) => bookData.editorial}
+              format={(e) => bookData?.editorial}
             />
             {errors.editorial ? (
               <p className={styles.formError}>

@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import styles from "./List.module.css";
-import ErrorIcon from "@mui/icons-material/Error";
 import Autocomplete from "@mui/material/Autocomplete";
 import { TextField } from "@mui/material";
 
@@ -50,36 +48,3 @@ export const List = ({ fullList, selected, setSelected, prop }) => {
     </div>
   );
 };
-
-// export const List = () => {
-//   const [selectedTags, setSelectedTags] = useState([
-//     { id: 1, name: 'Tag 1' },
-//     { id: 2, name: 'Tag 2' }
-//   ]);
-
-//   const handleTagsChange = (event, newValue) => {
-//     setSelectedTags([...newValue, {id:"7", name:"pepe"}]);
-//   };
-
-//   return (
-//     <Autocomplete
-//       multiple
-//       options={[
-//         { id: 1, name: 'Tag 1' },
-//         { id: 2, name: 'Tag 2' },
-//         { id: 3, name: 'Tag 3' },
-//         { id: 4, name: 'Tag 4' }
-//       ]}
-//       getOptionLabel={(option) => option.name}
-//       value={selectedTags}
-//       onChange={handleTagsChange}
-//       renderInput={(params) => (
-//         <TextField
-//           {...params}
-//           variant="outlined"
-//           label="Tags"
-//         />
-//       )}
-//     />
-//   );
-// };
