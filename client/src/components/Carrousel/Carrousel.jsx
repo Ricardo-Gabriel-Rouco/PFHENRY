@@ -52,17 +52,7 @@ const Carrousel = () => {
 
 
   const favoriteInfo = displayableBooks.filter((book) => { return getOrders.includes(book.id) })
-  console.log(favoriteInfo)
-  /* const userData = favoriteInfo.map((book) => {
-    return {
-      id: book.id,
-      price: book.price,
-      discount: book.discount,
-      image: book.image,
-      authors: book.authors,
-      genres: book.genres
-    }
-  }) */
+
   // PARA CONSEGUIR AUTORES PREFERIDOS Y SUS LIBROS QUE NO COMPRO.
 
   const purchasedAuthors = [...new Set(favoriteInfo.map((book) => book.authors.join(',')))]
@@ -81,7 +71,7 @@ const Carrousel = () => {
 
   const purchasedGenres = [...new Set(favoriteInfo.map((book) => book.genres.join(',')))]
   //obtengo array de genres preferidos que compró.
-  console.log(purchasedGenres)
+
 
   const genresNotPurchased = [];
   purchasedGenres.forEach((genres) => {
@@ -678,7 +668,7 @@ const Carrousel = () => {
               All Books
             </Typography>
           </Grid> */}
-        <Grid item xs={6} textAlign="center">
+        
           <Link to="/books">
             <Button
               variant="contained"
@@ -691,7 +681,7 @@ const Carrousel = () => {
             </Button>
           </Link>
         </Grid>
-      </Grid>
+
       {/* <Swiper
           slidesPerView={4}
           slidesPerGroup={4}
