@@ -21,7 +21,7 @@ const dark = createTheme({
     divider: "#07070a",
     text: {
       primary: "#ffffffff",
-      secondary: "#4A525A",
+      secondary: "#ffffffff",
       disabled: "rgba(255,255,255,0.07)",
       shiny: "#ffffff",
     },
