@@ -23,8 +23,6 @@ const Login = () => {
 
   const [errors, setErrors] = useState("");
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [alertSeverity, setAlertSeverity] = useState("success");
-  const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
     if (userStatus.logged) {
@@ -149,12 +147,10 @@ const Login = () => {
   const handleConfirmReset = async () => {
     try {
       await resetPassword(userData.email);
-      setAlertSeverity("success");
-      setAlertMessage("We've sent you an email to reset your password");
+      alert("We've sent you an email to reset your password");
       setDialogOpen(false);
     } catch (error) {
-      setAlertSeverity("error");
-      setAlertMessage(error.message);
+      console.error(error);
     }
   };
 
@@ -230,26 +226,19 @@ const Login = () => {
             Reset Password
           </Typography>
           <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
-        <DialogTitle>Reset Password</DialogTitle>
-        <DialogContent>
-          <Alert severity="error">Are you sure you want to reset your password?</Alert>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setDialogOpen(false)} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleConfirmReset} color="primary">
-            Reset
-          </Button>
-        </DialogActions>
-      </Dialog>
-
-      {/* Alert message */}
-      {alertMessage && (
-        <Alert severity={alertSeverity} onClose={() => setAlertMessage("")}>
-          {alertMessage}
-        </Alert>
-      )}
+            <DialogTitle>Reset Password</DialogTitle>
+            <DialogContent>
+              <Alert severity="error">Are you sure you want to reset your password?</Alert>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={() => setDialogOpen(false)} color="primary">
+                Cancel
+              </Button>
+              <Button onClick={handleConfirmReset} color="primary">
+                Reset
+              </Button>
+            </DialogActions>
+          </Dialog>
         </form>
       </Paper>
     </Box>

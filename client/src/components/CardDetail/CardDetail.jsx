@@ -23,7 +23,6 @@ import { updateBookReviews, modifyBook } from "../../firebase/firestore/books";
 import { useAuth } from "../../context/authContext";
 
 const CardDetail = ({ id }) => {
-  const [details, setMoreDetails] = useState(false);
   const [description, setDescription] = useState(false);
   const bookId = useSelector((state) => state.books.bookId);
 
@@ -81,14 +80,15 @@ const CardDetail = ({ id }) => {
         <Card
           sx={{
             position: "absolute",
-            top: "60%",
+            top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
             p: 4,
             bgcolor: "success.light",
             width: 800,
-            maxWidth: "50vw",
-            maxHeight: "71vh",
+            height: '95%',
+            maxWidth: "93%",
+            // maxHeight: "95%",
             // overflow: "auto",
             overflow: 'scroll',
             '::-webkit-scrollbar': {
@@ -96,6 +96,7 @@ const CardDetail = ({ id }) => {
             },
             marginLeft: "4px",
             marginTop: "2px",
+            marginBottom: "25px"
           }}
         >
           <Box
@@ -152,14 +153,9 @@ const CardDetail = ({ id }) => {
               gutterBottom
               sx={{ fontWeight: "bold", marginBottom: "10px" }}
             >
-              <Collapse in={details} collapsedHeight={"500px"}>
                 {bookDetail?.year} - {bookDetail?.editorial} -{" "}
                 {bookDetail?.authors}
-              </Collapse>
             </Typography>
-            <Button onClick={() => setMoreDetails(!details)}>
-              {details ? "View less" : "View Details"}
-            </Button>
             {bookDetail && bookDetail.description && (
               <>
                 <Typography
@@ -248,7 +244,8 @@ const CardDetail = ({ id }) => {
                 <Paper
                   elevation={4}
                   sx={{
-                    maxHeight: 200,
+                    height: '10%',
+                    maxHeight: 300,
                     overflow: "auto",
                     margin: "8px auto",
                     width: "90%",

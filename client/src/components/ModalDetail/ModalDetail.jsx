@@ -6,165 +6,161 @@ import CardDetail from "../CardDetail/CardDetail.jsx";
 import { closeModal } from "../../redux/rootReducer/bookSlice.js";
 import { addProduct } from "../../redux/rootReducer/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
-  Button,
-  Dialog,
-  DialogContent,
-  DialogActions,
-  Grid,
+    Button,
+    Dialog,
+    DialogContent,
+    DialogActions,
+    Grid,
 } from "@mui/material";
 import {
-  deleteFavorite,
-  addFavorite,
+    deleteFavorite,
+    addFavorite,
 } from "../../redux/rootReducer/favoriteSlice.js";
 
 const ModalDetail = () => {
-  const dispatch = useDispatch();
-  const [isFav, setIsFav] = useState(false);
-  const favorites = useSelector((state) => state.favorite.favorites.favorites);
+    const dispatch = useDispatch();
+    const [isFav, setIsFav] = useState(false);
 
-  const bookId = useSelector((state) => state.books.bookId);
-  useEffect(() => {
-    if (favorites.includes(bookId)) setIsFav(true);
-    else setIsFav(false);
-  }, [favorites,bookId]);
+    const bookId = useSelector((state) => state.books.bookId);
 
-  const handleFavorite = () => {
-    if (isFav) {
-      dispatch(deleteFavorite(bookId));
-      setIsFav(false);
-    } else {
-      dispatch(addFavorite(bookId));
+    const handleFavorite = () => {
+        if (isFav) {
+        dispatch(deleteFavorite(bookId));
+        setIsFav(false);
+        } else {
+        dispatch(addFavorite(bookId));
 
-      setIsFav(true);
-    }
-  };
+        setIsFav(true);
+        }
+    };
 
-  const handleAdd = (id) => {
-    dispatch(addProduct({ id }));
-  };
+    const handleAdd = (id) => {
+        dispatch(addProduct({ id }));
+    };
 
-  return (
-    <Dialog
-      open={bookId > 0}
-      onClose={() => dispatch(closeModal())}
-      PaperProps={{
-        sx: {
-          width: "100%",
-          height: "100%",
-          overflow: "hidden",
-          bgcolor: "primary.light",
-          color: "primary",
-        },
-      }}
-    >
-      <DialogContent>
-        <CardDetail id={bookId} />
-      </DialogContent>
-      <DialogActions>
-        <Grid
-          container
-          spacing={3}
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
+    return (
+        <Dialog
+        open={bookId > 0}
+        onClose={() => dispatch(closeModal())}
+        PaperProps={{
+            sx: {
             width: "100%",
-            margin: "auto",
-          }}
+            height: "100%",
+            overflow: "hidden",
+            bgcolor: "success.light",
+            color: "primary",
+            maxWidth:"55vw"
+            },
+        }}
         >
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            md={6}
-            lg={6}
-            xl={6}
-            sx={{ display: "flex", justifyContent: "center" }}
-          >
-            {isFav ? (
-              <Button
+        <DialogContent>
+            <CardDetail id={bookId} />
+        </DialogContent>
+        <DialogActions>
+            <Grid
+            container
+            spacing={3}
+            sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                width: "100%",
+                margin: "auto",
+            }}
+            >
+            <Grid
+                item
+                xs={12}
+                sm={6}
+                md={6}
+                lg={6}
+                xl={6}
+                sx={{ display: "flex", justifyContent: "center" }}
+            >
+                {isFav ? (
+                <Button
+                    variant="contained"
+                    sx={{
+                    color: "primary.contrastText",
+
+                    transition: "color 0.5s",
+                    "&:hover": {
+                        color: "secondary.contrastText",
+                    },
+                    }}
+                    endIcon={<BookmarkOutlinedIcon />}
+                    onClick={() => handleFavorite()}
+                >
+                    Add
+                </Button>
+                ) : (
+                <Button
+                    variant="contained"
+                    sx={{
+                    color: "primary.contrastText",
+
+                    transition: "color 0.5s",
+                    "&:hover": {
+                        color: "secondary.contrastText",
+                    },
+                    }}
+                    endIcon={<BookmarkBorderOutlinedIcon />}
+                    onClick={() => handleFavorite()}
+                >
+                    Add
+                </Button>
+                )}
+            </Grid>
+            <Grid
+                item
+                xs={12}
+                sm={6}
+                md={6}
+                lg={6}
+                xl={6}
+                sx={{ display: "flex", justifyContent: "center" }}
+            >
+                <Button
                 variant="contained"
                 sx={{
-                  color: "primary.contrastText",
+                    color: "primary.contrastText",
 
-                  transition: "color 0.5s",
-                  "&:hover": {
+                    transition: "color 0.5s",
+                    "&:hover": {
                     color: "secondary.contrastText",
-                  },
+                    },
                 }}
-                endIcon={<BookmarkOutlinedIcon />}
-                onClick={() => handleFavorite()}
-              >
+                endIcon={<ShoppingCartIcon />}
+                onClick={() => handleAdd(bookId)}
+                >
                 Add
-              </Button>
-            ) : (
-              <Button
-                variant="contained"
-                sx={{
-                  color: "primary.contrastText",
+                </Button>
+            </Grid>
+            </Grid>
 
-                  transition: "color 0.5s",
-                  "&:hover": {
-                    color: "secondary.contrastText",
-                  },
-                }}
-                endIcon={<BookmarkBorderOutlinedIcon />}
-                onClick={() => handleFavorite()}
-              >
-                Add
-              </Button>
-            )}
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            md={6}
-            lg={6}
-            xl={6}
-            sx={{ display: "flex", justifyContent: "center" }}
-          >
             <Button
-              variant="contained"
-              sx={{
+            variant="contained"
+            endIcon={<ExitToAppIcon />}
+            onClick={() => dispatch(closeModal())}
+            sx={{
+                display: "flex",
+                justifyContent: "center",
+                position: "absolute",
+                zIndex: 2,
+                top: "20px",
+                right: "20px",
                 color: "primary.contrastText",
 
                 transition: "color 0.5s",
                 "&:hover": {
-                  color: "secondary.contrastText",
+                color: "secondary.contrastText",
                 },
-              }}
-              endIcon={<ShoppingCartIcon />}
-              onClick={() => handleAdd(bookId)}
-            >
-              Add
-            </Button>
-          </Grid>
-        </Grid>
-
-        <Button
-          variant="contained"
-          endIcon={<ExitToAppIcon />}
-          onClick={() => dispatch(closeModal())}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            position: "absolute",
-            zIndex: 2,
-            top: "20px",
-            right: "20px",
-            color: "primary.contrastText",
-
-            transition: "color 0.5s",
-            "&:hover": {
-              color: "secondary.contrastText",
-            },
-          }}
-        ></Button>
-      </DialogActions>
-    </Dialog>
-  );
+            }}
+            ></Button>
+        </DialogActions>
+        </Dialog>
+    );
 };
 
 export default ModalDetail;
