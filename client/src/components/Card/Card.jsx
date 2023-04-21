@@ -71,7 +71,7 @@ const Card = ({
         height: "450px",
         width: "300px",
         borderRadius: "10px",
-        bgcolor: "success.light",
+        bgcolor: "background.light",
         boxShadow: "0px 0px 10px black",
         transition: "bgcolor 1s, color 0.5s",
         "&:hover": {
