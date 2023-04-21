@@ -1,13 +1,12 @@
 import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
-import { Box, Button, TextField, Typography, Snackbar, IconButton, CardMedia, Input, Paper } from "@mui/material";
+import { Box, Button, TextField, Typography, IconButton, CardMedia, Input, Paper } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import { useAuth } from "../../context/authContext";
 import { validate } from './validation'
 
 function EditUser() {
   const {customize, userStatus} = useAuth()
-  const [open, setOpen] = useState(false)
   const [userData, setUserData] = useState({
     nickName: "",
     userId: userStatus.userId,
@@ -43,24 +42,12 @@ function EditUser() {
     if(errors.length) throw new Error('No se puede cambiar el nombre de usuario')
     try {
       await customize(userStatus.userId,userData.nickName , userData.profile , userData.adress );
-      setOpen(true)
+      alert('You have changed your info')
       // navigate("/home");
     } catch (error) {
       console.log(error)
   }
 }
-
-const action = (
-  <>
-    <IconButton
-      size="small"
-      aria-label="close"
-      color="inherit"
-    >
-      <CloseIcon fontSize="small" />
-    </IconButton>
-  </>
-);
 
   return (
     <Box sx={{ marginTop: "50px", display: "flex", justifyContent: "center" }}>
@@ -123,12 +110,6 @@ const action = (
         MODIFY
       </Button>
     </form>
-    <Snackbar
-        open={open}
-        autoHideDuration={5000}
-        message="Se cambiaron los datos con exito"
-        action={action}
-        />
   </Paper>
   </Box>
 
