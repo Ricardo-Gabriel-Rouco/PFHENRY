@@ -8,7 +8,7 @@ function AdminRoutes({ children }) {
   const navigate = useNavigate()
 
   if(!userStatus.logged) navigate('/login')
-  else if(!userStatus.role.includes('ADMIN')) return <YouShallNotPass/>
+  else if(!userStatus.rol.includes('ADMIN')) return <YouShallNotPass/>
 
 
   else return <>{children}</>;

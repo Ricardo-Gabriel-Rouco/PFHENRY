@@ -4,36 +4,38 @@ const dark = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#31231e",
-      contrastText: "#fff9c4",
+      main: "#4A525A",
+      contrastText: "#07070a"
+
     },
     secondary: {
-      main: "#e4704c",
-      contrastText: "#FFCDD2",
+      main: "#ffffffff",
+      contrastText: "#ffffffff",
     },
     warning: {
-      main: "#fd7373",
+      main: "#4A525A",
     },
     info: {
-      main: "#c79e3f",
+      main: "#07070a"
     },
-    divider: "#a1887f",
+    divider: "#07070a",
     text: {
-      primary: "#fff59d",
-      secondary: "#fff8e1",
+      primary: "#ffffffff",
+      secondary: "#ffffffff",
       disabled: "rgba(255,255,255,0.07)",
       shiny: "#ffffff",
     },
     success: {
-      main: "#857e61",
-      contrastText: "#d7ccc8",
+      main: "#07070a", 
+      contrastText:"#07070a"
     },
     error: {
-      main: "#ffc400",
+      main: "#ffffffff",
     },
     background: {
-      default: "#1e120e",
-      paper: "#251a17",
+      default: "#07070a",
+      paper: "#07070a",
+
     },
   },
 });

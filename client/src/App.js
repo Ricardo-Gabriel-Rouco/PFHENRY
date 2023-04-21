@@ -31,7 +31,7 @@ import ModalDetail from "./components/ModalDetail/ModalDetail";
 import Footer from './components/Footer/Footer';
 import { DiscountLabel } from "./components/DiscountLabel/DiscountLabel";
 
-axios.defaults.baseURL = 'https://shaky-friend-production.up.railway.app/';
+axios.defaults.baseURL = 'https://pfhenry.onrender.com/';
 
 function App() {
   const toogleCart = useSelector((state) => state.toogle);
@@ -63,6 +63,7 @@ function App() {
   useEffect(() => {
     loadThemeFromLocalStorage();
   }, []);
+
 
   return (
     <div className="App">

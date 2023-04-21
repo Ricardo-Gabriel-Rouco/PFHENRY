@@ -20,11 +20,11 @@
   width: 2rem;
   font-size: 0.8rem;
   font-weight: 600;
-  color: #fff9c4;
-  background-color: #3e2723;
+  color: white;
+  background-color: #a74949;
   margin: 0 0.2rem;
   border-radius: 15px;
-  border: #ffd600;
+  border: black;
 
   transition: all 0.2s;
 }
@@ -32,7 +32,7 @@
 .numberPage:hover,
 .pageBtn:hover {
   cursor: pointer;
-  background-color: #806c67;
+  background-color:#e4704c;
   border-radius: 20px 0 20px 0;
   transition: all 0.2s;
 }
@@ -46,22 +46,22 @@
 }
 
 .match {
-  border: 1px solid #3e2723;
+  border: 1px solid white;
   border-radius: 15px;
   height: 2rem;
   width: 2rem;
   font-size: 0.8rem;
   font-weight: 600;
-  color: #3e2723;
-  background-color: #ffd600;
+  color: white;
+  background-color:  #e4704c;
   margin: 0 0.2rem;
   transition: all 0.2s;
 }
 
 .match:hover {
   cursor: pointer;
-  color: #caa800;
-  border: 1px solid #caa800;
+  color: black;
+  border: 1px solid #e4704c;
   border-radius: 20px 0 20px 0;
 }
 

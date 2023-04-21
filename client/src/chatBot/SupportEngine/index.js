@@ -33,6 +33,7 @@ const SupportEngine = () => {
                     position: 'fixed',
                     bottom: '24px',
                     right: '24px',
+                    zIndex: 1000000
                 }}
             />
         </div>

@@ -7,7 +7,7 @@ import {
   ShowButton,
   TextField,
 } from "react-admin";
-
+//...
 
 const OrderList = (props) => (
   <List {...props} actions={false} pagination={false}>

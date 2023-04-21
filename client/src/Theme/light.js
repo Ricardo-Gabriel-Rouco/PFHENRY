@@ -12,32 +12,32 @@ const light = createTheme({
       thirdTitle: '14px'
     },
     primary: {
-      main: "#ffc400",
-      contrastText: "#fff9c4",
+      main: "#a74949",
+      contrastText: "#e5e5e6",
     },
     secondary: {
       main: "#e4704c",
       contrastText: "#FFF8E1",
     },
     warning: {
-      main: "#fd7373",
+      main: "#000",
     },
     info: {
-      main: "#857E61 ",
+      main: "#a74949",
     },
-    divider: "rgba(76,42,30,0.68)",
+    divider: "#000",
     text: {
-      primary: "#522806",
-      secondary: "#3e2723",
-      hint: "#331e1e",
+      primary: "#000",
+      secondary: "#000",
+      hint: "#000",
       shiny: "#ffffff",
     },
     success: {
-      main: "#C79E3F",
+      main: "#d1d1d1",
     },
     background: {
-      default: "#fff9c4",
-      paper: "#fffde7",
+      default: "#d1d1d1",
+      paper: "#e5e5e6",
     },
     error: {
       main: "#31231E",

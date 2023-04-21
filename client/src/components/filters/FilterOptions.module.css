@@ -1,5 +1,5 @@
 .mainDiv {
-  background-color: none;
+  background-color: "#d1d1d1";
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,11 +15,11 @@
 }
 
 .filters {
-  background-color: #f5bd02;
+  background-color: #a74949;
   border: 2px;
   gap: 1rem;
   padding: 0.5rem;
-  color: #FFF8E1;
+  color: white;
   text-align: center;
   font-size: 1rem;
   cursor: pointer;
@@ -28,11 +28,11 @@
 .filters:focus {
   border: none;
   outline: none;
-  background-color: #ffd600;
+  background-color: #a74949;
 }
 
 .filters:hover {
-  background-color: #806c67;
+  background-color: #c98383;
 }
 
 .divContainer {
@@ -47,7 +47,7 @@
   padding: 0rem;
   border: 1px solid;
   border-radius: 5px;
-  background-color: #ffd600;
+  background-color:#a74949;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
@@ -55,16 +55,16 @@
 
 div > p {
   margin: 0 3px;
-  border: #3e2723;
-  color: #3e2723;
+  border:  #e4704c;
+  color: #e4704c
 }
 
 .btnFiltersApplied {
   padding: 0;
-  background-color: #3e2723;
+  background-color: #e4704c;
   border-radius: 2px;
-  border-color: #3e2723;
-  color: #ffc400;
+  border-color:  #e4704c;
+  color:#a74949;
   cursor: pointer;
   margin: 0 4px 0 0;
   width: 20px;

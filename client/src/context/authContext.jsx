@@ -24,7 +24,7 @@ export function AuthProvider({ children }) {
     logged: null,
     userId: "",
     email: "",
-    role: "",
+    rol: "",
     nickName: "",
     display: "",
     adress: "",
@@ -32,20 +32,16 @@ export function AuthProvider({ children }) {
   });
   const [loading, setLoading] = useState(true);
 
-  const signup = async (email, password, nickName, adress, profilePicture) => {
-    await createUser(email, password, nickName, adress, profilePicture);
+  const signup = async (email, password, nickName, adress, profile) => {
+    await createUser(email, password, nickName, adress, profile);
   };
 
   const login = async (email, password) => {
     await sigInWithMail(email, password);
   };
 
-  const customize = async (userId, nickname) => {
-    await updateUser(userId, nickname)
-    setUserStatus({
-      ...userStatus,
-      nickName: nickname,
-    })
+  const customize = async (userId, nickname, profile, adress) => {
+    await updateUser(userId, nickname, profile, adress)
   }
 
   useEffect(() => {
@@ -57,11 +53,11 @@ export function AuthProvider({ children }) {
           logged: true,
           userId: currentUser.uid,
           email: currentUser.email,
-          role: userRole.rol,
+          rol: userRole.rol,
           nickName: userRole.nickname,
           display: userRole.display,
           adress: userRole.adress ? userRole.adress : null,
-          profilePicture: userRole.profilePicture ? userRole.profilePicture : null
+          profilePicture: userRole.profile ? userRole.profile : null
         });
       }
       setLoading(false);
@@ -70,12 +66,9 @@ export function AuthProvider({ children }) {
   }, []);
 
   useEffect(() => {
+    console.log(userStatus.logged)
     if (userStatus.logged) {
       navigate("/home");
-    } 
-    if(userStatus.display === false){
-      alert('usuario baneado')
-      logout()
     }
      // eslint-disable-next-line
   }, []);
@@ -90,7 +83,7 @@ export function AuthProvider({ children }) {
 
   const logout = async () => {
     await logOut();
-    setUserStatus({ ...userStatus, logged: false, role: "" });
+    setUserStatus({ ...userStatus, logged: false, rol: "" });
   };
 
   const loginWithGoogle = async () => {
