@@ -17,6 +17,7 @@ function Account() {
         fetchOrders();
     }, [userStatus.userId]);
 
+    // console.log(orders)
     const combinedData = orders.map((order) => {
         const favoriteInfo = displayableBooks.filter((book) => order.items.some(item => item.id === book.id));
         const userData = favoriteInfo.map((book) => {
@@ -31,6 +32,8 @@ function Account() {
             const book = userData.find((b) => b.id === item.id);
             return {
                 ...item,
+                image: book.image,
+                title: book.title,
                 price: book.price,
             };
         });
@@ -39,7 +42,7 @@ function Account() {
             items,
         };
     });
-
+    console.log(combinedData)
     return (
         <TableContainer component={Paper}>
             <Table sx={{ width: '100%', alignContent: 'center', boxShadow: '1px 1px 3px rgba(0, 0, 0, 0.3)' }} aria-label="orders table">
@@ -52,38 +55,37 @@ function Account() {
                         </TableCell>
                         <TableCell align="right">
                             <Typography fontSize={'13px'} fontWeight='bold'>
-                                {`Total: ${order.items.reduce((acc, curr) => acc + curr.price * curr.quantity, 0)}`}
+                                {`Total: ${order.items.reduce((acc, curr) => acc + curr.price * curr.quantity, 0).toFixed(2)}`}
                             </Typography>
                         </TableCell>
                     </TableHead>
                     <TableRow sx={{ color: "InfoBackground" }} hover={true} key={order.id}>
                         <TableCell colSpan={3}>
                             <Grid container spacing={2}>
-                                {order.items.map((item) => {
-                                    const book = displayableBooks.find((b) => b.id === item.id);
+                                {combinedData.forEach((obj,i) => {
+                                    const book = displayableBooks.find((b) => b.id === obj.id);
                                     return (
-                                        <Grid item xs={12} sm={6} md={4} key={item.id}>
+                                        <Grid item xs={12} sm={6} md={4} key={obj.id}>
                                             <Paper sx={{ display: 'flex', alignItems: 'center', padding: 2, '&:hover': { bgcolor: 'InfoBackground' } }}>
                                                 <CardMedia
                                                     component="img"
                                                     border='1px solid'
                                                     borderRadius="10px"
-                                                    image={book.image}
+                                                    image={obj.items[i].image}
                                                     sx={{ width: 90, height: 90, mr: 2, boxShadow: '1px 1px 3px rgba(0, 0, 0, 0.3)' }}
                                                 />
                                                 <div>
                                                     <Typography fontWeight='bold' variant="subtitle1" gutterBottom>
-                                                        {book.title}
+                                                        {obj.items[i].title}
                                                     </Typography>
                                                     <Typography variant="body2" color="textSecondary">
-                                                        ${item.price}
+                                                        ${obj.items[i].price}
                                                     </Typography>
                                                 </div>
                                             </Paper>
                                         </Grid>
                                     )
-                                }
-                                )}
+                                })}
                             </Grid>
                         </TableCell>
                     </TableRow></>
