@@ -36,7 +36,7 @@ export const AdminDashboard = () => {
       <Resource
         name="books"
         list={BookList}
-        edit={EditGuesser}
+        edit={BookCreate}
         basePath="/admin/books"
         show={ShowGuesser}
         create={BookCreate}
