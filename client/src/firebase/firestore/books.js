@@ -191,9 +191,9 @@ export async function updateBookReviews({
         userId,
         user: nickname,
         display,
-      }),
-    });
-    return alert("Comment register!");
+      })
+    })
+  
   } catch (error) {
     console.log(error);
   }

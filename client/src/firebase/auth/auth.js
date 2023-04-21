@@ -1,22 +1,28 @@
 // import { async } from "@firebase/util";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { uploadImage } from "../storage";
 import { collection, setDoc, doc, getDoc, getDocs ,query, where } from "firebase/firestore";
 import { auth, db } from "../firebase-config";
 
-export async function createUser(email, password, nickName, fullName) {
+
+export async function createUser(email, password, nickName, adress, profilePicture) {
+
     try {
         const res = await createUserWithEmailAndPassword(auth, email, password);
+        const profile = await uploadImage(profilePicture, res.user.uid)
         const newUser = {
             uid: res.user.uid,
             email:res.user.email,
             nickname: nickName,
-            fullname: fullName,
             rol: "USER",
+            adress: adress,
             display: true,
+            profilePicture: profile
         }
         const collectionRef = collection(db, 'users')
         const userRef = doc(collectionRef, res.user.uid)
         await setDoc(userRef, newUser)
+
     } catch (error) {
         throw error
     }

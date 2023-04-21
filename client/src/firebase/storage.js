@@ -31,21 +31,20 @@ export const uploadImage = async (image, type, id) => {
             // console.log(res)
             // Convert file to blob
             const blob = new Blob([res.data], {type: res.headers['content-type']});
+            const blob = new Blob([res.data], {type: res.headers['content-type']});
             // Upload file to Storage
             await uploadBytes(imagesRef, blob)
             console.log("File uploaded successfully");
         }
         const url = await getURL(id)
-        console.log(url)
         return url
-        
+
     } catch (error) {
         console.log(error)
-        
+
     }
 
 }
-
 export const updateBookAddLinkPDF = async () => {
     try {
         const q = query(collection(db, "books"), where('display', '==', true))

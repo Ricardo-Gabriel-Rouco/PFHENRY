@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./context/authContext";
 import Landing from "./Views/Landing/Landing";
 import Home from "./Views/Home";
-import About from "./Views/About";
+// import About from "./Views/About";
 import Error from "./Views/Error";
 import CardDetail from "./components/CardDetail/CardDetail";
 import Favorites from "./Views/Favorites/Favorites";
@@ -15,7 +15,7 @@ import Cart from "./components/Cart/Cart";
 import CardContainer from "./components/CardContainer/CardContainer";
 import Account from './components/Account/Account'
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AdminDashboard } from "./Views/AdminDashboard/AdminDashboard";
 import SupportAdmin from "./chatBot/SupportAdmin";
 import EditUser from './components/EditUser/EditUser';
@@ -24,19 +24,46 @@ import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
 import AboutUs from './components/AboutUs/AboutUs'
 import PayStatus from "./components/PayStatus/PayStatus";
 import axios from 'axios';
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import { createTheme, CssBaseline, ThemeProvider, Alert } from "@mui/material";
 import light from "./Theme/light";
 import MyPurchases from "./components/MyPurchases/MyPurchases";
 import ModalDetail from "./components/ModalDetail/ModalDetail";
+import Footer from './components/Footer/Footer';
+import { DiscountLabel } from "./components/DiscountLabel/DiscountLabel";
+
 axios.defaults.baseURL = 'https://shaky-friend-production.up.railway.app/';
 
 function App() {
   const toogleCart = useSelector((state) => state.toogle);
   const toogleFav = useSelector((state) => state.toogleFav);
   const [mode, setMode] = useState(light);
-  const passTheme = (currentTheme) => {
-    setMode(currentTheme);
+  const [error, setError] = useState(null);
+  const saveThemeToLocalStorage = (theme) => {
+    localStorage.setItem('theme', JSON.stringify(theme.palette));
+  }
+
+
+  const passTheme = (themeMode) => {
+    setMode(themeMode);
+    saveThemeToLocalStorage(themeMode);
   };
+
+  const loadThemeFromLocalStorage = () => {
+    try {
+      const palette = JSON.parse(localStorage.getItem('theme'));
+      if (palette) {
+        const theme = createTheme({ palette });
+        setMode(theme);
+      }
+    } catch (error) {
+      setError(error.message);
+    }
+  }
+
+  useEffect(() => {
+    loadThemeFromLocalStorage();
+  }, []);
+
 
   return (
     <div className="App">
@@ -45,6 +72,7 @@ function App() {
         <BrowserRouter>
           <AuthProvider>
             <NavBar passTheme={passTheme} mode={mode}></NavBar>
+            {error && <Alert severity="error">{error}</Alert>}
             {toogleCart && <Cart />}
             {toogleFav && <Favorites />}
             <Routes>
@@ -62,7 +90,7 @@ function App() {
                 }
               />
               <Route exact path="/home" element={<Home />} />
-              <Route exact path="/about" element={<About />} />
+              {/* <Route exact path="/about" element={<About />} /> */}
               <Route exact path="/favorites" element={<Favorites />} />
               <Route exact path="/cart" element={<Cart />} />
               <Route exact path="/create" element={
@@ -84,6 +112,8 @@ function App() {
               <Route path="/about" element={<AboutUs/>}/>
 
             </Routes>
+
+            {/* <Footer /> */}
             <ModalDetail/>
           </AuthProvider>
         </BrowserRouter>

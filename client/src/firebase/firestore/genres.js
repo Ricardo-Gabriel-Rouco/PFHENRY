@@ -10,7 +10,7 @@ export async function getGenres() {
     // doc.data() is never undefined for query doc snapshots
     data.push({
       ...doc.data(),
-      id: doc.id
+      // id: doc.id
     }
     )
   })
