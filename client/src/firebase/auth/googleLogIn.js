@@ -10,7 +10,7 @@ export async function registerWithGoogle(){
     const currentUser = await getUserById(res.user.uid)
     const newUser = {
       uid: res.user.uid,
-      rol: currentUser.rol || "USER",
+      rol: "USER",
       email: res.user.email,
       display: true,
       nickname: res.user.displayName,

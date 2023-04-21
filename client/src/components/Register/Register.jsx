@@ -26,7 +26,7 @@ function Register() {
   function handleInputChange(e) {
     switch (e.target.name) {
       case "imageFile":
-        setUserData({...userData, profile: e.target.files[0]})
+        setUserData({ ...userData, profile: e.target.files[0] })
         const reader = new FileReader();
         reader.readAsDataURL(e.target.files[0]);
         // reader.onloadend = () => {
@@ -45,7 +45,7 @@ function Register() {
     try {
 
       await signup(userData.email, userData.password, userData.nickName, userData.adress, userData.profile);
-      <Alert severity="success"> You have register successfully!</Alert>
+      alert('You have register successfully!')
 
       navigate("/home");
     } catch (error) {
@@ -66,10 +66,7 @@ function Register() {
       await loginWithGoogle();
       navigate("/home");
     } catch (error) {
-      return (
-        <Alert severity="error">
-          Sign in Error: {error.message}
-        </Alert>)
+      console.error(error)
     }
   };
 
