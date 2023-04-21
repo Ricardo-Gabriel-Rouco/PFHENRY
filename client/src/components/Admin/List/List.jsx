@@ -24,6 +24,7 @@ export const List = ({ fullList, selected, setSelected, prop }) => {
   return (
     <div>
       <Autocomplete
+        sx={{maxWidth: 300,margin: '0 auto'}}
         freeSolo
         multiple
         options={options}

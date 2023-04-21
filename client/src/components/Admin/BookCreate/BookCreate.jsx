@@ -19,10 +19,11 @@ import ErrorIcon from "@mui/icons-material/Error";
 import styles from "./BookForm.module.css";
 import { List } from "../List/List";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button, Typography } from "@mui/material";
+import { Button, Typography, Box } from "@mui/material";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import { getAuthors, postAuthor } from "../../../firebase/firestore/authors";
 import { uploadImage } from "../../../firebase/storage";
+
 
 export const BookCreate = (props) => {
   const navigate = useNavigate();
@@ -230,19 +231,18 @@ export const BookCreate = (props) => {
   };
 
   return (
-    <div
+    <Box
       style={{
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh",
-        width: "75%",
         alignSelf: "center",
-        margin: "auto",
+
       }}
     >
       <Create {...props} style={{ alignSelf: "center", display: "flex" }}>
-        <SimpleForm onSubmit={createBook}>
+        <SimpleForm onSubmit={createBook}
+        >
           <div
             style={{
               alignSelf: "center",
@@ -253,6 +253,7 @@ export const BookCreate = (props) => {
             {!paramId ? (
               <>
                 <TextInput
+                  sx={{ width: 300 }}
                   label="ISBN"
                   source="isbn"
                   focused={focused}
@@ -281,7 +282,12 @@ export const BookCreate = (props) => {
               focused={focused}
               label="Title"
               source="title"
-              style={{ margin: "0 ", fontSize: "2rem", fontWeight: "bold" }}
+              style={{
+                margin: "0 ",
+                fontSize: "2rem",
+                fontWeight: "bold",
+                maxWidth: 300,
+              }}
               format={(e) => bookData?.title}
             />
             {errors.title ? (
@@ -296,7 +302,7 @@ export const BookCreate = (props) => {
               onChange={handleImageType}
               choices={imageTypeOptions}
               source="Image Type"
-              style={{ alignSelf: "center", display: "flex" }}
+              style={{ alignSelf: "center", display: "flex", width: 300 }}
             />
             {imageType === "file" ? (
               <>
@@ -305,6 +311,7 @@ export const BookCreate = (props) => {
                   label="Image"
                   accept="image/*"
                   onChange={handleImageChange}
+                  sx={{width: 300}}
                 ></ImageInput>
               </>
             ) : imageType === "url" ? (
@@ -322,7 +329,7 @@ export const BookCreate = (props) => {
                     name="urlImage"
                     format={(e) => urlImage}
                     onChange={(e) => setUrlImage(e.target.value)}
-                    sx={{ marginRight: "1em" }}
+                    sx={{ marginRight: "1em", maxWidth: 150 }}
                   />
                   <Button
                     onClick={() => {
@@ -362,6 +369,7 @@ export const BookCreate = (props) => {
             ) : null}
             <br></br>
             <TextInput
+              sx={{ maxWidth: 300 }}
               multiline
               label="Description"
               focused={focused}
@@ -372,12 +380,14 @@ export const BookCreate = (props) => {
             />
             <br></br>
             <NumberInput
+
               label="Price $"
               source="price"
               focused={focused}
               onChange={handleInputChange}
               defaultValue={bookData?.price}
               style={{ margin: "0 2rem " }}
+              sx={{width: 300}}
               options={{ style: "currency", currency: "USD" }}
               format={(e) => bookData?.price}
             />
@@ -389,11 +399,12 @@ export const BookCreate = (props) => {
             ) : null}
             <br></br>
             <TextInput
+            sx={{width: 300}}
               label="Year"
               source="year"
               focused={focused}
               onChange={handleInputChange}
-              style={{ margin: "0 2rem " }}
+              style={{ margin: "0 2rem ", maxWidth: 300 }}
               format={(e) => bookData?.year}
             />
             {errors.year ? (
@@ -408,7 +419,7 @@ export const BookCreate = (props) => {
               source="editorial"
               focused={focused}
               onChange={handleInputChange}
-              style={{ margin: "0 2rem " }}
+              style={{ margin: "0 2rem ", width: 300 }}
               format={(e) => bookData?.editorial}
             />
             {errors.editorial ? (
@@ -418,11 +429,13 @@ export const BookCreate = (props) => {
               </p>
             ) : null}
             {/* <InputLabel htmlFor="genres">Genres:</InputLabel> */}
+
             <List
               fullList={allGenres}
               selected={genres}
               setSelected={setGenres}
               prop="Genres"
+              style={{ margin: '0 auto'}}
             />
             {errors.genres ? (
               <p className={styles.formError}>
@@ -435,6 +448,6 @@ export const BookCreate = (props) => {
           </div>
         </SimpleForm>
       </Create>
-    </div>
+    </Box>
   );
 };
