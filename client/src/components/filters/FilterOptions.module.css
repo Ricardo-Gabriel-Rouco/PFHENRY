@@ -15,7 +15,7 @@
 }
 
 .filters {
-  background-color:#a74949;
+  background-color: #a74949;
   border: 2px;
   gap: 1rem;
   padding: 0.5rem;
@@ -28,11 +28,12 @@
 .filters:focus {
   border: none;
   outline: none;
-  background-color: #a74949
+  background-color: #a74949;
 }
 
 .filters:hover {
-  background-color: #e4704c}
+  background-color: #c98383;
+}
 
 .divContainer {
   display: flex;

@@ -13,6 +13,7 @@ import Cards from "@mui/material/Card";
 import loading from '../../Assets/Loading.gif'
 import notFound from '../../Assets/notFound.gif'
 import SupportEngine from '../../chatBot/SupportEngine/index'
+import light from '../../Theme/light'
 
 
 const CardContainer = () => {
@@ -50,7 +51,7 @@ const CardContainer = () => {
   }, [filteredBooks]);
   return (
 
-    <div className={style.bgcolor}>
+    <div >
       {filteredBooks.length ? (<FilterOptions setCurrentPage={setCurrentPage} />) : null}
       {filteredBooks === "not found" ? (
         <div className={style.notFound}>
@@ -58,12 +59,16 @@ const CardContainer = () => {
           <img src={notFound} alt="Not Found" />
         </div>
       ) : filteredBooks.length ? (
-        <Cards bgColor="red">
+        <Cards >
           <Grid container justifyContent="center"
-            style={{ 
-
-              backgroundColor: "#d1d1d1"
-              // minHeight: "100vh", 
+            id='fuckingBackground'
+            sx={{
+              bgcolor: light.palette.background.paper
+            }}
+            style={{
+              padding:"10px 0", 
+              gap: "40px",
+              boxShadow:"none",
             }}>
             {currentBook
               .map((c, index) => (
