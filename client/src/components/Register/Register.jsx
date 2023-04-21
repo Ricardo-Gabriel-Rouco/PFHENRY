@@ -45,9 +45,10 @@ function Register() {
     try {
 
       await signup(userData.email, userData.password, userData.nickName, userData.adress, userData.profile);
-      alert('You have register successfully!')
-
-      navigate("/home");
+      setTimeout(() => {
+        alert('You have registered successfully!')
+        navigate("/home");
+      }, 2000);
     } catch (error) {
       if (error.code === "auth/weak-password")
         setErrors({
@@ -64,7 +65,10 @@ function Register() {
   const handleGoogleSignIn = async () => {
     try {
       await loginWithGoogle();
-      navigate("/home");
+      setTimeout(() => {
+        alert('You have registered successfully!')
+        navigate("/home");
+      }, 2000);
     } catch (error) {
       console.error(error)
     }

@@ -68,13 +68,9 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     if (userStatus.logged) {
       navigate("/home");
-    } 
-    if(userStatus.display === false){
-      alert('usuario baneado')
-      logout()
     }
      // eslint-disable-next-line
-  }, []);
+  }, [userStatus.logged]);
 
   useEffect(() => {
     if (userStatus.display === false) {

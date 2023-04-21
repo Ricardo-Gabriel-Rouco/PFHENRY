@@ -668,20 +668,20 @@ const Carrousel = () => {
               All Books
             </Typography>
           </Grid> */}
-        <Grid item xs={6} textAlign="center">
+        
           <Link to="/books">
             <Button
               variant="contained"
               color="primary"
               size="large"
               sx={{ m: 1 }}
-              onClick={{ handleShowAllBooks }}
+              onClick={handleShowAllBooks}
             >
               Show All Books
             </Button>
           </Link>
         </Grid>
-      </Grid>
+
       {/* <Swiper
           slidesPerView={4}
           slidesPerGroup={4}
