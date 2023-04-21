@@ -20,7 +20,7 @@ const dark = createTheme({
     },
     divider: "#07070a",
     text: {
-      primary: "#4A525A",
+      primary: "#ffffffff",
       secondary: "#4A525A",
       disabled: "rgba(255,255,255,0.07)",
       shiny: "#ffffff",
