@@ -20,11 +20,7 @@ export async function getAllTheUsers() {
 export async function modifyUser(id, display,rol) {
   try {
     const userRef = doc(db, 'users', `${id}`)
-    await updateDoc(userRef, {
-      display:display ,
-      // rol:rol
-
-    })
+    await updateDoc(userRef, display)
     console.log(`User with ID ${id} has been modified with the following data: `,{display, rol})
   } catch (error) {
     console.log(error)
