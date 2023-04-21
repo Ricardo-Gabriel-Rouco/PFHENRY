@@ -222,6 +222,7 @@ const Carrousel = () => {
                 image={"https://firebasestorage.googleapis.com/v0/b/pf-henry-2d98b.appspot.com/o/Imagenes%20carousel%20billboard%2Fgame-of-thrones-books-1-1658259294.png?alt=media&token=a4b9e345-a0aa-4459-b430-22b8411c92d5"}
                 alt={'Foto'}
                 sx={{ width: '90%', height: '20rem' }}
+
               />
             </Box>
           </SwiperSlide>
@@ -278,12 +279,12 @@ const Carrousel = () => {
 
               },
 
-              1370: {
+              1500: {
 
                 slidesPerView: 4,
               },
 
-              1700: {
+              1750: {
                 slidesPerView: 5,
 
               },
