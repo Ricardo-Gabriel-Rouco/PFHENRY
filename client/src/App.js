@@ -32,6 +32,7 @@ import Footer from './components/Footer/Footer';
 import { DiscountLabel } from "./components/DiscountLabel/DiscountLabel";
 
 axios.defaults.baseURL = 'https://pfhenry.onrender.com/';
+// axios.defaults.baseURL = 'http://localhost:3001/';
 
 function App() {
   const toogleCart = useSelector((state) => state.toogle);

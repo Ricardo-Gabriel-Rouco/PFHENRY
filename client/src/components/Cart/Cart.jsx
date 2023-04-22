@@ -22,14 +22,17 @@ export const availableItems = (displayableBooks, cart) => {
       (book) => book.display && cart.cart.cart.find((el) => el.id === book.id)
     )
     .map((el) => {
-      const { price: unit_price, ...rest } = el
+      const quantity = cart.cart.cart.find((book) => book.id === el.id).quantity;
+      const unit_price = el.discount
+        ? parseFloat(((el.price * (100 - el.discount)) / 100).toFixed(2))
+        : el.price;
       return {
-        quantity: cart.cart.cart.find(book => book.id === el.id).quantity,
+        quantity,
         unit_price,
-        ...rest
-      }
-    })
-}
+        ...el,
+      };
+    });
+};
 
 const Cart = () => {
   const { userStatus } = useAuth();
@@ -41,8 +44,8 @@ const Cart = () => {
 
   const [order, setOrder] = useState({});
   const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState('');
-  const [error, setError] = useState('');
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     setOrder({
@@ -59,31 +62,26 @@ const Cart = () => {
   const handleBuy = async () => {
     if (userStatus.logged) {
       try {
-        const response = await axios.post(
-          "/checkout",
-          order
-        );
+        const response = await axios.post("/checkout", order);
 
         //await postOrder(response.data);
         //dispatch(removeAllProducts());
         //localStorage.removeItem("cart");
+        // console.log(response)
         window.open(response.data, "_self");
-
       } catch (error) {
-
-        setError(error)
-        setSnackbarOpen(true)
+        setError(error);
+        setSnackbarOpen(true);
       }
     } else {
       setSnackbarOpen(true);
-      setSnackbarMessage('You must be logged to buy');
+      setSnackbarMessage("You must be logged to buy");
       setTimeout(() => {
         dispatch(toogleCart());
         navigate("/login");
       }, 1000);
-    };
-  }
-
+    }
+  };
 
   const handleClose = () => {
     dispatch(toogleCart());
@@ -120,55 +118,51 @@ const Cart = () => {
           </Button>
         </Stack>
         <Divider sx={{ my: 1.5 }} />
-        {availableItems(displayableBooks, cart)
-          .map((product) => {
-            return (
-              <Grid container spacing={2} key={product.id}>
-                <Grid item xs={4}>
-                  <img src={product.image} alt={product.title} width="100%" />
-                </Grid>
-                <Grid item xs={8}>
-                  <Typography variant="subtitle1">{product.title}</Typography>
-                  <Typography variant="subtitle2" color="text.secondary">
-                    ({product.authors})
-                  </Typography>
-                  <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
-                    {product.discount ? (
-                      <>
-                        <s>{product.unit_price}</s>{" "}
-                        <span>
-                          {(product.unit_price * (100 - product.discount) / 100).toFixed(2)}
-                        </span>
-                      </>
-                    ) : (
-                      product.unit_price
-                    )}
-                  </Typography>
-                  <Box sx={{ display: "flex" }}>
-                    <Button
-                      onClick={() => handleRemove(product.id)}
-                      variant="contained"
-                      color="primary"
-                      size="small"
-                      sx={{ ml: 1 }}
-                    >
-                      <RemoveIcon />
-                    </Button>
-                    <Button
-                      onClick={() => handleAdd(product.id)}
-                      variant="contained"
-                      color="primary"
-                      size="small"
-                      sx={{ mr: 1 }}
-                    >
-                      <AddIcon />
-                    </Button>
-                    <Typography>{product.quantity}</Typography>
-                  </Box>
-                </Grid>
+        {availableItems(displayableBooks, cart).map((product) => {
+          return (
+            <Grid container spacing={2} key={product.id}>
+              <Grid item xs={4}>
+                <img src={product.image} alt={product.title} width="100%" />
               </Grid>
-            );
-          })}
+              <Grid item xs={8}>
+                <Typography variant="subtitle1">{product.title}</Typography>
+                <Typography variant="subtitle2" color="text.secondary">
+                  ({product.authors})
+                </Typography>
+                <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+                  {product.discount ? (
+                    <>
+                      <s>{product.price}</s> <span>{product.unit_price}</span>
+                    </>
+                  ) : (
+                    product.price
+                  )}
+                </Typography>
+                <Box sx={{ display: "flex" }}>
+                  <Button
+                    onClick={() => handleRemove(product.id)}
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                    sx={{ ml: 1 }}
+                  >
+                    <RemoveIcon />
+                  </Button>
+                  <Button
+                    onClick={() => handleAdd(product.id)}
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                    sx={{ mr: 1 }}
+                  >
+                    <AddIcon />
+                  </Button>
+                  <Typography>{product.quantity}</Typography>
+                </Box>
+              </Grid>
+            </Grid>
+          );
+        })}
         {cart.cart.cart.length === 0 && (
           <Typography variant="subtitle1">
             There is no product in your cart
@@ -179,7 +173,12 @@ const Cart = () => {
             {"Total Price: $ " +
               availableItems(displayableBooks, cart)
                 .reduce(
-                  (totalPrice, book) => totalPrice + book.quantity * book.unit_price * (100 - (book.discount ? book.discount : 0)) / 100,
+                  (totalPrice, book) =>
+                    totalPrice +
+                    (book.quantity *
+                      book.price *
+                      (100 - (book.discount ? book.discount : 0))) /
+                      100,
                   0
                 )
                 .toFixed(2)}
@@ -231,26 +230,27 @@ const Cart = () => {
           </>
         )}
         <Snackbar
-          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
           open={snackbarOpen}
           autoHideDuration={6000}
           onClose={() => setSnackbarOpen(false)}
         >
-          <Stack sx={{ width: '100%' }} spacing={2}>
-            <Alert severity={'error'}>{snackbarMessage}</Alert>
+          <Stack sx={{ width: "100%" }} spacing={2}>
+            <Alert severity={"error"}>{snackbarMessage}</Alert>
           </Stack>
         </Snackbar>
-        {error? 
-        <Snackbar
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'center',
-          }}
-          open={snackbarOpen}
-          autoHideDuration={6000}
-          onClose={handleClose}
-          message={error}
-        />: null}
+        {error ? (
+          <Snackbar
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "center",
+            }}
+            open={snackbarOpen}
+            autoHideDuration={6000}
+            onClose={handleClose}
+            message={error}
+          />
+        ) : null}
       </Box>
     </Drawer>
   );
