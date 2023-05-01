@@ -242,14 +242,17 @@ const Carrousel = () => {
 
       <Box>
         {/*         CARROUSEL OFERTAS */}
-        <CarouselContainer sx={{ width: '70%', minWidth: '15rem' }}>
-          <Typography color="primary" align="left" fontWeight={'bold'} variant="h6" marginTop={"1rem"} marginLeft={'2.5rem'}>
+        <CarouselContainer sx={{ width: '80%', minWidth: '15rem',display:'flex',justifyContent:'center',flexWrap:'wrap' }}>
+          <Typography color="primary" align="left" fontWeight={'bold'} variant="h4" marginTop={"3rem"}>
             {"SALES"}
           </Typography>
           <Swiper
             loop={true}
             slidesPerView={5}
-            navigation
+            navigation={{
+              prevEl:'.swiper-button-prev',
+              nextEl:'.swiper-button-next'
+            }}
             breakpoints={{
               250: {
 
@@ -283,6 +286,8 @@ const Carrousel = () => {
             modules={[Pagination]}
             className="mySwiper"
           >
+            <div className="swiper-button-prev" style={{left:'-0.1rem'}}/>
+            <div className="swiper-button-next" style={{right:'-0.1rem'}}/>
             {displayableBooks.map((book) =>
               book.display && book.discount ? (
                 <SwiperSlide key={book.id} >
@@ -322,8 +327,8 @@ const Carrousel = () => {
                             fontWeight: "bold",
                             color: "black",
                             position: 'fixed',
-                            right: "8rem",
-                            top: "0.1rem"
+                            right: "10rem",
+                            top: "1rem"
 
                           }}
                         >

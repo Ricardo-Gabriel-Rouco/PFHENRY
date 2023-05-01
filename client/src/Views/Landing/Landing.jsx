@@ -33,28 +33,22 @@ const Landing = () => {
       container
       justifyContent="center"
       sx={{
-        backgroundImage: `url(${background})`,
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-        minWidth: 400,
-        width: "100%",
-        height: "100vh",
-        margin: "auto",
-        overflowY: 'hidden'
+        bgcolor :'white',
       }}
       >
       <Grid item xs="12" position="absolute">
         <Typography
           sx={{
             fontSize: "3vw",
-            color: "primary.main",
+            // color: "primary.main",
             textShadow:
             "2px 2px 4px rgb(0, 0, 0), 0 0 30px rgb(255, 255, 255), 0 0 30px rgb(255, 255, 255), 0 0 30px rgb(255, 255, 255)",
             fontFamily: "Celtic MD",
-            backdropFilter: "blur(1.5px)",
-            bgcolor: "rgba(200, 200, 200, 0.4)",
+            // backdropFilter: "blur(1.5px)",
+            bgcolor: "white",
             padding: "1rem",
-            borderRadius: "1rem"
+            borderRadius: "1rem",
+            marginTop:'1rem'
           }}
           >
           Book's Kingdom
@@ -87,6 +81,7 @@ const Landing = () => {
         alignItems="flex.start"
         justifyContent="center"
         xs="12"
+        marginTop='1rem'
         >
         <Grid
           item
@@ -188,7 +183,7 @@ const Landing = () => {
         item
         xs="12"
         justifyContent="center"
-        sx={{ display: "grid", alignItems: "stretch", alignContent: "center" }}
+        sx={{ display: "grid", alignItems: "stretch", alignContent: "center",marginTop:'1rem' }}
         >
         <Button
           variant="contained"
@@ -204,7 +199,7 @@ const Landing = () => {
             },
           }}
           >
-          Enter to Kingdom
+          Enter to the Kingdom
         </Button>
         <FaChevronDown
           onClick={(e) => scrollToAbout()}

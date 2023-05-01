@@ -15,7 +15,7 @@ import {
   Card,
   Typography,
 } from "@mui/material";
-import image from '../../Assets/imgLanding/image0.jpg'
+
 
 function AboutUs() {
   function scrollToLanding() {
@@ -25,28 +25,35 @@ function AboutUs() {
     }
   }
   return (
-    <Box container sx={{
-      backgroundImage: `url(${image})`,
-      backgroundPosition: "center",
-      backgroundSize: "cover",
-      minWidth: 400,
-      margin: "auto",
-      overflowY: 'hidden'
-    }}>
+    <Box container 
+    display="flex"
+    flexWrap='wrap'
+    justifyContent='center'
+    alignItems='center'
+    width='100%'
+    sx={{
+      bgcolor : "white"
+    }}
+    >
       <Box id='about'>
         <FaChevronUp onClick={(e) => scrollToLanding(e)} className={s.flecha} />
       </Box>
-      <Box id='about'>
-        <Typography variant="h1" fontSize={"fontSize.title"} color={'background.default'}>
+      <Box id='about' marginBottom ='5rem'>
+        <Typography variant="h1" fontSize={"fontSize.title"} color={'#696969'}>
           DREAM TEAM
         </Typography>
       </Box>
-      <Box sx={{ marginLeft: '15rem', display: 'flex', flexWrap: 'nowrap', alignItems: "center", justifyContent: "center", maxHeight: "100%", maxWidth: "100%", overflowX: 'hidden', overflowY: 'hidden' }} >
+      <Box 
+      display= 'flex'
+      justifyContent='center'
+      >
         <Grid
-          container
-          sx={{
-            padding: { xs: '1rem', md: '3rem' },
-          }}
+          // container
+          display='flex'
+          flexWrap='wrap'
+          justifyContent='space-evenly'
+          alignItems='center'
+          width='75%'
         >
           <Grid item xs={12} sm={8} md={5} lg={4}>
             {/* joaco */}
@@ -55,8 +62,9 @@ function AboutUs() {
               sx={{
                 width: "300px",
                 height: "400px",
-                bgcolor: "background.default",
-                marginRight: {xs:'30rem', sm:'15rem'}
+                bgcolor: "#696969",
+                marginBottom:'5rem'
+                // marginRight: {xs:'30rem', sm:'15rem'}
               }}
             >
               <CardMedia
@@ -93,12 +101,13 @@ function AboutUs() {
           </Grid>
 
           {/* Gabi */}
-          <Grid item xs={8} sm={6} md={4} lg={4} sx={{ marginBottom: '3rem' }}>
+          <Grid item xs={8} sm={6} md={4} lg={4}>
             <Card
               sx={{
                 width: "300px",
                 height: "400px",
-                bgcolor: "background.default",
+                bgcolor: "#696969",
+                marginBottom:'5rem'
               }}
             >
               <CardMedia
@@ -144,7 +153,8 @@ function AboutUs() {
               sx={{
                 width: "300px",
                 height: "400px",
-                bgcolor: "background.default",
+                bgcolor: "#696969",
+                marginBottom:'5rem'
               }}
             >
               <CardMedia
@@ -186,7 +196,8 @@ function AboutUs() {
               sx={{
                 width: "300px",
                 height: "400px",
-                bgcolor: "background.default",
+                bgcolor: "#696969",
+                marginBottom:'5rem'
               }}
             >
               <CardMedia
@@ -230,7 +241,8 @@ function AboutUs() {
               sx={{
                 width: "300px",
                 height: "400px",
-                bgcolor: "background.default",
+                bgcolor: "#696969",
+                marginBottom:'5rem'
               }}
             >
               <CardMedia
@@ -267,12 +279,13 @@ function AboutUs() {
           </Grid>
 
           {/* Mauri */}
-          <Grid item xs={8} sm={6} md={4} lg={4} sx={{ marginBottom: '3rem' }}>
+          <Grid item xs={8} sm={6} md={4} lg={4}>
             <Card
               sx={{
                 width: "300px",
                 height: "400px",
-                bgcolor: "background.default",
+                bgcolor: "#696969",
+                marginBottom:'5rem'
               }}
             >
               <CardMedia
@@ -310,12 +323,17 @@ function AboutUs() {
           </Grid>
 
           {/* Clau */}
-          <Grid item xs={8} sm={6} md={4} lg={4} sx={{ display: 'flex', justifyContent: 'center', marginLeft: '25.7rem' }}>
+          <Grid 
+          item xs={8} sm={6} md={4} lg={4} 
+
+          >
             <Card
               sx={{
+
                 width: "300px",
                 height: "400px",
-                bgcolor: "background.default",
+                bgcolor: "#696969",
+                marginBottom:'5rem'
               }}
             >
               <CardMedia
