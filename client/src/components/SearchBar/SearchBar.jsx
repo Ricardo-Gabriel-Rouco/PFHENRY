@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 // eslint-disable-next-line
 import { searchBook } from "../../redux/rootReducer/bookSlice";
 import SearchIcon from "@mui/icons-material/Search";
+import ClearIcon from '@mui/icons-material/Clear';
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { IconButton, Paper } from "@mui/material";
@@ -17,12 +18,15 @@ const SearchBar = ({ placeholder }) => {
 
   //ESTADO PARA SETEAR LOS VALORES DE BUSQUEDA
   const [searchValue, setSearchValue] = useState("");
+  const showClearButton = searchValue.length>0;
+
   //ESTADO PARA LOS RESULTADOS DE LA BUSQUEDA
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // HANDLER DEL INPUT CHANGE TOMA EL VALOR PARA COMPARAR
   const handlerInputChange = (e) => {
     setSearchValue(e.target.value);
+
   };
 
   //HANDLER DEL BOTON DE BUSQUEDA
@@ -35,6 +39,10 @@ const SearchBar = ({ placeholder }) => {
     setSearchValue("");
     navigate("/books");
   };
+
+  const handleClearClick = ()=>{
+    setSearchValue("")
+  }
   //ENTER BUTTON
   const handlerKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -57,16 +65,17 @@ const SearchBar = ({ placeholder }) => {
           display: "flex",
           width: "100%",
           borderColor: "primary",
-          borderRadius: "10px",
-          boxShadow: "-0.2px 0.4px 0.4px 0.95px rgba(255, 253, 231, 0.9)",
+          borderRadius: "0.5rem",
+          boxShadow: "-0.0125rem 0.05rem 0.05rem 0.0625rem rgba(255, 253, 231, 0.9)",
           padding: "0px",
-          height: "54px",
+          height: "3.5rem",
         }}
       >
         <Autocomplete
           freeSolo
           // id="free-solo-2-demo"
-          disableClearable
+          
+          disableClearable={true}
           blurOnSelect
           size="small"
           options={books.map((el) => el.title)}
@@ -95,16 +104,22 @@ const SearchBar = ({ placeholder }) => {
               // margin="dense"
               InputProps={{
                 ...params.InputProps,
-                type: "search",
-                endAdornment: true,
+                type: "text",
+                endAdornment: null,
                 disableUnderline: true,
               }}
             />
           )}
         />
+        {showClearButton && <IconButton
+        type="button"
+        aria-label="clear"
+        onClick={handleClearClick}
+        >
+          <ClearIcon/>
+          </IconButton>}
         <IconButton
           type="button"
-          sx={{ p: "px", padding: "0px" }}
           aria-label="search"
           onClick={handlerSearchClick}
         >

@@ -1,5 +1,5 @@
 import SearchBar from "../SearchBar/SearchBar";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/authContext";
 
@@ -11,7 +11,7 @@ import ShoppingCart from "@mui/icons-material/ShoppingCart";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import Home from "@mui/icons-material/Home";
-import { AppBar, Box, IconButton, Toolbar, Grid } from "@mui/material";
+import { AppBar, Box, IconButton, Toolbar, Grid, Tooltip } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 // import LoginIcon from '@mui/icons-material/Login'
@@ -79,12 +79,11 @@ const NavBar = ({ passTheme, mode }) => {
   return (
     location.pathname !== "/" &&
     location.pathname.slice(0, 6) !== "/admin" && (
-      <Box sx={{ bgcolor: "background.default", p: 1 }}>
+      <Box container sx={{ bgcolor: "background.default", pb: 1,margin:'auto' }}>
         <Img
           src={logo}
           alt="Book's Kingdom"
           sx={{
-            alignContent: "flex-start",
             maxWidth: 400,
             height: "auto",
             width: "100%",
@@ -93,26 +92,29 @@ const NavBar = ({ passTheme, mode }) => {
         />
         <Grid container>
           <Grid item xs={12}>
-            <AppBar position="relative" color="primary" sx={{ mt: 1, }}>
-              <Toolbar sx={{ flexWrap: 'wrap', display: 'flex', justifyContent: 'center', alignContent: 'center', alignItems: 'center', justifyItems: 'center' }}>
-                <IconButton
-                  size="large"
-                  edge="start"
-                  aria-label="home"
-                  color="inherit"
-                  sx={{ mr: 2 }}
-                  onClick={() => navigate("/home")}
-                >
-                  <Home />
-                </IconButton>
-
-                <Grid item xs={12} sm={true} md={true} lg={true} xl={true} sx={{ flexWrap: 'wrap', display: 'flex', justifyContent: 'center',}}>
+            <AppBar position="relative" color="primary" sx={{ mt: 1,margin:'auto' }}>
+              <Toolbar sx={{ display: 'flex', justifyContent: 'space-between',alignItems:'center'}}>
+                <Tooltip title='Home'>
+                  <IconButton
+                    size="large"
+                    edge="start"
+                    aria-label="home"
+                    color="inherit"
+                    onClick={() => navigate("/home")}
+                  >
+                    <Home />
+                  </IconButton>
+                </Tooltip>
+                <Grid item xs={12} sm={true} md={true} lg={true} xl={true} >
                   <Box
                     sx={{
                       display: 'flex',
                       width: '60%',
-                      padding: "0px",
+                      padding: "0.25rem",
                       minWidth: '200px',
+                      justifyContent:'center',
+                      alignItems:'center',
+                      margin:'auto'
                       
                     }}
                   >
@@ -124,23 +126,25 @@ const NavBar = ({ passTheme, mode }) => {
 
                     {userStatus.rol.includes("ADMIN") ? (
 
-                      <IconButton
-                        size="large"
-                        edge="start"
-                        aria-label="admin"
-                        sx={{ mr: 2 }}
-                        color="inherit"
-                        onClick={() => navigate("/admin")}
-                      >
-                        <AdminPanelSettingsIcon />
-                      </IconButton>
+                      <Tooltip title='Admin'>
+                        <IconButton
+                          size="large"
+                          edge="start"
+                          aria-label="admin"
+                          sx={{ mr: 2 }}
+                          color="inherit"
+                          onClick={() => navigate("/admin")}
+                        >
+                          <AdminPanelSettingsIcon />
+                        </IconButton>
+                      </Tooltip>
 
 
                     ) : null}
                   </Grid>
                   <Grid item xs={true}>
                     {userStatus.rol.includes("ADMIN") ? (
-
+                      <Tooltip title='Support'>
                       <IconButton
                         size="large"
                         edge="start"
@@ -151,92 +155,101 @@ const NavBar = ({ passTheme, mode }) => {
                       >
                         <ChatIcon />
                       </IconButton>
+                      </Tooltip>
 
                     ) : null}
                   </Grid>
                   <Grid item xs={true}>
                     {showTheme === "light" ? (
 
-                      <IconButton
-                        size="large"
-                        edge="start"
-                        aria-label="home"
-                        color="inherit"
-                        sx={{ mr: 2 }}
-                        onClick={() => passTheme(dark)}
-                      >
-                        <ModeNightIcon />
-                      </IconButton>
+                      <Tooltip title='Dark Mode'>
+                        <IconButton
+                          size="large"
+                          edge="start"
+                          aria-label="home"
+                          color="inherit"
+                          sx={{ mr: 2 }}
+                          onClick={() => passTheme(dark)}
+                        >
+                          <ModeNightIcon />
+                        </IconButton>
+                      </Tooltip>
 
                     ) : (
 
-                      <IconButton
-                        size="large"
-                        edge="start"
-                        aria-label="home"
-                        color="inherit"
-                        sx={{ mr: 2 }}
-                        onClick={() => passTheme(light)}
-                      >
-                        <LightModeIcon />
-                      </IconButton>
+                      <Tooltip title='Light Mode'>
+                        <IconButton
+                          size="large"
+                          edge="start"
+                          aria-label="home"
+                          color="inherit"
+                          sx={{ mr: 2 }}
+                          onClick={() => passTheme(light)}
+                        >
+                          <LightModeIcon />
+                        </IconButton>
+                      </Tooltip>
 
                     )}
                   </Grid>
                   <Grid item xs={true}>
-
-                    <IconButton
-                      size="large"
-                      edge="start"
-                      aria-label="buttons"
-                      sx={{ mr: 2 }}
-                      color="inherit"
-                      onClick={() => dispatch(toogleFav())}
-                    >
-                      <Badge
-                        badgeContent={
-                          favorites &&
-                          displayableBooks.filter((book) =>
-                            favorites.favorites.includes(book.id)
-                          ).length
-                        }
+                    <Tooltip title='Favorites'>
+                      <IconButton
+                        size="large"
+                        edge="start"
+                        aria-label="buttons"
+                        sx={{ mr: 2 }}
+                        color="inherit"
+                        onClick={() => dispatch(toogleFav())}
                       >
-                        <BookmarkOutlinedIcon />
-                      </Badge>
-                    </IconButton>
+                        <Badge
+                          badgeContent={
+                            favorites &&
+                            displayableBooks.filter((book) =>
+                              favorites.favorites.includes(book.id)
+                            ).length
+                          }
+                        >
+                          <BookmarkOutlinedIcon />
+                        </Badge>
+                      </IconButton>
+                    </Tooltip>
                   </Grid>
                   <Grid item xs={true}>
-
-                    <IconButton
-                      size="large"
-                      edge="start"
-                      aria-label="buttons"
-                      sx={{ mr: 2 }}
-                      color="inherit"
-                      onClick={() => dispatch(toogleCart())}
-                    >
-                      <Badge
-                        badgeContent={availableItems(displayableBooks, cart).length}
+                    <Tooltip title='Cart'>
+                      <IconButton
+                        size="large"
+                        edge="start"
+                        aria-label="buttons"
+                        sx={{ mr: 2 }}
+                        color="inherit"
+                        onClick={() => dispatch(toogleCart())}
                       >
-                        <ShoppingCart />
-                      </Badge>
-                    </IconButton>
+                        <Badge
+                          badgeContent={availableItems(displayableBooks, cart).length}
+                        >
+                          <ShoppingCart />
+                        </Badge>
+                      </IconButton>
+                    </Tooltip>
                   </Grid>
 
                   {/* {userStatus.logged ? ( */}
                   <Grid item xs={true}>
-                    <IconButton
-                      size="large"
-                      edge="start"
-                      sx={{ mr: 2 }}
-                      aria-label="account of current user"
-                      aria-controls="menu-appbar"
-                      aria-haspopup="true"
-                      color="inherit"
-                      onClick={handleMenu}
-                    >
-                      <AccountCircle />
-                    </IconButton>
+                    <Tooltip title='Login'>
+                      <IconButton
+                        size="large"
+                        edge="start"
+                        sx={{ mr: 2 }}
+                        aria-label="account of current user"
+                        aria-controls="menu-appbar"
+                        aria-haspopup="true"
+                        color="inherit"
+                        onClick={handleMenu}
+                      >
+                        <AccountCircle />
+                      </IconButton>
+                    </Tooltip>
 
                   </Grid>
                   <Grid item xs={true}>
