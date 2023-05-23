@@ -18,7 +18,7 @@ export const List = ({ fullList, selected, setSelected, prop }) => {
   useEffect(() => {
     if (selected && selected.length && fullList.length)
       if (parseInt(selected[selected.length - 1].id) > fullList.length - 1)
-        setOptions([...options, selected[selected.length - 1]]);
+        setOptions([...options, selected[selected.length - 1]]);// eslint-disable-next-line
   }, [selected]);
 
   return (

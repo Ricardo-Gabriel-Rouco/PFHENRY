@@ -33,10 +33,10 @@ const Login = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      if (!userData.email) {
-        if (!userData.password) throw "bothEmpty";
+      if (!userData.email) {// eslint-disable-next-line
+        if (!userData.password) throw "bothEmpty";// eslint-disable-next-line
         else throw "emptyEmail";
-      }
+      }// eslint-disable-next-line
       if (!userData.password) throw "emptyPass";
 
       await login(userData.email, userData.password);

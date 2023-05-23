@@ -1,4 +1,4 @@
-import { getDocs, query, collection, where, doc, getDoc, updateDoc, setDoc, deleteDoc } from "firebase/firestore"
+import { collection, doc, getDoc, setDoc } from "firebase/firestore"
 import { db } from '../firebase-config';
 
 export async function postFav(favorites, userId) {
