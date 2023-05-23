@@ -88,7 +88,7 @@ const PayStatus = () => {
           break;
       }
     }
-    checkPayStatus();
+    checkPayStatus();// eslint-disable-next-line
   }, []);
 
   return (

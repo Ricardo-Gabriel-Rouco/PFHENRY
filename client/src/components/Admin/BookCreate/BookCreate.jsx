@@ -9,7 +9,6 @@ import {
 } from "react-admin";
 import {
   getBookById,
-  modifyBook,
   postBook,
 } from "../../../firebase/firestore/books";
 import { useState, useEffect } from "react";
@@ -85,7 +84,7 @@ export const BookCreate = (props) => {
       if (paramId) fetchBook();
     } catch (err) {
       console.log(err);
-    }
+    }// eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -93,7 +92,7 @@ export const BookCreate = (props) => {
     if (focused) {
       console.log(book);
       setBookData({ ...bookData, image: book?.image });
-    }
+    }// eslint-disable-next-line
   }, [imageType]);
 
   useEffect(() => {
@@ -101,7 +100,7 @@ export const BookCreate = (props) => {
     newData.authors = authors;
     newData.genres = genres;
 
-    setBookData({ ...bookData, ...newData });
+    setBookData({ ...bookData, ...newData });// eslint-disable-next-line
   }, [authors, genres]);
 
   useEffect(() => {
@@ -111,7 +110,7 @@ export const BookCreate = (props) => {
       setBookData({ ...bookData, image: book?.image });
       setImageToRender(book.image);
       setFlag(false);
-    }
+    }// eslint-disable-next-line
   }, [bookData]);
 
   const createBook = async (e) => {
@@ -126,7 +125,7 @@ export const BookCreate = (props) => {
         if (el === undefined) {
           error = true;
         }
-      });
+      });// eslint-disable-next-line
       if (error) throw "Missing data";
 
       const imageUrl = await uploadImage(
@@ -145,7 +144,7 @@ export const BookCreate = (props) => {
 
       //agrego nuevos autores
       const newAuthors = bookData.authors.filter((author) => {
-        if (!allAuthors.find((el) => el.name === author.name)) return true;
+        return (!allAuthors.find((el) => el.name === author.name)) ? true: false
       });
       const authorsPromises = newAuthors.map((el) =>
         postAuthor(el.name, el.id)
@@ -154,7 +153,7 @@ export const BookCreate = (props) => {
 
       //agrego nuevos generos
       const newGenres = bookData.genres.filter((genre) => {
-        if (!allGenres.find((el) => el.name === genre)) return true;
+        return (!allGenres.find((el) => el.name === genre)) ? true : false;
       });
       const genresPromises = newGenres.map((el) => postGenre(el.name, el.id));
       genresPromises.length && (await Promise.all(genresPromises));

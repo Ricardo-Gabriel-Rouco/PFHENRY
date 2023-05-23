@@ -1,4 +1,4 @@
-import { AppBar, TitlePortal, defaultTheme, ToggleThemeButton } from "react-admin";
+import { AppBar, TitlePortal, ToggleThemeButton } from "react-admin";
 import { Box, IconButton } from "@mui/material";
 import Home from "@mui/icons-material/Home";
 import { useNavigate } from "react-router-dom";

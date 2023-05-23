@@ -20,7 +20,7 @@ export const uploadImage = async (image, type, id) => {
     
     try {
         if(type === "file"){
-            const snapshot = await uploadBytes(imagesRef, image)
+            await uploadBytes(imagesRef, image)
             console.log("File uploaded successfully");
 
         }

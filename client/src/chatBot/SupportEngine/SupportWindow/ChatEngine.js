@@ -28,7 +28,7 @@ const ChatEngine = props => {
                 showChat &&
                 <ChatEngineWrapper>
                     <Socket 
-                        projectID={'31c8f011-468e-4001-a485-f2c84746e009'}
+                        projectID='3b721c18-f771-47c9-9e19-e108ac6e3db0'
                         userName={props.user.email}
                         userSecret={props.user.email}
                     />

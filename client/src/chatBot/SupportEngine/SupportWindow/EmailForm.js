@@ -16,18 +16,19 @@ const EmailForm = props => {
         axios.put(
             'https://api.chatengine.io/users/',
             {username: email, email: email, secret: email},
-            {headers: {"Private-Key": 'd097ff32-cd83-4b1b-9214-d9f91f68069b'}}
+            {headers: {"Private-Key": 'fb58f201-0695-4cb6-bdf8-e73f8fd665b9'}}
         )
         .then(r => callback(r.data))
         .catch(e => console.log('Get or create user error', e))
     }
 
     function getOrCreateChat(callback) {
+        console.log('HOLA')
         axios.put(
             'https://api.chatengine.io/chats/',
             {usernames: [email, 'bookskingdom@outlook.com'], is_direct_chat: true},
             {headers: {
-                "Project-ID": '31c8f011-468e-4001-a485-f2c84746e009',
+                "Project-ID": '3b721c18-f771-47c9-9e19-e108ac6e3db0',
                 "User-Name": email,
                 "User-Secret": email,
             }}

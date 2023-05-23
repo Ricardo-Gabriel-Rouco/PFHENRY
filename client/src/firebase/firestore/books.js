@@ -95,8 +95,8 @@ export async function postBook(book) {
     throw new Error("At least one author must be specified");
   else {
     try {
-      book.authors.forEach((el) => {
-        if (el.length > 50) throw 50;
+      book.authors.forEach((el) => {// eslint-disable-next-line
+        if (el.length > 50) throw 50;// eslint-disable-next-line
         if (!regexAuthor.test(el)) throw "RegExp failed";
       });
     } catch (err) {
@@ -125,8 +125,8 @@ export async function postBook(book) {
     throw new Error("At least one genre must be specified");
   else {
     try {
-      book.genres.forEach((el) => {
-        if (el.length > 50) throw 50;
+      book.genres.forEach((el) => {// eslint-disable-next-line
+        if (el.length > 50) throw 50;// eslint-disable-next-line
         if (!regexPublisher.test(el)) throw "RegExp failed";
       });
     } catch (err) {

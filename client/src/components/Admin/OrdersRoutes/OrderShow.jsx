@@ -8,25 +8,13 @@ import {
   Datagrid,
   NumberField,
   FunctionField,
-  useShowController,
   useRecordContext,
   ImageField,
 } from "react-admin";
-import {
-  FormLabel,
-  Dialog,
-  DialogActions,
-  DialogTitle,
-  Button,
-  DialogContent,
-  Typography,
-} from "@mui/material";
-import { useState } from "react";
+import { FormLabel } from "@mui/material";
 
 const OrderShow = (props) => {
   const record = useRecordContext();
-  const { record: loadedRecord, defaultTitle } = useShowController(props);
-  const [open, setOpen] = useState(false);
 
   return (
     <ShowBase sx={{ textAlign: "left" }}>

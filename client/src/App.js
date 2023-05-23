@@ -28,8 +28,7 @@ import { createTheme, CssBaseline, ThemeProvider, Alert } from "@mui/material";
 import light from "./Theme/light";
 import MyPurchases from "./components/MyPurchases/MyPurchases";
 import ModalDetail from "./components/ModalDetail/ModalDetail";
-import Footer from './components/Footer/Footer';
-import { DiscountLabel } from "./components/DiscountLabel/DiscountLabel";
+
 
 axios.defaults.baseURL = 'https://pfhenry.onrender.com/';
 // axios.defaults.baseURL = 'http://localhost:3001/';

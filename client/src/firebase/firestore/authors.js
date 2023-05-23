@@ -1,4 +1,4 @@
-import { getDocs, query, collection, where, doc, getDoc, updateDoc, addDoc, setDoc } from "firebase/firestore"
+import { getDocs, query, collection, doc, getDoc, updateDoc, setDoc } from "firebase/firestore"
 import {db} from '../firebase-config'
 
 export async function getAuthors () {

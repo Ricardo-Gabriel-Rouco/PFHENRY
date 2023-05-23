@@ -1,7 +1,6 @@
 import {provider, auth, db} from '../firebase-config'
 import { signInWithPopup } from 'firebase/auth'
 import { collection, doc, setDoc } from 'firebase/firestore'
-import { getUserById } from "./auth";
 
 
 export async function registerWithGoogle(){

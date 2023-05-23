@@ -2,7 +2,6 @@ import {
   Admin,
   Resource,
   CustomRoutes,
-  EditGuesser,
   ShowGuesser,
 } from "react-admin";
 import { MyLayout } from "../../components/Admin/Layout/Layout";

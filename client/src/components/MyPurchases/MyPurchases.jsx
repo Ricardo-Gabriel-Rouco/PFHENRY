@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {getOrdersByUser} from '../../firebase/firestore/orders'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { Table, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 const MyPurchases = () => {
 
   const [purchases, setPurchases] = useState()
@@ -12,7 +12,7 @@ const MyPurchases = () => {
       setPurchases(result)
     }
     fetchPurchases()
-    console.log(purchases)
+    console.log(purchases)// eslint-disable-next-line
   }, [])
   
 

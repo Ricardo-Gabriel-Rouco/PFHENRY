@@ -1,7 +1,6 @@
 import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
-import { Box, Button, TextField, Typography, IconButton, CardMedia, Input, Paper } from "@mui/material";
-import CloseIcon from '@mui/icons-material/Close';
+import { Box, Button, TextField, Typography, CardMedia, Input, Paper } from "@mui/material";
 import { useAuth } from "../../context/authContext";
 import { validate } from './validation'
 

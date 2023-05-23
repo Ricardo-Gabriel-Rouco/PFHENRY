@@ -13,7 +13,6 @@ import Cards from "@mui/material/Card";
 import loading from '../../Assets/Loading.gif'
 import notFound from '../../Assets/notFound.gif'
 import SupportEngine from '../../chatBot/SupportEngine/index'
-import light from '../../Theme/light'
 
 
 const CardContainer = () => {
