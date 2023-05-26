@@ -8,7 +8,7 @@ import "swiper/css/thumbs";
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper/core";
 import { CardMedia, Grid, Typography, styled, Button, Paper, Box } from "@mui/material";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import "./Carrousel.css";
 import { useState, useEffect } from "react";
@@ -30,6 +30,11 @@ const Carrousel = () => {
   const { userStatus } = useAuth();
   const dispatch = useDispatch();
   const [orders, setOrders] = useState([]);
+  const navigate = useNavigate()
+
+  const handleNavigate = (bookId) =>{
+    navigate(`/booksDetail/${bookId}`)
+  }
 
 
   useEffect(() => {
@@ -305,7 +310,7 @@ const Carrousel = () => {
                       "&:hover": {
                         bgcolor: "primary.light",
 
-                      },
+                      }, 
                     }} style={{ margin: '1rem', display: 'flex', justifyContent: 'center', borderRadius: '10px', minWidth: '15rem', backgroundColor: 'primary' }}>
                       <Grid item >
                         <BookCardMedia
@@ -314,7 +319,7 @@ const Carrousel = () => {
                           image={book.image}
                           alt={book.title}
                           sx={{ cursor: "pointer", marginTop: '20px' }}
-                          onClick={() => dispatch(openModal(book.id))}
+                          onClick={() => handleNavigate(book.id)}
                         />
 
                         <Typography
@@ -375,13 +380,16 @@ const Carrousel = () => {
         {/* Carrousel PREFERENCIAS AUTHORS */}
         {
           userStatus.logged && getOrders.length ? (
-            <CarouselContainer sx={{ width: '70%', minWidth: '15rem' }}>
+            <CarouselContainer sx={{ width: '80%', minWidth: '15rem' }}>
               
                 {booksNotPurchased.length > 1 ? <Typography color="primary" align="left" variant="h6" marginLeft={"2.5rem"}>You may be interested in these authors</Typography> : <Typography align="center" variant="h6">You may be interested in this author</Typography>}
 
               <Swiper
                 slidesPerView={5}
-                navigation
+                navigation={{
+                  prevEl:'.swiper-button-prev',
+                  nextEl:'.swiper-button-next'
+                }}
                 breakpoints={{
                   250: {
                     slidesPerView: 1,
@@ -413,6 +421,8 @@ const Carrousel = () => {
                 modules={[Pagination]}
                 className="mySwiper"
               >
+              <div className="swiper-button-prev" style={{left:'-0.2rem'}}/>
+              <div className="swiper-button-next" style={{right:'-0.2rem'}}/>
                 {booksNotPurchased
                   .map((book, index) => (
                     <SwiperSlide key={index}>
@@ -521,11 +531,14 @@ const Carrousel = () => {
         {/* CARROUSEL GENERO */}
         {
           userStatus.logged && getOrders.length ? (
-            <CarouselContainer sx={{ width: '70%', minWidth: '15rem' }}>
+            <CarouselContainer sx={{ width: '80%', minWidth: '15rem' }}>
               {purchasedGenres.length >= 1 ? <Typography color="primary" align="left" variant="h6" marginLeft={"2.5rem"}>You may be interested in these genres</Typography> : <Typography color="primary" align="center" variant="h6" marginLeft={"2.5rem"}>You may be interested in this genre</Typography>}
               <Swiper
                 slidesPerView={5}
-                navigation
+                navigation={{
+                  prevEl:'.swiper-button-prev',
+                  nextEl:'.swiper-button-next'
+                }}
                 breakpoints={{
                   250: {
 
@@ -558,6 +571,8 @@ const Carrousel = () => {
                 modules={[Pagination]}
                 className="mySwiper"
               >
+              <div className="swiper-button-prev" style={{left:'-0.2rem'}}/>
+              <div className="swiper-button-next" style={{right:'-0.2rem'}}/>
                 {genresNotPurchased
                   .map((book, index) => (
                     <SwiperSlide key={index}>

@@ -101,6 +101,7 @@ function App() {
                 }
               />
               <Route exact path="/books" element={<CardContainer />} />
+              <Route exact path="/booksDetail/:id" element={<CardDetail />} />
               <Route path="/home/:id" element={<CardDetail />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />

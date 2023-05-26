@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 import {
   Grid,
-  Box,
+  Container,
   Card,
   CardMedia,
   Typography,
@@ -68,49 +68,10 @@ const CardDetail = ({ id }) => {
   };
 
   return bookDetail.id ? (
-    <Grid
-      container
-      spacing={3}
-      direction="column"
-      alignItems="center"
-      justifyContent="center"
-      sx={{ padding: 2 }}
-    >
+    <Grid>
       <Grid item xs={12} md={6} lg={4}>
-      <Card
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            borderBottom:22 ,
-            borderColor:"success.light",
-            boxShadow:"none",
-            pt: 3,
-            bgcolor: "primary.main",
-            width: 860,
-            height:"98%",
-            maxWidth: "95%",
-            maxHeight: "95%",
-            // overflow: "auto",
-            overflow: 'scroll',
-            '::-webkit-scrollbar': {
-              display: 'none'
-            },
-            // marginLeft: "4px",
-            // marginTop: "2px",
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              position: "relative",
-              zIndex: 1,
-            }}
-          >
+      <Card sx={{display:'flex'}}>
+<Container sx={{flexGrow:1, border: '1px solid black',display:'flex',heigth:'100%',flexDirection:'column',alignItems:'center',justifyContent:'center'}}>
             <CardMedia
               component="img"
               image={bookDetail?.image}
@@ -149,11 +110,16 @@ const CardDetail = ({ id }) => {
                 readOnly
                 sx={{
                   "& .MuiRating-iconFilled": {
-                    color: "primary.contrastText",
+                    color: "primary",
                   },
                 }}
               />
             </Typography>
+            
+          </Container>
+          <Container
+          sx={{flexGrow:1, border:'1px solid black',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',padding:'2rem'}}
+          >
             {/* <Typography
               variant="body1"
               gutterBottom
@@ -165,24 +131,57 @@ const CardDetail = ({ id }) => {
             <Button onClick={() => setMoreDetails(!details)}>
               {details ? "View less" : "View Details"}
             </Button> */}
-            {bookDetail && bookDetail.description && (
+              {bookDetail && bookDetail.description && (
               <>
                 <Typography
                   variant="body1"
                   align="justify"
                   gutterBottom
-                  sx={{ marginBottom: "15px", width: "90%", color:"success.main" }}
+                  sx={{ width: "90%", color:"primary" }}
                 >
-                  <Collapse in={description} collapsedHeight={"500px"}>
                     {bookDetail.description}
-                  </Collapse>
                 </Typography>
-                <Button onClick={() => setDescription(!description)}>
-                  {description ? "View less" : "View Description"}
-                </Button>
               </>
             )}
-
+                        {bookDetail.reviews ? (
+              <>
+                <Paper
+                  elevation={4}
+                  sx={{
+                    height:300,
+                    maxHeight: "60%",
+                    overflow: "auto",
+                    margin: "8px auto",
+                    width: "90%",
+                  }}
+                >
+                  <List
+                    sx={{
+                      width: "95%",
+                      margin: "auto",
+                    }}
+                    subheader={
+                      <ListSubheader
+                        color="primary.dark"
+                        sx={{ display: "flex" }}
+                      >
+                        Comments
+                      </ListSubheader>
+                    }
+                  >
+                    {bookDetail.reviews.map((review) => (
+                      <CardsReview
+                        key={review.id}
+                        id={review.id}
+                        user={review.user}
+                        comment={review.comment}
+                        rating={review.rating}
+                      />
+                    ))}
+                  </List>
+                </Paper>
+              </>
+            ) : null}
             {/* new change "Show reviews" */}
             {bookDetail.reviews ? (
               bookDetail.reviews.find(
@@ -248,47 +247,9 @@ const CardDetail = ({ id }) => {
                 </Paper>
               </>
             )}
-            {bookDetail.reviews ? (
-              <>
-                <Paper
-                  elevation={4}
-                  sx={{
-                    height:300,
-                    maxHeight: "60%",
-                    overflow: "auto",
-                    margin: "8px auto",
-                    width: "90%",
-                  }}
-                >
-                  <List
-                    sx={{
-                      width: "95%",
-                      margin: "auto",
-                    }}
-                    subheader={
-                      <ListSubheader
-                        color="primary.dark"
-                        sx={{ display: "flex" }}
-                      >
-                        Comments
-                      </ListSubheader>
-                    }
-                  >
-                    {bookDetail.reviews.map((review) => (
-                      <CardsReview
-                        key={review.id}
-                        id={review.id}
-                        user={review.user}
-                        comment={review.comment}
-                        rating={review.rating}
-                      />
-                    ))}
-                  </List>
-                </Paper>
-              </>
-            ) : null}
+
             {/* new change "Show reviews" */}
-          </Box>
+          </Container>
         </Card>
       </Grid>
     </Grid>
